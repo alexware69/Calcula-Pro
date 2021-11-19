@@ -1,0 +1,343 @@
+﻿@using OnlinePriceSystem.Controllers
+@using QuoteTree
+@{
+    var Model = (MathNode)TempData["node"];
+    var storeName = (string)TempData["store_name"];
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+<script src="../js/iframesize.js"></script>
+<title>ChangeTreeValue</title>
+<script src="../js/jquery-2.1.3.min.js"></script>
+
+<script>
+    var iframeids = ["Iframe2"];
+    var iframehide = "yes";
+    var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
+    var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;
+    function resizeCaller() {
+        var dyniframe = new Array();
+        for (i = 0; i < iframeids.length; i++) {
+            if (document.getElementById) resizeIframe(iframeids[i]);
+            if ((document.all || document.getElementById) && iframehide == "no") {
+                var tempobj = document.all ? document.all[iframeids[i]] : document.getElementById(iframeids[i]);
+                tempobj.style.display = "block";
+            }
+        }
+    }
+    function resizeIframeByElement(frame) {
+        var currentfr = frame;
+        if (currentfr) {
+            currentfr.style.display = "block";
+            if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight;
+            else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = document.getElementById('Iframe15').Document.body.scrollHeight + 5;
+        }
+    }
+    function resizeIframe(frameid) {
+        var currentfr = document.getElementById(frameid);
+        if (currentfr) {
+            currentfr.style.display = "block";
+            if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
+            else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
+            if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
+            else if (currentfr.attachEvent) {
+                currentfr.detachEvent("onload", readjustIframe);
+                currentfr.attachEvent("onload", readjustIframe);
+            }
+        }
+        //var dif = document.body.scrollHeight - window.frameElement.height;
+        //window.frameElement.height = document.body.scrollHeight - 22;
+    }
+
+    function resizeIframeParent(frameid) {
+        var currentfr = window.parent.document.getElementById(frameid);
+        if (currentfr) {
+            currentfr.style.display = "block";
+            if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
+            else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
+            if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
+            else if (currentfr.attachEvent) {
+                currentfr.detachEvent("onload", readjustIframe);
+                currentfr.attachEvent("onload", readjustIframe);
+            }
+        }
+        //var dif = document.body.scrollHeight - window.frameElement.height;
+        //window.frameElement.height = document.body.scrollHeight - 22;
+    }
+    function readjustIframe(loadevt) {
+        var crossevt = (window.event) ? event : loadevt;
+        var iframeroot = (crossevt.currentTarget) ? crossevt.currentTarget : crossevt.srcElement;
+        if (iframeroot) resizeIframe(iframeroot.id);
+    }
+    function loadintoIframe(iframeid, url) {
+        if (document.getElementById) document.getElementById(iframeid).src = url;
+    }
+    if (window.addEventListener) window.addEventListener("load", resizeCaller, false);
+    else if (window.attachEvent) window.attachEvent("onload", resizeCaller);
+    else window.onload = resizeCaller;
+    //resize frame when resizing the window
+    if (window.addEventListener) window.addEventListener("resize", resizeCaller, false);
+    else if (window.attachEvent) window.attachEvent("onresize", resizeCaller);
+    else window.onresize = resizeCaller;
+
+
+    function maximizeWindow() {
+        var offset = (navigator.userAgent.indexOf("Mac") != -1 ||
+                        navigator.userAgent.indexOf("Gecko") != -1 ||
+                        navigator.appName.indexOf("Netscape") != -1) ? 0 : 4;
+        window.moveTo(-offset, -offset);
+        window.resizeTo(screen.availWidth + (2 * offset),
+                        screen.availHeight + (2 * offset));
+    }
+
+</script>
+<style>
+    li { background: FloralWhite; }
+    li:nth-child(odd) { background: PowderBlue; }
+</style>
+</head>
+<body onunload="">
+<div style="text-align:center">
+    
+        @{
+            string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
+            
+            }
+    <span style="color:red; font-size:medium; font-style:italic">@s</span>
+    <br />
+    <br />
+    @if (Model.Disabled){
+    <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
+    <br />
+    } 
+    @if (!Model.ReadOnly){ 
+        @using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
+        {
+            bool show_button = true; decimal output;
+            <table style="text-align:right; margin: auto">
+                @if (Model.EditChildren){ 
+                    @foreach(ANode node in Model.Children){ 
+                        @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode).Formula, out output))
+                            { 
+                            <tr>
+                                <td>@node.Name</td>
+                                <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                                <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString() + ", " + node.Max.ToString() + "]")</td>
+                            </tr>     
+                        }  
+                        else show_button = false;            
+                    } 
+                } else {
+                    @if (!Model.BranchHidden() && Decimal.TryParse(Model.Formula, out output))
+                        { 
+                        <tr>
+                            <td> @Model.Name </td>
+                            <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
+                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Model.Min.ToString() + ", " + Model.Max.ToString() + "]") </td>
+                        </tr>
+                        }   
+                    else show_button = false;                        
+                    }
+                @if (show_button) { 
+                    <tr>
+                        <td></td>
+                        <td><input type="button" class="input" onclick="get()" value="Save" /></td>
+                    </tr>
+                }
+            </table>
+        }
+}
+    </div>
+
+
+<br />
+@{
+    string url = Url.Content("~/Products/") + storeName +  "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+    //if(!System.IO.File.Exists(url)) url = Url.Content("~/") +"NoInfo.html";
+
+}
+<iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px" id="Iframe2" src="@url"></iframe>
+
+<div>
+    <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
+    <ol class="list_dependents" id="dependents">
+        @foreach (ANode dependent in Model.Dependents) {
+        <li><a title="@dependent.GetPath()" onclick="OpenNode('@dependent.GetPath().Replace("\\",">")'); UnHideBranch('@dependent.Id');" href="@dependent.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dependent.Url):"Description?id=" + dependent.Id">@dependent.Name</a><label style="font-size:small" > (@dependent.GetPath()) </label></li>
+        } 
+    </ol>
+    <br />
+</div>
+<div>
+    <label onclick="$('#references').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>REFERENCES</U></label>
+    <ol class="list_references" id="references">
+        @foreach (ANode reference in Model.References) {
+        <li><a title="@reference.GetPath()" onclick="OpenNode('@reference.GetPath().Replace("\\",">")'); UnHideBranch('@reference.Id');" href="@reference.Url.Contains("ChangeTreeValue")? Url.Content("~/" + reference.Url):"Description?id=" + reference.Id">@reference.Name</a><label style="font-size:small" > (@reference.GetPath()) </label></li>
+        } 
+    </ol>
+    <br />
+    <br />
+</div>
+<script>
+    $(function () {
+        $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
+        $(".list_references li").sort(asc_sort).appendTo('.list_references');
+        //$("#dependents").hide();
+        //$("#references").hide();
+        resizeIframeParent('Iframe1');
+        $('#formID').keypress(function (e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                $('.input').click();
+            }
+        });
+    });
+    function get() {
+        //Post values to server
+        var data = $('#formID').serialize();
+        //$.get('CommitTreeValue', data);
+
+        //Get total price
+        $.ajax({
+            url: "CommitTreeValue",
+            type: 'GET',
+            data: data,
+            cache: false,
+            beforeSend: function () {
+            },
+            complete: function () {
+                top.dialog.dialog("close");
+            },
+            success: function (result) {
+                if (result == "_SessionTimeout_") {
+                    parent.document.location = "/SessionTimeOut.html";
+                    return false;
+                }
+                //Update the price in the page
+                top.asynchronous = false;
+                price = window.parent.document.getElementById("price");
+                $(price).text("Price: " + result);
+                if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
+                    //Open the node
+                    parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
+                    //var array = [];
+                    var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
+                    var merged = "";
+                    for (var i = 0; i < children.length; i++) {
+                        var childID = children[i].id.replace(/li_/g, "");
+                        //Merge dependents and branch nodes then update
+                        var dependents = ";" + $("input[id='dependents_" + childID + "']", parent.document).attr("value");
+                        var branch = parent.GetBranch(childID);
+                        var branchArray = branch.split(";");
+                        for (var j = 0; j < branchArray.length; j++) {
+                            if (dependents.indexOf(";" + branchArray[j] + ";") == -1) dependents = dependents + ";" + branchArray[j];
+                        }
+
+                        //get not optional descendents, this is to update the complete/incomplete images.
+                        //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
+                        var descendents = $("li[id='" + childID + "']", parent.document).find("li");
+                        for (var k = 0; k < descendents.length; k++) {
+                            dependents += ";" + descendents[k].id.replace(/li_/g, "");
+                        }
+                        //}
+
+                        //parent.UpdateNodesFromServer(dependents);
+                        //merge each child depentents into a single list
+                        var dependentsArray = dependents.split(";");
+                        for (var l = 0; l < dependentsArray.length; l++) {
+                            if (merged.indexOf(";" + dependentsArray[l] + ";") == -1) merged = merged + ";" + dependentsArray[l];
+                        }
+                    }
+                    parent.UpdateNodesFromServer(merged);
+                    //parent.UpdateDependents(array);
+                }
+                else {
+                    //parent.UpdateDependents('@Model.Id');
+                    //This will updated current node and dependents
+                    //UpdateDependents(parentliIDclean);
+                    //Merge dependents and branch nodes then update
+                    var dependents = ";" + $("input[id='dependents_" + "@Model.Id" + "']", parent.document).attr("value");
+                    var branch = parent.GetBranch("@Model.Id");
+                    var branchArray = branch.split(";");
+                    for (var i = 0; i < branchArray.length; i++) {
+                        if (dependents.indexOf(";" + branchArray[i] + ";") == -1) dependents = dependents + ";" + branchArray[i];
+                    }
+
+                    //get not optional descendents, this is to update the complete/incomplete images.
+                    //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
+                    var descendents = $("li[id='" + "@Model.Id" + "']", parent.document).find("li");
+                    for (var i = 0; i < descendents.length; i++) {
+                        dependents += ";" + descendents[i].id.replace(/li_/g, "");
+                    }
+                    //}
+
+                    parent.UpdateNodesFromServer(dependents);
+                }
+                top.asynchronous = true;
+                //Redirect to QuoteDetails to show the complete price quote **!! if I do this the recursive javascript is halted and the tree is not correctly updated
+                //window.location = "QuoteDetails";
+            },
+            error: function (result) {
+                alert("Error updating price from server!");
+            }
+        });   //end ajax
+        //while (parent.$.active != 0) { }
+    }
+
+
+    // accending sort
+    function asc_sort(a, b) {
+        return ($(b).text()) < ($(a).text()) ? 1 : -1;
+    }
+
+    // decending sort
+    function dec_sort(a, b) {
+        return ($(b).text()) > ($(a).text()) ? 1 : -1;
+    }
+
+    //Receives a node's full path and opens the node
+    function OpenNode(node) {
+        var split = node.split('>');
+        var current = "li[id='li_1']";
+        top.asynchronous = false;
+        for (var i = 0; i < split.length; i++) {                
+            //1:Open the node
+            parent.$.jstree._reference(current).open_node(current, function () {
+                if (i == split.length - 1) {
+                    parent.$.jstree._reference("li[id='li_@Model.Id']").deselect_all();
+                    parent.$.jstree._reference(current).select_node(current);
+                    $('html', parent.document).scrollTop($(current, parent.document).offset().top);
+                }
+                else {
+                    //2:Get next node
+                    var children = $(current, parent.document).children('ul').children('li');
+                    for (var j = 0; j < children.length; j++) {
+                        if ($(children[j]).children('a').children('span:first').text() == split[i + 1]) {
+                            current = "li[id='" + $(children[j]).attr('id') + "']";
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+        top.asynchronous = true;
+    }
+
+    function UnHideBranch(id) {
+        $("li[id='li_" + id + "']", parent.document).show();
+        parent.RefreshFillers(id,false);
+        var parentulID = $("li[id='li_" + id + "']", parent.document).parent().attr("id");
+        //Recursive call
+        if ($("li[id='li_" + id + "']", parent.document).parent().parent().attr("id") != "container")
+            UnHideBranch(parentulID.replace(/li_ul_/g, ""));
+    }
+</script>
+</body>
+</html>

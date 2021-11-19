@@ -1,0 +1,17 @@
+type="Math";
+order="0";
+report="false";
+reportvalue="false";
+units="";
+optional="false";
+max="0";
+min="0";
+discount="0";
+disablecondition="";
+disabledmessage="";
+expandedlevels="0";
+hidden="true";
+readonly="false";
+template="false";
+formula="Height*Width/144";
+editchildren="false";

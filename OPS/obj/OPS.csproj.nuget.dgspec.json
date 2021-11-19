@@ -1,0 +1,222 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/alejandro/Online-Price-System/OPS/OPS.csproj": {}
+  },
+  "projects": {
+    "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj",
+        "projectName": "NCalc",
+        "projectPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ANTLR4": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[4.6.6, )"
+            },
+            "Antlr3.Runtime": {
+              "target": "Package",
+              "version": "[3.5.1, )"
+            },
+            "Antlr4.Runtime.Standard": {
+              "target": "Package",
+              "version": "[4.9.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alejandro/Online-Price-System/OPS/OPS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alejandro/Online-Price-System/OPS/OPS.csproj",
+        "projectName": "OPS",
+        "projectPath": "/Users/alejandro/Online-Price-System/OPS/OPS.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Online-Price-System/OPS/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+                "projectPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj"
+              },
+              "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj": {
+                "projectPath": "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Antlr3.Runtime": {
+              "target": "Package",
+              "version": "[3.5.1, )"
+            },
+            "Antlr4.Runtime.Standard": {
+              "target": "Package",
+              "version": "[4.9.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj",
+        "projectName": "QuoteTree",
+        "projectPath": "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Online-Price-System/QuoteTree/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+                "projectPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Antlr3.Runtime": {
+              "target": "Package",
+              "version": "[3.5.1, )"
+            },
+            "Antlr4.Runtime.Standard": {
+              "target": "Package",
+              "version": "[4.9.3, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

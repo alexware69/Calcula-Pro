@@ -1,0 +1,17 @@
+type="Math";
+order="3";
+report="true";
+reportvalue="false";
+units="In";
+optional="false";
+max="0";
+min="0";
+discount="0";
+disablecondition="";
+disabledmessage="";
+expandedlevels="0";
+hidden="false";
+readonly="false";
+template="false";
+formula="(Feet*12)+Inches";
+editchildren="true";

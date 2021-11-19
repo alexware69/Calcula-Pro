@@ -1,0 +1,17 @@
+type="Math";
+order="0";
+report="false";
+reportvalue="false";
+units="";
+optional="false";
+max="0";
+min="0";
+discount="0";
+disablecondition="";
+disabledmessage="";
+expandedlevels="0";
+hidden="false";
+readonly="false";
+template="false";
+formula="Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers,0)";
+editchildren="false";

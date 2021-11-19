@@ -1,0 +1,17 @@
+type="ConditionalRules";
+order="9";
+report="true";
+reportvalue="false";
+units="$";
+optional="false";
+max="0";
+min="0";
+discount="0";
+disablecondition="";
+disabledmessage="";
+expandedlevels="0";
+hidden="false";
+readonly="false";
+template="false";
+expression="[TriFace Sign\Motor Type\1_6 HP.selected?700][TriFace Sign\Motor Type\1_12 HP Rear Mounted.selected?700][TriFace Sign\Motor Type\1_3 HP.selected?815]";
+editchildren="false";

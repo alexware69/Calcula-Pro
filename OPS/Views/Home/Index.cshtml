@@ -1,0 +1,32 @@
+﻿@model List<StoreProductsUtil>
+@using OnlinePriceSystem.Controllers
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome Home!</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br/>
+    <br/>
+    <ul id="tiles" style="list-style-type: none; position: relative;">
+    
+    @foreach (StoreProductsUtil spu in Model){
+        @for (int i = 0; i < 5; i ++) {
+	    <li class="myElements" style="text-align: left;">
+		    <div style="width:200px; border: 1.5px solid;border-color:orange;box-shadow: 10px 10px 5px #888888;">
+		    	<h3 align="center" class="ui-state-default" style="padding:10px; border-left:0px; border-right:0px">@spu.Store.name</h3>
+		    	<br/>
+		    	<ul>
+			    	@foreach (ProductUtility prod in spu.Products){
+			    	 <li> 
+			    	 <a href="@Url.Content("~/")TreeView/NewQuote?id=@prod.id">@prod.name</a> 
+			    	 </li>
+					 <br/>
+			    	 }
+		    	 </ul>
+		    </div>
+		</li>
+        }
+    }
+    </ul>
+</div>
