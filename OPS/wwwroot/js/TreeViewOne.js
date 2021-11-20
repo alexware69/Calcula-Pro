@@ -1330,6 +1330,8 @@ $(function () {
                     var jsonObject = JSON.parse(decompressed);
                     //PruneTree(jsonObject, jsonObject);
                     RenderTree(jsonObject);
+                    //This update is to fix a bug, should be removed later
+                    UpdateTreeSync();
                     //This is to fix bug...not very elegant though
                     RefreshFillers(1, false);
                     treeIsLoaded = true;
