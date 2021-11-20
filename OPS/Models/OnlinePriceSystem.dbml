@@ -37,7 +37,7 @@
       <Column Name="[user]" Member="user" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="product_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="revisions" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="quote" Member="quote1" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="quote" Member="quote" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="item" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="revision" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="store_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />

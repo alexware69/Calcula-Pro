@@ -12,7 +12,7 @@ namespace OnlinePriceSystem
     using System;
     using System.Collections.Generic;
     
-    public partial class quote
+    public partial class quote1
     {
         public int id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
@@ -20,7 +20,7 @@ namespace OnlinePriceSystem
         public string user { get; set; }
         public string product_name { get; set; }
         public short revisions { get; set; }
-        public byte[] quote1 { get; set; }
+        public byte[] quote { get; set; }
         public string item { get; set; }
         public Nullable<int> revision { get; set; }
         public Nullable<System.Guid> store_id { get; set; }

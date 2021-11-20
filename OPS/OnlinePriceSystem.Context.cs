@@ -30,7 +30,7 @@ namespace OnlinePriceSystem
         }
     
         public virtual DbSet<product1> products { get; set; }
-        public virtual DbSet<quote> quotes { get; set; }
+        public virtual DbSet<quote1> quotes { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<store> stores { get; set; }
         public virtual DbSet<user_accounts> user_accounts { get; set; }

@@ -107,7 +107,7 @@
           <Property Name="user" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="revisions" Type="Int16" Nullable="false" />
-          <Property Name="quote1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="quote" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="item" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="revision" Type="Int32" />
           <Property Name="store_id" Type="Guid" />
@@ -185,7 +185,7 @@
                 <ScalarProperty Name="user" ColumnName="user" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
                 <ScalarProperty Name="revisions" ColumnName="revisions" />
-                <ScalarProperty Name="quote1" ColumnName="quote" />
+                <ScalarProperty Name="quote" ColumnName="quote" />
                 <ScalarProperty Name="item" ColumnName="item" />
                 <ScalarProperty Name="revision" ColumnName="revision" />
                 <ScalarProperty Name="store_id" ColumnName="store_id" />

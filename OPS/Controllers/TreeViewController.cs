@@ -99,11 +99,11 @@ namespace OnlinePriceSystem.Controllers
         {
 
             ops_inhouseEntities dc = new ops_inhouseEntities();
-            IQueryable<quote> quotes = dc.quotes.Select(q => q).Where(q => q.id.ToString() == id);
+            IQueryable<quote1> quotes = dc.quotes.Select(q => q).Where(q => q.id.ToString() == id);
             //Now deserialize the quote tree
             byte[] bytes_stream;
-            quote quote = quotes.First();
-            bytes_stream = quote.quote1.ToArray();
+            quote1 quote = quotes.First();
+            bytes_stream = quote.quote.ToArray();
             QTree tree = QTree.Deserialize(bytes_stream);
 
             List<ANode> nodeList = new List<ANode>();
@@ -130,7 +130,7 @@ namespace OnlinePriceSystem.Controllers
 					where q.id.ToString() == id
 				select new {
 				id = q.id,
-				quote = q.quote1,
+				quote = q.quote,
 				product_id = q.product_id,
 				store_id = q.store_id
 			};
@@ -552,11 +552,11 @@ namespace OnlinePriceSystem.Controllers
                         string id = HttpContext.Session.GetInt32("product_id").ToString();
                         var store_id = from prod in dc.products where prod.id.ToString() == id select prod.store_id;
 
-                        quote Quote = new quote();
+                        quote1 Quote = new quote1();
 						Quote.date = DateTime.Now;
                         Quote.total = tree.Root.Total();
                         Quote.product_name = tree.Root.Name;
-                        Quote.quote1 = tree.Serialize().ToArray();
+                        Quote.quote = tree.Serialize().ToArray();
                         Quote.item = tree.Root.Name;
 						Quote.store_id = store_id.First();
                         Quote.product_id = int.Parse(id);
@@ -594,11 +594,11 @@ namespace OnlinePriceSystem.Controllers
                 if (tree.Root.IsComplete())
                 {
                     ops_inhouseEntities dc = new ops_inhouseEntities();
-                    quote Quote = new quote();
+                    quote1 Quote = new quote1();
                     Quote.date = DateTime.Now;
                     Quote.total = tree.Root.Total();
                     Quote.product_name = tree.Root.Name;
-                    Quote.quote1 = tree.Serialize().ToArray();
+                    Quote.quote = tree.Serialize().ToArray();
                     Quote.item = tree.Root.Name;
                     if (TempData["treeDBID"] != null && TempData["treeDBID"].ToString() != "")
                         Quote.revision = int.Parse(TempData["treeDBID"].ToString());

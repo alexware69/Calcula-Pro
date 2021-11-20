@@ -26,7 +26,7 @@
     <Property Name="user" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="revisions" Type="Int16" Nullable="false" />
-    <Property Name="quote1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="quote" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="item" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="revision" Type="Int32" />
     <Property Name="store_id" Type="Guid" />
