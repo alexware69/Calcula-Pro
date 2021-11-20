@@ -259,13 +259,13 @@ namespace QuoteTree;
 		private string _Name;
 		private string _ID;
 		private NodeType _Type;
-        [JsonProperty]
+        
         private List<ANode> _Children;
         [XmlIgnore]
-        [JsonProperty]
+        
         private List<ANode> _Dependents;
         [XmlIgnore]
-        [JsonProperty]
+        
         private List<ANode> _References;
 		private decimal _Discount;
 		private decimal _Max;
@@ -349,7 +349,7 @@ namespace QuoteTree;
             }
             set { }
         }
-        [JsonIgnore]
+       
         public List<ANode> Children
 		{
 			get { return _Children; }

@@ -1244,6 +1244,7 @@ function RenderTree(tree) {
     //Recursive call
     if (tree.Children != null) {
         for (var i = 0; i < tree.Children.length; i++) {
+            if(tree.Children[i].Id == undefined) continue;
             RenderTree(tree.Children[i]);
         }            
     }

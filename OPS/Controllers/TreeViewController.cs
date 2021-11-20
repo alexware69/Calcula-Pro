@@ -1091,7 +1091,6 @@ namespace OnlinePriceSystem.Controllers
                 Converters = new List<JsonConverter> { new TreeConverter() },
                 Formatting = Formatting.Indented,
                 TypeNameHandling = TypeNameHandling.Auto,
-                NullValueHandling = NullValueHandling.Ignore,
                 ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
