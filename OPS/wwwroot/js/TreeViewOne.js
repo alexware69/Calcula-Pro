@@ -986,7 +986,7 @@ function Assemble(result, id) {
         //Add the node expression as a tooltip
         $("li[id='li_" + result[i].id + "']").children('a').attr("title", result[i].expression);
         //Set leaves to red color
-        if (result[i].leaf) $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:red;");
+        //if (result[i].leaf) $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:red;");
         //Set hidden to green
         if (result[i].hidden) $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:green");
         //Some variables
@@ -1207,7 +1207,7 @@ function RenderTree(tree) {
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", expression);
         //Set leaves to red color
-        if (tree.Leaf) $(node).children('a').attr("style", "color:red;");
+        //if (tree.Leaf) $(node).children('a').attr("style", "color:red;");
         //Set hidden to green
         if (tree.Hidden) $(node).children('a').attr("style", "color:green");
 
@@ -1328,7 +1328,7 @@ $(function () {
                 success: function (result) {
                     var decompressed = lzw_decode(result);
                     var jsonObject = JSON.parse(decompressed);
-                    PruneTree(jsonObject, jsonObject);
+                    //PruneTree(jsonObject, jsonObject);
                     RenderTree(jsonObject);
                     //This is to fix bug...not very elegant though
                     RefreshFillers(1, false);

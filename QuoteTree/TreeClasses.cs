@@ -276,6 +276,7 @@ namespace QuoteTree;
 		private bool _Hidden;
 		private bool _ReadOnly;
 		private bool _Expanded;
+        [JsonProperty]
         private bool _Leaf;
         private int _ExpandedLevels;
 		private string _Units;

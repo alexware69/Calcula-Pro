@@ -1094,7 +1094,7 @@ namespace OnlinePriceSystem.Controllers
                 ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
-            //this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
+            this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
             string json = JsonConvert.SerializeObject(tree.Root, settings);
             //dynamic parsedJson = JObject.Parse(json);
             //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
