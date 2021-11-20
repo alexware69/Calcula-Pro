@@ -1074,6 +1074,8 @@ namespace OnlinePriceSystem.Controllers
         {
             var id = HttpContext.Session.GetInt32("product_id");
 
+            if (id != null)
+            {
             ops_inhouseEntities dc = new ops_inhouseEntities();
             QTree tree;
 
@@ -1109,6 +1111,31 @@ namespace OnlinePriceSystem.Controllers
             //dynamic parsedJson = JObject.Parse(json);
             //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
             return Json(Compress(json));
+            }
+            else 
+            {
+                string jsonString = HttpContext.Session.GetString("tree");
+                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                });
+                QTree tree = fromJson;
+
+                var settings = new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter> { new TreeConverter() },
+                    Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                };
+                this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
+                string json = JsonConvert.SerializeObject(tree.Root, settings);
+                //dynamic parsedJson = JObject.Parse(json);
+                //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
+                return Json(Compress(json));
+            }
         }
         public static string Compress(string s)
         {
