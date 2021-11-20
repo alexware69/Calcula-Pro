@@ -262,10 +262,10 @@ namespace QuoteTree;
         [JsonProperty]
         private List<ANode> _Children;
         [XmlIgnore]
-        
+        [JsonProperty]
         private List<ANode> _Dependents;
         [XmlIgnore]
-        
+        [JsonProperty]
         private List<ANode> _References;
 		private decimal _Discount;
 		private decimal _Max;

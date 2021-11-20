@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "quCgFg0r1phbKjo0+/ePSUpc4zLTk/6CjM+MLT86Smo=",
+  "Hash": "vxAKCpQy4Z9tCwtS0T7m5OazTnNR5EbVvgBClKIqFmI=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -4707,6 +4707,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/NoInfo.html"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/.DS_Store",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Products/AdTech Int/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Products/AdTech Int/.DS_Store"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/Aluminum Face/Aluminum Overview/Aluminum Overview.doc",
