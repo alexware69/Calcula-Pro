@@ -35,7 +35,7 @@
     </tr>
 @foreach ( var quoteUtil in Model.CurrentPageList){ 
     <tr>
-        <td><a href="@Url.Content("~/")TreeView/LoadQuote?id=<%=quoteUtil.id">@quoteUtil.product_name</a></td>
+        <td><a href="@Url.Content("~/")TreeView/LoadQuote?id=@quoteUtil.id">@quoteUtil.product_name</a></td>
         <td>@quoteUtil.id</td>
         <td style="text-align:center;">@quoteUtil.revision!= null?quoteUtil.revision.ToString():"--"</td>
         <td>@quoteUtil.store</td>

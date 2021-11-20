@@ -146,16 +146,26 @@ namespace OnlinePriceSystem.Controllers
             // This is needed only to save quote as a revision, so that the view knows what id to put in the url of QuoteDetails link
 
             TempData["treeDBID"] = id;
-            TempData["tree"] = tree;
+            
 			TempData["product_id"] = quote.product_id;
 
 			var store_id = quote.store_id;
 			var stores = from str in dc.stores where str.id == store_id select str;
 			string store_name = stores.First ().name;
-			TempData["store_name"] = store_name;
-			ViewBag.store_name = store_name;
 
-			return View("ViewQuote", tree.Root);
+			TempData["store_name"] = store_name;
+
+            TempData["root"] = tree.Root;
+
+            var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                Formatting = Formatting.Indented
+            });    
+            HttpContext.Session.SetString("tree", toJson);
+
+			return View("ViewQuote");
         }
 
 		
