@@ -12,12 +12,10 @@ using System.IO;
 
 namespace OnlinePriceSystem.Controllers
 {
-	[Route("default")]
+	[Route("Home")]
     public class HomeController : Controller
     {
-		[Route("")]
-        [Route("index")]
-        [Route("~/")]
+		[Route("index")]
         public ActionResult Index()
         {
 			List<StoreProductsUtil> retList = new List<StoreProductsUtil> ();
