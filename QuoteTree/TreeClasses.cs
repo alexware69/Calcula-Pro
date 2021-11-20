@@ -259,7 +259,7 @@ namespace QuoteTree;
 		private string _Name;
 		private string _ID;
 		private NodeType _Type;
-        
+        [JsonProperty]
         private List<ANode> _Children;
         [XmlIgnore]
         
@@ -349,7 +349,7 @@ namespace QuoteTree;
             }
             set { }
         }
-       
+       [JsonIgnore]
         public List<ANode> Children
 		{
 			get { return _Children; }

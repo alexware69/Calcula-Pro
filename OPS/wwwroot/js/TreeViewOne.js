@@ -1071,7 +1071,7 @@ function RenderTree(tree) {
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today')
+        if (tree.Formula != undefined)
             expression = "&nbsp;[<i>" + tree.Formula.trim() + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
@@ -1242,10 +1242,10 @@ function RenderTree(tree) {
         ///////////////////////////////////////End Updating Node//////////////////////////////////////////////////////////////////////////
     $("#container").jstree("deselect_node", $("li[id='" + "li_" + parentId + "']"));
     //Recursive call
-    if (tree.Children != null) {
-        for (var i = 0; i < tree.Children.length; i++) {
-            if(tree.Children[i].Id == undefined) continue;
-            RenderTree(tree.Children[i]);
+    if (tree._Children != null) {
+        for (var i = 0; i < tree._Children.length; i++) {
+            if(tree._Children[i].Id == undefined) continue;
+            RenderTree(tree._Children[i]);
         }            
     }
     $("#container").jstree("deselect_node", $("li[id='" + "li_" + parentId + "']"));
@@ -1255,12 +1255,12 @@ function RenderTree(tree) {
 function PruneTree(tree,Root) {
     var countDots = tree.Id.split('.').length - 1;
     if (tree.Id != '1' && countDots == Root.ExpandedLevels) {
-        tree.Children = null;
+        tree._Children = null;
         return;
     }
     else {
-        for (var i = 0; i < tree.Children.length; i++){
-            PruneTree(tree.Children[i], Root);
+        for (var i = 0; i < tree._Children.length; i++){
+            PruneTree(tree._Children[i], Root);
         }
     } 
 }
@@ -1328,7 +1328,7 @@ $(function () {
                 success: function (result) {
                     var decompressed = lzw_decode(result);
                     var jsonObject = JSON.parse(decompressed);
-                    //PruneTree(jsonObject, jsonObject);
+                    PruneTree(jsonObject, jsonObject);
                     RenderTree(jsonObject);
                     //This is to fix bug...not very elegant though
                     RefreshFillers(1, false);
