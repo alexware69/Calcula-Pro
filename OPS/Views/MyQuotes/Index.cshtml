@@ -13,15 +13,15 @@
 
 @if (!(Model.CurrentPage - Model.OffSet < 1))
     { 
-    Html.ActionLink("⇤", "Index", new { id = 1 });
-    Html.ActionLink("←", "Index", new { id = Model.CurrentPage - Model.OffSet });
+    @Html.ActionLink("⇤", "Index", new { id = 1 })
+    @Html.ActionLink("←", "Index", new { id = Model.CurrentPage - Model.OffSet })
 } 
 @{Html.RenderPartial("Pages", Model);}
 
 @if (!(Model.CurrentPage + Model.OffSet > Model.TotalPages))
     { 
-    Html.ActionLink("→", "Index", new { id =  Model.CurrentPage + Model.OffSet });
-    Html.ActionLink("⇥", "Index", new { id = Model.TotalPages });
+    @Html.ActionLink("→", "Index", new { id =  Model.CurrentPage + Model.OffSet })
+    @Html.ActionLink("⇥", "Index", new { id = Model.TotalPages })
 } 
 <table id="MyQuotes" width="100%">
     <tr>
