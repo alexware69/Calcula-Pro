@@ -16,7 +16,7 @@ namespace OnlinePriceSystem.Controllers
         {
             ops_inhouseEntities dc = new ops_inhouseEntities();
 			string user = HttpContext.Session.GetString("username");
-            if(user == null) return RedirectToAction("Account", "Index");
+            if(user == null) return RedirectToAction("Index","Account");
 
 			var myquotesview = from q in dc.quotes
 				join s in dc.stores on q.store_id equals s.id
