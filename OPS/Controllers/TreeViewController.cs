@@ -215,22 +215,34 @@ namespace OnlinePriceSystem.Controllers
                     tree = QTree.Deserialize(bytes_stream);
 
 					TempData["treeDBID"] = "";
-					TempData["tree"] = tree;
+					//TempData["tree"] = tree;
 					TempData["product_id"] = prod.id;
 					ViewBag.id = prod.id;
                     var id = HttpContext.Session.GetInt32("product_id");
-                    string user = User.Identity.Name;
+                    string user = HttpContext.Session.GetString("username");
 					var users = from usr in dc.user_accounts where usr.user == user select usr;
 					var store_id = users.First ().store_id;
 					var store = from str in dc.stores where str.id == store_id select str;
 					string store_name = store.First ().name;
 					TempData["store_name"] = store_name;
 					ViewBag.store_name = store_name;
+
+                    HttpContext.Session.SetInt32("product_id", int.Parse(product));
+                    HttpContext.Session.SetString("store_name", store_name);
 				}
 			}
 			else tree = TempData["tree"] as QTree;
 
-			return View("EditProduct", tree.Root);
+            TempData["root"] = tree.Root;
+            var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                Formatting = Formatting.Indented
+            });    
+            HttpContext.Session.SetString("tree", toJson);
+
+			return View("EditProduct");
 		}
 
         

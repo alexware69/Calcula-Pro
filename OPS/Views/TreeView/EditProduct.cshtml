@@ -1,20 +1,18 @@
-﻿<%@ Import Namespace="QuoteTree" %>
-
-<%@ Page Title="Analysis Module" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ANode>" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Edit Product
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+﻿@using OnlinePriceSystem.Controllers
+@using QuoteTree
+@{
+    var Model = (ANode)TempData["root"];
+}
 
  <script src="../Scripts/TreeViewEditOne.js"></script>
     <style>
         html {
             overflow-y: scroll;
+        }
+		hr {
+            margin: 8px 0;
+            border: 0;
+            opacity: 0.25;
         }
         #description {
             float: left;
@@ -36,17 +34,17 @@
             clear: both;
             height: 90%;  
             /*background-repeat:repeat-x ;*/
-            background:url('../Images/dot.gif') repeat-x  center;
+            background:url('../../Images/dot.gif') repeat-x  center;
         }
         .filler:hover {
-            background:url('../Images/dot-bold.gif') repeat-x  center;
+            background:url('../../Images/dot-bold.gif') repeat-x  center;
         }
         .build{
             display: inline-block;
             height:20px;
 			width:20px;
             cursor: pointer;
-            background: url('../Images/link_anchor-128.png') center no-repeat;
+            background: url('../../Images/link_anchor-128.png') center no-repeat;
 			background-size: 16px 16px;
         }
         .build:hover {
@@ -58,14 +56,14 @@
             margin-left:6px;
 			height:12px;
 			width:12px;
-			background: url('../Images/badge_minus.png') center;
+			background: url('../../Images/badge_minus.png') center;
 			background-size: 12px 12px;
 		}
 		.remove:hover {
 			display: inline-block;
 			height:12px;
 			width:12px;
-			background: url('../Images/badge_minus_orange.png') center;
+			background: url('../../Images/badge_minus_orange.png') center;
 			background-size: 12px 12px;
 		}
 		.add {
@@ -74,14 +72,14 @@
             margin-left:6px;
 			height:12px;
 			width:12px;
-			background: url('../Images/badge_plus.png') center;
+			background: url('../../Images/badge_plus.png') center;
 			background-size: 12px 12px;
 		}
 		.add:hover {
 			display: inline-block;
 			height:12px;
 			width:12px;
-			background: url('../Images/badge_plus_orange.png') center;
+			background: url('../../Images/badge_plus_orange.png') center;
 			background-size: 12px 12px;
 		}
 		.edit {
@@ -90,14 +88,14 @@
             margin-left:6px;
 			height:12px;
 			width:12px;
-			background: url('../Images/pencil.png') center;
+			background: url('../../Images/pencil.png') center;
 			background-size: 12px 12px;
 		}
 		.edit:hover {
 			display: inline-block;
 			height:12px;
 			width:12px;
-			background: url('../Images/pencil_orange.png') center;
+			background: url('../../Images/pencil_orange.png') center;
 			background-size: 12px 12px;
 		}
         .formula {
@@ -169,7 +167,7 @@
             <div style="display:inline-block;vertical-align:middle;"> 
 	 	     	<span class="build" title='Build dependencies' onclick="javascript: BuildDependencies();"></span>&nbsp;
      		</div>
-	        <a href="SaveProduct?id=<%=ViewBag.Id%>" style="color: black; text-decoration: none; display:inline;">Save product</a>
+	        <a href="SaveProduct?id=@ViewBag.Id%>" style="color: black; text-decoration: none; display:inline;">Save product</a>
 	     	<a href="../MyProducts/Index/1" style="color: black; text-decoration: none; display:inline;">Discard changes</a>
 		</div>
      </div>
@@ -177,28 +175,28 @@
      <br/>
     <div id="description" class="follow-scroll" style="text-align: center">
         <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
-    	    <img style="padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/description.jpg" height="15"/>
-            <img style="float: left; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/top left gray.jpg" height="15" width="16" />
-            <img style="float: right; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/top right gray.jpg" height="15" width="16" />
+    	    <img style="padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/description.jpg" height="15"/>
+            <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
+            <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
         </div>
         <div style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/top left white.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/top right white.jpg" height="15" width="16" />
+                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left white.jpg" height="15" width="16" />
+                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right white.jpg" height="15" width="16" />
             </div>
             <br />
-            <%string url = ""; if (Model != null) url = Model.Url.Contains("ChangeTreeValue")? Model.Url : "Description?id=1";%>
+            @{string url = ""; if (Model != null) url = Model.Url.Contains("ChangeTreeValue")? Model.Url : "Description?id=1";}
             <iframe style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="<%=url%>"></iframe>
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; bottom:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/bottom left white.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="<%=Url.Content("~/")%>Images/bottom right white.jpg" height="15" width="16" />
+                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white.jpg" height="15" width="16" />
+                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
             </div>
         </div>
         <span style="font-size: 7pt; color: #999999; padding: 0px 0px 0px 0px; height: 15px; border-width: 0px">PATENT PENDING</span>
         <br />
     </div>
      
-    <span id="price" style="float: right"> <% if (Model!= null){%> Price: <%=Model.TotalStr%> <%}%></span>
+	<span id="price" style="float: right">  Price: @Model.TotalStr</span>
     <span id="space" style="float: right">&nbsp;</span>
     <a href="QuoteDetails" target="details" style="float: right; color: black">Details</a>
 
