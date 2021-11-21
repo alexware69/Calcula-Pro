@@ -310,8 +310,8 @@ function UpdateNode(data) {
         $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
 
         //Set leaves to red color
-        if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
-        else $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
+        if (!data.leaf) //$("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
+            $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
         //Set hidden to green
         if (data.hidden) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:green");
 
@@ -935,7 +935,7 @@ function RefreshFillers(id, recursive) {
         //$(node).parent("ul").show();
         //$(node).show();
         //Adjust the node width
-        var padding_left = $(".content-wrapper").width() != parseInt($(".content-wrapper").css("max-width").replace("px", "")) ? parseInt($(".main-content").css("padding-left").replace("px", "")) : 0;
+        var padding_left = 0;
         if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - padding_left - ($(node).offset().left - $("#container").offset().left));
         else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
@@ -1586,8 +1586,8 @@ function RenderTree(tree) {
         //}
 
         //Set leaves to red color
-        if (tree.Leaf) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:red;");
-        else $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:black;");
+        if (!tree.Leaf) //$("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:red;");
+            $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:black;");
         //Set hidden to green
         if (tree.Hidden) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:green");
         //Add the node expression as a tooltip
@@ -1806,9 +1806,9 @@ function RenderTree(tree) {
     }
     ///////////////////////////////////////End Updating Node//////////////////////////////////////////////////////////////////////////
     //Recursive call
-    if (tree.Children != null) {
-        for (var i = 0; i < tree.Children.length; i++) {
-            RenderTree(tree.Children[i]);
+    if (tree._Children != null) {
+        for (var i = 0; i < tree._Children.length; i++) {
+            RenderTree(tree._Children[i]);
         }
     }
     $("#container").jstree("deselect_node", $("li[id='" + "li_" + parentId + "']"));
@@ -2002,6 +2002,8 @@ $(function () {
                         var jsonObject = JSON.parse(decompressed);
                         //PruneTree(jsonObject, jsonObject);
                         RenderTree(jsonObject);
+                        //This update is to fix a bug, should be removed later
+                        UpdateTreeSync();
                         //This is to fix bug...not very elegant though
                         RefreshFillers(1, false);
                         treeIsLoaded = true;                      
