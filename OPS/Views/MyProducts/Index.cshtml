@@ -44,14 +44,14 @@
 	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
 	<br />
 	<br />
-	Total pages:&nbsp;@Model.TotalPages&nbsp;&nbsp;
+	<span>Total pages:&nbsp;@Model.TotalPages&nbsp;&nbsp;</span>
 
 	@if (!(Model.CurrentPage - Model.OffSet < 1))
 		{
 		@Html.ActionLink("⇤", "Index", new { id = 1 })
 		@Html.ActionLink("←", "Index", new { id = Model.CurrentPage - Model.OffSet })
 	}
-	@{Html.RenderPartial("Pages", Model);}
+	Html.RenderPartial("PagesProducts", Model);
 
 	@if (!(Model.CurrentPage + Model.OffSet > Model.TotalPages))
 		{
@@ -76,13 +76,19 @@
 				<a href= '@Url.Content("~/TreeView/Edit")?product=@product.id'> @product.name</a> 
 			</td>
 			<td style="border-style:solid none solid none;">
-				@(DateTime.Parse(product.created)).ToShortDateString()
+				@{
+              	string date =  (DateTime.Parse(product.created)).ToShortDateString();
+             }
+             @date
 			</td>
 			<td style="border-style:solid none solid none;">
 				@product.created_by
 			</td>
 			<td style="border-style:solid none solid none;">
-				@(DateTime.Parse(product.modified)).ToShortDateString()
+				@{
+              string datemodif =  (DateTime.Parse(product.modified)).ToShortDateString();
+             }
+             @datemodif
 			</td>
 			<td style="border-style:solid none solid none;">
 				@product.modified_by

@@ -17,7 +17,7 @@
     @Html.ActionLink("⇤", "Index", new { id = 1 })
     @Html.ActionLink("←", "Index", new { id = Model.CurrentPage - Model.OffSet })
 } 
-@{Html.RenderPartial("Pages", Model);}
+@{Html.RenderPartial("PagesQuotes", Model);}
 
 @if (!(Model.CurrentPage + Model.OffSet > Model.TotalPages))
     { 
