@@ -154,6 +154,7 @@ namespace OnlinePriceSystem.Controllers
 			string store_name = stores.First ().name;
 
 			TempData["store_name"] = store_name;
+            HttpContext.Session.SetString("store_name", store_name);
 
             TempData["root"] = tree.Root;
 
