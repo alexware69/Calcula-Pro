@@ -37,9 +37,21 @@
     <tr>
         <td><a href="@Url.Content("~/")TreeView/LoadQuote?id=@quoteUtil.id">@quoteUtil.product_name</a></td>
         <td>@quoteUtil.id</td>
-        <td style="text-align:center;">@quoteUtil.revision!= null?quoteUtil.revision.ToString():"--"</td>
+        <td style="text-align:center;">
+            @{
+               string rev = ""; 
+               if(quoteUtil.revision!= null) rev = quoteUtil.revision.ToString();
+               else rev = "--";
+            }
+            @rev
+        </td>
         <td>@quoteUtil.store</td>
-        <td>@(DateTime.Parse(quoteUtil.date)).ToShortDateString()</td>
+        <td>
+            @{
+              string date =  (DateTime.Parse(quoteUtil.date)).ToShortDateString();
+             }
+             @date
+        </td>
         <td>@quoteUtil.total.ToString("C")</td>
         <td style="padding: 1em 1em 1em 1em; text-align:center;"><img src='../../Images/buy-128.png' height='18' width='18'></td>
     </tr>
