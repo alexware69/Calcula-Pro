@@ -16323,11 +16323,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
@@ -16335,6 +16330,11 @@
     {
       "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/MyQuotes/Index.cshtml",
       "TargetPath": "Views\\MyQuotes\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/Home/About.cshtml",
+      "TargetPath": "Views\\Home\\About.cshtml",
       "FileKind": "mvc"
     },
     {
