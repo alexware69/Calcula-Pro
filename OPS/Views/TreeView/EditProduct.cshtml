@@ -189,7 +189,7 @@
             </div>
             <br />
             @{string url = ""; if (Model != null) url = Model.Url.Contains("ChangeTreeValue")? Model.Url : "Description?id=1";}
-            <iframe style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="<%=url%>"></iframe>
+            <iframe style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="@url"></iframe>
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; bottom:0">
                 <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white.jpg" height="15" width="16" />
                 <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
