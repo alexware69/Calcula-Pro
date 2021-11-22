@@ -218,7 +218,8 @@ namespace OnlinePriceSystem.Controllers
 					//TempData["tree"] = tree;
 					TempData["product_id"] = prod.id;
 					ViewBag.id = prod.id;
-                    var id = HttpContext.Session.GetInt32("product_id");
+                    var id = prod.id;
+                    HttpContext.Session.SetInt32("product_id", id);
                     string user = HttpContext.Session.GetString("username");
 					var users = from usr in dc.user_accounts where usr.user == user select usr;
 					var store_id = users.First ().store_id;
@@ -227,7 +228,7 @@ namespace OnlinePriceSystem.Controllers
 					TempData["store_name"] = store_name;
 					ViewBag.store_name = store_name;
 
-                    HttpContext.Session.SetInt32("product_id", int.Parse(product));
+                    //HttpContext.Session.SetInt32("product_id", int.Parse(product));
                     HttpContext.Session.SetString("store_name", store_name);
 				}
 			}

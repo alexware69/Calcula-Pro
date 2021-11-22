@@ -1808,6 +1808,7 @@ function RenderTree(tree) {
     //Recursive call
     if (tree._Children != null) {
         for (var i = 0; i < tree._Children.length; i++) {
+            if(tree._Children[i].Id == undefined) continue;
             RenderTree(tree._Children[i]);
         }
     }
