@@ -1,26 +1,26 @@
 ﻿<Properties StartupConfiguration="{7B3561DF-3F11-41B2-85DD-1E8B9D576CE2}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="OPS/Controllers/TreeViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OPS/Views/TreeView/ChangeTreeValue.cshtml">
     <Files>
       <File FileName="QuoteTree/TreeClasses.cs" Line="374" Column="1" />
       <File FileName="OPS/Views/Home/Index.cshtml" Line="23" Column="15" />
       <File FileName="OPS/Controllers/HomeController.cs" Line="22" Column="1" />
-      <File FileName="OPS/appsettings.json" Line="10" Column="251" />
-      <File FileName="OPS/OnlinePriceSystem.Context.cs" Line="20" Column="167" />
-      <File FileName="OPS/OnlinePriceSystem.edmx" Line="161" Column="109" />
-      <File FileName="OPS/Controllers/TreeViewController.cs" Line="118" Column="70" />
       <File FileName="OPS/Views/TreeView/ViewQuote.cshtml" Line="86" Column="1" />
-      <File FileName="OPS/Controllers/SessionExtensions.cs" Line="6" Column="42" />
+      <File FileName="OPS/Views/TreeView/ChangeTreeValue.cshtml" Line="261" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Online-Price-System" expanded="True" selected="True">
+          <Node name="Online-Price-System" expanded="True">
             <Node name="OPS" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="TreeView" expanded="True" />
+                <Node name="TreeView" expanded="True">
+                  <Node name="ChangeTreeValue.cshtml" selected="True" />
+                </Node>
+              </Node>
+              <Node name="OnlinePriceSystem.tt" expanded="True">
+                <Node name="OnlinePriceSystem.cs" expanded="True" />
               </Node>
             </Node>
             <Node name="QuoteTree" expanded="True">
@@ -46,6 +46,12 @@
       <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Controllers/NodeConverter.cs" relfile="OPS/Controllers/NodeConverter.cs" line="57" column="1" />
       <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ViewQuote.cshtml" relfile="OPS/Views/TreeView/ViewQuote.cshtml" line="86" column="1" />
       <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Controllers/TreeViewController.cs" relfile="OPS/Controllers/TreeViewController.cs" line="618" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="281" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="258" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="225" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="266" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="196" column="1" />
+      <Breakpoint file="/Users/alejandro/Online-Price-System/OPS/Views/TreeView/ChangeTreeValue.cshtml" relfile="OPS/Views/TreeView/ChangeTreeValue.cshtml" line="195" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.OPS PreferredExecutionTarget="/Applications/Safari.app" />
