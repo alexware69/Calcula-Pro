@@ -164,18 +164,14 @@
     <div>
         <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
         <ol class="list_dependents" id="dependents">
-            @foreach (ANode dependent in Model.Dependents) {
-            <li><a title="@dependent.GetPath()" onclick="OpenNode('@dependent.GetPath().Replace("\\",">")'); UnHideBranch('@dependent.Id');" href="@dependent.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dependent.Url):"Description?id=" + dependent.Id">@dependent.Name</a><label style="font-size:small" > (@dependent.GetPath()) </label></li>
-            } 
+            
         </ol>
         <br />
     </div>
      <div>
         <label onclick="$('#references').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>REFERENCES</U></label>
         <ol class="list_references" id="references">
-            @foreach (ANode reference in Model.References) {
-            <li><a title="@reference.GetPath()" onclick="OpenNode('@reference.GetPath().Replace("\\",">")'); UnHideBranch('@reference.Id');" href="@reference.Url.Contains("ChangeTreeValue")? Url.Content("~/" + reference.Url):"Description?id=" + reference.Id">@reference.Name</a><label style="font-size:small" > (@reference.GetPath()) </label></li>
-            } 
+            
         </ol>
         <br />
         <br />

@@ -9,6 +9,7 @@ using QuoteTree;
 using System.Xml.Linq;
 using Pager;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Specialized;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -16,6 +17,11 @@ namespace OnlinePriceSystem.Controllers
     {
         //
         // GET: /Admin/
+		private IWebHostEnvironment _hostEnvironment;
+
+		public MyProductsController(IWebHostEnvironment environment) {
+			_hostEnvironment = environment;
+		}
 		
         public ActionResult Index(int id)
         {
@@ -48,7 +54,7 @@ namespace OnlinePriceSystem.Controllers
 		//To save products to database
 		[HttpGet]
 		
-		/*public ActionResult ReloadProducts()
+		public ActionResult ReloadProducts()
 		{
             ops_inhouseEntities dc = new ops_inhouseEntities();
 			QTree tree;
@@ -59,14 +65,18 @@ namespace OnlinePriceSystem.Controllers
             if(user == null) return RedirectToAction("Index","Account");
 			var users = from usr in dc.user_accounts where usr.user == user select usr;
 			var store_id = users.First ().store_id;
-			foreach (var key in Request.QueryString.AllKeys)
+
+			NameValueCollection keys = new NameValueCollection();
+			keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
+			foreach (var key in keys)
 			{
 				if (key != "_")
 				{
-					string value = Request.QueryString[key];
+					string value = keys[key.ToString()];
 					try
 					{
-						tree = new QTree (value, true);
+						string path = _hostEnvironment.WebRootPath + value + "/" + key;
+						tree = new QTree (path, true);
 						var qry = from prod in dc.products
                                   where prod.name == key && prod.store_id == store_id
 							select prod;
@@ -79,7 +89,7 @@ namespace OnlinePriceSystem.Controllers
 						} else {
 							product = new product1 ();
 							product.product = tree.Serialize ().ToArray ();
-							product.name = key;
+							product.name = key.ToString();
                             xml = tree.SerializeToString();
                             product.product_xml = xml;
 							dc.products.Add(product);
@@ -94,7 +104,7 @@ namespace OnlinePriceSystem.Controllers
 				}
 			}
 			return RedirectToAction("Index","MyProducts");        
-		}*/
+		}
 
 		//To toggle active
 		[HttpGet]

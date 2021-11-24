@@ -59,7 +59,7 @@ namespace QuoteTree;
 			set;
 		}
 
-		List<ANode> Dependents
+		List<string> Dependents
 		{
 			get;
 			set;
@@ -71,7 +71,7 @@ namespace QuoteTree;
             set;
         }
 
-		List<ANode> References
+		List<string> References
 		{
 			get;
 			set;
@@ -263,10 +263,10 @@ namespace QuoteTree;
         private List<ANode> _Children;
         [XmlIgnore]
         
-        private List<ANode> _Dependents;
+        private List<string> _Dependents;
         [XmlIgnore]
         
-        private List<ANode> _References;
+        private List<string> _References;
 		private decimal _Discount;
 		private decimal _Max;
 		private decimal _Min;
@@ -356,9 +356,8 @@ namespace QuoteTree;
 			get { return _Children; }
 			set { _Children = value; }
 		}
-        [XmlIgnore]
-        [JsonIgnore]
-        public List<ANode> Dependents
+
+        public List<string> Dependents
 		{
 			get { return _Dependents; }
 			set { _Dependents = value; }
@@ -368,15 +367,13 @@ namespace QuoteTree;
         {
             get {
                 string dep = "";
-                foreach (ANode n in this.Dependents) dep = dep + n.Id + ";";
+                foreach (string n in this.Dependents) dep = dep + n + ";";
                 return dep;
             }
             set { }
         }
 
-        [XmlIgnore]
-        [JsonIgnore]
-        public List<ANode> References
+        public List<string> References
 		{
 			get { return _References; }
 			set { _References = value; }
@@ -680,9 +677,9 @@ namespace QuoteTree;
 
 		public void RemoveNodeFromDependencies(ANode node, ANode start)
 		{
-			if (start.Dependents.Contains(node)) 
-				start.Dependents.Remove(node);
-			if (start.References.Contains(node)) start.References.Remove(node);
+			if (start.Dependents.Contains(node.Id)) 
+				start.Dependents.Remove(node.Id);
+			if (start.References.Contains(node.Id)) start.References.Remove(node.Id);
 			foreach (ANode child in start.Children)
 				RemoveNodeFromDependencies(node, child);
 		}
@@ -1395,8 +1392,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.Math;
 			this.Parent = null;
 			this.Amount = 1;
@@ -1576,7 +1573,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -1666,8 +1663,8 @@ namespace QuoteTree;
             this.Order = 0;
             this.Selected = true;
             this.Children = new List<ANode>();
-            this.Dependents = new List<ANode>();
-            this.References = new List<ANode>();
+            this.Dependents = new List<string>();
+            this.References = new List<string>();
             this.Type = NodeType.Date;
             this.Parent = null;
             this.Amount = 1;
@@ -1836,7 +1833,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -1879,7 +1876,7 @@ namespace QuoteTree;
             (month as MathNode).Formula = "1";
             month.Min = 1;
             month.Max = 12;
-            month.Dependents.Add(this);
+            month.Dependents.Add(this.Id);
             month.Order = 0;
             month.Selected = true;
             this.Children.Add(month);
@@ -1893,7 +1890,7 @@ namespace QuoteTree;
             (day as MathNode).Formula = "1";
             day.Min = 1;
             day.Max = 31;
-            day.Dependents.Add(this);
+            day.Dependents.Add(this.Id);
             day.Order = 1;
             day.Selected = true;
             this.Children.Add(day);
@@ -1907,7 +1904,7 @@ namespace QuoteTree;
             (year as MathNode).Formula = "2000";
             year.Min = 2000;
             year.Max = 2100;
-            year.Dependents.Add(this);
+            year.Dependents.Add(this.Id);
             year.Order = 2;
             year.Selected = true;
             this.Children.Add(year);
@@ -1958,8 +1955,8 @@ namespace QuoteTree;
             this.Order = 0;
             this.Selected = false;
             this.Children = new List<ANode>();
-            this.Dependents = new List<ANode>();
-            this.References = new List<ANode>();
+            this.Dependents = new List<string>();
+            this.References = new List<string>();
             this.Type = NodeType.Today;
             this.Parent = null;
             this.Amount = 1;
@@ -2128,7 +2125,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -2171,7 +2168,7 @@ namespace QuoteTree;
             (month as MathNode).Formula = DateTime.Today.Month.ToString();
             month.Min = 1;
             month.Max = 12;
-            month.Dependents.Add(this);
+            month.Dependents.Add(this.Id);
             month.ReadOnly = true;
             month.Order = 0;
             this.Children.Add(month);
@@ -2185,7 +2182,7 @@ namespace QuoteTree;
             (day as MathNode).Formula = DateTime.Today.Day.ToString();
             day.Min = 1;
             day.Max = 31;
-            day.Dependents.Add(this);
+            day.Dependents.Add(this.Id);
             day.ReadOnly = true;
             day.Order = 1;
             this.Children.Add(day);
@@ -2199,7 +2196,7 @@ namespace QuoteTree;
             (year as MathNode).Formula = DateTime.Today.Year.ToString();
             year.Min = 0;
             year.Max = 0;
-            year.Dependents.Add(this);
+            year.Dependents.Add(this.Id);
             year.ReadOnly = true;
             year.Order = 2;
             this.Children.Add(year);
@@ -2684,8 +2681,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.Conditional;
 			this.Parent = null;
 			this.Amount = 1;
@@ -2848,7 +2845,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -3369,8 +3366,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.ConditionalRules;
 			this.Parent = null;
 			this.Amount = 1;
@@ -3531,7 +3528,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -3700,8 +3697,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.Decision;
 			this.Parent = null;
 			this.Amount = 1;
@@ -3843,7 +3840,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -4227,8 +4224,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.Range;
 			this.Parent = null;
 			this.Amount = 1;
@@ -4386,7 +4383,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -4548,8 +4545,8 @@ namespace QuoteTree;
 			this.Order = 0;
 			this.Selected = false;
 			this.Children = new List<ANode>();
-			this.Dependents = new List<ANode>();
-			this.References = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
 			this.Type = NodeType.SumSet;
 			this.Parent = null;
 			this.Amount = 1;
@@ -4703,7 +4700,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -4887,8 +4884,8 @@ namespace QuoteTree;
             this.Order = 0;
             //this.Selected = false;
             this.Children = new List<ANode>();
-            this.Dependents = new List<ANode>();
-            this.References = new List<ANode>();
+            this.Dependents = new List<string>();
+            this.References = new List<string>();
             this.Type = NodeType.Reference;
             this.Parent = null;
             //this.Amount = 1;
@@ -4988,7 +4985,7 @@ namespace QuoteTree;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
-                this.Dependents.Add(node);
+                this.Dependents.Add(node.Id);
             }
             this.Parent = node;
             this.ParentTree = tree;
@@ -5188,7 +5185,7 @@ namespace QuoteTree;
 					}
 				}
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
 				return null;
 			}
@@ -5434,12 +5431,12 @@ namespace QuoteTree;
                     || (node.Type == NodeType.ConditionalRules && Array.IndexOf((node as ConditionalRulesNode).Expression.Split(charArr), child.Name) > -1))
                 {
                     foreach (ANode dependent in s)
-                        if (!child.Dependents.Contains(dependent))
-                            child.Dependents.Add(dependent);
+                        if (!child.Dependents.Contains(dependent.Id))
+                            child.Dependents.Add(dependent.Id);
                         
                     SetDependentsByHierarchy(child, s);
                     //Add reference
-                    if (!child.References.Contains(node)) child.References.Add(node);
+                    if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
                 }
                 else SetDependentsByHierarchy(child, new Stack<ANode>());
             }
@@ -5512,8 +5509,8 @@ namespace QuoteTree;
 							//	if (!NodeFromPath.dependents.Contains (dependent))
 							//		NodeFromPath.dependents.Add (dependent);
 							//Add reference
-							if (!NodeFromPath.References.Contains (node))
-								NodeFromPath.References.Add (node);
+							if (!NodeFromPath.References.Contains (node.Id))
+								NodeFromPath.References.Add (node.Id);
 						}
 					}
                     else                   
@@ -5536,8 +5533,8 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromId.References.Contains(node))
-                                NodeFromId.References.Add(node);
+                            if (!NodeFromId.References.Contains(node.Id))
+                                NodeFromId.References.Add(node.Id);
                         }
                     }                   
 					else
@@ -5561,7 +5558,7 @@ namespace QuoteTree;
                                 if (tuple != null) return tuple;
                                 //}
 								//Add reference
-								if (!child.References.Contains(node)) child.References.Add(node);
+								if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
 							}
 						}
 					}
@@ -5600,8 +5597,8 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromPath.References.Contains(node))
-                                NodeFromPath.References.Add(node);
+                            if (!NodeFromPath.References.Contains(node.Id))
+                                NodeFromPath.References.Add(node.Id);
                         }
                     }
                     else
@@ -5623,8 +5620,8 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromId.References.Contains(node))
-                                NodeFromId.References.Add(node);
+                            if (!NodeFromId.References.Contains(node.Id))
+                                NodeFromId.References.Add(node.Id);
                         }
                     }
                     else
@@ -5648,7 +5645,7 @@ namespace QuoteTree;
                                 if (tuple != null) return tuple;
                                 //}
                                 //Add reference
-                                if (!child.References.Contains(node)) child.References.Add(node);
+                                if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
                             }
                         }
                     }
@@ -5707,19 +5704,19 @@ namespace QuoteTree;
         public Tuple<ANode, ANode> SetDependenciesRecursively(ANode start, ANode dependent)
 		{
             Tuple<ANode, ANode> tuple = null;
-            if (dependent.Dependents.Contains(start)) return new Tuple<ANode, ANode>(start, dependent);
-			if (!start.Dependents.Contains(dependent)) start.Dependents.Add(dependent);
+            if (dependent.Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, dependent);
+			if (!start.Dependents.Contains(dependent.Id)) start.Dependents.Add(dependent.Id);
 			foreach (ANode node in GetDependencies(start))
 			{
-                if (dependent.Dependents.Contains(node)) return new Tuple<ANode, ANode>(node, dependent);
-				if (!node.Dependents.Contains(dependent)) node.Dependents.Add(dependent);
+                if (dependent.Dependents.Contains(node.Id)) return new Tuple<ANode, ANode>(node, dependent);
+				if (!node.Dependents.Contains(dependent.Id)) node.Dependents.Add(dependent.Id);
 				tuple = SetDependenciesRecursively(node, dependent);
                 if (tuple != null) return tuple;
 			}
-            foreach (ANode dependent2 in dependent.Dependents)
+            foreach (string dependent2 in dependent.Dependents)
             {
-                if (dependent2.Dependents.Contains(start)) return new Tuple<ANode, ANode>(start, dependent2);
-                tuple = SetDependenciesRecursively(start, dependent2);
+                if (this.GetNodeFromId(dependent2).Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, this.GetNodeFromId(dependent2));
+                tuple = SetDependenciesRecursively(start, this.GetNodeFromId(dependent2));
                 if (tuple != null) return tuple;
             }
             return null;
@@ -5734,7 +5731,7 @@ namespace QuoteTree;
 
 		private void GetDependencies(ANode dependent, ANode start, List<ANode> returnedList) 
 		{
-			if (start.Dependents.Contains(dependent)) returnedList.Add(start);
+			if (start.Dependents.Contains(dependent.Id)) returnedList.Add(start);
 			foreach (ANode child in start.Children)
 				GetDependencies(dependent, child, returnedList);
 		}

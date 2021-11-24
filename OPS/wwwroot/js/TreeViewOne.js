@@ -95,8 +95,8 @@
             }
             //}
 
-            //UpdateNodesFromServer(dependents);
-            UpdateTreeSync();
+            UpdateNodesFromServer(dependents);
+            //UpdateTreeSync();
         }
     });   //end ajax
 
@@ -120,8 +120,8 @@
             }
             updatenodes += dependents;
             asynchronous = true;
-            //UpdateNodesFromServer(updatenodes);
-            UpdateTreeSync();
+            UpdateNodesFromServer(updatenodes);
+            //UpdateTreeSync();
         }
         //Commented this, it was causing problems
         //$("li[id='" + parentliID + "']").siblings().children(':checkbox').attr('checked', false);

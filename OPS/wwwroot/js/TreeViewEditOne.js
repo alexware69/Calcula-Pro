@@ -96,8 +96,8 @@
             }
             //}
 
-            //UpdateNodesFromServer(dependents);
-            UpdateTreeSync();
+            UpdateNodesFromServer(dependents);
+            //UpdateTreeSync();
 
             //UpdateTreeSync();
         }
@@ -123,8 +123,8 @@
             }
             updatenodes += dependents;
             asynchronous = true;
-            //UpdateNodesFromServer(updatenodes);
-            UpdateTreeSync();
+            UpdateNodesFromServer(updatenodes);
+            //UpdateTreeSync();
         }
         //$("li[id='" + parentliID + "']").siblings().children(':checkbox').attr('checked', false);
     }
@@ -631,14 +631,14 @@ function UpdateDependents(id) {
         for (var i = 0; i < dependentsArray.length; i++) {
             dependents += dependentsArray[i] + ";";
         }
-        //UpdateNodesFromServer(dependents);
-        UpdateTreeSync();
+        UpdateNodesFromServer(dependents);
+        //UpdateTreeSync();
     }
     else {
         var dependents = $("input[id='dependents_" + id + "']").attr("value");
         //Updates the current node and its dependents
-        //UpdateNodesFromServer(id + ';' + dependents);
-        UpdateTreeSync();
+        UpdateNodesFromServer(id + ';' + dependents);
+        //UpdateTreeSync();
     }
 }
 

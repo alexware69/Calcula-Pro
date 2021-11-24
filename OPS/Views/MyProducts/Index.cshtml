@@ -72,7 +72,7 @@
 		{
 		<tr>
 			<td style="padding: 1em 1em 1em 1em; white-space: nowrap; border-style:solid none solid solid;">   			
-				<input type="checkbox" name="@product.name" value="@Url.Content("~/Products/" + ViewBag.store_name + "/") + @product.name">
+				<input type="checkbox" name="@product.name" value=@Url.Content("~/Products/" + @ViewBag.store_name + "/" + @product.name)>
 				<a href= '@Url.Content("~/TreeView/Edit")?product=@product.id'> @product.name</a> 
 			</td>
 			<td style="border-style:solid none solid none;">
