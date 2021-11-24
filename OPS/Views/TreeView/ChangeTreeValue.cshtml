@@ -255,7 +255,8 @@
                             if (merged.indexOf(";" + dependentsArray[l] + ";") == -1) merged = merged + ";" + dependentsArray[l];
                         }
                     }
-                    parent.UpdateNodesFromServer(merged);
+                    //parent.UpdateNodesFromServer(merged);
+                    parent.UpdateTreeSync();
                     //parent.UpdateDependents(array);
                 }
                 else {
@@ -278,7 +279,8 @@
                     }
                     //}
 
-                    parent.UpdateNodesFromServer(dependents);
+                    //parent.UpdateNodesFromServer(dependents);
+                    parent.UpdateTreeSync();
                 }
                 top.asynchronous = true;
                 //Redirect to QuoteDetails to show the complete price quote **!! if I do this the recursive javascript is halted and the tree is not correctly updated

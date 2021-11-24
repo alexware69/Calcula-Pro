@@ -96,7 +96,8 @@
             }
             //}
 
-            UpdateNodesFromServer(dependents);
+            //UpdateNodesFromServer(dependents);
+            UpdateTreeSync();
 
             //UpdateTreeSync();
         }
@@ -122,7 +123,8 @@
             }
             updatenodes += dependents;
             asynchronous = true;
-            UpdateNodesFromServer(updatenodes);
+            //UpdateNodesFromServer(updatenodes);
+            UpdateTreeSync();
         }
         //$("li[id='" + parentliID + "']").siblings().children(':checkbox').attr('checked', false);
     }
@@ -629,12 +631,14 @@ function UpdateDependents(id) {
         for (var i = 0; i < dependentsArray.length; i++) {
             dependents += dependentsArray[i] + ";";
         }
-        UpdateNodesFromServer(dependents);
+        //UpdateNodesFromServer(dependents);
+        UpdateTreeSync();
     }
     else {
         var dependents = $("input[id='dependents_" + id + "']").attr("value");
         //Updates the current node and its dependents
-        UpdateNodesFromServer(id + ';' + dependents);
+        //UpdateNodesFromServer(id + ';' + dependents);
+        UpdateTreeSync();
     }
 }
 
