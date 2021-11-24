@@ -68,7 +68,7 @@ namespace OnlinePriceSystem.Controllers
 
 			NameValueCollection keys = new NameValueCollection();
 			keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
-			foreach (var key in keys)
+			foreach (var key in keys.AllKeys)
 			{
 				if (key != "_")
 				{
