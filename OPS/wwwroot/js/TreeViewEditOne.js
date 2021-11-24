@@ -316,7 +316,7 @@ function UpdateNode(data) {
         if (data.hidden) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:green");
 
         //Remove old
-        if ($("input[id='nodetype_" + data.id + "']")) $("input[id='nodetype_" + data.id + "']").remove();
+        /*if ($("input[id='nodetype_" + data.id + "']")) $("input[id='nodetype_" + data.id + "']").remove();
         if ($("input[id='ishidden_" + data.id + "']")) $("input[id='ishidden_" + data.id + "']").remove();
         if ($("input[id='isoptional_" + data.id + "']")) $("input[id='isoptional_" + data.id + "']").remove();
         if ($("input[id='dependents_" + data.id + "']")) $("input[id='dependents_" + data.id + "']").remove();
@@ -332,13 +332,13 @@ function UpdateNode(data) {
         html = "<input type='hidden' id='isoptional_" + data.id + "' value='" + data.optional + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
         //Add the hidden input storing the node dependents, separated by ;
-        html = "<input type='hidden' id='dependents_" + data.id + "' value='" + data.dependents + "'/> ";
+        html = "<input type='hidden' id='dependents_" + data.id + "' value='" + data.DependentsStr + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
         html = "<input type='hidden' id='editchildren_" + data.id + "' value='" + data.editChildren + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
         //Add the hidden input storing the node expanded levels
         html = "<input type='hidden' id='expandedlevels_" + data.id + "' value='" + data.expandedLevels + "'/> ";
-        $("li[id='li_" + data.id + "']").append(html);
+        $("li[id='li_" + data.id + "']").append(html);*/
 
         //Remove old
         $(node).children('a').empty();
