@@ -1,0 +1,17 @@
+type="Math";
+order="5";
+report="true";
+reportvalue="false";
+units="$";
+optional="true";
+max="0";
+min="0";
+discount="0";
+disablecondition="";
+disabledmessage="";
+expandedlevels="0";
+hidden="false";
+readonly="false";
+template="false";
+formula="(Price 4 Colors+Image Complexity)*(Sq Ft of Plastic)";
+editchildren="false";

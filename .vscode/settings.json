@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2fec1e4c-2353-4e4e-b596-709a4235903b/resourceGroups/opsystem-group/providers/Microsoft.Web/sites/opsystem",
+    "appService.deploySubpath": "OPS/publish"
+}
