@@ -71,8 +71,9 @@
 		@foreach (var product in Model.CurrentPageList)
 		{
 		<tr>
-			<td style="padding: 1em 1em 1em 1em; white-space: nowrap; border-style:solid none solid solid;">   			
-				<input type="checkbox" name="@product.name" value=@Url.Content("~/Products/" + @ViewBag.store_name + "/" + @product.name)>
+			<td style="padding: 1em 1em 1em 1em; white-space: nowrap; border-style:solid none solid solid;">   	
+				@{var url = Url.Content("~/Products/" + "AdTech Int" + "/" + @product.name);}		
+				<input type="checkbox" name="@product.name" value=@Url.Content(@url)/>
 				<a href= '@Url.Content("~/TreeView/Edit")?product=@product.id'> @product.name</a> 
 			</td>
 			<td style="border-style:solid none solid none;">

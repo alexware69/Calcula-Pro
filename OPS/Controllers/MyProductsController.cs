@@ -72,7 +72,8 @@ namespace OnlinePriceSystem.Controllers
 			{
 				if (key != "_")
 				{
-					string value = keys[key.ToString()];
+					//string value = keys[key.ToString()];
+					string value = "/Products/AdTech Int";
 					try
 					{
 						string path = _hostEnvironment.WebRootPath + value + "/" + key;
