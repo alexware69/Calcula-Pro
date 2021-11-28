@@ -540,48 +540,53 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult SaveQuote()
         {
-            if (TempData["tree"] != null)
+            try
             {
-                try
+                QTree tree;
+                string jsonString = HttpContext.Session.GetString("tree");
+                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
                 {
-                    QTree tree = TempData["tree"] as QTree;
-                    if (tree.Root.IsComplete())
+                    TypeNameHandling = TypeNameHandling.All,
+                    PreserveReferencesHandling = PreserveReferencesHandling.All
+                });
+                tree = fromJson;
+                if (tree.Root.IsComplete())
+                {
+                    ops_inhouseEntities dc = new ops_inhouseEntities();
+
+                    //string user = User.Identity.Name;
+                    //string id = TempData["product_id"].ToString();
+                    string id = HttpContext.Session.GetInt32("product_id").ToString();
+                    var store_id = from prod in dc.products where prod.id.ToString() == id select prod.store_id;
+
+                    quote1 Quote = new quote1();
+                    Quote.date = DateTime.Now;
+                    Quote.total = tree.Root.Total();
+                    Quote.product_name = tree.Root.Name;
+                    Quote.quote = tree.Serialize().ToArray();
+                    Quote.item = tree.Root.Name;
+                    Quote.store_id = store_id.First();
+                    Quote.product_id = int.Parse(id);
+                    string xml = tree.SerializeToString();
+                    Quote.quote_xml = xml;
+                    if (TempData["treeDBID"] != null && TempData["treeDBID"].ToString() != "")
                     {
-                        ops_inhouseEntities dc = new ops_inhouseEntities();
-
-                        //string user = User.Identity.Name;
-                        //string id = TempData["product_id"].ToString();
-                        string id = HttpContext.Session.GetInt32("product_id").ToString();
-                        var store_id = from prod in dc.products where prod.id.ToString() == id select prod.store_id;
-
-                        quote1 Quote = new quote1();
-						Quote.date = DateTime.Now;
-                        Quote.total = tree.Root.Total();
-                        Quote.product_name = tree.Root.Name;
-                        Quote.quote = tree.Serialize().ToArray();
-                        Quote.item = tree.Root.Name;
-						Quote.store_id = store_id.First();
-                        Quote.product_id = int.Parse(id);
-                        string xml = tree.SerializeToString();
-                        Quote.quote_xml = xml;
-                        if (TempData["treeDBID"] != null && TempData["treeDBID"].ToString() != "")
-                        {
-                            int parent_quote = int.Parse(TempData["treeDBID"].ToString());
-                            var quotes = from quote in dc.quotes where quote.id == parent_quote select quote;
-                            if (quotes.First().revision != null) Quote.revision = quotes.First().revision;
-                            else Quote.revision = int.Parse(TempData["treeDBID"].ToString());
-                        }
-                        Quote.user = User.Identity.Name;
-
-                        dc.quotes.Add(Quote);
-                        dc.SaveChanges();
-                        TempData["tree"] = null;
+                        int parent_quote = int.Parse(TempData["treeDBID"].ToString());
+                        var quotes = from quote in dc.quotes where quote.id == parent_quote select quote;
+                        if (quotes.First().revision != null) Quote.revision = quotes.First().revision;
+                        else Quote.revision = int.Parse(TempData["treeDBID"].ToString());
                     }
+                    string user = HttpContext.Session.GetString("username");
+                    Quote.user = user;
+
+                    dc.quotes.Add(Quote);
+                    dc.SaveChanges();
+                    TempData["tree"] = null;
                 }
-                catch (Exception e) 
-				{
-					string s = e.Message;
-				}
+            }
+            catch (Exception e) 
+            {
+                string s = e.Message;
             }
 			return RedirectToAction("Index", "MyQuotes",new {id=1});
         }
