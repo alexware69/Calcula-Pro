@@ -421,52 +421,29 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult QuoteDetails(string id)
         {
-            //string text = "";
-            QTree tree;
-            if (TempData["tree"] != null)
-            {
-                tree = TempData["tree"] as QTree;
-                //string[] list;
-                //try
-                //{
-                //    list = tree.GetSelectionsString(tree.Root, 0).Split("|".ToCharArray());
-                //}
-                //catch (Exception e)
-                //{
-                //    ViewData["html"] = "<h>" + e.Message + "</h>" + "<BR>" + "<BR>";
-                //    return View();
-                //}
-                Dictionary<string, string> selection;
-                try
-                {
-                   selection = tree.GetSelections();
-                }
-                catch (Exception e)
-                {
-                    ViewData["error"] = e.Message;
-                    return View();
-                }
+        QTree tree;
 
-                //int c = 1;
-                //foreach (string s in list)
-                //{
-                //    {
-                //        string s1 = s;// +(c == 1 ? "<BR>" : "");//.Trim();
-                //        if (s1 != "")
-                //        {
-                //            //string BR =  s1.Contains("#") || c==1 ? "" : "<BR>";
-                //            s1 = s1.Replace("•", "");
-                //            //s1 = Helper.ReplaceSpaces(s1,':');
-                //            text += "<li>" + s1.Replace("\n", "").Replace("\r", "").Replace(" ", "&nbsp;").Replace("#", "<HR size=1>")+ "</li>"  + "<HR>";
-                //            //if (c == 1) text += "<HR size=4>";
-                //        }
-                //    }
-                //    //c = 0;
-                //}
-                //ViewData["html"] = "<ol>" + text + "</ol>" + "<BR>";
-                return View(selection);
+            //tree = TempData["tree"] as QTree;
+            string jsonString = HttpContext.Session.GetString("tree");
+            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.All
+            });
+            tree = fromJson;
+            TempData["root"] = tree.Root;                
+            Dictionary<string, string> selection;
+            try
+            {
+                selection = tree.GetSelections();
             }
-            return View();
+            catch (Exception e)
+            {
+                ViewData["error"] = e.Message;
+                return View();
+            }
+
+            return View(selection);
         }
 		public ActionResult EditProducts()
 		{

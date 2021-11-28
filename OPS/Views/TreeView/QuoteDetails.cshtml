@@ -1,0 +1,58 @@
+﻿@using OnlinePriceSystem.Controllers
+@using QuoteTree
+@using System.Collections.Generic
+@model Dictionary<string,string>
+    @{
+    var root = (ANode)TempData["root"];
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title>QuoteDetails</title>
+    <script src="../../js/jquery-1.7.1.min.js"></script>
+    <script>        
+        function Save() {
+            window.parent.window.location = "SaveQuote";
+        }
+    </script>
+</head>
+<body>
+    @if(ViewData["error"] != null && ViewData["error"] != ""){ 
+    <label>@ViewData["error"]</label>
+    <br />
+    <br />
+    } else {
+        string s = !root.IsComplete() || root.TotalStr == "error" ? "disabled": "";
+    <div style="text-align:center">
+        <input type="submit" value="Save Quote" onclick="Save()" @s />
+    </div>
+    <br />
+    <div id="Content" style="text-wrap:normal; overflow-wrap:break-word; width:100%">
+        <table style="width:100%; border-collapse:collapse;">
+            @foreach (KeyValuePair<string,string> entry in Model)
+            {
+                <tr>
+                    <td style="padding-bottom:5px; margin:0px; padding-top:5px; border-bottom:dotted thin; border-top:dotted thin">@entry.Key.</td>
+                    <td style="padding-bottom:5px; margin:0px; padding-top:5px; border-bottom:solid thin;border-top:solid thin; border-left:dotted thin">
+                        @foreach (char c in entry.Value){
+                                if (c == ' ')
+                                {
+                                    <span>&#8202;</span>
+                                }
+                                else break;
+                        }
+                        @entry.Value
+                    </td>
+                </tr>
+            }            
+        </table>
+        <br />
+        <br />
+    </div>    
+    }
+</body>
+</html>
