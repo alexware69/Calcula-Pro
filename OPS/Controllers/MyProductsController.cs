@@ -10,11 +10,22 @@ using System.Xml.Linq;
 using Pager;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
-
+using Microsoft.AspNetCore.Mvc.Filters;
 namespace OnlinePriceSystem.Controllers
 {
     public class MyProductsController : Controller
     {
+		public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (context.HttpContext.Session == null ||
+                            !context.HttpContext.Session.TryGetValue("username", out byte[] val))
+            {
+                context.Result =
+                    new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Account",
+                                                                            action = "Index" }));
+            }
+            base.OnActionExecuting(context);
+        }
         //
         // GET: /Admin/
 		private IWebHostEnvironment _hostEnvironment;

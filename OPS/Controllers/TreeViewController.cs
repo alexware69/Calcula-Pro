@@ -16,11 +16,23 @@ using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace OnlinePriceSystem.Controllers
 {
     public class TreeViewController : Controller
     {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (context.HttpContext.Session == null)/* ||
+                            !context.HttpContext.Session.TryGetValue("username", out byte[] val))*/
+            {
+                context.Result =
+                    new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home",
+                                                                            action = "Index" }));
+            }
+            base.OnActionExecuting(context);
+        }
         public ActionResult Index(string product)
         {
             ops_inhouseEntities dc = new ops_inhouseEntities();

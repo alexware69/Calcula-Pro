@@ -6,11 +6,23 @@ using System.Web;
 using QuoteTree;
 using Pager;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace OnlinePriceSystem.Controllers
 {
     public class MyQuotesController : Controller
     {
+		public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (context.HttpContext.Session == null ||
+                            !context.HttpContext.Session.TryGetValue("username", out byte[] val))
+            {
+                context.Result =
+                    new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Account",
+                                                                            action = "Index" }));
+            }
+            base.OnActionExecuting(context);
+        }
         // GET: /MyQuotes/
 		public ActionResult Index(int id)
         {
