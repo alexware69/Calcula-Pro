@@ -110,14 +110,16 @@ namespace OnlinePriceSystem.Controllers
 		//To toggle active
 		[HttpGet]
 		
-		/*public ContentResult ToggleActive()
+		public ContentResult ToggleActive()
 		{
             ops_inhouseEntities dc = new ops_inhouseEntities();
 			string user = HttpContext.Session.GetString("username");
             //if(user == null) return RedirectToAction("Index","Account");
 			var users = from usr in dc.user_accounts where usr.user == user select usr;
 			var store = users.First ().store_id;
-			foreach (var key in Request.QueryString.AllKeys)
+			NameValueCollection keys = new NameValueCollection();
+			keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
+			foreach (var key in keys.AllKeys)
 			{
 				if (key != "_")
 				{
@@ -130,7 +132,7 @@ namespace OnlinePriceSystem.Controllers
 				}
 			}
 			return Content("success");        
-		}*/
+		}
 
         
         /*public FileResult Download()
