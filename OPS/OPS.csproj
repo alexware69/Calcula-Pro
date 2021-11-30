@@ -25,6 +25,11 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+  <Reference Include="ICSharpCode.SharpZipLib">
+    <HintPath>bin\ICSharpCode.SharpZipLib.dll</HintPath>
+  </Reference>
+</ItemGroup>
   <PropertyGroup>
     <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>

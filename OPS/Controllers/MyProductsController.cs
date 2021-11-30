@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.IO;
 //using System.IO.Compression;
-//using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Zip;
 using QuoteTree;
 using System.Xml.Linq;
 using Pager;
@@ -138,22 +138,24 @@ namespace OnlinePriceSystem.Controllers
 		}
 
         
-        /*public FileResult Download()
+        public FileResult Download()
         {
             //get the store name
             ops_inhouseEntities dc = new ops_inhouseEntities();
-            string user = System.Web.HttpContext.Current.User.Identity.Name;
+            //string user = System.Web.HttpContext.Current.User.Identity.Name;
+			string user = HttpContext.Session.GetString("username");
             var users = from usr in dc.user_accounts where usr.user == user select usr;
             var store_id = users.First().store_id;
             var store = from str in dc.stores where str.id == store_id select str;
             string store_name = store.First().name;
 
-            if (!Directory.Exists(Server.MapPath("~/App_Data/Downloads/store_name/MyProducts/")))
-                Directory.CreateDirectory(Server.MapPath("~/App_Data/Downloads/store_name/MyProducts/"));
+			string path = _hostEnvironment.WebRootPath;
+            if (!Directory.Exists(path + "/App_Data/Downloads/" + store_name + "/MyProducts/"))
+                Directory.CreateDirectory(path + "/App_Data/Downloads/"+ store_name + "/MyProducts/");
             else
             {
                 //empty the downloads folder
-                System.IO.DirectoryInfo myProducts = new DirectoryInfo(Server.MapPath("~/App_Data/Downloads/store_name/MyProducts"));
+                System.IO.DirectoryInfo myProducts = new DirectoryInfo(path + "/App_Data/Downloads/" + store_name + "/MyProducts");
                 foreach (FileInfo file in myProducts.GetFiles())
                 {
                     file.Delete();
@@ -163,16 +165,19 @@ namespace OnlinePriceSystem.Controllers
                     dir.Delete(true);
                 }
             }
-            
-            foreach (var key in Request.QueryString.AllKeys)
+
+            NameValueCollection keys = new NameValueCollection();
+			keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
+            foreach (var key in keys.AllKeys)
             {
                 if (key != "_")
                 {
-                    string value = Request.QueryString[key];
+                    //string value = keys[key.ToString()];
+					string value = path + "/Products/" + store_name + "/" + key;
                     try
                     {
                         //fz.CreateZip(key, value, true, "");
-                        CopyFolder(new DirectoryInfo(value), new DirectoryInfo(Server.MapPath("~/App_Data/Downloads/store_name/MyProducts/") + key));
+                        CopyFolder(new DirectoryInfo(value), new DirectoryInfo(path + "/App_Data/Downloads/" + store_name + "/MyProducts/" + key));
                     }
                     catch (Exception e)
                     {
@@ -181,12 +186,12 @@ namespace OnlinePriceSystem.Controllers
                 }               
             }
             FastZip fz = new FastZip();
-            fz.CreateZip(Server.MapPath("~/App_Data/Downloads/store_name/MyProducts.zip"), Server.MapPath("~/App_Data/Downloads/store_name/MyProducts"), true, "");
+            fz.CreateZip(path + "/App_Data/Downloads/" + store_name + "/MyProducts.zip", path + "/App_Data/Downloads/" + store_name + "/MyProducts", true, "");
 
-            byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/App_Data/Downloads/store_name/") + "MyProducts.zip");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "/App_Data/Downloads/" + store_name + "/" + "MyProducts.zip");
             string fileName = "MyProducts.zip";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }*/
+        }
 
 		// This action handles the form POST and the upload
 		[HttpPost]
