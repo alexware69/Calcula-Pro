@@ -866,17 +866,23 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ActionResult SaveProduct(int id)
 		{
-			if (TempData["tree"] != null)
+			if (HttpContext.Session.GetString("tree") != null)
 			{
 				//get store name...this is better to do it just one time during login and save to session variable
                 ops_inhouseEntities dc = new ops_inhouseEntities();
-				string user = User.Identity.Name;
+				string user = HttpContext.Session.GetString("username");
 				var users = from usr in dc.user_accounts where usr.user == user select usr;
 				var store_id = users.First ().store_id;
 				var store = from str in dc.stores where str.id == store_id select str;
 				string store_name = store.First ().name;
 
-				QTree tree = TempData["tree"] as QTree;
+				string jsonString = HttpContext.Session.GetString("tree");
+                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                });
+                QTree tree = fromJson;
 	
 				//if is a new product check if exists one with same name for the same store, if so exit
 				var qry = from prod in dc.products where (prod.name == tree.Root.Name && prod.store_id == store_id) select prod.id;
@@ -950,8 +956,8 @@ namespace OnlinePriceSystem.Controllers
             QTree tree = fromJson;
             ANode node;
 
-            //if the node was renamed add node and old name to session variable
-            string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"];
+            //if the node was renamed add node and old name to session variable (this code has been commented...needs to be fixed and uncommented...have to serialize and save to session)
+            /*string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"];
             node = tree.GetNodeFromId(id);
             string oldname = node.Name;
             string newname = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["name"];
@@ -962,7 +968,7 @@ namespace OnlinePriceSystem.Controllers
                 //Implement refactor
                 //tree.Refactor(node.References, oldname, newname);
             }
-            TempData["renamed"] = renamed;
+            TempData["renamed"] = renamed;*/
 
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));

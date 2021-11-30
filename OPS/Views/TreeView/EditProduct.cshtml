@@ -2,6 +2,7 @@
 @using QuoteTree
 @{
     var Model = (ANode)TempData["root"];
+	var id = TempData["product_id"];
 }
 
  <script src="../../js/TreeViewEditOne.js"></script>
@@ -170,7 +171,7 @@
             <div style="display:inline-block;vertical-align:middle;"> 
 	 	     	<span class="build" title='Build dependencies' onclick="javascript: BuildDependencies();"></span>&nbsp;
      		</div>
-	        <a href="SaveProduct?id=@ViewBag.Id%>" style="color: black; text-decoration: none; display:inline;vertical-align: top;">Save product</a>
+	        <a href="SaveProduct?id=@id" style="color: black; text-decoration: none; display:inline;vertical-align: top;">Save product</a>
 	     	<a href="../MyProducts/Index/1" style="color: black; text-decoration: none; display:inline;vertical-align: top;">Discard changes</a>
 		</div>
      </div>
