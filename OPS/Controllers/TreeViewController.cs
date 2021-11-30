@@ -24,8 +24,8 @@ namespace OnlinePriceSystem.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.HttpContext.Session == null ||
-                            !context.HttpContext.Session.TryGetValue("tree", out byte[] val))
+            if (context.HttpContext.Session == null)/* ||
+                            !context.HttpContext.Session.TryGetValue("tree", out byte[] val))*/
             {
                 context.Result =
                     new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home",
