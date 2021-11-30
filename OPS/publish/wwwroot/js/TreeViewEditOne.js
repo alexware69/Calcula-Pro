@@ -2002,7 +2002,7 @@ $(function () {
                 },
                 success: function (result) {
                     //ExpLevels = result.expandedLevels;
-                    if (result != "null") {
+                    if (result != null) {
                         var decompressed = lzw_decode(result);
                         var jsonObject = JSON.parse(decompressed);
                         //PruneTree(jsonObject, jsonObject);
