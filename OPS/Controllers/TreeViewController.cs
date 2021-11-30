@@ -181,18 +181,32 @@ namespace OnlinePriceSystem.Controllers
 			{
 				if (product == "uploaded") 
 				{
-					tree = TempData["tree"] as QTree;
+					string jsonString = HttpContext.Session.GetString("tree");
+                    var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    });
+                    tree = fromJson;
 					//pass zero as product id, this means is a new product
-					ViewBag.id = 0;
+                    HttpContext.Session.SetInt32("product_id", 0);
+					//ViewBag.id = 0;
 				}
 				else
 				if (product == "new") 
 				{
 					tree = new QTree ();
 					TempData["treeDBID"] = "";
-					TempData["tree"] = tree;
+					var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        PreserveReferencesHandling = PreserveReferencesHandling.All,
+                        Formatting = Formatting.Indented
+                    });    
+                    HttpContext.Session.SetString("tree", toJson1);
 					//pass zero as product id, this means is a new product
-					ViewBag.id = 0;
+					HttpContext.Session.SetInt32("product_id", 0);
+                    //ViewBag.id = 0;
 				}
 				else
 				{
@@ -1075,9 +1089,9 @@ namespace OnlinePriceSystem.Controllers
 
         public JsonResult getJson()
         {
-            var id = HttpContext.Session.GetInt32("product_id");
+            /*var id = HttpContext.Session.GetInt32("product_id");
 
-            if (id != null)
+            if (id != 0)
             {
             ops_inhouseEntities dc = new ops_inhouseEntities();
             QTree tree;
@@ -1116,29 +1130,37 @@ namespace OnlinePriceSystem.Controllers
             return Json(Compress(json));
             }
             else 
-            {
-                string jsonString = HttpContext.Session.GetString("tree");
-                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+            {*/
+                if (HttpContext.Session.GetString("tree") != null)
                 {
-                    TypeNameHandling = TypeNameHandling.All,
-                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                });
-                QTree tree = fromJson;
+                    string jsonString = HttpContext.Session.GetString("tree");
+                    var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    });
+                    QTree tree = fromJson;
 
-                var settings = new JsonSerializerSettings
-                {
-                    Converters = new List<JsonConverter> { new TreeConverter() },
-                    Formatting = Formatting.Indented,
-                    TypeNameHandling = TypeNameHandling.Auto,
-                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                };
-                this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
-                string json = JsonConvert.SerializeObject(tree.Root, settings);
-                //dynamic parsedJson = JObject.Parse(json);
-                //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
-                return Json(Compress(json));
-            }
+                    var settings = new JsonSerializerSettings
+                    {
+                        Converters = new List<JsonConverter> { new TreeConverter() },
+                        Formatting = Formatting.Indented,
+                        TypeNameHandling = TypeNameHandling.Auto,
+                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    };
+                    if (tree.Root != null)
+                    {
+                        this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
+                        string json = JsonConvert.SerializeObject(tree.Root, settings);
+                        //dynamic parsedJson = JObject.Parse(json);
+                        //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
+                        return Json(Compress(json));
+                    }
+                    else return Json(null);
+                }
+                else return Json(null);
+            //}
         }
         public static string Compress(string s)
         {
