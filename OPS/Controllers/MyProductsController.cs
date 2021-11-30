@@ -65,6 +65,9 @@ namespace OnlinePriceSystem.Controllers
             if(user == null) return RedirectToAction("Index","Account");
 			var users = from usr in dc.user_accounts where usr.user == user select usr;
 			var store_id = users.First ().store_id;
+			//get store name
+			var stores = from str in dc.stores where str.id == store_id select str;
+			var store_name = stores.First().name;
 
 			NameValueCollection keys = new NameValueCollection();
 			keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
@@ -73,7 +76,7 @@ namespace OnlinePriceSystem.Controllers
 				if (key != "_")
 				{
 					//string value = keys[key.ToString()];
-					string value = "/Products/AdTech Int";
+					string value = "/Products/" + store_name;
 					try
 					{
 						string path = _hostEnvironment.WebRootPath + value + "/" + key;
