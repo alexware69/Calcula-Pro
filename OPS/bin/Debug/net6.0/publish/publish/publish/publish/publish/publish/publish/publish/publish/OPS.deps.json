@@ -12,8 +12,7 @@
           "Antlr4.Runtime.Standard": "4.9.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "NCalc": "1.0.0",
-          "QuoteTree": "1.0.0",
-          "ICSharpCode.SharpZipLib": "0.86.0.518"
+          "QuoteTree": "1.0.0"
         },
         "runtime": {
           "OPS.dll": {}
@@ -1107,14 +1106,6 @@
         "runtime": {
           "QuoteTree.dll": {}
         }
-      },
-      "ICSharpCode.SharpZipLib/0.86.0.518": {
-        "runtime": {
-          "ICSharpCode.SharpZipLib.dll": {
-            "assemblyVersion": "0.86.0.518",
-            "fileVersion": "0.0.0.0"
-          }
-        }
       }
     }
   },
@@ -1859,11 +1850,6 @@
     },
     "QuoteTree/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "ICSharpCode.SharpZipLib/0.86.0.518": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
