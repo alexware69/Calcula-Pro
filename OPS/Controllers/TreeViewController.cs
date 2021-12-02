@@ -1163,7 +1163,7 @@ namespace OnlinePriceSystem.Controllers
                     };
                     if (tree.Root != null)
                     {
-                        this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
+                        //this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
                         string json = JsonConvert.SerializeObject(tree.Root, settings);
                         //dynamic parsedJson = JObject.Parse(json);
                         //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
