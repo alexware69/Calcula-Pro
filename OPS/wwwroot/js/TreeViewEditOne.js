@@ -255,9 +255,9 @@ function UpdateNode(data) {
         //next line is needed to avoid fillers problem
         $(node).css("white-space", "normal");
         //Adjust the node width
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         //Refresh node's elements
         var checked;
         var html;
@@ -444,9 +444,9 @@ function UpdateNode(data) {
         //$(node).parent("ul").show();
         //$(node).show();
 
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
         nodeWidth = $(node).width();
         //nodeWidth = $("#container").width() - $(node).position().left;
@@ -940,9 +940,9 @@ function RefreshFillers(id, recursive) {
         //$(node).show();
         //Adjust the node width
         var padding_left = 0;
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - padding_left - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
         var nameText = $(node).children('a').children(".name").text();
         var formulaText = $(node).children('a').children(".formula").children("i").text();
@@ -988,9 +988,9 @@ function RefreshFillers(id, recursive) {
         //            else {
 
 
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         nodeWidth = $(node).width();
         //nodeWidth = $("#container").width() - $(node).position().left;
         anchorWidth = $(node).children('a').width();
@@ -1539,9 +1539,9 @@ function RenderTree(tree) {
         //next line is needed to avoid fillers problem
         $(node).css("white-space", "normal");
         //Adjust the node width
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         //Refresh node's elements
         var checked;
         var html;
@@ -1727,9 +1727,9 @@ function RenderTree(tree) {
         //$(node).parent("ul").show();
         //$(node).show();
 
-        if (!$("input[id='Description']").is(':checked'))
+        /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         nodeWidth = $(node).width();
         //nodeWidth = $("#container").width() - $(node).position().left;
         anchorWidth = $(node).children('a').width();
