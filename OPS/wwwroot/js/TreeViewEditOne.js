@@ -312,8 +312,8 @@ function UpdateNode(data) {
         $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
 
         //Set leaves to red color
-        if (!data.leaf) //$("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
-            $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
+        if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
+        else $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
         //Set hidden to green
         if (data.hidden) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:green");
 
@@ -1590,8 +1590,8 @@ function RenderTree(tree) {
         //}
 
         //Set leaves to red color
-        if (!tree.Leaf) //$("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:red;");
-            $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:black;");
+        if (tree.Leaf) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:red;");
+        else $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:black;");
         //Set hidden to green
         if (tree.Hidden) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:green");
         //Add the node expression as a tooltip
