@@ -526,6 +526,9 @@ namespace OnlinePriceSystem.Controllers
             {
                 string value = form[key];
                 tree = new QTree(value, true);
+                
+                //Reset the entered property
+                tree.ResetEntered(tree.Root);
 
                 var qry = from prod in dc.products where prod.name==key select prod;
                 if (qry.Count() > 0)
