@@ -1218,7 +1218,7 @@ namespace OnlinePriceSystem.Controllers
         {
             //get store name...this is better to do it just one time during login and save to session variable
             ops_inhouseEntities dc = new ops_inhouseEntities();
-            string user = User.Identity.Name;
+            string user = HttpContext.Session.GetString("username");
             var users = from usr in dc.user_accounts where usr.user == user select usr;
             var store_id = users.First().store_id;
             var store = from str in dc.stores where str.id == store_id select str;
