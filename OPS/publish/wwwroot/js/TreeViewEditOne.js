@@ -1819,6 +1819,21 @@ function RenderTree(tree) {
     $("#container").jstree("deselect_node", $("li[id='" + "li_" + parentId + "']"));
 }
 
+
+//This function was replaced by conditional serialization in the server side
+function PruneTree(tree,Root) {
+    var countDots = tree.Id.split('.').length - 1;
+    if (tree.Id != '1' && countDots == Root.ExpandedLevels) {
+        tree._Children = null;
+        return;
+    }
+    else {
+        for (var i = 0; i < tree._Children.length; i++){
+            PruneTree(tree._Children[i], Root);
+        }
+    } 
+}
+
 // Decompress an LZW-encoded string
 function lzw_decode(s) {
     var dict = {};
@@ -2005,10 +2020,10 @@ $(function () {
                     if (result != null) {
                         var decompressed = lzw_decode(result);
                         var jsonObject = JSON.parse(decompressed);
-                        //PruneTree(jsonObject, jsonObject);
+                        PruneTree(jsonObject, jsonObject);
                         RenderTree(jsonObject);
                         //This update is to fix a bug, should be removed later
-                        UpdateTreeSync();
+                        //UpdateTreeSync();
                         //This is to fix bug...not very elegant though
                         RefreshFillers(1, false);
                         treeIsLoaded = true;                      

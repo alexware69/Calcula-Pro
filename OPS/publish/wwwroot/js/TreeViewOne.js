@@ -1330,10 +1330,10 @@ $(function () {
                 success: function (result) {
                     var decompressed = lzw_decode(result);
                     var jsonObject = JSON.parse(decompressed);
-                    //PruneTree(jsonObject, jsonObject);
+                    PruneTree(jsonObject, jsonObject);
                     RenderTree(jsonObject);
                     //This update is to fix a bug, should be removed later
-                    UpdateTreeSync();
+                    //UpdateTreeSync();
                     //This is to fix bug...not very elegant though
                     RefreshFillers(1, false);
                     treeIsLoaded = true;
