@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KqNIPEz/Vic+oESV/YSqmjd3hn77mTalL68rMCjEHAA=",
+  "Hash": "4b6mSGeTPKCRAUmSHPiaTQjkLGvqJSfY2LDgVXAo/yc=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -51153,6 +51153,23 @@
       "OriginalItemSpec": "wwwroot/Products/AdTech Int/Test Date/Age/values.txt"
     },
     {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/Test Date/Birthday/.DS_Store",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Products/AdTech Int/Test Date/Birthday/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Products/AdTech Int/Test Date/Birthday/.DS_Store"
+    },
+    {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/Test Date/Birthday/Day/values.txt",
       "SourceId": "OPS",
       "SourceType": "Discovered",
@@ -51219,6 +51236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Products/AdTech Int/Test Date/Birthday/Year/values.txt"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/Test Date/Today/.DS_Store",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Products/AdTech Int/Test Date/Today/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Products/AdTech Int/Test Date/Today/.DS_Store"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Products/AdTech Int/Test Date/Today/Day/values.txt",
