@@ -33,6 +33,12 @@ namespace OnlinePriceSystem.Controllers
             }
             base.OnActionExecuting(context);
         }
+
+        private IWebHostEnvironment _hostEnvironment;
+
+		public TreeViewController(IWebHostEnvironment environment) {
+			_hostEnvironment = environment;
+		}
         public ActionResult Index(string product)
         {
             ops_inhouseEntities dc = new ops_inhouseEntities();
@@ -922,8 +928,9 @@ namespace OnlinePriceSystem.Controllers
 
                 Dictionary<ANode, string> renamed = TempData["renamed"] != null ? TempData["renamed"] as Dictionary<ANode, string> : null;
 
+                string pathRoot = _hostEnvironment.WebRootPath;
 				//Save to folder
-				tree.SaveTreeTo (tree.Root, "~" + Path.DirectorySeparatorChar + "Products" + Path.DirectorySeparatorChar + store_name, renamed);
+				tree.SaveTreeTo (tree.Root, pathRoot + Path.DirectorySeparatorChar + "Products" + Path.DirectorySeparatorChar + store_name, renamed);
 
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
