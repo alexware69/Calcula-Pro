@@ -11,6 +11,8 @@ using Pager;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
+
 namespace OnlinePriceSystem.Controllers
 {
     public class MyProductsController : Controller
@@ -207,29 +209,36 @@ namespace OnlinePriceSystem.Controllers
 		// This action handles the form POST and the upload
 		[HttpPost]
 		
-		/*public ActionResult Upload(HttpPostedFileBase file)
+		public ActionResult Upload()
 		{
 			int id = 0;
+			var file = Request.Form.Files[0];
 			// Verify that the user selected a file
-			if (file != null && file.ContentLength > 0) 
+			if (file != null && file.Length > 0) 
 			{
 				//get the store name
                 ops_inhouseEntities dc = new ops_inhouseEntities();
-				string user = System.Web.HttpContext.Current.User.Identity.Name;
+				string user = HttpContext.Session.GetString("username");
 				var users = from usr in dc.user_accounts where usr.user == user select usr;
 				var store_id = users.First ().store_id;
 				var store = from str in dc.stores where str.id == store_id select str;
 				string store_name = store.First ().name;
 				// extract only the fielname
-				var fileName = Path.GetFileName(file.FileName);
+				//var fileName = Path.GetFileName(file.FileName);
 				// store the file inside ~/App_Data/uploads folder
-				if (!Directory.Exists(Server.MapPath("~/App_Data/Uploads/" + store_name)))
-					Directory.CreateDirectory(Server.MapPath("~/App_Data/Uploads/" + store_name));
-				var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/" + store_name), fileName);
-				file.SaveAs(path);
+				string pathRoot = _hostEnvironment.WebRootPath;
+				if (!Directory.Exists(pathRoot + "/App_Data/Uploads/" + store_name))
+					Directory.CreateDirectory(pathRoot + "/App_Data/Uploads/" + store_name);
+				var path = pathRoot + "/App_Data/Uploads/" + store_name + "/" + file.FileName;
+				//file.SaveAs(path);
+				using (var stream = new FileStream(path, FileMode.Create))
+				{
+					file.CopyTo(stream);
+				}
+
 				Extract(path);
                 ExtractToProducts(path);
-				QTree tree = new QTree (Server.MapPath("~/Products/" + store_name + "/") + fileName.Split('.')[0], true);
+				QTree tree = new QTree (pathRoot + "/Products/" + store_name + "/" + file.FileName.Split('.')[0], true);
 				//Save to database
 				var qry = from prod in dc.products where (prod.name == tree.Root.Name && prod.store_id == store_id) select prod;
 				if (qry.Count() > 0)
@@ -237,7 +246,7 @@ namespace OnlinePriceSystem.Controllers
 					var item = qry.Single();
 					item.name = tree.Root.Name;
 					MemoryStream stream = tree.Serialize ();
-					item.product1 = stream.ToArray();
+					item.product = stream.ToArray();
 					item.modified_by = user;
 					item.modified = DateTime.Now;
 					item.size = (int)stream.Length;
@@ -247,9 +256,9 @@ namespace OnlinePriceSystem.Controllers
 				}
 				else
 				{
-					product product = new product();
+					product1 product = new product1();
 					MemoryStream stream = tree.Serialize ();
-					product.product1 = stream.ToArray();
+					product.product = stream.ToArray();
 					product.name = tree.Root.Name;
 					product.created_by = user;
 					product.modified_by = user;
@@ -265,16 +274,23 @@ namespace OnlinePriceSystem.Controllers
 				}
 				id = qry.First ().id;
 
-				Session["tree"] = tree;
-				Session ["test"] = "true";
+				var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+				{
+					TypeNameHandling = TypeNameHandling.All,
+					PreserveReferencesHandling = PreserveReferencesHandling.All,
+					Formatting = Formatting.Indented
+				});    
+				HttpContext.Session.SetString("tree", toJson);
+
+				HttpContext.Session.SetString("test", "true");
 				return RedirectToAction("Edit","TreeView", new { product = id });        
 			}
 
 			return RedirectToAction("Index","MyProducts");        
-		}*/
+		}
 
         
-		/*private void Extract(string path){
+		private void Extract(string path){
 			//string startPath = @"c:\example\start";
 			//string zipPath = @"c:\example\result.zip";
 			//get the store name
@@ -285,14 +301,16 @@ namespace OnlinePriceSystem.Controllers
 			var store = from str in dc.stores where str.id == store_id select str;
 			string store_name = store.First ().name;
 
-			string extractPath = Server.MapPath("~/App_Data/Uploads/Products/" + store_name);
+			string pathRoot = _hostEnvironment.WebRootPath;
+			string extractPath = pathRoot + "/App_Data/Uploads/Products/" + store_name;
 
 			FastZip fz = new FastZip();
-			fz.ExtractZip(path, extractPath, null);
-		}*/
+			//fz.ExtractZip(path, extractPath, null);
+			System.IO.Compression.ZipFile.ExtractToDirectory(path, extractPath);
+		}
 
         
-		/*private void ExtractToProducts(string path){
+		private void ExtractToProducts(string path){
 			//string startPath = @"c:\example\start";
 			//string zipPath = @"c:\example\result.zip";
 			//get the store name
@@ -303,11 +321,13 @@ namespace OnlinePriceSystem.Controllers
 			var store = from str in dc.stores where str.id == store_id select str;
 			string store_name = store.First ().name;
 
-			string extractPath = Server.MapPath("~/Products/" + store_name);
+			string pathRoot = _hostEnvironment.WebRootPath;		
+			string extractPath = pathRoot + "/Products/" + store_name;
 
 			FastZip fz = new FastZip();
-			fz.ExtractZip(path, extractPath, null);
-		}*/
+			//fz.ExtractZip(path, extractPath, null);
+			System.IO.Compression.ZipFile.ExtractToDirectory(path, extractPath);
+		}
 
         
 		public string GetStoreName(Guid id)
