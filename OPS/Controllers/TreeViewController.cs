@@ -193,7 +193,8 @@ namespace OnlinePriceSystem.Controllers
 		{
 
 			QTree tree;
-            TempData["renamed"] = null;
+            //TempData["renamed"] = null;
+            HttpContext.Session.SetString("renamed", "");
 
 			if (product != null && product != "") 
 			{
@@ -926,7 +927,19 @@ namespace OnlinePriceSystem.Controllers
                     if (qry.Count() > 0) return RedirectToAction("Index", "MyProducts", new { id = 1 });
 				}
 
-                Dictionary<ANode, string> renamed = TempData["renamed"] != null ? TempData["renamed"] as Dictionary<ANode, string> : null;
+                //Dictionary<ANode, string> renamed = TempData["renamed"] != null ? TempData["renamed"] as Dictionary<ANode, string> : null;
+                Dictionary<string, string> renamed;
+                string jsonStringRenamed = HttpContext.Session.GetString("renamed");
+                if (jsonStringRenamed == "") renamed = new Dictionary<string, string>();
+                else
+                {
+                var fromJsonStringRenamed = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonStringRenamed, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    });
+                    renamed = fromJsonStringRenamed;
+                }
 
                 string pathRoot = _hostEnvironment.WebRootPath;
 				//Save to folder
@@ -936,7 +949,8 @@ namespace OnlinePriceSystem.Controllers
                 tree.ResetEntered(tree.Root);
 
                 //reset the renamed dictionary
-                TempData["renamed"] = null;
+                //TempData["renamed"] = null;
+                HttpContext.Session.SetString("renamed", "");
 
                 //Save to database
 				var qry2 = from prod in dc.products
@@ -993,18 +1007,37 @@ namespace OnlinePriceSystem.Controllers
             ANode node;
 
             //if the node was renamed add node and old name to session variable (this code has been commented...needs to be fixed and uncommented...have to serialize and save to session)
-            /*string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"];
+            string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"];
             node = tree.GetNodeFromId(id);
             string oldname = node.Name;
             string newname = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["name"];
-            Dictionary<ANode, string> renamed = TempData["renamed"] == null ? new Dictionary<ANode, string>() : TempData["renamed"] as Dictionary<ANode, string>;
+
+            Dictionary<string, string> renamed;
+            string jsonStringRenamed = HttpContext.Session.GetString("renamed");
+            if (jsonStringRenamed == "") renamed = new Dictionary<string, string>();
+            else
+            {
+            var fromJsonStringRenamed = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonStringRenamed, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                });
+                renamed = fromJsonStringRenamed;
+            }
             if (oldname.Trim() != newname.Trim())
             {
-                renamed.Add(node, oldname.Trim());
+                renamed.Add(node.Id, oldname.Trim());
                 //Implement refactor
                 //tree.Refactor(node.References, oldname, newname);
             }
-            TempData["renamed"] = renamed;*/
+
+            var toJsonStringRenamed = JsonConvert.SerializeObject(renamed, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            });    
+            HttpContext.Session.SetString("renamed", toJsonStringRenamed);
+            //TempData["renamed"] = renamed;
 
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));

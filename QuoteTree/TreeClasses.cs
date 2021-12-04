@@ -5341,18 +5341,18 @@ namespace QuoteTree;
 					}
 		}
 
-		public void SaveTreeTo(ANode start, string path,  Dictionary<ANode, string> renamed)
+		public void SaveTreeTo(ANode start, string path,  Dictionary<string, string> renamed)
 		{
 			try
 			{
                 if (!Directory.Exists(path + Path.DirectorySeparatorChar + start.Name))
                 {
                     //if the node was renamed rename the folder.
-                    if (renamed != null && renamed.ContainsKey(start))
+                    if (renamed != null && renamed.ContainsKey(start.Id))
                     {
-                        if (Directory.Exists(path + Path.DirectorySeparatorChar + renamed[start])) 
+                        if (Directory.Exists(path + Path.DirectorySeparatorChar + renamed[start.Id])) 
                         {
-                            Directory.Move(path + Path.DirectorySeparatorChar + renamed[start], path + Path.DirectorySeparatorChar + start.Name);
+                            Directory.Move(path + Path.DirectorySeparatorChar + renamed[start.Id], path + Path.DirectorySeparatorChar + start.Name);
                         }
                     }
                     else
