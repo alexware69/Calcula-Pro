@@ -87,7 +87,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 ```
 * Plastic Face\Height of Plastic
 ```
-## Math Functions Examples
+## Supported Math Functions
 
 | Name          | Description                                                                                                                                                                                                  | Usage               | Result |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|--------|
