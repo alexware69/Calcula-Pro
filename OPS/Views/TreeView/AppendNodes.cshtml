@@ -1,5 +1,9 @@
-﻿<%@ Import Namespace="QuoteTree"%> 
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<SumSetNode>" %>
+﻿@model SumSetNode
+@using QuoteTree
+@{
+    var storeName = (string)TempData["store_name"];
+    Layout = null;
+}
 
 <!DOCTYPE html>
 
@@ -8,9 +12,9 @@
     <meta name="viewport" content="width=device-width" />
     <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
     <meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
-    <script src="../Scripts/iframesize.js"></script>
+    <script src="../js/iframesize.js"></script>
     <title>Append Nodes</title>
-    <script src="../Scripts/jquery-1.7.1.min.js"></script>
+    <script src="../js/jquery-2.1.3.min.js"></script>
  
     <script>
 
@@ -100,48 +104,60 @@
     </style>
 </head>
 <body onunload="">
-<% using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
-    {%>
+@using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
+    {
         <div style="text-align:center">
+            @{
+                string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
+            }
             <span style="color:red; font-size:medium; font-style:italic">
-                <%=Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name %>
+                @s
             </span>
             <br />
             <br />
-            <%if (Model.Disabled){ %>
-            <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> <%=Model.DisabledMessage%></label>
+            @if (Model.Disabled){
+            <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
             <br />
-            <%} %>
+            }
             <table style="text-align:right; margin: auto">
-                 <%foreach(ANode node in Model.Children){ %>
-                    <% if (node.Template) {%>
+                 @foreach(ANode node in Model.Children){
+                    @if (node.Template) {
                     <tr>
-                        <td><input type="button" id="<%=node.Id%>" class="input" onclick="AppendNode(this.id);" value="Add" /></td>
-                        <td><%=node.Name%></td>                        
+                        <td><input type="button" id="@node.Id" class="input" onclick="AppendNode('@node.Id');" value="Add" /></td>
+                        <td>@node.Name</td>                        
                     </tr> 
-                    <%} %>                 
-                <%} %>
+                    }                
+                }
             </table>
         </div>
-    <%} %>
+    }
     <br />
-    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src="<%= System.IO.File.Exists(Server.MapPath(Url.Content("~/") + ConfigurationManager.AppSettings["productsURLroot"] + "/" + Session["store_name"].ToString() + "/" + Model.GetPath().Replace('\\', '/') + "/homepage.htm"))? Url.Content("~/") + ConfigurationManager.AppSettings["productsURLroot"] + "/" + Session["store_name"].ToString() +  "/" + Model.GetPath().Replace('\\', '/') + "/homepage.htm": Url.Content("~/") +"NoInfo.html"%>"></iframe>
+    @{
+     string url = Url.Content("~/Products/") + storeName +  "/" + Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+    }
+    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src="@url" </iframe>
 
     <div>
-        <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
-        <ol class="list_dependents" id="dependents">
-            <%foreach (ANode dependent in Model.Dependents) {%>
-            <li><a title="<%=dependent.GetPath()%>" onclick="OpenNode('<%=dependent.GetPath().Replace("\\",">")%>'); UnHideBranch('<%=dependent.Id%>');" href="<%=dependent.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dependent.Url):"Description?id=" + dependent.Id%>"><%=dependent.Name%></a><label style="font-size:small" > (<%=dependent.GetPath()%>) </label></li>
-            <%} %>
-        </ol>
-        <br />
+    <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
+    <ol class="list_dependents" id="dependents">
+       @foreach (string dependent in Model.Dependents) {
+        ANode dep = Model.ParentTree.GetNodeFromId(dependent);
+        <li>
+            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
+            </li>
+        } 
+    </ol>
+    <br />
     </div>
     <div>
         <label onclick="$('#references').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>REFERENCES</U></label>
         <ol class="list_references" id="references">
-            <%foreach (ANode reference in Model.References) {%>
-            <li><a title="<%=reference.GetPath()%>" onclick="OpenNode('<%=reference.GetPath().Replace("\\",">")%>'); UnHideBranch('<%=reference.Id%>');" href="<%=reference.Url.Contains("ChangeTreeValue")? Url.Content("~/" + reference.Url):"Description?id=" + reference.Id%>"><%=reference.Name%></a><label style="font-size:small" > (<%=reference.GetPath()%>) </label></li>
-            <%} %>
+            @foreach (string reference in Model.References) {
+            ANode refe = Model.ParentTree.GetNodeFromId(reference);
+            <li>
+                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
+            </li>
+            } 
         </ol>
         <br />
         <br />
@@ -165,12 +181,12 @@
             var data = $('#formID').serialize();
             //First open the node
             top.asynchronous = false;
-            if ($("ul[id='li_ul_<%=Model.Id%>']").children().length == 0)
-                parent.$.jstree._reference("li[id='li_<%=Model.Id%>']").open_node("li[id='li_<%=Model.Id%>']");
+            if ($("ul[id='li_ul_@Model.Id']").children().length == 0)
+                parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
             top.asynchronous = true;
 
             $.ajax({
-                url: "AppendNode?sourceId=" + source + "&targetId=<%=Model.Id%>",
+                url: "AppendNode?sourceId=" + source + "&targetId=@Model.Id",
                 type: 'GET',
                 data: data,
                 dataType: 'json',
@@ -187,7 +203,7 @@
                         return false;
                     }
                     //select the node
-                    parent.$.jstree._reference("li[id='li_<%=Model.Id%>']").select_node("li[id='li_<%=Model.Id%>']");
+                    parent.$.jstree._reference("li[id='li_@Model.Id']").select_node("li[id='li_@Model.Id']");
                     //Insert the new node
                     parent.$("#container").jstree("create", null, parseInt(result.order), { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result.id } }, false, true);
                     //remove the anchor so it will be re-created with UpdateNode()
@@ -195,7 +211,7 @@
 
                     //Set the id for the automatically generated ul
                     if (parent.$("li[id='li_" + result.id + "']").parent().attr("id") == undefined) {
-                        parent.$("li[id='li_" + result.id + "']").parent().attr("id", "li_ul_<%=Model.Id%>");
+                        parent.$("li[id='li_" + result.id + "']").parent().attr("id", "li_ul_@Model.Id");
                     }
                     parent.UpdateNode(result);
                     
@@ -203,18 +219,18 @@
                     top.asynchronous = false;
                     var price = window.parent.document.getElementById("price");
                     $(price).text("Price: " + result.total);
-                    if ($("input[id='editchildren_<%=Model.Id%>']", parent.document).attr("value") == "true") {
+                    if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
                         //Open the node
-                        parent.$.jstree._reference("li[id='li_<%=Model.Id%>']").open_node("li[id='li_<%=Model.Id%>']");
+                        parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
                         var array = [];
-                        var children = $("li[id='li_<%=Model.Id%>']", parent.document).children('ul').children('li');
+                        var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
                         for (var i = 0; i < children.length; i++) {
                             array[i] = children[i].id.replace(/li_/g, "");
                         }
                         parent.UpdateDependents(array);
                     }
                     else {
-                        parent.UpdateDependents('<%=Model.Id%>');
+                        parent.UpdateDependents('@Model.Id');
                     }
                     top.asynchronous = true;
 
@@ -246,7 +262,7 @@
                 parent.$.jstree._reference(current).open_node(current, function () {
 
                     if (i == split.length - 1) {
-                        parent.$.jstree._reference("li[id='li_<%=Model.Id%>']").deselect_all();
+                        parent.$.jstree._reference("li[id='li_@Model.Id']").deselect_all();
                         parent.$.jstree._reference(current).select_node(current);
                         $('html', parent.document).scrollTop($(current, parent.document).offset().top);
                     }

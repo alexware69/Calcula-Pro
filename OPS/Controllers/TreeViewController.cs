@@ -721,6 +721,7 @@ namespace OnlinePriceSystem.Controllers
             });
             QTree tree = fromJson;
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            TempData["store_name"] = store_name;   
 
             return View((SumSetNode)node);
         }

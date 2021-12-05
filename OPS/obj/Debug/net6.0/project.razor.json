@@ -16386,6 +16386,11 @@
       "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/alejandro/Online-Price-System/OPS/Views/TreeView/AppendNodes.cshtml",
+      "TargetPath": "Views\\TreeView\\AppendNodes.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"
