@@ -97,71 +97,6 @@
                            screen.availHeight + (2 * offset));
         }
 
-        function AppendNode(source) {
-                //Post values to server
-                var data = $('#formID').serialize();
-                //First open the node
-                top.asynchronous = false;
-                if ($("ul[id='li_ul_@Model.Id']").children().length == 0)
-                    parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
-                top.asynchronous = true;
-
-                $.ajax({
-                    url: "AppendNode?sourceId=" + source + "&targetId=@Model.Id",
-                    type: 'GET',
-                    data: data,
-                    dataType: 'json',
-                    async: true,
-                    cache: false,
-                    beforeSend: function () {
-                    },
-                    complete: function () {
-                        top.dialog.dialog("close");
-                    },
-                    success: function (result) {
-                        if (result == "_SessionTimeout_") {
-                            parent.document.location = "/SessionTimeOut.html";
-                            return false;
-                        }
-                        //select the node
-                        parent.$.jstree._reference("li[id='li_@Model.Id']").select_node("li[id='li_@Model.Id']");
-                        //Insert the new node
-                        parent.$("#container").jstree("create", null, parseInt(result.order), { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result.id } }, false, true);
-                        //remove the anchor so it will be re-created with UpdateNode()
-                        parent.$("li[id='li_" + result.id + "']").children("a").remove();
-
-                        //Set the id for the automatically generated ul
-                        if (parent.$("li[id='li_" + result.id + "']").parent().attr("id") == undefined) {
-                            parent.$("li[id='li_" + result.id + "']").parent().attr("id", "li_ul_@Model.Id");
-                        }
-                        parent.UpdateNode(result);
-                        
-                        //Update the price in the page
-                        top.asynchronous = false;
-                        var price = window.parent.document.getElementById("price");
-                        $(price).text("Price: " + result.total);
-                        if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
-                            //Open the node
-                            parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
-                            var array = [];
-                            var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
-                            for (var i = 0; i < children.length; i++) {
-                                array[i] = children[i].id.replace(/li_/g, "");
-                            }
-                            parent.UpdateDependents(array);
-                        }
-                        else {
-                            parent.UpdateDependents('@Model.Id');
-                        }
-                        top.asynchronous = true;
-
-                    },
-                    error: function (result) {
-                        alert("Error updating price from server!");
-                    }
-                });   //end ajax
-            }
-
     </script>
     <style>
         li { background: FloralWhite; }
@@ -242,7 +177,70 @@
             });
         });
         
+        function AppendNode(source) {
+            //Post values to server
+            var data = $('#formID').serialize();
+            //First open the node
+            top.asynchronous = false;
+            if ($("ul[id='li_ul_@Model.Id']").children().length == 0)
+                parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
+            top.asynchronous = true;
 
+            $.ajax({
+                url: "AppendNode?sourceId=" + source + "&targetId=@Model.Id",
+                type: 'GET',
+                data: data,
+                dataType: 'json',
+                async: true,
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                    top.dialog.dialog("close");
+                },
+                success: function (result) {
+                    if (result == "_SessionTimeout_") {
+                        parent.document.location = "/SessionTimeOut.html";
+                        return false;
+                    }
+                    //select the node
+                    parent.$.jstree._reference("li[id='li_@Model.Id']").select_node("li[id='li_@Model.Id']");
+                    //Insert the new node
+                    parent.$("#container").jstree("create", null, parseInt(result.order), { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result.id } }, false, true);
+                    //remove the anchor so it will be re-created with UpdateNode()
+                    parent.$("li[id='li_" + result.id + "']").children("a").remove();
+
+                    //Set the id for the automatically generated ul
+                    if (parent.$("li[id='li_" + result.id + "']").parent().attr("id") == undefined) {
+                        parent.$("li[id='li_" + result.id + "']").parent().attr("id", "li_ul_@Model.Id");
+                    }
+                    parent.UpdateNode(result);
+                    
+                    //Update the price in the page
+                    top.asynchronous = false;
+                    var price = window.parent.document.getElementById("price");
+                    $(price).text("Price: " + result.total);
+                    if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
+                        //Open the node
+                        parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
+                        var array = [];
+                        var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
+                        for (var i = 0; i < children.length; i++) {
+                            array[i] = children[i].id.replace(/li_/g, "");
+                        }
+                        parent.UpdateDependents(array);
+                    }
+                    else {
+                        parent.UpdateDependents('@Model.Id');
+                    }
+                    top.asynchronous = true;
+
+                },
+                error: function (result) {
+                    alert("Error updating price from server!");
+                }
+            });   //end ajax
+        }
 
         // accending sort
         function asc_sort(a, b) {
