@@ -1,12 +1,13 @@
+id="1.7.7.1.1.1";
 type="Range";
 order="0";
 report="false";
 reportvalue="false";
 units="";
 optional="false";
-max="0";
-min="0";
-discount="0";
+max="0.0";
+min="0.0";
+discount="0.0";
 disablecondition="0";
 disabledmessage="";
 expandedlevels="0";
