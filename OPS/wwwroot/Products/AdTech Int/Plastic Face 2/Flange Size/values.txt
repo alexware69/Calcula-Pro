@@ -1,12 +1,13 @@
+id="1.4";
 type="Math";
 order="1";
 report="true";
 reportvalue="true";
 units="In";
 optional="false";
-max="0";
-min="0";
-discount="0";
+max="0.0";
+min="0.0";
+discount="0.0";
 disablecondition="0";
 disabledmessage="";
 expandedlevels="0";
