@@ -14,5 +14,5 @@ expandedlevels="0";
 hidden="false";
 readonly="false";
 template="false";
-formula="Min((Feet*12)+Inches; Plastic Face 2\Length of Plastic)";
+formula="Min((Feet*12)+Inches;Plastic Face 2\Length of Plastic)";
 editchildren="true";

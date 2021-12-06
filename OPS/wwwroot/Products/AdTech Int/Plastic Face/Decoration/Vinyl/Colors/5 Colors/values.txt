@@ -1,4 +1,4 @@
-id="1.3.4.1.4";
+id="1.1.4.1.4";
 type="Math";
 order="0";
 report="true";
@@ -6,7 +6,7 @@ reportvalue="false";
 units="";
 optional="true";
 max="0.0";
-min="50.0";
+min="0.0";
 discount="0.0";
 disablecondition="0";
 disabledmessage="";
