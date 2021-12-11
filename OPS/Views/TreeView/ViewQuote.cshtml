@@ -22,7 +22,7 @@
             float: left;
             width: 40%;
             height: 100%;
-            background: #fec182;          
+            background: #cccccc;          
         }
         .jstree a {
 			line-height:18px;
@@ -86,23 +86,22 @@
     </style>
 
     <div id="description" class="follow-scroll" style="text-align: center">
-        <div style="line-height:15px; height: 15px; vertical-align:middle; background-color: #5c3f10; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center">
-            <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description-orange.jpg" height="15"/>
-            <img style="float: left;  padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left light-orange.jpg" height="15" width="16" />
-            <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right light-orange.jpg" height="15" width="16" />
+        <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
+    	    <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description.jpg" height="15"/>
+            <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
+            <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
         </div>
-
         <div style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left white-light-orange.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right white-light-orange.jpg" height="15" width="16" />
+                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left white.jpg" height="15" width="16" />
+                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right white.jpg" height="15" width="16" />
             </div>
             <br />
-			@{string url = Model.Url.Contains("ChangeTreeModel")? Model.Url : "Description?id=1";}
-            <iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="@url"></iframe>
+            @{string url = ""; if (Model != null) url = Model.Url.Contains("ChangeTreeValue")? Model.Url : "Description?id=1";}
+            <iframe style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="@url"></iframe>
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; bottom:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white-light-orange.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white-light-orange.jpg" height="15" width="16" />
+                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white.jpg" height="15" width="16" />
+                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
             </div>
         </div>
         <span style="font-size: 7pt; color: #999999; padding: 0px 0px 0px 0px; height: 15px; border-width: 0px; vertical-align: top;">PATENT PENDING</span>
