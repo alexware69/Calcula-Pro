@@ -1,0 +1,15 @@
+type="math";
+units="$";
+order="0";
+optional="false";
+report="false";
+reportvalue="false";
+max="0";
+min="0";
+expandedlevels="0";
+discount="0";
+hidden="true";
+readonly="false";
+template="false";
+formula="Calculated Qty*Material Unit Price*Feature Markup";
+edit_children="false";
