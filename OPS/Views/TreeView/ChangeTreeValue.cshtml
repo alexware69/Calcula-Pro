@@ -130,7 +130,7 @@
                             <tr>
                                 <td>@node.Name</td>
                                 <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
-                                <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString() + ", " + node.Max.ToString() + "]")</td>
+                                <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString("0.#############################") + ", " + node.Max.ToString("0.#############################") + "]")</td>
                             </tr>     
                         }  
                         else show_button = false;            
@@ -141,7 +141,7 @@
                         <tr>
                             <td> @Model.Name </td>
                             <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
-                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Model.Min.ToString() + ", " + Model.Max.ToString() + "]") </td>
+                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Model.Min.ToString("0.#############################") + ", " + Model.Max.ToString("0.#############################") + "]") </td>
                         </tr>
                         }   
                     else show_button = false;                        
