@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "03stwmPbDjpb3QSdEwVlJ0rrUOIwXAdsXQ2Zp5pPiFk=",
+  "Hash": "Qd21+ZHFQLHlRtEAS2ECGks1ykwhz42ILE6ibWgXUpM=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/App_Data/.DS_Store"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/App_Data/Downloads/AdTech Int/MyProducts.zip",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "App_Data/Downloads/AdTech Int/MyProducts.zip",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/App_Data/Downloads/AdTech Int/MyProducts.zip"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/App_Data/Uploads/.DS_Store",
