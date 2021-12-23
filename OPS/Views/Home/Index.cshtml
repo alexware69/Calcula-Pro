@@ -29,3 +29,24 @@
     }
     </ul>
 </div>
+<script>
+	$(document).ready(function() {
+	$('.myElements').wookmark({
+			align: 'left',
+			autoResize: true,
+			comparator: null,
+			container: $('#tiles'),
+			direction: undefined,
+			ignoreInactiveItems: true,
+			itemWidth: "15%",
+			fillEmptySpace: true,
+			flexibleWidth: 0,
+			offset: 90,
+			onLayoutChanged: undefined,
+			outerOffset: 20,
+			possibleFilters: [],
+			resizeDelay: 50,
+			verticalOffset: 20
+	});
+});
+</script>

@@ -502,23 +502,23 @@ namespace OnlinePriceSystem.Controllers
         //To save products to database
         public ActionResult ReloadProducts()
         {
-            //OnlinePriceSystemDataContext dc = new OnlinePriceSystemDataContext();
-            //QTree tree;
-            //product product;
+            ops_inhouseEntities dc = new ops_inhouseEntities();
+            QTree tree;
+            product1 product;
 
             //Read product names from dir
             string[] dirs = Directory.GetDirectories("~/Products");
-            //string[] temp;
-            //for (int i = 0; i < dirs.Length; i++)
-            //{
-                //temp = dirs[i].Split("\\".ToCharArray());
-                //tree = new QTree(dirs[i]);
-                //product = new product();
-                //product.product = tree.Serialize().ToArray();
-                //product.name = temp[temp.Length - 1];
-                //dc.products.InsertOnSubmit(product);
-            //}
-            //dc.SubmitChanges();
+            string[] temp;
+            for (int i = 0; i < dirs.Length; i++)
+            {
+                temp = dirs[i].Split("\\".ToCharArray());
+                tree = new QTree(dirs[i],true);
+                product = new product1();
+                product.product = tree.Serialize().ToArray();
+                product.name = temp[temp.Length - 1];
+                dc.products.Add(product);
+            }
+            dc.SaveChanges();
             return View(dirs);
         }
         //To save products to database
