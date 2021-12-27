@@ -7,6 +7,44 @@
  
   <script src="../../js/TreeViewOne.js"></script>
     <style>
+        /* Light mode */
+        @@media (prefers-color-scheme: light) {
+            body {
+                background-color: white;
+                color: black;
+            }
+            .filler {
+            display: inline-block;
+            float:right;  
+            clear: both;
+            height: 90%;  
+            /*background-repeat:repeat-x ;*/
+            background:url('../../Images/dot.gif') repeat-x  center;
+            margin-right:0px;
+        }
+            .filler:hover {
+                background:url('../../Images/dot-bold.gif') repeat-x  center;
+            }
+        }
+        /* Dark mode */
+        @@media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: white;
+            }
+            .filler {
+            display: inline-block;
+            float:right;  
+            clear: both;
+            height: 90%;  
+            /*background-repeat:repeat-x ;*/
+            background:url('../../Images/dot-white.gif') repeat-x  center;
+            margin-right:0px;
+        }
+            .filler:hover {
+                background:url('../../Images/dot-bold-white.gif') repeat-x  center;
+            }
+        }
         input[type="checkbox"]{
 			vertical-align: middle;
 		}
@@ -35,18 +73,6 @@
             float: right;
             width: 60%;
             font-family: Verdana;
-        }
-        .filler {
-            display: inline-block;
-            float:right;  
-            clear: both;
-            height: 90%;  
-            /*background-repeat:repeat-x ;*/
-            background:url('../../Images/dot.gif') repeat-x  center;
-            margin-right:0px;
-        }
-        .filler:hover {
-            background:url('../../Images/dot-bold.gif') repeat-x  center;
         }
         .formula {
             position:relative;
