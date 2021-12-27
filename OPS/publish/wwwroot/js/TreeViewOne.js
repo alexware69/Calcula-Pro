@@ -987,6 +987,11 @@ function Assemble(result, id) {
         //}
         //Add the node expression as a tooltip
         $("li[id='li_" + result[i].id + "']").children('a').attr("title", result[i].expression);
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:white;");
+        }
         //Set leaves to red color
         if (result[i].leaf) $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:red;");
         //Set hidden to green
@@ -1208,6 +1213,11 @@ function RenderTree(tree) {
             else expression = "";
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", expression);
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:white;");
+        }
         //Set leaves to red color
         if (tree.Leaf) $(node).children('a').attr("style", "color:red;");
         //Set hidden to green

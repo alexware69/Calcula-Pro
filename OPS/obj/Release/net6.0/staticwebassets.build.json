@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PGSKEdLs3SFVGfL2jnnQZAemSm+ZVxgKQvViqiA8Bi0=",
+  "Hash": "G9hr6frbzgp8RUg1k3PS6UoiFwg5Gw+I+jc2cBzRIAg=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2941,6 +2941,23 @@
       "OriginalItemSpec": "wwwroot/Images/description.jpg"
     },
     {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/dot-bold-white.gif",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/dot-bold-white.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/dot-bold-white.gif"
+    },
+    {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/dot-bold.gif",
       "SourceId": "OPS",
       "SourceType": "Discovered",
@@ -2956,6 +2973,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/dot-bold.gif"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/dot-white.gif",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/dot-white.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/dot-white.gif"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/dot.gif",
