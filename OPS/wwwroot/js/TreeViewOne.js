@@ -198,7 +198,7 @@ function getScrollbarWidth(element) {
 function UpdateNode(data) {
     var node = "li[id='li_" + data.id + "']";
     if ($(node).length) {
-        $(node).css("white-space", "normal");
+        $(node).css("gray-space", "normal");
         //Adjust the node width
         /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
@@ -990,7 +990,7 @@ function Assemble(result, id) {
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             // dark mode
-            $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:white;");
+            $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:gray;");
         }
         //Set leaves to red color
         if (result[i].leaf) $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:red;");
@@ -1037,7 +1037,7 @@ function RenderTree(tree) {
     //////////////////////////////////////Update node/////////////////////////////////////////////////////////////////////////////////
     var node = "li[id='li_" + tree.Id + "']";
     if ($(node).length) {
-        $(node).css("white-space", "normal");
+        $(node).css("gray-space", "normal");
         //Adjust the node width
         /*if (!$("input[id='Description']").is(':checked'))
             $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
@@ -1216,7 +1216,7 @@ function RenderTree(tree) {
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             // dark mode
-            $(node).children('a').attr("style", "color:white;");
+            $(node).children('a').attr("style", "color:gray;");
         }
         //Set leaves to red color
         if (tree.Leaf) $(node).children('a').attr("style", "color:red;");

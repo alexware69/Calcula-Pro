@@ -114,8 +114,8 @@
     <div id="description" class="follow-scroll" style="text-align: center">
         <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
     	    <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description.jpg" height="15"/>
-            <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
-            <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
+            <img id=top-left style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
+            <img id=top-right style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
         </div>
         <div style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
@@ -168,6 +168,21 @@
      		});
 			Offline.on('up', function(){
 				$('#container *').prop('disabled',false).css( 'pointer-events', 'auto' );
-			});   		
+			}); 
      	});
+
+         $(document).ready(function() {
+             //Detect dark mode
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // dark mode
+                $("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+                $("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+
+            }  		
+            else{
+                // light mode
+                $("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+                $("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+            }
+         });
      </script>
