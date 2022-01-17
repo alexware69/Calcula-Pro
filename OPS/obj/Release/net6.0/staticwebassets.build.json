@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8PnrFBIYmTKsEmYuZ0YGy4lnLOJgesjp+xiQ4rnDWgI=",
+  "Hash": "yEs25GqyhD3XHOhPux9pW9Tsifinwy3oT7svLVSuk2Y=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -3519,6 +3519,23 @@
       "OriginalItemSpec": "wwwroot/Images/Thumbs.db"
     },
     {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/top left gray-dark.jpg",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/top left gray-dark.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/top left gray-dark.jpg"
+    },
+    {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/top left gray.jpg",
       "SourceId": "OPS",
       "SourceType": "Discovered",
@@ -3619,6 +3636,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/top left white.jpg"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/top right gray-dark.jpg",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/top right gray-dark.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/top right gray-dark.jpg"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System/OPS/wwwroot/Images/top right gray.jpg",
