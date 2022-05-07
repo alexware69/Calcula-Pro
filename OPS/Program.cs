@@ -1,4 +1,5 @@
 using ElectronNET.API;
+using ElectronNET.API.Entities;
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseElectron(args);
 
@@ -36,7 +37,12 @@ app.Run();
 
 async void CreateElectronWindow()
 {
-    var window = await Electron.WindowManager.CreateWindowAsync();
+    var options = new BrowserWindowOptions
+    {
+        Width = 1280,
+        Height = 1024
+    };
+    var window = await Electron.WindowManager.CreateWindowAsync(options);
     window.OnClosed += () => Electron.App.Quit();
 }
 
