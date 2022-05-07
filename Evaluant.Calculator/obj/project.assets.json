@@ -4326,11 +4326,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj",
+      "projectUniqueName": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj",
       "projectName": "NCalc",
-      "projectPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj",
+      "projectPath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj",
       "packagesPath": "/Users/alejandro/.nuget/packages/",
-      "outputPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/obj/",
+      "outputPath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandro/.nuget/NuGet/NuGet.Config"
@@ -4387,7 +4387,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }

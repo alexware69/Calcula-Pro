@@ -22,24 +22,12 @@ namespace OnlinePriceSystem.Controllers
 {
     public class TreeViewController : Controller
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            if (context.HttpContext.Session == null)/* ||
-                            !context.HttpContext.Session.TryGetValue("tree", out byte[] val))*/
-            {
-                context.Result =
-                    new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home",
-                                                                            action = "Index" }));
-            }
-            base.OnActionExecuting(context);
-        }
-
         private IWebHostEnvironment _hostEnvironment;
 
 		public TreeViewController(IWebHostEnvironment environment) {
 			_hostEnvironment = environment;
 		}
-        public ActionResult Index(string product)
+        /*public ActionResult Index(string product)
         {
             ops_inhouseEntities dc = new ops_inhouseEntities();
             QTree tree;
@@ -59,61 +47,10 @@ namespace OnlinePriceSystem.Controllers
             TempData["tree"] = tree;
 
             return View(tree.Root);
-        }
-
-        
-        
-		//this need to be changed, instead of the product name pass the product id and save it to session
-        public ActionResult NewQuote(int id)
-        {
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-            QTree tree;
-
-            //Get the product from database
-			//var products = dc.products.Select(p => p).Where(p => p.id == id);
-			var qry = from p in dc.products
-					where p.id == id
-				select new {
-				id = p.id,
-				product = p.product,
-				store_id = p.store_id
-			};
-
-            //Deserialize the product
-            byte[] bytes_stream;
-			var prod = qry.First();
-            bytes_stream = prod.product.ToArray();
-            tree = QTree.Deserialize(bytes_stream);
+        }*/
 
 
-			var store_id = prod.store_id;
-			var store = from str in dc.stores where str.id == store_id select str;
-			string store_name = store.First ().name;
-            //TempData["store_name"] = store_name;
-
-            TempData["treeDBID"] = "";
-            //TempData["tree"] = tree;
-            TempData["product_id"] = id;
-
-            //TempData["tree"] = tree;
-            TempData["root"] = tree.Root;
-
-            HttpContext.Session.SetInt32("product_id", id);
-            HttpContext.Session.SetString("store_name", store_name);
-            var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.All,
-                Formatting = Formatting.Indented
-            });    
-            HttpContext.Session.SetString("tree", toJson);
-
-
-            return View("ViewQuote");
-        }
-
-
-        public ActionResult LoadTreeView(string id)
+        /*public ActionResult LoadTreeView(string id)
         {
 
             ops_inhouseEntities dc = new ops_inhouseEntities();
@@ -135,11 +72,11 @@ namespace OnlinePriceSystem.Controllers
             HttpContext.Session.SetInt32("product_id", int.Parse(id));
 
             return View("Index", tree.Root);
-        }
+        }*/
 
         
         
-        public ActionResult LoadQuote(string id)
+        /*public ActionResult LoadQuote(string id)
         {
 
             ops_inhouseEntities dc = new ops_inhouseEntities();
@@ -185,14 +122,14 @@ namespace OnlinePriceSystem.Controllers
             HttpContext.Session.SetString("tree", toJson);
 
 			return View("ViewQuote");
-        }
+        }*/
 
 		
 		
 		public ActionResult Edit(string product)
 		{
 
-			QTree tree;
+			QTree tree = null;
             //TempData["renamed"] = null;
             HttpContext.Session.SetString("renamed", "");
 
@@ -227,55 +164,19 @@ namespace OnlinePriceSystem.Controllers
 					HttpContext.Session.SetInt32("product_id", 0);
                     //ViewBag.id = 0;
 				}
-				else
-				{
-                    ops_inhouseEntities dc = new ops_inhouseEntities();
-
-					//Get the product from database
-					//var products = dc.products.Select(p => p).Where(p => p.id == int.Parse(product));
-
-					var qry = from p in dc.products
-							where p.id.ToString() == product
-						select new {
-						id = p.id,
-						product = p.product
-					};
-
-					//Deserialize the product
-					byte[] bytes_stream;
-					var prod = qry.First();
-					bytes_stream = prod.product.ToArray();
-                    tree = QTree.Deserialize(bytes_stream);
-
-					TempData["treeDBID"] = "";
-					//TempData["tree"] = tree;
-					TempData["product_id"] = prod.id;
-					ViewBag.id = prod.id;
-                    var id = prod.id;
-                    HttpContext.Session.SetInt32("product_id", id);
-                    string user = HttpContext.Session.GetString("username");
-					var users = from usr in dc.user_accounts where usr.user == user select usr;
-					var store_id = users.First ().store_id;
-					var store = from str in dc.stores where str.id == store_id select str;
-					string store_name = store.First ().name;
-					TempData["store_name"] = store_name;
-					ViewBag.store_name = store_name;
-
-                    //HttpContext.Session.SetInt32("product_id", int.Parse(product));
-                    HttpContext.Session.SetString("store_name", store_name);
-				}
 			}
 			else tree = TempData["tree"] as QTree;
-
-            TempData["root"] = tree.Root;
-            var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+            
+            if (tree != null)
             {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.All,
-                Formatting = Formatting.Indented
-            });    
-            HttpContext.Session.SetString("tree", toJson);
-
+                var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    PreserveReferencesHandling = PreserveReferencesHandling.All,
+                    Formatting = Formatting.Indented
+                });    
+                HttpContext.Session.SetString("tree", toJson);
+            }
 			return View("EditProduct");
 		}
 
@@ -502,7 +403,6 @@ namespace OnlinePriceSystem.Controllers
         //To save products to database
         public ActionResult ReloadProducts()
         {
-            ops_inhouseEntities dc = new ops_inhouseEntities();
             QTree tree;
             product1 product;
 
@@ -513,19 +413,14 @@ namespace OnlinePriceSystem.Controllers
             {
                 temp = dirs[i].Split("\\".ToCharArray());
                 tree = new QTree(dirs[i],true);
-                product = new product1();
-                product.product = tree.Serialize().ToArray();
-                product.name = temp[temp.Length - 1];
-                dc.products.Add(product);
+            
             }
-            dc.SaveChanges();
             return View(dirs);
         }
         //To save products to database
         [HttpPost]
         public ActionResult ReloadProducts(FormCollection form)
         {
-            ops_inhouseEntities dc = new ops_inhouseEntities();
             QTree tree;
             product1 product;
 
@@ -536,22 +431,6 @@ namespace OnlinePriceSystem.Controllers
                 
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
-
-                var qry = from prod in dc.products where prod.name==key select prod;
-                if (qry.Count() > 0)
-                {
-                    var item = qry.Single();
-                    item.product = tree.Serialize().ToArray();
-                    dc.SaveChanges();
-                }
-                else
-                {
-                    product = new product1();
-                    product.product = tree.Serialize().ToArray();
-                    product.name = key;
-                    dc.products.Add(product);
-                    dc.SaveChanges();
-                }
             }
 
 
@@ -567,91 +446,7 @@ namespace OnlinePriceSystem.Controllers
             //    product.name = temp[temp.Length - 1];
             //    dc.products.InsertOnSubmit(product);
             //}
-            var qry1 = from prod in dc.products select prod.name;
-            string[] allproducts = qry1.ToArray();
-            //return View("../Home/Index", allproducts);
             return RedirectToAction("Index", "Home");
-        }
-		
-        
-        public ActionResult SaveQuote()
-        {
-            try
-            {
-                QTree tree;
-                string jsonString = HttpContext.Session.GetString("tree");
-                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All,
-                    PreserveReferencesHandling = PreserveReferencesHandling.All
-                });
-                tree = fromJson;
-                if (tree.Root.IsComplete())
-                {
-                    ops_inhouseEntities dc = new ops_inhouseEntities();
-
-                    //string user = User.Identity.Name;
-                    //string id = TempData["product_id"].ToString();
-                    string id = HttpContext.Session.GetInt32("product_id").ToString();
-                    var store_id = from prod in dc.products where prod.id.ToString() == id select prod.store_id;
-
-                    quote1 Quote = new quote1();
-                    Quote.date = DateTime.Now;
-                    Quote.total = tree.Root.Total();
-                    Quote.product_name = tree.Root.Name;
-                    Quote.quote = tree.Serialize().ToArray();
-                    Quote.item = tree.Root.Name;
-                    Quote.store_id = store_id.First();
-                    Quote.product_id = int.Parse(id);
-                    string xml = tree.SerializeToString();
-                    Quote.quote_xml = xml;
-                    if (TempData["treeDBID"] != null && TempData["treeDBID"].ToString() != "")
-                    {
-                        int parent_quote = int.Parse(TempData["treeDBID"].ToString());
-                        var quotes = from quote in dc.quotes where quote.id == parent_quote select quote;
-                        if (quotes.First().revision != null) Quote.revision = quotes.First().revision;
-                        else Quote.revision = int.Parse(TempData["treeDBID"].ToString());
-                    }
-                    string user = HttpContext.Session.GetString("username");
-                    Quote.user = user;
-
-                    dc.quotes.Add(Quote);
-                    dc.SaveChanges();
-                    TempData["tree"] = null;
-                }
-            }
-            catch (Exception e) 
-            {
-                string s = e.Message;
-            }
-			return RedirectToAction("Index", "MyQuotes",new {id=1});
-        }
-
-        //This one is not used any more, can be deleted
-        [HttpPost]
-        public ActionResult SaveQuotePost()
-        {
-            if (TempData["tree"] != null)
-            {
-                QTree tree = TempData["tree"] as QTree;
-                if (tree.Root.IsComplete())
-                {
-                    ops_inhouseEntities dc = new ops_inhouseEntities();
-                    quote1 Quote = new quote1();
-                    Quote.date = DateTime.Now;
-                    Quote.total = tree.Root.Total();
-                    Quote.product_name = tree.Root.Name;
-                    Quote.quote = tree.Serialize().ToArray();
-                    Quote.item = tree.Root.Name;
-                    if (TempData["treeDBID"] != null && TempData["treeDBID"].ToString() != "")
-                        Quote.revision = int.Parse(TempData["treeDBID"].ToString());
-                    Quote.user = User.Identity.Name;
-
-                    dc.quotes.Add(Quote);
-                    dc.SaveChanges();
-                }
-            }
-            return RedirectToAction("Index", "MyQuotes");
         }
         
         public ContentResult GetTotalPrice()
@@ -905,13 +700,7 @@ namespace OnlinePriceSystem.Controllers
 		{
 			if (HttpContext.Session.GetString("tree") != null)
 			{
-				//get store name...this is better to do it just one time during login and save to session variable
-                ops_inhouseEntities dc = new ops_inhouseEntities();
-				string user = HttpContext.Session.GetString("username");
-				var users = from usr in dc.user_accounts where usr.user == user select usr;
-				var store_id = users.First ().store_id;
-				var store = from str in dc.stores where str.id == store_id select str;
-				string store_name = store.First ().name;
+				
 
 				string jsonString = HttpContext.Session.GetString("tree");
                 var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
@@ -920,13 +709,6 @@ namespace OnlinePriceSystem.Controllers
                     PreserveReferencesHandling = PreserveReferencesHandling.Objects
                 });
                 QTree tree = fromJson;
-	
-				//if is a new product check if exists one with same name for the same store, if so exit
-				var qry = from prod in dc.products where (prod.name == tree.Root.Name && prod.store_id == store_id) select prod.id;
-				if (id == 0)
-				{
-                    if (qry.Count() > 0) return RedirectToAction("Index", "MyProducts", new { id = 1 });
-				}
 
                 //Dictionary<ANode, string> renamed = TempData["renamed"] != null ? TempData["renamed"] as Dictionary<ANode, string> : null;
                 Dictionary<string, string> renamed;
@@ -944,7 +726,7 @@ namespace OnlinePriceSystem.Controllers
 
                 string pathRoot = _hostEnvironment.WebRootPath;
 				//Save to folder
-				tree.SaveTreeTo (tree.Root, pathRoot + Path.DirectorySeparatorChar + "Products" + Path.DirectorySeparatorChar + store_name, renamed);
+				tree.SaveTreeTo (tree.Root, pathRoot + Path.DirectorySeparatorChar + "Products", renamed);
 
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
@@ -952,44 +734,6 @@ namespace OnlinePriceSystem.Controllers
                 //reset the renamed dictionary
                 //TempData["renamed"] = null;
                 HttpContext.Session.SetString("renamed", "");
-
-                //Save to database
-				var qry2 = from prod in dc.products
-				           where prod.id == id
-				           select prod;
-					
-				if (qry2.Count() > 0)
-				{
-					var item = qry2.Single();
-					item.name = tree.Root.Name;
-					MemoryStream stream = tree.Serialize ();
-					item.product = stream.ToArray();
-					item.modified_by = user;
-					item.modified = DateTime.Now;
-					item.size = (int)stream.Length;
-                    string xml = tree.SerializeToString();
-                    item.product_xml = xml;
-					dc.SaveChanges();
-				}
-				else
-				{
-					product1 product = new product1();
-					MemoryStream stream = tree.Serialize ();
-					product.product = stream.ToArray();
-					product.name = tree.Root.Name;
-					product.created_by = user;
-					product.modified_by = user;
-					product.created = DateTime.Now;
-					product.modified = DateTime.Now;
-					product.store_id = store_id;
-					product.size = (int)stream.Length;
-                    string xml = tree.SerializeToString();
-                    product.product_xml = xml;
-					product.active = false;
-					dc.products.Add(product);
-					dc.SaveChanges();
-				}
-
 			}
             return RedirectToAction("Index", "MyProducts", new { id = 1 });
 		}
@@ -1257,16 +1001,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult cloneNodes(string sourceId, string targetId)
         {
-            //get store name...this is better to do it just one time during login and save to session variable
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-            string user = HttpContext.Session.GetString("username");
-            var users = from usr in dc.user_accounts where usr.user == user select usr;
-            var store_id = users.First().store_id;
-            var store = from str in dc.stores where str.id == store_id select str;
-            string store_name = store.First().name;
-            TempData["store_name"] = store_name;
-            HttpContext.Session.SetString("store_name", store_name);
-
             string jsonString = HttpContext.Session.GetString("tree");
             var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
             {
@@ -1329,15 +1063,6 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult NewNode()
 		{
-			//get store name...this is better to do it just one time during login and save to session variable
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-            string user = HttpContext.Session.GetString("username");
-			var users = from usr in dc.user_accounts where usr.user == user select usr;
-			var store_id = users.First ().store_id;
-			var store = from str in dc.stores where str.id == store_id select str;
-			string store_name = store.First ().name;
-			TempData["store_name"] = store_name;
-
             string jsonString = HttpContext.Session.GetString("tree");
             var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
             {

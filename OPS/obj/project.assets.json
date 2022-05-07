@@ -6016,11 +6016,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandro/Online-Price-System/OPS/OPS.csproj",
+      "projectUniqueName": "/Users/alejandro/Online-Price-System-Native/OPS/OPS.csproj",
       "projectName": "OPS",
-      "projectPath": "/Users/alejandro/Online-Price-System/OPS/OPS.csproj",
+      "projectPath": "/Users/alejandro/Online-Price-System-Native/OPS/OPS.csproj",
       "packagesPath": "/Users/alejandro/.nuget/packages/",
-      "outputPath": "/Users/alejandro/Online-Price-System/OPS/obj/",
+      "outputPath": "/Users/alejandro/Online-Price-System-Native/OPS/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandro/.nuget/NuGet/NuGet.Config"
@@ -6035,11 +6035,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj": {
-              "projectPath": "/Users/alejandro/Online-Price-System/Evaluant.Calculator/Evaluant.Calculator.csproj"
+            "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+              "projectPath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj"
             },
-            "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj": {
-              "projectPath": "/Users/alejandro/Online-Price-System/QuoteTree/QuoteTree.csproj"
+            "/Users/alejandro/Online-Price-System-Native/QuoteTree/QuoteTree.csproj": {
+              "projectPath": "/Users/alejandro/Online-Price-System-Native/QuoteTree/QuoteTree.csproj"
             }
           }
         }
@@ -6085,7 +6085,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }
