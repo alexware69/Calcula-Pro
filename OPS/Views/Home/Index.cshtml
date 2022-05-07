@@ -35,10 +35,7 @@
 </div>
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "productsform" }))
 	{
-	<input type="button" id="toggle" value="Toggle Active"/>
-	<input type="button" id="reload" value="Reload"/>
 	<input type="button" id="download" value="Download"/>
-	<input type="button" value="Delete"/>
 	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
 	<br />
 	<br />
@@ -75,45 +72,12 @@
 
     $(document).ready(function () {
         $("#Products").styleTable();
-
-        //Toggle active
-    	$('#toggle').click( function() {
-			    $.ajax({
-		        url: '/MyProducts/ToggleActive',
-		        type: 'GET',
-		        cache: false,
-		        data: $('#productsform').serialize(),
-		        success: function(data) {	 
-		            document.location = "/MyProducts/Index/1";
-             	}
-	    	});
-		});
-
-		//Reload products
-    	$('#reload').click( function() {
-    	        //Show overlay
-    	        overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
-    	        $("#overlay").show();
-    	        $(".loading").show();
-			    $.ajax({
-		        url: '/MyProducts/ReloadProducts',
-		        type: 'GET',
-		        cache: false,
-		        data: $('#productsform').serialize(),
-		        success: function(data) {	 
-		            $(".loading").hide();
-		            $("#overlay").remove();
-		            document.location = "/MyProducts/Index/1";
-             	}
-	    	});
-    	});
         
         //Download products
     	$('#download').click(function () {
     	    document.location = "/MyProducts/Download?" + $('#productsform').serialize();
 
-    	});
-    
+    	});  
     });
 
 

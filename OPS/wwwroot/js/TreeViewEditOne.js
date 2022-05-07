@@ -2040,7 +2040,7 @@ $(function () {
                         newnodedialog.closest('div.ui-dialog')
                             .find('button.ui-dialog-titlebar-close')
                             .click(function (e) {
-                                if (!$("#li_1").children("a").length) document.location = "../MyProducts?id=1";
+                                if (!$("#li_1").children("a").length) document.location = "../Home/Index";
                                 e.preventDefault();
                             });
                     }
