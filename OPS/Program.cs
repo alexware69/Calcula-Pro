@@ -1,4 +1,6 @@
+using ElectronNET.API;
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseElectron(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -14,6 +16,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseStaticFiles();
@@ -24,5 +27,16 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}");
 
 app.UseSession();
+
+if (HybridSupport.IsElectronActive)
+{
+    CreateElectronWindow();
+}
 app.Run();
+
+async void CreateElectronWindow()
+{
+    var window = await Electron.WindowManager.CreateWindowAsync();
+    window.OnClosed += () => Electron.App.Quit();
+}
 
