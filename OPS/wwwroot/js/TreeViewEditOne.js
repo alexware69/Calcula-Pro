@@ -288,7 +288,10 @@ function UpdateNode(data) {
             $(node).children('a').attr("target", 'details');
             //Set the <a> onclick to open the url in a new window
             if (true/*!mobile*/) {
-                $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+                $(node).children('a').click(function() {
+                    window.open(href, 'details');
+                  });
+                //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
             }
             //else {
             //    $(node).children('a').on("click", function (e) {
@@ -309,7 +312,10 @@ function UpdateNode(data) {
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
-        $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+        $(node).children('a').click(function() {
+            window.open(href, 'details');
+          });
+        //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
 
         //Set leaves to red color
         if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
@@ -1502,7 +1508,11 @@ function Assemble(result, id) {
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
         if (true /*!mobile*/) {
-            $("li[id='li_" + result[i].id + "']").children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+            $("li[id='li_" + result[i].id + "']").children('a').click(function() {
+                window.open(href, 'details');
+              });
+
+            //$("li[id='li_" + result[i].id + "']").children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
         }
         //else {
         //    $("li[id='li_" + result[i].id + "']").children('a').on("click", function (e) {
@@ -1572,7 +1582,11 @@ function RenderTree(tree) {
             $(node).children('a').attr("target", 'details');
             //Set the <a> onclick to open the url in a new window
             if (true/*!mobile*/) {
-                $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+                $(node).children('a').click(function() {
+                    window.open(href, 'details');
+                  });
+
+                //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
             }
             //else {
             //    $(node).children('a').on("click", function (e) {
