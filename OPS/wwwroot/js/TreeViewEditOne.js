@@ -287,12 +287,12 @@ function UpdateNode(data) {
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
             //Set the <a> onclick to open the url in a new window
-            if (true/*!mobile*/) {
-                $(node).children('a').click(function() {
-                    window.open(href, 'details');
-                  });
+            //if (true/*!mobile*/) {
+            //    $(node).children('a').click(function() {
+            //        window.open(href, 'details');
+            //      });
                 //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-            }
+            //}
             //else {
             //    $(node).children('a').on("click", function (e) {
             //        e.preventDefault();
@@ -312,9 +312,9 @@ function UpdateNode(data) {
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
-        $(node).children('a').click(function() {
-            window.open(href, 'details');
-          });
+       // $(node).children('a').click(function() {
+       //     window.open(href, 'details');
+        //  });
         //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
 
         //Set leaves to red color
@@ -1507,13 +1507,13 @@ function Assemble(result, id) {
         $("li[id='li_" + result[i].id + "']").children('a').attr("href", href);
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
-        if (true /*!mobile*/) {
-            $("li[id='li_" + result[i].id + "']").children('a').click(function() {
-                window.open(href, 'details');
-              });
+        //if (true /*!mobile*/) {
+        //    $("li[id='li_" + result[i].id + "']").children('a').click(function() {
+        //        window.open(href, 'details');
+        //      });
 
             //$("li[id='li_" + result[i].id + "']").children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-        }
+       // }
         //else {
         //    $("li[id='li_" + result[i].id + "']").children('a').on("click", function (e) {
         //        e.preventDefault();
@@ -1581,13 +1581,13 @@ function RenderTree(tree) {
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
             //Set the <a> onclick to open the url in a new window
-            if (true/*!mobile*/) {
-                $(node).children('a').click(function() {
-                    window.open(href, 'details');
-                  });
+            //if (true/*!mobile*/) {
+            //    $(node).children('a').click(function() {
+             //       window.open(href, 'details');
+            //      });
 
                 //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-            }
+            //}
             //else {
             //    $(node).children('a').on("click", function (e) {
             //        e.preventDefault();
@@ -2150,7 +2150,7 @@ $(function () {
         //debugger;
         //window.location.href = data.rslt.obj.attr("href");
         //The previous line doesnt work, data.rslt.obj.attr("href") returns "undefined"
-        //window.open(data.args[0].href);
+        window.open(data.args[0].href, "details");
     });
 
     //If client is mobile....
