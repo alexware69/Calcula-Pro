@@ -7,7 +7,6 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using QuoteTree;
 using System.Xml.Linq;
-using Pager;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Mvc.Filters;
