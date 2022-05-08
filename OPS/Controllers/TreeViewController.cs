@@ -404,7 +404,6 @@ namespace OnlinePriceSystem.Controllers
         public ActionResult ReloadProducts()
         {
             QTree tree;
-            product1 product;
 
             //Read product names from dir
             string[] dirs = Directory.GetDirectories("~/Products");
@@ -422,7 +421,6 @@ namespace OnlinePriceSystem.Controllers
         public ActionResult ReloadProducts(FormCollection form)
         {
             QTree tree;
-            product1 product;
 
             foreach(string key in form.Keys)
             {
