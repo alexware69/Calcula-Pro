@@ -36,19 +36,34 @@
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "productsform" }))
 	{
 	<input type="button" id="download" value="Download"/>
+	<input type="button" id="open" value="Open File" onclick="javascript:document.location='../../TreeView/Edit?product=Plastic Face'"/>
 	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
 	<br />
 	<br />
 }
-     
     
 <script type="text/javascript">
+	//const ipcRenderer = window.require('electron').ipcRenderer;
   	 $(function() {
 	    $( "input[type=submit], button" )
 	      .button();
         $( "input[type=button], button" )
 	      .button();
 	  });
+
+	
+     /*(function(){
+		const { ipcRenderer } = require("electron");
+        const fs = require('fs');
+
+		document.getElementById("open")
+                .addEventListener("click", () => {
+            ipcRenderer.send("open-folder");
+        });
+	});*/
+
+
+
 
 	(function ($) {
 	    $.fn.styleTable = function (options) {
@@ -70,15 +85,26 @@
 	    };
 	})(jQuery);
 
-    $(document).ready(function () {
-        $("#Products").styleTable();
-        
-        //Download products
-    	$('#download').click(function () {
-    	    document.location = "/MyProducts/Download?" + $('#productsform').serialize();
+	$("#Products").styleTable();
+	
+	//Download products
+	$('#download').click(function () {
+		document.location = "/MyProducts/Download?" + $('#productsform').serialize();
 
-    	});  
-    });
+	});  
+
+    /*(function(){
+		const { ipcRenderer } = require("electron");
+		 //Open Folder
+    	document.getElementById("open")
+                .addEventListener("click", () => {
+            ipcRenderer.send("open-folder");
+		});
+		ipcRenderer.on('sel-dir', (event, path) => {
+			const message = `This app is located at: ${path}`;
+			alert(message);   
+		})
+    });*/
 
 
 

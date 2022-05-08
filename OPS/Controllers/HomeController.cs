@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
+using ElectronNET.API; 
+using ElectronNET.API.Entities;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -130,8 +132,8 @@ namespace OnlinePriceSystem.Controllers
 				}
 
 				Extract(path);
-                ExtractToProducts(path);
-				QTree tree = new QTree (pathRoot + "/Products/" + file.FileName.Split('.')[0], true);
+                //ExtractToProducts(path);
+				QTree tree = new QTree (pathRoot + "/App_Data/Uploads/" + file.FileName.Split('.')[0], true);
 
 				var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
 				{
@@ -147,14 +149,13 @@ namespace OnlinePriceSystem.Controllers
 
 			return RedirectToAction("Index","Home");        
 		}
-
         
 		private void Extract(string path){
 			//string startPath = @"c:\example\start";
 			//string zipPath = @"c:\example\result.zip";
 
 			string pathRoot = _hostEnvironment.WebRootPath;
-			string extractPath = pathRoot + "/App_Data/Uploads/Products/";
+			string extractPath = pathRoot + "/App_Data/Uploads/";
 
 			FastZip fz = new FastZip();
 			//fz.ExtractZip(path, extractPath, null);
@@ -188,6 +189,28 @@ namespace OnlinePriceSystem.Controllers
             foreach (FileInfo file in source.GetFiles())
                 file.CopyTo(Path.Combine(target.FullName, file.Name));
         }
+
+		public IActionResult OpenDirectory()
+		{
+			//if (!HybridSupport.IsElectronActive || saveAdded) return Ok();
+			Electron.IpcMain.On("open-folder", async (args) =>
+			{
+				var mainWindow = Electron.WindowManager.BrowserWindows.First();
+				var options = new OpenDialogOptions
+				{
+					Title = "Open Product Directory"
+					/*Filters = new FileFilter[]
+					{
+						new FileFilter { Name = "JSON", 
+										Extensions = new string[] {"json" } }
+					}*/
+				};
+				var result = await 
+					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
+				Electron.IpcMain.Send(mainWindow, "open-folder-reply", result);
+			});
+			return Ok();
+		}
     }
 
 	public class ProductUtil

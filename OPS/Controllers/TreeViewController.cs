@@ -152,7 +152,6 @@ namespace OnlinePriceSystem.Controllers
 				if (product == "new") 
 				{
 					tree = new QTree ();
-					TempData["treeDBID"] = "";
 					var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All,
@@ -164,19 +163,22 @@ namespace OnlinePriceSystem.Controllers
 					HttpContext.Session.SetInt32("product_id", 0);
                     //ViewBag.id = 0;
 				}
+                else
+                {
+                    tree = new QTree ("/Users/alejandro/Desktop/Plastic Face", true);
+                    var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        PreserveReferencesHandling = PreserveReferencesHandling.All,
+                        Formatting = Formatting.Indented
+                    });    
+                    HttpContext.Session.SetString("tree", toJson1);
+					//pass zero as product id, this means is a new product
+					HttpContext.Session.SetInt32("product_id", 0);
+                }
 			}
 			else tree = TempData["tree"] as QTree;
-            
-            if (tree != null)
-            {
-                var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All,
-                    PreserveReferencesHandling = PreserveReferencesHandling.All,
-                    Formatting = Formatting.Indented
-                });    
-                HttpContext.Session.SetString("tree", toJson);
-            }
+        
 			return View("EditProduct");
 		}
 
