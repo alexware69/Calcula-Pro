@@ -109,27 +109,20 @@ namespace OnlinePriceSystem.Controllers
 		// This action handles the form POST and the upload
 		[HttpPost]
 		
-		/*public ActionResult Upload()
+		public ActionResult Upload()
 		{
 			int id = 0;
 			var file = Request.Form.Files[0];
 			// Verify that the user selected a file
 			if (file != null && file.Length > 0) 
-			{
-				//get the store name
-                ops_inhouseEntities dc = new ops_inhouseEntities();
-				string user = HttpContext.Session.GetString("username");
-				var users = from usr in dc.user_accounts where usr.user == user select usr;
-				var store_id = users.First ().store_id;
-				var store = from str in dc.stores where str.id == store_id select str;
-				string store_name = store.First ().name;
+			{		
 				// extract only the fielname
 				//var fileName = Path.GetFileName(file.FileName);
 				// store the file inside ~/App_Data/uploads folder
 				string pathRoot = _hostEnvironment.WebRootPath;
-				if (!Directory.Exists(pathRoot + "/App_Data/Uploads/" + store_name))
-					Directory.CreateDirectory(pathRoot + "/App_Data/Uploads/" + store_name);
-				var path = pathRoot + "/App_Data/Uploads/" + store_name + "/" + file.FileName;
+				if (!Directory.Exists(pathRoot + "/App_Data/Uploads/"))
+					Directory.CreateDirectory(pathRoot + "/App_Data/Uploads/");
+				var path = pathRoot + "/App_Data/Uploads/" + file.FileName;
 				//file.SaveAs(path);
 				using (var stream = new FileStream(path, FileMode.Create))
 				{
@@ -138,41 +131,7 @@ namespace OnlinePriceSystem.Controllers
 
 				Extract(path);
                 ExtractToProducts(path);
-				QTree tree = new QTree (pathRoot + "/Products/" + store_name + "/" + file.FileName.Split('.')[0], true);
-				//Save to database
-				var qry = from prod in dc.products where (prod.name == tree.Root.Name && prod.store_id == store_id) select prod;
-				if (qry.Count() > 0)
-				{
-					var item = qry.Single();
-					item.name = tree.Root.Name;
-					MemoryStream stream = tree.Serialize ();
-					item.product = stream.ToArray();
-					item.modified_by = user;
-					item.modified = DateTime.Now;
-					item.size = (int)stream.Length;
-                    string xml = tree.SerializeToString();
-                    item.product_xml = xml;
-					dc.SaveChanges();
-				}
-				else
-				{
-					product1 product = new product1();
-					MemoryStream stream = tree.Serialize ();
-					product.product = stream.ToArray();
-					product.name = tree.Root.Name;
-					product.created_by = user;
-					product.modified_by = user;
-					product.created = DateTime.Now;
-					product.modified = DateTime.Now;
-					product.store_id = store_id;
-                    product.active = false;
-					product.size = (int)stream.Length;
-                    string xml = tree.SerializeToString();
-                    product.product_xml = xml;
-					dc.products.Add(product);
-					dc.SaveChanges();
-				}
-				id = qry.First ().id;
+				QTree tree = new QTree (pathRoot + "/Products/" + file.FileName.Split('.')[0], true);
 
 				var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
 				{
@@ -186,48 +145,31 @@ namespace OnlinePriceSystem.Controllers
 				return RedirectToAction("Edit","TreeView", new { product = id });        
 			}
 
-			return RedirectToAction("Index","MyProducts");        
-		}*/
+			return RedirectToAction("Index","Home");        
+		}
 
         
-		/*private void Extract(string path){
+		private void Extract(string path){
 			//string startPath = @"c:\example\start";
 			//string zipPath = @"c:\example\result.zip";
-			//get the store name
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-			string user = HttpContext.Session.GetString("username");
-			var users = from usr in dc.user_accounts where usr.user == user select usr;
-			var store_id = users.First ().store_id;
-			var store = from str in dc.stores where str.id == store_id select str;
-			string store_name = store.First ().name;
 
 			string pathRoot = _hostEnvironment.WebRootPath;
-			string extractPath = pathRoot + "/App_Data/Uploads/Products/" + store_name;
+			string extractPath = pathRoot + "/App_Data/Uploads/Products/";
 
 			FastZip fz = new FastZip();
 			//fz.ExtractZip(path, extractPath, null);
 			System.IO.Compression.ZipFile.ExtractToDirectory(path, extractPath);
-		}*/
+		}
 
         
-		/*private void ExtractToProducts(string path){
-			//string startPath = @"c:\example\start";
-			//string zipPath = @"c:\example\result.zip";
-			//get the store name
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-			string user = HttpContext.Session.GetString("username");
-			var users = from usr in dc.user_accounts where usr.user == user select usr;
-			var store_id = users.First ().store_id;
-			var store = from str in dc.stores where str.id == store_id select str;
-			string store_name = store.First ().name;
-
+		private void ExtractToProducts(string path){
 			string pathRoot = _hostEnvironment.WebRootPath;		
-			string extractPath = pathRoot + "/Products/" + store_name;
+			string extractPath = pathRoot + "/Products/";
 
 			FastZip fz = new FastZip();
 			//fz.ExtractZip(path, extractPath, null);
 			System.IO.Compression.ZipFile.ExtractToDirectory(path, extractPath);
-		}*/
+		}
 
         
 		/*public string GetStoreName(Guid id)
