@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cpVUVMdnCwIMc+2IX5sBPk8lskSBSXOqpdpf0j/5jVM=",
+  "Hash": "Mmw5g7GC7l9iXk3hni+YJjsa5MBr4QifAgnGrHJJ7VE=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2888,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/dot.gif"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/electron.png",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/electron.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/electron.png"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/file.gif",
