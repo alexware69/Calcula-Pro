@@ -160,7 +160,9 @@
 
 <br />
 @{
-    string url = Url.Content("~/Products/") + storeName +  "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+    string path = "~/Users/alejandro/Desktop"; 
+    string url = path + "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+     url = Url.Content(path + url);
     //if(!System.IO.File.Exists(url)) url = Url.Content("~/") +"NoInfo.html";
 
 }

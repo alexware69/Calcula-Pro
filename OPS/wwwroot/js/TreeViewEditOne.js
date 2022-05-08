@@ -45,8 +45,7 @@
 
     //Show the description page in the description section
     if (cb.checked && !descriptionhidden) {
-        href = $("li[id='li_" + checkboxIDClean + "']").children("a").attr("href");
-        window.open(href, 'details');
+        $("li[id='li_" + checkboxIDClean + "']").children("a").click();
     }
 
     //Show the parent's description page in the description section if unchecked
