@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ri3aD46S3TxT3sy/MDj3JwlYcgWsqwItxGO0kq45xgE=",
+  "Hash": "TM8C/+ziSK+t56Gs9DD1nfFOr+ew88KposnvlhK+qUM=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -17,10 +17,10 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/bundle/OPS.styles.css",
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/bundle/OPS.styles.css",
       "SourceId": "OPS",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/bundle/",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/bundle/",
       "BasePath": "_content/OPS",
       "RelativePath": "OPS.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/bundle/OPS.styles.css"
+      "OriginalItemSpec": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/bundle/OPS.styles.css"
     },
     {
-      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/projectbundle/OPS.bundle.scp.css",
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/projectbundle/OPS.bundle.scp.css",
       "SourceId": "OPS",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/projectbundle/",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/projectbundle/",
       "BasePath": "_content/OPS",
       "RelativePath": "OPS.bundle.scp.css",
       "AssetKind": "All",
@@ -48,7 +48,7 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/scopedcss/projectbundle/OPS.bundle.scp.css"
+      "OriginalItemSpec": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Debug/net6.0/osx-x64/scopedcss/projectbundle/OPS.bundle.scp.css"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/css/jsTree/apple/bg.jpg",
