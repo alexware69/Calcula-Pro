@@ -16,7 +16,7 @@
 	}
 </style>
 <div style="border:1px solid #f6a828; width:100%; display:inline-block; text-align:center; background-color:#C0C0C0;">
-	<label style="display:inline; color:#666666; background-color:#C0C0C0;">My Products</label>
+	<label style="display:inline; color:#666666; background-color:#C0C0C0;">Home</label>
 	<div style="position:absolute;right:0; display:inline-block;">
 		<div style="display:inline-block;vertical-align:middle;"> 
 			<img align="left" title='Working...' style='display:none;' class='loading' src='../Images/ajax-bar.gif' alt='Working...'> &nbsp;
@@ -27,7 +27,7 @@
 <br/>
 
 <div>
-	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
+	<button onclick="javascript:document.location='../../TreeView/Edit?product=new'">New Product</button>	
 	<button id="open-dialog" class="btn">Open Product</button>
     <button id="save-dialog" class="btn">Export</button>
 	
@@ -60,7 +60,7 @@
             ipcRenderer.send("open-dialog");
         });
 		ipcRenderer.on("open-dialog-reply", (sender, path) => {
-			//alert(path);
+			if (!path) return;
 			document.location='../../TreeView/Edit?product='+ path;
             return;
         });
