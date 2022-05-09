@@ -41,8 +41,8 @@ async void CreateElectronWindow()
         Width = 1280,
         Height = 1024
     };
-    var window = await Electron.WindowManager.CreateWindowAsync(options);
     Electron.Dock.SetIcon("../../../../wwwroot/Images/electron.png");
+    var window = await Electron.WindowManager.CreateWindowAsync(options);
     window.OnClosed += () => Electron.App.Quit();
 }
 
