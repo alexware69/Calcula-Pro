@@ -23,6 +23,9 @@
         "filter": [ "**/*" ]
       }
     ],
+    "mac": {
+      "icon": "../../../../wwwroot/Images/ops.png"
+    },
     "files": [
       {
         "from": "./ElectronHostHook/node_modules",

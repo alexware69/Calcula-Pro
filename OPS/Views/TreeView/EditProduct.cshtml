@@ -418,6 +418,11 @@
      </div>
 
      <script>
+		 $(function() {
+			const first_li = "li[id='li_1']";
+    		const path = $(first_li).children("a").attr('href');
+			document.getElementById('Iframe15').src = path;
+		 });
      	$(function(){
      		Offline.on('down', function(){
      			$('#container *').prop('disabled',true).css( 'pointer-events', 'none' );
@@ -427,4 +432,3 @@
 			});   		
      	});
      </script>
-</asp:Content>
