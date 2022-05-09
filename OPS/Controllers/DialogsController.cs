@@ -50,7 +50,10 @@ namespace OnlinePriceSystem.Controllers
 				var mainWindow = Electron.WindowManager.BrowserWindows.First();
 				var options = new OpenDialogOptions
 				{
-					Title = "Open Product Directory"
+					Title = "Open Product Directory",
+                    Properties = new OpenDialogProperty[] {
+                        OpenDialogProperty.openDirectory
+                    }
 					/*Filters = new FileFilter[]
 					{
 						new FileFilter { Name = "JSON", 

@@ -165,8 +165,8 @@ namespace OnlinePriceSystem.Controllers
 				}
                 else
                 {
-                    HttpContext.Session.SetString("path", "/Users/alejandro/Desktop");
-                    tree = new QTree ("/Users/alejandro/Desktop/Plastic Face", true);
+                    HttpContext.Session.SetString("path", product);
+                    tree = new QTree (product, true);
                     var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All,

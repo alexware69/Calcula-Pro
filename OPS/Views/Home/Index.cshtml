@@ -25,17 +25,12 @@
 	</div>
 <br/>
 <br/>
-<input style="display:inline-block" type="file" name="folder" id="folder" onchange="fileget(event)" webkitdirectory directory  />
-@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "productsform" }))
-	{
-	<input type="button" id="open" value="Open Folder" onclick="javascript:document.location='../../TreeView/Edit?product=Plastic Face'"/>
-	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
-	<br />
-	<br />
-}
+
 <div>
-    <button id="save-dialog" class="btn">Export</button>
+	<input type="button" value="New" onclick="javascript:document.location='../../TreeView/Edit?product=new'"/>	
 	<button id="open-dialog" class="btn">Open Product</button>
+    <button id="save-dialog" class="btn">Export</button>
+	
 </div>
 <script>
     /*(function(){
@@ -65,6 +60,8 @@
             ipcRenderer.send("open-dialog");
         });
 		ipcRenderer.on("open-dialog-reply", (sender, path) => {
+			//alert(path);
+			document.location='../../TreeView/Edit?product='+ path;
             return;
         });
 	}());
