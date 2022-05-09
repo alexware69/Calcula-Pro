@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D2t+MX91pMV0liwBrfZ4s5goPhrMq4jS8wglUyJc03M=",
+  "Hash": "TM8C/+ziSK+t56Gs9DD1nfFOr+ew88KposnvlhK+qUM=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2072,23 +2072,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/themes/jsTree/default/throbber.gif"
-    },
-    {
-      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/electron.png",
-      "SourceId": "OPS",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/",
-      "BasePath": "_content/OPS",
-      "RelativePath": "electron.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/electron.png"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/favicon.ico",
