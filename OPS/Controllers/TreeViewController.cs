@@ -135,20 +135,6 @@ namespace OnlinePriceSystem.Controllers
 
 			if (product != null && product != "") 
 			{
-				if (product == "uploaded") 
-				{
-					string jsonString = HttpContext.Session.GetString("tree");
-                    var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All,
-                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                    });
-                    tree = fromJson;
-					//pass zero as product id, this means is a new product
-                    HttpContext.Session.SetInt32("product_id", 0);
-					//ViewBag.id = 0;
-				}
-				else
 				if (product == "new") 
 				{
 					tree = new QTree ();
@@ -697,7 +683,7 @@ namespace OnlinePriceSystem.Controllers
 		}
 
 		
-		public ActionResult SaveProduct(int id)
+		public ActionResult SaveProduct()
 		{
 			if (HttpContext.Session.GetString("tree") != null)
 			{
@@ -727,7 +713,9 @@ namespace OnlinePriceSystem.Controllers
 
                 string pathRoot = _hostEnvironment.WebRootPath;
 				//Save to folder
-				tree.SaveTreeTo (tree.Root, pathRoot + Path.DirectorySeparatorChar + "Products", renamed);
+                string path = HttpContext.Session.GetString("path");
+                path = path.Remove(path.LastIndexOf('/'));
+				tree.SaveTreeTo (tree.Root, path, renamed);
 
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
@@ -736,7 +724,7 @@ namespace OnlinePriceSystem.Controllers
                 //TempData["renamed"] = null;
                 HttpContext.Session.SetString("renamed", "");
 			}
-            return RedirectToAction("Index", "MyProducts", new { id = 1 });
+            return RedirectToAction("Index", "Home");
 		}
 
 		[HttpGet]

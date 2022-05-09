@@ -189,43 +189,5 @@ namespace OnlinePriceSystem.Controllers
             foreach (FileInfo file in source.GetFiles())
                 file.CopyTo(Path.Combine(target.FullName, file.Name));
         }
-
-		public IActionResult OpenDirectory()
-		{
-			//if (!HybridSupport.IsElectronActive || saveAdded) return Ok();
-			Electron.IpcMain.On("open-folder", async (args) =>
-			{
-				var mainWindow = Electron.WindowManager.BrowserWindows.First();
-				var options = new OpenDialogOptions
-				{
-					Title = "Open Product Directory"
-					/*Filters = new FileFilter[]
-					{
-						new FileFilter { Name = "JSON", 
-										Extensions = new string[] {"json" } }
-					}*/
-				};
-				var result = await 
-					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
-				Electron.IpcMain.Send(mainWindow, "open-folder-reply", result);
-			});
-			return Ok();
-		}
     }
-
-	public class ProductUtil
-	{
-		public int id;
-		public string name;
-		public string created;
-		public string created_by;
-		public string modified;
-		public string modified_by;
-		public bool? active;
-		public int? size;
-
-		public ProductUtil()
-		{
-		}
-	}
 }
