@@ -55,6 +55,8 @@ namespace OnlinePriceSystem.Controllers
                 {
                     HttpContext.Session.SetString("path", product);
                     tree = new QTree (product, true);
+                    //Reset the entered property
+                    tree.ResetEntered(tree.Root);
                     var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All,
