@@ -6081,6 +6081,12 @@ namespace QuoteTree;
                             node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         }
                         break;
+                    case NodeType.Text:
+                        (node as TextNode).Text = values["expression"].Trim();
+
+                        //Set node url
+                        node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
+                        break;
                     case NodeType.Range:
                         (node as RangeNode).Range = values["expression"].Trim();
                         (node as RangeNode).EditChildren = values["editChildren"] == "true" ? true : false;
