@@ -5694,6 +5694,10 @@ namespace QuoteTree;
 					sw.WriteLine("formula=\"" + (start as MathNode).Formula + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as MathNode).EditChildren.ToString().ToLower() + "\";");
 				}
+                if (start.Type == NodeType.Text)
+                {
+                    sw.WriteLine("text=\"" + (start as TextNode).Text + "\";");
+                }
                 if (start.Type == NodeType.Range)
                 {
                     sw.WriteLine("range=\"" + (start as RangeNode).Range + "\";");
