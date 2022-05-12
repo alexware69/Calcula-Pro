@@ -328,7 +328,11 @@ namespace OnlinePriceSystem.Controllers
             TempData["store_name"] = store_name;   
 
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
-            mainWindow.LoadURL("http://google.com");
+            var options = new LoadURLOptions();
+            //options.
+            //var childWindow = mainWindow.GetChildWindowsAsync().
+            var path = HttpContext.Session.GetString("path") + "/homepage.htm";
+            mainWindow.LoadURL("file://" + path);
             return View();
         }
         
