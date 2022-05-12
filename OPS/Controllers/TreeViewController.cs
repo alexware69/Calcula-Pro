@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
+using ElectronNET.API; 
+using ElectronNET.API.Entities;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -324,6 +326,9 @@ namespace OnlinePriceSystem.Controllers
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node;       
             TempData["store_name"] = store_name;   
+
+            var mainWindow = Electron.WindowManager.BrowserWindows.First();
+            mainWindow.LoadURL("http://google.com");
             return View();
         }
         

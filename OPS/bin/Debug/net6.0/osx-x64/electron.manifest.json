@@ -24,6 +24,15 @@
       }
     ],
     "mac": {
+      "target": [
+        {
+          "target": "default",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
       "icon": "../../../../wwwroot/Images/ops.png"
     },
     "files": [
