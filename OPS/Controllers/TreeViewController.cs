@@ -311,9 +311,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult Description(string id)
         {
-            var product_id = HttpContext.Session.GetInt32("product_id");
-            var store_name = HttpContext.Session.GetString("store_name");
-
             string jsonString = HttpContext.Session.GetString("tree");
             var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
             {
@@ -324,23 +321,22 @@ namespace OnlinePriceSystem.Controllers
 
             //MathNode node = (MathNode)tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
-            TempData["node"] = node;       
-            TempData["store_name"] = store_name;   
+            TempData["node"] = node; 
 
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
             var options = new LoadURLOptions();
+        
             //options.
-            //var childWindow = mainWindow.GetChildWindowsAsync().
-            var path = HttpContext.Session.GetString("path") + "/homepage.htm";
-            mainWindow.LoadURL("file://" + path);
+            //var iFrame= mainWindow.
+            var path = HttpContext.Session.GetString("path");
+            path = path.Remove(path.LastIndexOf("/"));
+            var url = path + "/" + node.GetPath() + "/homepage.htm";
+            mainWindow.LoadURL("file://" + url);
             return View();
         }
         
         public ActionResult AppendNodes(string id)
         {
-           var product_id = HttpContext.Session.GetInt32("product_id");
-            var store_name = HttpContext.Session.GetString("store_name");
-
             string jsonString = HttpContext.Session.GetString("tree");
             var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
             {
@@ -348,8 +344,7 @@ namespace OnlinePriceSystem.Controllers
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             });
             QTree tree = fromJson;
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
-            TempData["store_name"] = store_name;   
+            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", "")); 
 
             return View((SumSetNode)node);
         }
