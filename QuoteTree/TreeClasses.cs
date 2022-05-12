@@ -12,7 +12,7 @@ using EB;
 
 namespace QuoteTree;
 [Serializable]
-	public enum NodeType { Product, Math, Decision, Conditional, ConditionalRules, Value, Range, SumSet, Reference, Date, DateDiff, Today }
+	public enum NodeType { Product, Math, Decision, Text, Conditional, ConditionalRules, Value, Range, SumSet, Reference, Date, DateDiff, Today }
 
 	public interface INode
 	{
@@ -244,6 +244,7 @@ namespace QuoteTree;
 	[Serializable]
 	[XmlInclude(typeof(MathNode))]
 	[XmlInclude(typeof(DecisionNode))]
+    [XmlInclude(typeof(TextNode))]
 	[XmlInclude(typeof(ConditionalNode))]
 	[XmlInclude(typeof(ConditionalRulesNode))]
 	[XmlInclude(typeof(RangeNode))]
@@ -1023,6 +1024,314 @@ namespace QuoteTree;
 		{
 			return (a.Order - b.Order);
 		}
+	}
+
+    [Serializable]
+	public class TextNode : ANode
+	{
+		// *******Fields*****
+		string _Text;
+        //bool _EditChildren;
+
+		// *****Properties*****
+		public string Text
+		{
+			get { return _Text; }
+            set { if (!this.ReadOnly) _Text = value; }
+		}
+
+		// *****Methods*****
+		public override string GetXML()
+		{
+			decimal o;
+			//Check for extreme conditions that can make the math node invalid.
+			if (this.Hidden) return "";
+			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
+			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
+
+			//Logic used to render the node attributes as xml
+
+
+			#region Attribute "Text"
+			string Text = this.Name;
+
+			Text = " Text=\"" + Text + "\" ";
+			#endregion
+
+			#region Attribute "ImageUrl"
+			string ImageUrl = "";
+			if (this.Selected)
+			{
+				try
+				{
+					if (!this.IsComplete())
+						ImageUrl = "4anidot1a.gif";
+					if (this.Hidden)
+						ImageUrl = "h.gif";
+				}
+				catch (Exception) { }
+			}
+			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
+			#endregion
+
+			#region Attribute "Checked"
+			string Checked = "";
+			if (this.Selected)
+				Checked = "true";
+
+			Checked = " Checked=\"" + Checked + "\" ";
+			#endregion
+
+			#region Attribute "Checkbox"
+			string CheckBox = "";
+			if (this.Optional) CheckBox = "true";
+			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
+			#endregion
+
+			//Set the attributes 
+			string attributes = Text + ImageUrl + Checked + CheckBox;
+
+
+			//If node has children
+			if (this.Children != null && this.Children.Count > 0)
+			{
+				string children_nodes = "";
+				foreach (ANode n in this.Children)
+					children_nodes += " " + n.GetXML();
+				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
+
+			}
+			//If node has not children
+			else
+			{
+				return "<treenode" + attributes + " />";
+			}
+		}
+
+        public override bool HasErrors()
+        {
+           return false;
+        }
+
+		public override bool IsComplete()
+		{
+            if (Children == null || Children.Count == 0 || !BranchSelected()) return true;
+			foreach (ANode n in Children)
+			{
+				if (n.Selected && !n.IsComplete()) return false;
+			}
+			return true;
+		}
+
+        public override decimal Total()
+        {
+            return 0;
+        }
+
+
+		public decimal Total1()
+		{
+			return 0;
+		}
+
+		public TextNode()
+		{
+			this.Discount = 0;
+			this.Min = this.Max = 0;
+            this.Text = "";
+			this.Order = 0;
+			this.Selected = false;
+			this.Children = new List<ANode>();
+			this.Dependents = new List<string>();
+			this.References = new List<string>();
+			this.Type = NodeType.Text;
+			this.Parent = null;
+			this.Amount = 1;
+			this.Optional = false;
+            this.DisableCondition = "0";
+            this.DisabledMessage = "";
+			this.Description = "";
+			this.Hidden = false;
+			this.ReadOnly = false;
+			this.Expanded = false;
+			this.ExpandedLevels = 0;
+			this.Units = "";
+			this.Report = false;
+			this.ReportValue = false;
+            this.EditChildren = false;
+			this.Template = false;
+		}
+		public TextNode(string name, NodeType type, string text, int min, int max)
+		{
+			this.Name = name;
+			this.Type = type;
+			this._Text = text;
+			this.Min = min;
+			this.Max = max;
+			this.Children = null;
+			this.Hidden = false;
+			this.ReadOnly = false;
+			this.Expanded = false;
+		}
+
+		public TextNode(string path, ANode parent, QTree parentTree, string id)
+			: this()
+		{
+			if (parent != null) this.Parent = parent;
+			this.ParentTree = parentTree;
+			this.Name = path.Split(Path.DirectorySeparatorChar)[path.Split(Path.DirectorySeparatorChar).Length - 1];
+			this.Id = id;
+			string value = "";
+
+			int intResult;
+			decimal decimalResult;
+
+            value = this.GetValueFromDirectory("id", path);
+            if (value != "") this.Id = value;
+
+            value = this.GetValueFromDirectory("units", path);
+			if (value != "") this.Units = value;
+
+			value = this.GetValueFromDirectory("text", path);
+			if (value != "") this.Text = value;
+
+			value = this.GetValueFromDirectory("max", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.Max = intResult;
+
+			value = this.GetValueFromDirectory("min", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.Min = intResult;
+
+			value = this.GetValueFromDirectory("order", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.Order = intResult;
+
+			value = this.GetValueFromDirectory("discount", path);
+			decimal.TryParse(value, out decimalResult);
+			if (value != "") this.Discount = decimalResult;
+
+			value = this.GetValueFromDirectory("amount", path);
+			decimal.TryParse(value, out decimalResult);
+			if (value != "") this.Amount = decimalResult;
+
+			value = this.GetValueFromDirectory("expandedlevels", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.ExpandedLevels = intResult;
+
+            value = this.GetValueFromDirectory("disablecondition", path);
+            if (value != "") this.DisableCondition = value;
+
+            value = this.GetValueFromDirectory("disabledmessage", path);
+            if (value != "") this.DisabledMessage = value;
+
+			if (this.GetValueFromDirectory("optional", path) == "true" || (parent != null && parent.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
+			else { if (parent == null || (parent != null && parent.Type != NodeType.Decision)) this.Selected = true; }
+			if (this.GetValueFromDirectory("report", path) == "true") { this.Report = true; }
+			if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
+            if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
+			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+
+
+			//Set node url
+            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
+
+			//Get description from file in folder.
+			string s = "";
+			string line = "";
+			try
+			{
+				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
+				{
+
+					// Read and display lines from the file until the end of 
+					// the file is reached.
+					while ((line = sr.ReadLine()) != null)
+					{
+						s += line;
+					}
+				}
+			}
+			catch (Exception)
+			{ }
+			this.Description = s;
+		}
+
+        public TextNode(NameValueCollection values, QTree tree)
+            : this()
+        {
+            string id = values["id"];
+            ANode node;
+            if (id != "")
+                node = tree.GetNodeFromId(id);
+            else
+                node = null;
+            Stack<ANode> stack = new Stack<ANode>();
+            int intResult;
+            decimal decimalResult;
+
+            //first set the node as writeable
+            this.ReadOnly = false;
+            if (node == null) this.Id = "1";
+            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            this.Text = values["expression"];
+            this.EditChildren = values["editChildren"] == "true" ? true : false;
+            this.Name = values["name"];
+            if (int.TryParse(values["expandedLevels"], out intResult))
+                this.ExpandedLevels = intResult;
+            if (int.TryParse(values["order"], out intResult))
+                this.Order = intResult;
+            if (decimal.TryParse(values["min"], out decimalResult))
+                this.Min = decimalResult;
+            if (decimal.TryParse(values["max"], out decimalResult))
+                this.Max = decimalResult;
+            if (decimal.TryParse(values["discount"], out decimalResult))
+                this.Discount = decimalResult;
+            this.Hidden = values["hidden"] == "true" ? true : false;
+            //newnode.optional = values ["optional"] == "true" ? true : false;
+            this.Report = values["report"] == "true" ? true : false;
+            this.ReportValue = values["reportValue"] == "true" ? true : false;
+            this.Template = values["template"] == "true" ? true : false;
+            this.ReadOnly = values["readOnly"] == "true" ? true : false;
+
+            if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
+            else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
+            this.DisableCondition = values["disable"];
+            this.DisabledMessage = values["disabledMessage"];
+            if (node != null && node.Type == NodeType.Decision)
+            {
+                this.Dependents.AddRange(node.Dependents);
+                this.Dependents.Add(node.Id);
+            }
+            this.Parent = node;
+            this.ParentTree = tree;
+            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
+
+            //check for same name
+            if (node != null)
+                foreach (ANode n in node.Children)
+                    if (n.Name.Trim() == this.Name.Trim())
+                    {
+                        this.Name = this.Name.Trim() + "_Copy";
+                        break;
+                    }
+            //Add new node to children
+            if (!this.HasErrors())
+            {
+                if (node != null)
+                {
+                    node.Children.Add(this);
+                    //SetDependentsByHierarchy(Root, stack);
+                    //SetDependentsByReference(node, false);
+                }
+                else
+                {
+                    tree.Root = this;
+                }
+
+                if (node != null) node.SortChildren();
+            }
+        }
 	}
 
 	[Serializable]
@@ -5878,6 +6187,9 @@ namespace QuoteTree;
             {
                 case "Math":
                     newnode = new MathNode(values, this);
+                    break;
+                case "Text":
+                    newnode = new TextNode(values, this);
                     break;
                 case "Range":
                     newnode = new RangeNode(values, this);

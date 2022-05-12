@@ -621,6 +621,9 @@ namespace OnlinePriceSystem.Controllers
                     Expression = (node as MathNode).Formula;
                     EditChildren = (node as MathNode).EditChildren;
                     break;
+                 case NodeType.Text:
+                    Expression = (node as TextNode).Text;
+                    break;
                 case NodeType.Range:
                     Expression = (node as RangeNode).Range;
                     EditChildren = (node as RangeNode).EditChildren;
@@ -852,6 +855,9 @@ namespace OnlinePriceSystem.Controllers
                             Expression = (node as MathNode).Formula;
                             EditChildren = (node as MathNode).EditChildren;
                             break;
+                        case NodeType.Text:
+                            Expression = (node as TextNode).Text;
+                        break;
                         case NodeType.Range:
                             Expression = (node as RangeNode).Range;
                             break;
@@ -906,6 +912,9 @@ namespace OnlinePriceSystem.Controllers
                     Expression = (node as MathNode).Formula;
                     EditChildren = (node as MathNode).EditChildren;
                     break;
+                case NodeType.Text:
+                    Expression = (node as TextNode).Text;
+                    break;
                 case NodeType.Date:
                     EditChildren = (node as DateNode).EditChildren;
                     break;
@@ -941,7 +950,7 @@ namespace OnlinePriceSystem.Controllers
 		}
 
         [HttpGet]
-        
+   
         public ContentResult BuildDependencies() 
         {
             var product_id = HttpContext.Session.GetInt32("product_id");
