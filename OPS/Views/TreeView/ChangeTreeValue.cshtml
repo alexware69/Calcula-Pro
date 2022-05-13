@@ -2,7 +2,7 @@
 @using QuoteTree
 @{
     var Model = (MathNode)TempData["node"];
-    var storeName = (string)TempData["store_name"];
+    var url = (string)TempData["url"];
     Layout = null;
 }
 
@@ -160,13 +160,9 @@
 
 <br />
 @{
-    string path = "~/Users/alejandro/Desktop"; 
-    string url = path + "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
-     url = Url.Content(path + url);
-    //if(!System.IO.File.Exists(url)) url = Url.Content("~/") +"NoInfo.html";
-
+    url = url.Replace("http:///","file:///");
 }
-<iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px" id="Iframe2" src="@url"></iframe>
+<iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
 
 <div>
     <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>

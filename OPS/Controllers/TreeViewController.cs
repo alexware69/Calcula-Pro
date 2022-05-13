@@ -292,9 +292,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult ChangeTreeValue(string id)
         {
-            var product_id = HttpContext.Session.GetInt32("product_id");
-            var store_name = HttpContext.Session.GetString("store_name");
-
             string jsonString = HttpContext.Session.GetString("tree");
             var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
             {
@@ -302,9 +299,14 @@ namespace OnlinePriceSystem.Controllers
                 PreserveReferencesHandling = PreserveReferencesHandling.All
             });
             QTree tree = fromJson;
+            
             MathNode node = (MathNode)tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node;       
-            TempData["store_name"] = store_name;   
+            var path = HttpContext.Session.GetString("path");
+            path = path.Remove(path.LastIndexOf("/"));
+            var url = path + "/" + node.GetPath() + "/homepage.htm";
+            TempData["url"] = url; 
+            HttpContext.Session.SetString("url",url);
             
             return View();
         }
@@ -326,20 +328,16 @@ namespace OnlinePriceSystem.Controllers
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
             var options = new LoadURLOptions();
         
-            //options.
-            //var iFrame= mainWindow.
             var path = HttpContext.Session.GetString("path");
             path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
-            //mainWindow.LoadURL("file://" + url);
             return View();
         }
 
         public FileResult GetHtml()
         {
-            //var url = (string)TempData["url"];
             var url = HttpContext.Session.GetString("url");
             url = url.Replace("\\","/");
             FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
