@@ -3,6 +3,7 @@
 @{
     var Model = (ANode)TempData["node"];
     var storeName = (string)TempData["store_name"];
+    var url = (string)TempData["url"];
     Layout = null;
 }
 
@@ -155,7 +156,8 @@
 
     <div>
 		@{
-            string url = Url.Content("~/Products/") + storeName +  "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+            //string url = Url.Content("~/Products/") + storeName +  "/" + @Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+            url = url.Replace("http","file");
         } 
 		
         <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src="@url"></iframe>    
