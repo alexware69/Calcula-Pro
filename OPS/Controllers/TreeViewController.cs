@@ -332,8 +332,18 @@ namespace OnlinePriceSystem.Controllers
             path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
+            HttpContext.Session.SetString("url",url);
             //mainWindow.LoadURL("file://" + url);
             return View();
+        }
+
+        public FileResult GetHtml()
+        {
+            //var url = (string)TempData["url"];
+            var url = HttpContext.Session.GetString("url");
+            url = url.Replace("\\","/");
+            FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
+            return File(fs,"text/html");            
         }
         
         public ActionResult AppendNodes(string id)
