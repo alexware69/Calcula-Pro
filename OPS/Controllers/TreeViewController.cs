@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 using ElectronNET.API; 
 using ElectronNET.API.Entities;
+using HtmlAgilityPack;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -329,6 +330,7 @@ namespace OnlinePriceSystem.Controllers
             var options = new LoadURLOptions();
         
             var path = HttpContext.Session.GetString("path");
+            HttpContext.Session.SetString("nodeID",id);
             path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
@@ -336,14 +338,47 @@ namespace OnlinePriceSystem.Controllers
             return View();
         }
 
-        public FileResult GetHtml()
+        public ContentResult GetHtml()
         {
             var url = HttpContext.Session.GetString("url");
             url = url.Replace("\\","/");
             FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
-            return File(fs,"text/html");            
+
+            //Set up the pictures
+            var htmlDoc = new HtmlDocument();
+            string contents;
+            using(var sr = new StreamReader(fs))
+            {
+                contents = sr.ReadToEnd();
+            }
+            htmlDoc.LoadHtml(contents);
+
+            var h1Node = htmlDoc.DocumentNode.SelectSingleNode("//img");
+            string mediaName = "";
+            string imgURL = "";
+            if (h1Node != null)
+            {
+                h1Node.Attributes.Append("src");
+                mediaName = h1Node.Attributes["src"].Value;
+                mediaName = mediaName.Replace("homepage.htm",mediaName);
+                var path = HttpContext.Session.GetString("path");
+
+                imgURL = path + mediaName;
+                HttpContext.Session.SetString("imgURL",imgURL);
+                h1Node.SetAttributeValue("src", "'@Url.Action(\"GetMedia\", \"TreeView\", new { name = "+ mediaName + "})'");
+            }
+            
+            return Content(htmlDoc.ParsedText,"text/html");            
         }
         
+         public FileResult GetMedia(string name)
+        {
+            var imgURL = HttpContext.Session.GetString("imgURL");
+            imgURL = imgURL.Replace("\\","/");
+            //url = url.Replace("homepage.htm",name);
+            FileStream fs = new FileStream(imgURL, FileMode.Open, FileAccess.Read);
+            return File(fs,"image/jpeg");            
+        }
         public ActionResult AppendNodes(string id)
         {
             string jsonString = HttpContext.Session.GetString("tree");
