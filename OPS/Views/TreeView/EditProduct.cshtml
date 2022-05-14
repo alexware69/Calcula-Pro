@@ -3,7 +3,7 @@
 @{
     var Model = (ANode)TempData["root"];
 	var id = TempData["product_id"];
-	var price = Model == null? "0": Model.TotalStr;
+	var total = Model == null? "0": Model.TotalStr;
 	ViewData["Title"] = "Edit product";
 }
 
@@ -210,7 +210,7 @@
         <br />
     </div>
      
-	<span id="price" style="float: right">  Price: @price</span>
+	<span id="total" style="float: right">  Total: @total</span>
     <span id="space" style="float: right">&nbsp;</span>
     <a href="QuoteDetails" target="details" style="float: right; color: black">Details</a>
 
