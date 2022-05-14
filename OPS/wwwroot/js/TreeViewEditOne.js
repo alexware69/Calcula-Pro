@@ -73,7 +73,7 @@
                 return false;
             }
             //Update the price in the page
-            $("#price").text("Price: " + result.total);
+            $("#price").text("Total: " + result.total);
 
             //this will update the branch, needed to update the complete/incomplete images
             //UpdateParentSync(parentliIDclean);
@@ -238,7 +238,7 @@ function BuildDependencies() {
             }
             //Update the price in the page
             price = document.getElementById("price");
-            $(price).text("Price: " + result[0].total);
+            $(price).text("Total: " + result[0].total);
             UpdateTreeSync();
         },
     });   //end ajax
@@ -1277,7 +1277,7 @@ function SaveNodeInfo() {
                 }
                 //Update the price in the page
                 price = document.getElementById("price");
-                $(price).text("Price: " + result.total);
+                $(price).text("Total: " + result.total);
 
                 if (result.hasErrors) {
                     alert(result.error);
@@ -1456,7 +1456,7 @@ function removeNodes() {
             //Update the price in the page
             //top.asynchronous = false;
             price = document.getElementById("price");
-            $(price).text("Price: " + result);
+            $(price).text("Total: " + result);
             //top.asynchronous = true;
             var ids = removeNodeIds.split(";");
             for (var i = 0; i < ids.length; i++) {
@@ -1987,7 +1987,7 @@ $(function () {
                                             $("#container").jstree("deselect_all");
                                             //Update the price in the page
                                             price = document.getElementById("price");
-                                            $(price).text("Price: " + result[0].total);
+                                            $(price).text("Total: " + result[0].total);
                                         },
 
                                     });   //end ajax
