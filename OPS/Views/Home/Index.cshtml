@@ -6,30 +6,6 @@
 	ViewData["Title"] = "Home";
 }
 
-<style>
-	#overlay {
-		background-color: #aaaaaa;
-		z-index: 999;
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		display: none;
-		opacity: .3;
-	}
-</style>
-<div style="border:1px solid #f6a828; width:100%; display:inline-block; text-align:center; background-color:#C0C0C0;">
-	<label style="display:inline; color:#666666; background-color:#C0C0C0;">Home</label>
-	<div style="position:absolute;right:0; display:inline-block;">
-		<div style="display:inline-block;vertical-align:middle;"> 
-			<img align="left" title='Working...' style='display:none;' class='loading' src='../Images/ajax-bar.gif' alt='Working...'> &nbsp;
-		</div>
-	</div>
-	</div>
-<br/>
-<br/>
-
 <div>
 	<button onclick="javascript:document.location='../../TreeView/Edit?product=new'">New Product</button>	
 	<button id="open-dialog" class="btn">Open Product</button>
@@ -37,28 +13,9 @@
 	
 </div>
 <script>
-    /*(function(){
-        const { ipcRenderer } = require("electron");
-        const fs = require('fs');
-        var model = '@Html.Raw(Json.Serialize(@Model))';
-        document.getElementById("save-dialog")
-                .addEventListener("click", () => {
-            ipcRenderer.send("save-dialog");
-        });
-        ipcRenderer.on("save-dialog-reply", (sender, path) => {
-            if (!path) return;
-            fs.writeFile(path, model, function (err) {
-                console.log(err);
-                return;
-            });
-        });
-       
-    }());*/
-
 	(function(){
 		const { ipcRenderer } = require("electron");
         const fs = require('fs');
-		//var model = '@Html.Raw(Json.Serialize(@Model))';
 		document.getElementById("open-dialog")
                 .addEventListener("click", () => {
             ipcRenderer.send("open-dialog");
@@ -76,7 +33,6 @@
                 var filePath = $(this).val();
                 alert(filePath);
             });
-	//const ipcRenderer = window.require('electron').ipcRenderer;
   	 $(function() {
 	    $( "input[type=submit], button" )
 	      .button();
@@ -103,28 +59,4 @@
 	        });
 	    };
 	})(jQuery);
-
-	$("#Products").styleTable();
-	
-	//Download products
-	$('#download').click(function () {
-		document.location = "/MyProducts/Download?" + $('#productsform').serialize();
-
-	});  
-
-    /*(function(){
-		const { ipcRenderer } = require("electron");
-		 //Open Folder
-    	document.getElementById("open")
-                .addEventListener("click", () => {
-            ipcRenderer.send("open-folder");
-		});
-		ipcRenderer.on('sel-dir', (event, path) => {
-			const message = `This app is located at: ${path}`;
-			alert(message);   
-		})
-    });*/
-
-
-
 </script>

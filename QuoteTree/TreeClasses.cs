@@ -12,7 +12,7 @@ using EB;
 
 namespace QuoteTree;
 [Serializable]
-	public enum NodeType { Product, Math, Decision, Text, Conditional, ConditionalRules, Value, Range, SumSet, Reference, Date, DateDiff, Today }
+	public enum NodeType { Math, Decision, Text, Conditional, ConditionalRules, Range, SumSet, Reference, Date, DateDiff, Today }
 
 	public interface INode
 	{

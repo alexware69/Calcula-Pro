@@ -14,8 +14,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "NCalc": "1.0.0",
           "QuoteTree": "1.0.0",
-          "ElectronNET.API": "13.5.1",
-          "ICSharpCode.SharpZipLib": "0.86.0.518"
+          "ElectronNET.API": "13.5.1"
         },
         "runtime": {
           "OPS.dll": {}
@@ -1397,14 +1396,6 @@
         "runtime": {
           "QuoteTree.dll": {}
         }
-      },
-      "ICSharpCode.SharpZipLib/0.86.0.518": {
-        "runtime": {
-          "ICSharpCode.SharpZipLib.dll": {
-            "assemblyVersion": "0.86.0.518",
-            "fileVersion": "0.0.0.0"
-          }
-        }
       }
     }
   },
@@ -2520,11 +2511,6 @@
     },
     "QuoteTree/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "ICSharpCode.SharpZipLib/0.86.0.518": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

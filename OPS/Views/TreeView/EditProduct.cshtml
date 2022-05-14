@@ -56,6 +56,7 @@
             cursor: pointer;
             background: url('../../Images/link_anchor-128.png') center no-repeat;
 			background-size: 16px 16px;
+			vertical-align: middle;
         }
         .build:hover {
             background-color: #f6a828;
@@ -174,8 +175,6 @@
             background: #FDEBD0;
         }	 
     </style>
-     <div style="border:1px solid #f6a828; height:25px; width:100%; display:inline-block; text-align:center;vertical-align: top; background-color:#C0C0C0;">
-     	<label style="display:inline; color:#666666; background-color:#C0C0C0; font-size: 15px;vertical-align: top;text-align:center;">Product testing area</label>
      	<div style="display:inline-block; position:absolute;right:1%;">
      		<div style="display:inline-block;vertical-align:middle;"> 
 	 	     	<img align="left" title='Working...' style='display:none;' class='loading' src='../Images/ajax-bar.gif' alt='Working...'>&nbsp;
@@ -183,10 +182,9 @@
             <div style="display:inline-block;vertical-align:middle;"> 
 	 	     	<span class="build" title='Build dependencies' onclick="javascript: BuildDependencies();"></span>&nbsp;
      		</div>
-	        <a href="SaveProduct" style="color: black; text-decoration: none; display:inline;vertical-align: top;">Save product</a>
-	     	<a href="../Home/Index" style="color: black; text-decoration: none; display:inline;vertical-align: top;">Discard changes</a>
+	        <a href="SaveProduct" style="text-decoration: none;">Save product</a>
+	     	<a href="../Home/Index" style="text-decoration: none;">Discard changes</a>
 		</div>
-     </div>
      <br/>
      <br/>
     <div id="description" class="follow-scroll" style="text-align: center">
