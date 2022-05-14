@@ -325,6 +325,7 @@ namespace OnlinePriceSystem.Controllers
             //MathNode node = (MathNode)tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
+            HttpContext.Session.SetString("nodeName",node.Name);
 
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
             var options = new LoadURLOptions();
@@ -356,19 +357,25 @@ namespace OnlinePriceSystem.Controllers
             var h1Node = htmlDoc.DocumentNode.SelectSingleNode("//img");
             string mediaName = "";
             string imgURL = "";
+            string nodeName = HttpContext.Session.GetString("nodeName");
+            string updatedStr = "";
             if (h1Node != null)
             {
-                h1Node.Attributes.Append("src");
+                //h1Node.Attributes.Append("src");
                 mediaName = h1Node.Attributes["src"].Value;
-                mediaName = mediaName.Replace("homepage.htm",mediaName);
+                //mediaName = mediaName.Replace("homepage.htm",mediaName);
                 var path = HttpContext.Session.GetString("path");
 
-                imgURL = path + mediaName;
+                imgURL = path + "/" + nodeName + "/"+ mediaName;
+                //imgURL = imgURL.Replace("/","\\");
                 HttpContext.Session.SetString("imgURL",imgURL);
-                h1Node.SetAttributeValue("src", "'@Url.Action(\"GetMedia\", \"TreeView\", new { name = "+ mediaName + "})'");
+                url = url.Replace("homepage.htm",mediaName).Replace(" ","%20");
+                url = "file:/"+ url;
+                h1Node.SetAttributeValue("src", url);
+                updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
             
-            return Content(htmlDoc.ParsedText,"text/html");            
+            return Content(updatedStr,"text/html");            
         }
         
          public FileResult GetMedia(string name)
