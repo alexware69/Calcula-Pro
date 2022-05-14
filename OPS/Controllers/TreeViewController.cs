@@ -349,45 +349,40 @@ namespace OnlinePriceSystem.Controllers
             var url = HttpContext.Session.GetString("url");
             url = url.Replace("\\","/");
             var urlTemp = url;
-            FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
-
-            //Set up the pictures
-            var htmlDoc = new HtmlDocument();
-            string contents;
-            using(var sr = new StreamReader(fs))
+            string updatedStr = "";      
+            try
             {
-                contents = sr.ReadToEnd();
-            }
-            htmlDoc.LoadHtml(contents);
-            string updatedStr = "";
-            string mediaName = "";
-            //string imgURL = "";
-            var path = "";
-            string nodeName = HttpContext.Session.GetString("nodeName");
-            var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
-            if(nodes == null || nodes.Count == 0) updatedStr = contents;
-            else
-            {
-                foreach(var iNode in nodes)
+                FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
+                //Set up the pictures
+                var htmlDoc = new HtmlDocument();
+                string contents;
+                using(var sr = new StreamReader(fs))
                 {
-                    mediaName = "";
-                    //imgURL = "";
-                    updatedStr = "";
-                    //h1Node.Attributes.Append("src");
-                    mediaName = iNode.Attributes["src"].Value;
-                    //mediaName = mediaName.Replace("homepage.htm",mediaName);
-                    path = HttpContext.Session.GetString("path");
-                    //imgURL = path + "/" + nodeName + "/"+ mediaName;
-                    //imgURL = imgURL.Replace("/","\\");
-                    //HttpContext.Session.SetString("imgURL",imgURL);
-                    int lastItem = url.LastIndexOf("/");
-                    urlTemp = url.Substring(0,lastItem + 1) + mediaName;
-                    //url = url.Replace("homepage.htm",mediaName);
-                    if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
-                    iNode.SetAttributeValue("src", urlTemp);
+                    contents = sr.ReadToEnd();
                 }
+                htmlDoc.LoadHtml(contents);
+                string mediaName = "";
+                var path = "";
+                string nodeName = HttpContext.Session.GetString("nodeName");
+                var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
+                if(nodes == null || nodes.Count == 0) updatedStr = contents;
+                else
+                {
+                    foreach(var iNode in nodes)
+                    {
+                        mediaName = "";
+                        updatedStr = "";
+                        mediaName = iNode.Attributes["src"].Value;
+                        path = HttpContext.Session.GetString("path");
+                        int lastItem = url.LastIndexOf("/");
+                        urlTemp = url.Substring(0,lastItem + 1) + mediaName;
+                        if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
+                        iNode.SetAttributeValue("src", urlTemp);
+                    }
+                }
+                updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
-            updatedStr = htmlDoc.DocumentNode.OuterHtml;
+            catch{}
             
             return Content(updatedStr,"text/html");            
         }
