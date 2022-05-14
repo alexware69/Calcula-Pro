@@ -369,7 +369,7 @@ namespace OnlinePriceSystem.Controllers
                 imgURL = path + "/" + nodeName + "/"+ mediaName;
                 //imgURL = imgURL.Replace("/","\\");
                 HttpContext.Session.SetString("imgURL",imgURL);
-                url = url.Replace("homepage.htm",mediaName).Replace(" ","%20");
+                url = url.Replace("homepage.htm",mediaName);//.Replace(" ","%20");
                 url = "file:/"+ url;
                 h1Node.SetAttributeValue("src", url);
                 updatedStr = htmlDoc.DocumentNode.OuterHtml;
