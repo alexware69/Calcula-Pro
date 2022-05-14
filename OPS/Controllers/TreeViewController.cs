@@ -301,14 +301,19 @@ namespace OnlinePriceSystem.Controllers
             });
             QTree tree = fromJson;
             
-            MathNode node = (MathNode)tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
-            TempData["node"] = node;       
+            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            TempData["node"] = node; 
+            HttpContext.Session.SetString("nodeName",node.Name);
+
+            var mainWindow = Electron.WindowManager.BrowserWindows.First();
+            var options = new LoadURLOptions();
+        
             var path = HttpContext.Session.GetString("path");
+            HttpContext.Session.SetString("nodeID",id);
             path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
-            
             return View();
         }
         
@@ -353,39 +358,35 @@ namespace OnlinePriceSystem.Controllers
                 contents = sr.ReadToEnd();
             }
             htmlDoc.LoadHtml(contents);
-
-            var h1Node = htmlDoc.DocumentNode.SelectSingleNode("//img");
+            string updatedStr = "";
             string mediaName = "";
             string imgURL = "";
+            var path = "";
             string nodeName = HttpContext.Session.GetString("nodeName");
-            string updatedStr = "";
-            if (h1Node != null)
+            var h1Node = htmlDoc.DocumentNode.SelectNodes("//img");
+            foreach(var iNode in h1Node)
             {
+                mediaName = "";
+                imgURL = "";
+                updatedStr = "";
                 //h1Node.Attributes.Append("src");
-                mediaName = h1Node.Attributes["src"].Value;
+                mediaName = iNode.Attributes["src"].Value;
                 //mediaName = mediaName.Replace("homepage.htm",mediaName);
-                var path = HttpContext.Session.GetString("path");
-
+                path = HttpContext.Session.GetString("path");
                 imgURL = path + "/" + nodeName + "/"+ mediaName;
                 //imgURL = imgURL.Replace("/","\\");
                 HttpContext.Session.SetString("imgURL",imgURL);
-                url = url.Replace("homepage.htm",mediaName);//.Replace(" ","%20");
-                url = "file:/"+ url;
-                h1Node.SetAttributeValue("src", url);
-                updatedStr = htmlDoc.DocumentNode.OuterHtml;
+                int lastItem = url.LastIndexOf("/");
+                url = url.Substring(0,lastItem + 1) + mediaName;
+                //url = url.Replace("homepage.htm",mediaName);
+                if(!url.StartsWith("file:///")) url = "file:///" + url;
+                iNode.SetAttributeValue("src", url);
             }
-            else updatedStr = contents;
+            updatedStr = htmlDoc.DocumentNode.OuterHtml;
+
+            if(h1Node.Count == 0) updatedStr = contents;
             
             return Content(updatedStr,"text/html");            
-        }
-        
-         public FileResult GetMedia(string name)
-        {
-            var imgURL = HttpContext.Session.GetString("imgURL");
-            imgURL = imgURL.Replace("\\","/");
-            //url = url.Replace("homepage.htm",name);
-            FileStream fs = new FileStream(imgURL, FileMode.Open, FileAccess.Read);
-            return File(fs,"image/jpeg");            
         }
         public ActionResult AppendNodes(string id)
         {
