@@ -374,6 +374,7 @@ namespace OnlinePriceSystem.Controllers
                 h1Node.SetAttributeValue("src", url);
                 updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
+            else updatedStr = contents;
             
             return Content(updatedStr,"text/html");            
         }
