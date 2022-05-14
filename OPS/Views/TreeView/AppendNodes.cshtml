@@ -219,7 +219,7 @@
                     //Update the price in the page
                     top.asynchronous = false;
                     var price = window.parent.document.getElementById("price");
-                    $(price).text("Price: " + result.total);
+                    $(price).text("Total: " + result.total);
                     if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
                         //Open the node
                         parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
