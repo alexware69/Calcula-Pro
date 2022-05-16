@@ -428,7 +428,7 @@
      	});
 
 	$( document ).ready(function() {
-    	$( document ).tooltip();
+    	//$( document ).tooltip();
 		var availableTags = $("span").map(function(){return $(this).text();}).get();
 		$( "textarea" ).autocomplete({source: availableTags});
 	});
