@@ -144,10 +144,6 @@
               "target": "Package",
               "version": "[1.11.42, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
             "electronnet.api": {
               "target": "Package",
               "version": "[13.5.1, )"
