@@ -1,14 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BVli4+WpLsZCQ5T84IIyrYTT/tGUrBn/dv6NeH/YzkXOYyYmDnX/I3mvZyYimn4mRlELS17BhcKR/pg/9s1zaA==",
+  "dgSpecHash": "x8olQ7MQtvDe73QtIacMN7IX7fhXVHTYtHzDqTRErOiE19yMSzXE1hSKGPWERP+L6GpDz4xncsefnwYtDNKHLw==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj",
   "expectedPackageFiles": [
     "/Users/alejandro/.nuget/packages/antlr3.runtime/3.5.1/antlr3.runtime.3.5.1.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/antlr4/4.6.6/antlr4.4.6.6.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/antlr4.codegenerator/4.6.6/antlr4.codegenerator.4.6.6.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/antlr4.runtime/4.6.6/antlr4.runtime.4.6.6.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/antlr4.runtime.standard/4.9.3/antlr4.runtime.standard.4.9.3.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.platforms/1.0.1/microsoft.netcore.platforms.1.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.targets/1.0.1/microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.win32.primitives/4.0.1/microsoft.win32.primitives.4.0.1.nupkg.sha512",

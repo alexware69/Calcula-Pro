@@ -14,41 +14,6 @@
           "lib/netstandard1.1/Antlr3.Runtime.dll": {}
         }
       },
-      "Antlr4/4.6.6": {
-        "type": "package",
-        "dependencies": {
-          "Antlr4.CodeGenerator": "4.6.6",
-          "Antlr4.Runtime": "4.6.6"
-        }
-      },
-      "Antlr4.CodeGenerator/4.6.6": {
-        "type": "package",
-        "build": {
-          "build/Antlr4.CodeGenerator.props": {},
-          "build/Antlr4.CodeGenerator.targets": {}
-        }
-      },
-      "Antlr4.Runtime/4.6.6": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.1/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Antlr4.Runtime.dll": {}
-        }
-      },
-      "Antlr4.Runtime.Standard/4.9.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        }
-      },
       "Microsoft.NETCore.Platforms/1.0.1": {
         "type": "package",
         "compile": {
@@ -1126,41 +1091,6 @@
         },
         "runtime": {
           "lib/netstandard1.1/Antlr3.Runtime.dll": {}
-        }
-      },
-      "Antlr4/4.6.6": {
-        "type": "package",
-        "dependencies": {
-          "Antlr4.CodeGenerator": "4.6.6",
-          "Antlr4.Runtime": "4.6.6"
-        }
-      },
-      "Antlr4.CodeGenerator/4.6.6": {
-        "type": "package",
-        "build": {
-          "build/Antlr4.CodeGenerator.props": {},
-          "build/Antlr4.CodeGenerator.targets": {}
-        }
-      },
-      "Antlr4.Runtime/4.6.6": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.1/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Antlr4.Runtime.dll": {}
-        }
-      },
-      "Antlr4.Runtime.Standard/4.9.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.0.1": {
@@ -2617,117 +2547,6 @@
         "lib/netstandard1.1/Antlr3.Runtime.xml",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.xml"
-      ]
-    },
-    "Antlr4/4.6.6": {
-      "sha512": "mtHCpallXyZaWd2quDmR/sc7mBf18+nelxakWYpHVc9v0T0zM9SevzhUZxh2PKPsQbEKnDACfYHNJMqKkmTs1g==",
-      "type": "package",
-      "path": "antlr4/4.6.6",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.4.6.6.nupkg.sha512",
-        "antlr4.nuspec",
-        "tools/LICENSE.txt",
-        "tools/THIRD-PARTY-NOTICES.txt"
-      ]
-    },
-    "Antlr4.CodeGenerator/4.6.6": {
-      "sha512": "AStoC8SCdU1TUSn5Bh0xZU9rlvaERwXkrgqc1jEFON3e/xBtapCuThYIzgXL9TOignWwHjLxlHH233D+DfH9LA==",
-      "type": "package",
-      "path": "antlr4.codegenerator/4.6.6",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.codegenerator.4.6.6.nupkg.sha512",
-        "antlr4.codegenerator.nuspec",
-        "build/Antlr4.CodeGenerator.DefaultItems.props",
-        "build/Antlr4.CodeGenerator.DefaultItems.targets",
-        "build/Antlr4.CodeGenerator.props",
-        "build/Antlr4.CodeGenerator.targets",
-        "build/Rules/Antlr4.ProjectItemsSchema.xml",
-        "build/Rules/Antlr4.xml",
-        "tools/antlr4-csharp-4.6.6-complete.jar",
-        "tools/net40/Antlr4BuildTasks.dll",
-        "tools/net45/Antlr3.Runtime.dll",
-        "tools/net45/Antlr4.Runtime.dll",
-        "tools/net45/Antlr4.StringTemplate.dll",
-        "tools/net45/Antlr4.exe",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp.stg",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp_v2_0.stg",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp_v3_0.stg",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp_v3_5.stg",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp_v4_0.stg",
-        "tools/net45/Tool/Templates/Codegen/CSharp/CSharp_v4_5.stg",
-        "tools/net45/Tool/Templates/Codegen/Java/Java.stg",
-        "tools/net45/Tool/Templates/Dot/graphs.stg",
-        "tools/net45/Tool/Templates/LeftRecursiveRules.stg",
-        "tools/net45/Tool/Templates/Messages/Formats/antlr.stg",
-        "tools/net45/Tool/Templates/Messages/Formats/gnu.stg",
-        "tools/net45/Tool/Templates/Messages/Formats/vs2005.stg",
-        "tools/net45/Tool/Templates/depend.stg",
-        "tools/netstandard/Antlr3.Runtime.dll",
-        "tools/netstandard/Antlr4.Runtime.dll",
-        "tools/netstandard/Antlr4.StringTemplate.dll",
-        "tools/netstandard/Antlr4.dll",
-        "tools/netstandard/Antlr4BuildTasks.dll",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp.stg",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp_v2_0.stg",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp_v3_0.stg",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp_v3_5.stg",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp_v4_0.stg",
-        "tools/netstandard/Tool/Templates/Codegen/CSharp/CSharp_v4_5.stg",
-        "tools/netstandard/Tool/Templates/Codegen/Java/Java.stg",
-        "tools/netstandard/Tool/Templates/Dot/graphs.stg",
-        "tools/netstandard/Tool/Templates/LeftRecursiveRules.stg",
-        "tools/netstandard/Tool/Templates/Messages/Formats/antlr.stg",
-        "tools/netstandard/Tool/Templates/Messages/Formats/gnu.stg",
-        "tools/netstandard/Tool/Templates/Messages/Formats/vs2005.stg",
-        "tools/netstandard/Tool/Templates/depend.stg"
-      ]
-    },
-    "Antlr4.Runtime/4.6.6": {
-      "sha512": "NlbRjkTCidRh1QeWvGfFPKq0sqpPZrAwGaSTV0X2jL8buZxTf9/aQ7PehFAmc7erXLUQ3YMZEVZU86aQwma2+w==",
-      "type": "package",
-      "path": "antlr4.runtime/4.6.6",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.runtime.4.6.6.nupkg.sha512",
-        "antlr4.runtime.nuspec",
-        "lib/net20/Antlr4.Runtime.dll",
-        "lib/net20/Antlr4.Runtime.xml",
-        "lib/net30/Antlr4.Runtime.dll",
-        "lib/net30/Antlr4.Runtime.xml",
-        "lib/net35-cf/Antlr4.Runtime.dll",
-        "lib/net35-cf/Antlr4.Runtime.xml",
-        "lib/net35-client/Antlr4.Runtime.dll",
-        "lib/net35-client/Antlr4.Runtime.xml",
-        "lib/net40-client/Antlr4.Runtime.dll",
-        "lib/net40-client/Antlr4.Runtime.xml",
-        "lib/net45/Antlr4.Runtime.dll",
-        "lib/net45/Antlr4.Runtime.xml",
-        "lib/netstandard1.1/Antlr4.Runtime.dll",
-        "lib/netstandard1.1/Antlr4.Runtime.xml",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.dll",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.xml"
-      ]
-    },
-    "Antlr4.Runtime.Standard/4.9.3": {
-      "sha512": "wn+a34a9r3jOMxnIWxWJQ7QAbKi+KyZ9YAiEVVw0qII0J4Z6Z9F6a1b8WNzU00LlsIt++nZIz1BokksielrQYA==",
-      "type": "package",
-      "path": "antlr4.runtime.standard/4.9.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.runtime.standard.4.9.3.nupkg.sha512",
-        "antlr4.runtime.standard.nuspec",
-        "lib/net45/Antlr4.Runtime.Standard.dll",
-        "lib/net45/Antlr4.Runtime.Standard.xml",
-        "lib/netstandard2.0/Antlr4.Runtime.Standard.dll",
-        "lib/netstandard2.0/Antlr4.Runtime.Standard.xml"
       ]
     },
     "Microsoft.NETCore.Platforms/1.0.1": {
@@ -6589,9 +6408,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ANTLR4 >= 4.6.6",
-      "Antlr3.Runtime >= 3.5.1",
-      "Antlr4.Runtime.Standard >= 4.9.3"
+      "Antlr3.Runtime >= 3.5.1"
     ]
   },
   "packageFolders": {
@@ -6631,19 +6448,9 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "ANTLR4": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[4.6.6, )"
-          },
           "Antlr3.Runtime": {
             "target": "Package",
             "version": "[3.5.1, )"
-          },
-          "Antlr4.Runtime.Standard": {
-            "target": "Package",
-            "version": "[4.9.3, )"
           }
         },
         "imports": [

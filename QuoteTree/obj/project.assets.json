@@ -14,15 +14,6 @@
           "lib/netstandard1.1/Antlr3.Runtime.dll": {}
         }
       },
-      "Antlr4.Runtime.Standard/4.9.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.JsonPatch/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -1152,8 +1143,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Antlr3.Runtime": "3.5.1",
-          "Antlr4.Runtime.Standard": "4.9.3"
+          "Antlr3.Runtime": "3.5.1"
         },
         "compile": {
           "bin/placeholder/NCalc.dll": {}
@@ -1174,15 +1164,6 @@
         },
         "runtime": {
           "lib/netstandard1.1/Antlr3.Runtime.dll": {}
-        }
-      },
-      "Antlr4.Runtime.Standard/4.9.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {}
         }
       },
       "Microsoft.AspNetCore.JsonPatch/6.0.0": {
@@ -2683,8 +2664,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Antlr3.Runtime": "3.5.1",
-          "Antlr4.Runtime.Standard": "4.9.3"
+          "Antlr3.Runtime": "3.5.1"
         },
         "compile": {
           "bin/placeholder/NCalc.dll": {}
@@ -2713,21 +2693,6 @@
         "lib/netstandard1.1/Antlr3.Runtime.xml",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.xml"
-      ]
-    },
-    "Antlr4.Runtime.Standard/4.9.3": {
-      "sha512": "wn+a34a9r3jOMxnIWxWJQ7QAbKi+KyZ9YAiEVVw0qII0J4Z6Z9F6a1b8WNzU00LlsIt++nZIz1BokksielrQYA==",
-      "type": "package",
-      "path": "antlr4.runtime.standard/4.9.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.runtime.standard.4.9.3.nupkg.sha512",
-        "antlr4.runtime.standard.nuspec",
-        "lib/net45/Antlr4.Runtime.Standard.dll",
-        "lib/net45/Antlr4.Runtime.Standard.xml",
-        "lib/netstandard2.0/Antlr4.Runtime.Standard.dll",
-        "lib/netstandard2.0/Antlr4.Runtime.Standard.xml"
       ]
     },
     "Microsoft.AspNetCore.JsonPatch/6.0.0": {
@@ -6746,7 +6711,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Antlr3.Runtime >= 3.5.1",
-      "Antlr4.Runtime.Standard >= 4.9.3",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.0",
       "NCalc >= 1.0.0"
     ]
@@ -6795,10 +6759,6 @@
           "Antlr3.Runtime": {
             "target": "Package",
             "version": "[3.5.1, )"
-          },
-          "Antlr4.Runtime.Standard": {
-            "target": "Package",
-            "version": "[4.9.3, )"
           },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",

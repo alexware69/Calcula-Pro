@@ -9,7 +9,6 @@
       "QuoteTree/1.0.0": {
         "dependencies": {
           "Antlr3.Runtime": "3.5.1",
-          "Antlr4.Runtime.Standard": "4.9.3",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.0",
           "NCalc": "1.0.0"
         },
@@ -25,14 +24,6 @@
           "lib/netstandard1.1/Antlr3.Runtime.dll": {
             "assemblyVersion": "3.5.0.2",
             "fileVersion": "3.5.1.0"
-          }
-        }
-      },
-      "Antlr4.Runtime.Standard/4.9.3": {
-        "runtime": {
-          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
-            "assemblyVersion": "4.9.3.0",
-            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -728,8 +719,7 @@
       },
       "NCalc/1.0.0": {
         "dependencies": {
-          "Antlr3.Runtime": "3.5.1",
-          "Antlr4.Runtime.Standard": "4.9.3"
+          "Antlr3.Runtime": "3.5.1"
         },
         "runtime": {
           "NCalc.dll": {}
@@ -749,13 +739,6 @@
       "sha512": "sha512-ZwCEpLCLZXkjzf1lYEixp9hgVlYYk33ACHn6xjFyVhGRi2BpoYQez0qtatbetdylASWYTG+cGz0CGR4z66JM4w==",
       "path": "antlr3.runtime/3.5.1",
       "hashPath": "antlr3.runtime.3.5.1.nupkg.sha512"
-    },
-    "Antlr4.Runtime.Standard/4.9.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wn+a34a9r3jOMxnIWxWJQ7QAbKi+KyZ9YAiEVVw0qII0J4Z6Z9F6a1b8WNzU00LlsIt++nZIz1BokksielrQYA==",
-      "path": "antlr4.runtime.standard/4.9.3",
-      "hashPath": "antlr4.runtime.standard.4.9.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/6.0.0": {
       "type": "package",
