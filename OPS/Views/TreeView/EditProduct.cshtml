@@ -429,7 +429,7 @@
 
 	$( document ).ready(function() {
     	$( document ).tooltip();
-			var availableTags = $("a").map(function(){return $(this).text();}).get();
+			var availableTags = $(".name").map(function(){return $(this).text();}).get();
 			$( "textarea" ).autocomplete({source: availableTags});
 	});
      </script>
