@@ -62,6 +62,26 @@ namespace OnlinePriceSystem.Controllers
 					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
 				Electron.IpcMain.Send(mainWindow, "open-dialog-reply", result);
 			});
+
+            Electron.IpcMain.On("new-dialog", async (args) =>
+			{
+				var mainWindow = Electron.WindowManager.BrowserWindows.First();
+				var options = new OpenDialogOptions
+				{
+					Title = "Open Save Directory",
+                    Properties = new OpenDialogProperty[] {
+                        OpenDialogProperty.openDirectory
+                    }
+					/*Filters = new FileFilter[]
+					{
+						new FileFilter { Name = "JSON", 
+										Extensions = new string[] {"json" } }
+					}*/
+				};
+				var result = await 
+					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
+				Electron.IpcMain.Send(mainWindow, "new-dialog-reply", result);
+			});
 			return Ok();
 		}
     }

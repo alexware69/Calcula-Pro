@@ -31,7 +31,7 @@ namespace OnlinePriceSystem.Controllers
 			_hostEnvironment = environment;
 		}
 		
-		public ActionResult Edit(string product)
+		public ActionResult Edit(string product, string isNew)
 		{
 
 			QTree tree = null;
@@ -40,8 +40,9 @@ namespace OnlinePriceSystem.Controllers
 
 			if (product != null && product != "") 
 			{
-				if (product == "new") 
+				if (isNew == "true") 
 				{
+                    HttpContext.Session.SetString("path", product);
 					tree = new QTree ();
 					var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
                     {

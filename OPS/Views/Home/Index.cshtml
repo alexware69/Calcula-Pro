@@ -14,7 +14,7 @@
 }
 </style>
 <div class="center">
-	<button id="new" onclick="javascript:document.location='../../TreeView/Edit?product=new'">New Product</button>	
+	<button id="new-dialog">New Product</button>	
 	<br/>
 	<br/>
 	<button id="open-dialog" class="btn">Open Product</button>
@@ -29,7 +29,17 @@
         });
 		ipcRenderer.on("open-dialog-reply", (sender, path) => {
 			if (!path) return;
-			document.location='../../TreeView/Edit?product='+ path;
+			document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
+            return;
+        });
+
+		document.getElementById("new-dialog")
+                .addEventListener("click", () => {
+            ipcRenderer.send("new-dialog");
+        });
+		ipcRenderer.on("new-dialog-reply", (sender, path) => {
+			if (!path) return;
+			document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
             return;
         });
 	}());
