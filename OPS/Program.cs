@@ -5,7 +5,10 @@ builder.WebHost.UseElectron(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1000);//You can set Time   
+            }); 
 
 var app = builder.Build();
 
