@@ -35,7 +35,6 @@ namespace OnlinePriceSystem.Controllers
 		{
 
 			QTree tree = null;
-            //TempData["renamed"] = null;
             HttpContext.Session.SetString("renamed", "");
 
 			if (product != null && product != "") 
@@ -51,9 +50,6 @@ namespace OnlinePriceSystem.Controllers
                         Formatting = Formatting.Indented
                     });    
                     HttpContext.Session.SetString("tree", toJson1);
-					//pass zero as product id, this means is a new product
-					HttpContext.Session.SetInt32("product_id", 0);
-                    //ViewBag.id = 0;
 				}
                 else
                 {
@@ -68,8 +64,6 @@ namespace OnlinePriceSystem.Controllers
                         Formatting = Formatting.Indented
                     });    
                     HttpContext.Session.SetString("tree", toJson1);
-					//pass zero as product id, this means is a new product
-					HttpContext.Session.SetInt32("product_id", 0);
                 }
 			}
 			else tree = TempData["tree"] as QTree;
