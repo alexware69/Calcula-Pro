@@ -604,7 +604,6 @@ namespace OnlinePriceSystem.Controllers
                     renamed = fromJsonStringRenamed;
                 }
 
-                string pathRoot = _hostEnvironment.WebRootPath;
 				//Save to folder
                 string path = HttpContext.Session.GetString("path");
                 path = path.Remove(path.LastIndexOf('/'));
