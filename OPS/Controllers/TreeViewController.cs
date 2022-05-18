@@ -36,6 +36,7 @@ namespace OnlinePriceSystem.Controllers
 
 			QTree tree = null;
             HttpContext.Session.SetString("renamed", "");
+            HttpContext.Session.SetString("isNew", isNew);
 
 			if (product != null && product != "") 
 			{
@@ -574,7 +575,7 @@ namespace OnlinePriceSystem.Controllers
 		{
 			if (HttpContext.Session.GetString("tree") != null)
 			{
-				
+				string isNew = HttpContext.Session.GetString("isNew");
 
 				string jsonString = HttpContext.Session.GetString("tree");
                 var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
@@ -600,7 +601,8 @@ namespace OnlinePriceSystem.Controllers
 
 				//Save to folder
                 string path = HttpContext.Session.GetString("path");
-                path = path.Remove(path.LastIndexOf('/'));
+                if(isNew != "true")
+                    path = path.Remove(path.LastIndexOf('/'));
 				tree.SaveTreeTo (tree.Root, path, renamed);
 
                 //Reset the entered property
