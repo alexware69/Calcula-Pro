@@ -544,12 +544,19 @@ namespace OnlinePriceSystem.Controllers
             });
             QTree tree = fromJson;
             string[] parsedIds = ids.Trim().Split(";".ToCharArray());
+            string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory") != null ? HttpContext.Session.GetString("removeNodesFromDirectory"): "";
             foreach (string id in parsedIds)
             {
                 if (id.Trim() != "")
                 {
                     ANode node = tree.GetNodeFromId(id);
-                    if (node != null) node.Remove();
+                    if (node != null) 
+                    {
+                        string path = HttpContext.Session.GetString("path");
+                        path = path.Remove(path.LastIndexOf('/'));
+                        HttpContext.Session.SetString("removeNodesFromDirectory", currentRemoved + ";" + path + "/" + node.GetPath() + ";");
+                        node.Remove();
+                    }         
                 }
             }
 			var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
@@ -604,6 +611,8 @@ namespace OnlinePriceSystem.Controllers
                 if(isNew != "true")
                     path = path.Remove(path.LastIndexOf('/'));
 				tree.SaveTreeTo (tree.Root, path, renamed);
+                string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory");
+                tree.removeNodesFromDirectory(currentRemoved);
 
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);

@@ -5650,6 +5650,18 @@ namespace QuoteTree;
 					}
 		}
 
+        public void removeNodesFromDirectory(string removedNodePaths)
+        {
+             //delete nodes
+            if (removedNodePaths != null && removedNodePaths != "")
+            {
+                var splitted = removedNodePaths.Trim().Split(";".ToCharArray());
+                foreach(var nodePath in splitted)
+                {
+                    if (Directory.Exists (nodePath)) Directory.Delete(nodePath);
+                }
+            }
+        }
 		public void SaveTreeTo(ANode start, string path,  Dictionary<string, string> renamed)
 		{
 			try
