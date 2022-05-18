@@ -616,7 +616,7 @@ namespace OnlinePriceSystem.Controllers
 				tree.SaveTreeTo (tree.Root, path, renamed);
                 string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory");
                 tree.removeNodesFromDirectory(currentRemoved);
-
+                HttpContext.Session.SetString("removeNodesFromDirectory","");
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
 

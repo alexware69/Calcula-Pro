@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ksQsMVYeTxci++BMvmcUZq5ejK9iyWLpXP9FxldTxmM=",
+  "Hash": "cboqk6iYeOF698Kkb6oRAXsCBX7gqXXf+GmvG2w3iVk=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/alejandro/Online-Price-System-Native/OPS/obj/Release/net6.0/osx-x64/scopedcss/projectbundle/OPS.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/.DS_Store",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/css/jsTree/apple/bg.jpg",
