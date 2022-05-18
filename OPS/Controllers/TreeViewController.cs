@@ -554,7 +554,10 @@ namespace OnlinePriceSystem.Controllers
                     {
                         string path = HttpContext.Session.GetString("path");
                         path = path.Remove(path.LastIndexOf('/'));
-                        HttpContext.Session.SetString("removeNodesFromDirectory", currentRemoved + ";" + path + "/" + node.GetPath() + ";");
+                        if (currentRemoved != "")
+                            path = currentRemoved + ";" + path + "/" + node.GetPath().Replace("\\","/");
+                        else path = path + "/" + node.GetPath().Replace("\\","/");
+                        HttpContext.Session.SetString("removeNodesFromDirectory", path);
                         node.Remove();
                     }         
                 }

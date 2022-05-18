@@ -5658,7 +5658,7 @@ namespace QuoteTree;
                 var splitted = removedNodePaths.Trim().Split(";".ToCharArray());
                 foreach(var nodePath in splitted)
                 {
-                    if (Directory.Exists (nodePath)) Directory.Delete(nodePath);
+                    if (Directory.Exists (nodePath)) Directory.Delete(nodePath,true);
                 }
             }
         }
