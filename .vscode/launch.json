@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Debug Main Process",
-            "type": "node",
+            "type": "pwa-node",
             "request": "launch",
             "program": "${workspaceFolder}/OPS/obj/Host/main.js",
             "cwd": "${workspaceFolder}/OPS",
@@ -12,7 +12,11 @@
                 "runtimeExecutable": "${workspaceFolder}/OPS/obj/Host/node_modules/.bin/electron.cmd"
               },
             "args" : ["."],
-            "outputCapture": "std"
+            "outputCapture": "std",
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/",
+                "!/node_modules/**"
+            ],
         }
     ]
 }
