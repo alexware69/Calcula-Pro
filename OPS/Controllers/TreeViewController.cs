@@ -613,10 +613,10 @@ namespace OnlinePriceSystem.Controllers
                 string path = HttpContext.Session.GetString("path");
                 if(isNew != "true")
                     path = path.Remove(path.LastIndexOf('/'));
-				tree.SaveTreeTo (tree.Root, path, renamed);
                 string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory");
                 tree.removeNodesFromDirectory(currentRemoved);
                 HttpContext.Session.SetString("removeNodesFromDirectory","");
+                tree.SaveTreeTo (tree.Root, path, renamed);
                 //Reset the entered property
                 tree.ResetEntered(tree.Root);
 
