@@ -1,7 +1,7 @@
 ﻿@model SumSetNode
 @using QuoteTree
 @{
-    var storeName = (string)TempData["store_name"];
+    var url = (string)TempData["url"];
     Layout = null;
 }
 
@@ -133,9 +133,9 @@
     }
     <br />
     @{
-     string url = Url.Content("~/Products/") + storeName +  "/" + Model.GetPath().Replace('\\', '/') + "/homepage.htm";
+       url = url.Replace("http:///","file:///");
     }
-    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src="@url" </iframe>
+    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")' </iframe>
 
     <div>
     <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
