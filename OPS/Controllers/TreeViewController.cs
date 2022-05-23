@@ -60,7 +60,14 @@ namespace OnlinePriceSystem.Controllers
                 else
                 {
                     HttpContext.Session.SetString("path", product);
-                    tree = new QTree (product, true);
+                    try
+                    {
+                        tree = new QTree (product, true);
+                    }
+                    catch(Exception)
+                    {
+                        return RedirectToAction("Index","Home");
+                    }
                     //Reset the entered property
                     tree.ResetEntered(tree.Root);
                     var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
@@ -72,7 +79,6 @@ namespace OnlinePriceSystem.Controllers
                     HttpContext.Session.SetString("tree", toJson1);
                 }
 			}
-			else tree = TempData["tree"] as QTree;
         
 			return View("EditProduct");
 		}
