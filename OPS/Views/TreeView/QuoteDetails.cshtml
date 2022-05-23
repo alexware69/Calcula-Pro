@@ -1,6 +1,7 @@
 ﻿@using OnlinePriceSystem.Controllers
 @using QuoteTree
 @using System.Collections.Generic
+@using System.Collections
 @model Dictionary<string,string>
     @{
     var root = (ANode)TempData["root"];
@@ -36,7 +37,7 @@
             @foreach (KeyValuePair<string,string> entry in Model)
             {
                 <tr>
-                    <td style="padding-bottom:5px; margin:0px; padding-top:5px; border-bottom:dotted thin; border-top:dotted thin">@entry.Key.</td>
+                    <td style="padding-bottom:5px; margin:0px; padding-top:5px; border-bottom:dotted thin; border-top:dotted thin">@entry.Key</td>
                     <td style="padding-bottom:5px; margin:0px; padding-top:5px; border-bottom:solid thin;border-top:solid thin; border-left:dotted thin">
                         @foreach (char c in entry.Value){
                                 if (c == ' ')
@@ -45,7 +46,14 @@
                                 }
                                 else break;
                         }
-                        @entry.Value
+                        @{
+                            char[] op = new char[] { '[', ']' };
+                            string[] splitted = entry.Value.Split(op);  
+                        }
+                        <span>@splitted[0]</span> 
+                        @if(splitted.Length > 1){
+                        <span style="float: right;">@splitted[1]</span> 
+                        }
                     </td>
                 </tr>
             }            
