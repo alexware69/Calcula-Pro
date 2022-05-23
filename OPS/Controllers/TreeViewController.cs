@@ -1170,7 +1170,7 @@ namespace OnlinePriceSystem.Controllers
                     break;
                 case NodeType.Text:
                     Expression = (node as TextNode).Text;
-                    EditChildren = (node as MathNode).EditChildren;
+                    EditChildren = (node as TextNode).EditChildren;
                     break;
                 case NodeType.Range:
                     Expression = (node as RangeNode).Range;
@@ -1238,6 +1238,7 @@ namespace OnlinePriceSystem.Controllers
                                 break;
                             case NodeType.Text:
                                 Expression = (node as TextNode).Text;
+                                EditChildren = (node as TextNode).EditChildren;
                                 break;
                             case NodeType.Date:
                                 Expression = "";
