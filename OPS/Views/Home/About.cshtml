@@ -2,39 +2,211 @@
     ViewData["Title"] = "About";
 }
 
-<h2>Features of the Online Price System</h2>
-<br/>
+<style type="text/css">
+    table{
+    border-collapse:collapse;
+    border:1px solid #FF0000;
+    }
 
+    table td{
+    border:1px solid #FF0000;
+    }
+</style>
+
+<h2 id="features-of-the-online-price-system">Features of the Online Price System</h2>
 <ul>
-    <li> Is web-based.</li>
-
-    <li>Near instant intelligent updates in web page.</li>
-    
-    <li>Product definitions are independent of product quotes and orders, changes to product definitions won’t affect existing quotes.</li>
-
-    <li>Product definitions are a hierarchy of folders, which contain the details, formulas, images and descriptions.</li>
-
-    <li>Folder nature of product definitions makes teamwork easy and natural, as well as making possible to backup and storing definitions offline.</li>
-
-    <li>Readable formulas are made of words.</li>
-
-    <li>Supports most common math expressions and logic conditions.</li>
-
-    <li>Multiple same-name fields are supported (compare to Excel single-name naming of cells)</li>
-
-    <li>Shows subtotals and node values with respective units.</li>
-
-    <li>Create and modify product definitions via web.</li>
-
-    <li>Upload and download existing product definitions.</li>
-
-    <li>Create and analyze price quotes of complex products.</li>
-
-    <li>Calculations are server-based, which reduces the load on the client computer and keeps formulas and logic safe from viewing and modifying.</li>
-
-    <li>Re-quoting based on the original formulas.</li>
-
-    <li>Shows dependencies and references.</li>
-
-    <li>Is fast!</li>
+<li>Is web-based.</li>
+<li>Near instant intelligent updates in web page.</li>
+<li>Product definitions are independent of product quotes and orders, changes to product definitions won’t affect existing quotes.</li>
+<li>Product definitions are a hierarchy of folders, which contain the details, formulas, images and descriptions.</li>
+<li>Folder nature of product definitions makes teamwork easy and natural, as well as making possible to backup and storing definitions offline.</li>
+<li>Readable formulas are made of words.</li>
+<li>Supports most common math expressions and logic conditions.</li>
+<li>Multiple same-name fields are supported (compare to Excel single-name naming of cells)</li>
+<li>Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.</li>
+<li>Create and modify product definitions via web.</li>
+<li>Upload and download existing product definitions.</li>
+<li>Create and analyze price quotes of complex products.</li>
+<li>Calculations are server-based, which reduces the load on the client computer and keeps formulas and logic safe from viewing and modifying.</li>
+<li>Re-quoting based on the original formulas.</li>
+<li>Shows dependencies and references.</li>
+<li>Two views available, wide screen for easier formula reading and shared screen for easier description viewing.</li>
+<li>Compact mode for cleaner view of selections.</li>
+<li>Seamless adjustment for window resizing and zooming.</li>
+<li>Supports documentation for each feature (node), including text, image and video, in the form of an html page.</li>
+<li>It is fast!</li>
 </ul>
+<h2 id="node-properties">Node properties</h2>
+<ul>
+<li><strong>Name</strong>: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
+&#39;*&#39;, &#39;/&#39;, &#39;+&#39;, &#39;-&#39;, &#39;|&#39;, &#39;[&#39;, &#39;]&#39;, &#39;?&#39;, &#39;&amp;&#39;, &#39;!&#39;, &#39;(&#39;, &#39;)&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;=&#39;, ‘:&#39;</li>
+<li><strong>Type</strong>: Math, Decision, Conditional, SumSet, Reference, Date, Today, DateDiff.</li>
+<li><strong>Units</strong>: There are currently some common predefined units, custom units can be set.</li>
+<li><strong>Expression</strong>: Some node types require an expression or formula, like Math, Conditional and Reference.</li>
+<li><strong>Expanded Levels</strong>: The number of levels that will be automatically expanded from the root node on product load and from any node on node selection. This is useful to cover the most screen on product load and to show multiple nested options on selection.</li>
+<li><strong>Order</strong>: Zero by default.The order in which the node appears. It is zero-based.</li>
+<li><strong>Min</strong>: Zero by default.The minimum value for that node. If a node’s subtotal es less than Min then its value will be replaced with Min.</li>
+<li><strong>Max</strong>: Zero by default.The maximum value for that node. If a node’s subtotal es greater than Max then its value will be replaced with Max.</li>
+<li><strong>Discount</strong>: Zero by default. The discount in percent applied to the subtotal.</li>
+<li><strong>Disable Condition</strong>: An expression with a condition or conditions that when met will disable the node for selection. Very useful to implement exceptions.
+Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
+<li><strong>Disable Message</strong>: The message that will be shown in the description page when the Disable Condition is met.</li>
+<li><strong>Optional</strong>: If set the node will have a checkbox. Optional nodes that are not children of Decision nodes when are not selected their displayed value is zero. Optional nodes children of Decision nodes will display their correspondent subtotal. Children of Decision nodes are automatically set to Optional.</li>
+<li><strong>Hidden</strong>: Hidden nodes are not shown in the page. Also their value can not be changed in the description page.</li>
+<li><strong>Edit Children</strong>: When set, all child nodes which are Math and their formula is a number (value nodes) will be editable in the description page.</li>
+<li><strong>Report</strong>: When set, the node name will be shown (reported) in the Quote Details page.</li>
+<li><strong>Report Value</strong>: When set, the node’s subtotal will be shown beside the node name in the Quote Details page.</li>
+<li><strong>Template</strong>: When set, the node will be considered a template in order to repeat it multiple times inside a SumSet node. This is useful to let the user add multiple similar “bundles” which may contain different selections to the order.</li>
+<li><strong>Read Only</strong>: If set for a Math node the node’s value cannot be changed in the description page. This is useful to create value nodes for &quot;display only”.</li>
+</ul>
+<h2 id="expression-examples">Expression Examples</h2>
+<p>Expressions can contain most common math functions in addition to IF conditions. IF conditions can query node properties like“selected”, “min&quot;, “max&quot;and &quot;discount”and can query the current node’s properties through the use of the “this” keyword. Also nodes can be referenced by their id, so &quot;Plastic Face\Length of Plastic” could be referenced as {1.6}.</p>
+<p><strong>Math:</strong></p>
+<pre><code>* (Colors+<span class="hljs-keyword">Image</span> Complexity)*(Sq Ft of Plastic-Sq Ft of Digital Face Per <span class="hljs-keyword">Print</span>)
+* Plastic Face\<span class="hljs-keyword">Length</span> of Plastic*Plastic Face\Height of Plastic/<span class="hljs-number">144</span>
+* <span class="hljs-keyword">Round</span>(TriFace <span class="hljs-keyword">Sign</span>\BomGen\Approx Copy Size\<span class="hljs-keyword">Length</span>*<span class="hljs-number">12</span>/TriFace <span class="hljs-keyword">Sign</span>\BomGen\<span class="hljs-keyword">Prism</span> Centers; <span class="hljs-number">0</span>)
+* {1.6}*{1.5}/<span class="hljs-number">144</span>
+</code></pre>
+<p><strong>Conditional (IF conditions):</strong></p>
+<pre><code>* <span class="hljs-keyword">if</span>(TriFace Sign<span class="hljs-string">\Motor</span> Type<span class="hljs-string">\1_3</span> HP.selected,<span class="hljs-number">10</span>,<span class="hljs-number">60</span>) (discontinued syntax)
+* TriFace Sign<span class="hljs-string">\Motor</span> Type<span class="hljs-string">\1_3</span> HP.selected?<span class="hljs-number">10</span>:<span class="hljs-number">60</span> (same as above <span class="hljs-keyword">with</span> correct syntax)
+* TriFace Sign<span class="hljs-string">\BomGen\Side</span> Frm=<span class="hljs-number">4</span>?<span class="hljs-number">0.75</span>:<span class="hljs-number">0</span>
+* TriFace Sign<span class="hljs-string">\BomGen\Side</span> Frm.max&gt; TriFace Sign<span class="hljs-string">\Length?0.75:0</span>
+* TriFace Sign<span class="hljs-string">\Louver</span> Orientation<span class="hljs-string">\Vertical.selected?2*O10:0</span>
+* <span class="hljs-keyword">this</span>.selected?price:<span class="hljs-number">0</span>
+</code></pre>
+<pre></pre><p><strong>Reference:</strong> Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  </p>
+<pre><code>* Plastic Face<span class="hljs-string">\Height</span> <span class="hljs-keyword">of</span> Plastic
+</code></pre><h2 id="supported-math-functions">Supported Math Functions</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Usage</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abs</td>
+<td>Returns the absolute value of a specified number.</td>
+<td>Abs(-1)</td>
+<td>1M</td>
+</tr>
+<tr>
+<td>Acos</td>
+<td>Returns the angle whose cosine is the specified number.</td>
+<td>Acos(1)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Asin</td>
+<td>Returns the angle whose sine is the specified number.</td>
+<td>Asin(0)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Atan</td>
+<td>Returns the angle whose tangent is the specified number.</td>
+<td>Atan(0)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Ceiling</td>
+<td>Returns the smallest integer greater than or equal to the specified number.</td>
+<td>Ceiling(1.5)</td>
+<td>2d</td>
+</tr>
+<tr>
+<td>Cos</td>
+<td>Returns the cosine of the specified angle.</td>
+<td>Cos(0)</td>
+<td>1d</td>
+</tr>
+<tr>
+<td>Exp</td>
+<td>Returns e raised to the specified power.</td>
+<td>Exp(0)</td>
+<td>1d</td>
+</tr>
+<tr>
+<td>Floor</td>
+<td>Returns the largest integer less than or equal to the specified number.</td>
+<td>Floor(1.5)</td>
+<td>1d</td>
+</tr>
+<tr>
+<td>IEEERemainder</td>
+<td>Returns the remainder resulting from the division of a specified number by another specified number.</td>
+<td>IEEERemainder(3; 2)</td>
+<td>-1d</td>
+</tr>
+<tr>
+<td>Log</td>
+<td>Returns the logarithm of a specified number.</td>
+<td>Log(1; 10)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Log10</td>
+<td>Returns the base 10 logarithm of a specified number.</td>
+<td>Log10(1)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Returns the larger of two specified numbers.</td>
+<td>Max(1; 2)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Returns the smaller of two numbers.</td>
+<td>Min(1; 2)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Pow</td>
+<td>Returns a specified number raised to the specified power.</td>
+<td>Pow(3; 2)</td>
+<td>9d</td>
+</tr>
+<tr>
+<td>Round</td>
+<td>Rounds a value to the nearest integer or specified number of decimal places. The mid number behaviour can be changed by using EvaluateOption.RoundAwayFromZero during construction of the Expression object.</td>
+<td>Round(3.222; 2)</td>
+<td>3.22d</td>
+</tr>
+<tr>
+<td>Sign</td>
+<td>Returns a value indicating the sign of a number.</td>
+<td>Sign(-10)</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>Sin</td>
+<td>Returns the sine of the specified angle.</td>
+<td>Sin(0)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Sqrt</td>
+<td>Returns the square root of a specified number.</td>
+<td>Sqrt(4)</td>
+<td>2d</td>
+</tr>
+<tr>
+<td>Tan</td>
+<td>Returns the tangent of the specified angle.</td>
+<td>Tan(0)</td>
+<td>0d</td>
+</tr>
+<tr>
+<td>Truncate</td>
+<td>Calculates the integral part of a number.</td>
+<td>Truncate(1.7)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
