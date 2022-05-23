@@ -20,17 +20,22 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using ElectronNET.API; 
 using ElectronNET.API.Entities;
 using HtmlAgilityPack;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Text;
 
 namespace OnlinePriceSystem.Controllers
 {
     public class TreeViewController : Controller
     {
-        private IWebHostEnvironment _hostEnvironment;
+        //This is needed to get html of view in a string
+        private ICompositeViewEngine _viewEngine;
 
-		public TreeViewController(IWebHostEnvironment environment) {
-			_hostEnvironment = environment;
-		}
-		
+        public TreeViewController(ICompositeViewEngine viewEngine)
+        {
+            _viewEngine = viewEngine;
+        }
 		public ActionResult Edit(string product, string isNew)
 		{
 
@@ -635,8 +640,57 @@ namespace OnlinePriceSystem.Controllers
             return RedirectToAction("Index", "Home");
 		}
 
-		[HttpGet]
-		
+        //This method is needed to get html in a string
+        private async Task<string> RenderPartialViewToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.ActionDescriptor.ActionName;
+
+            ViewData.Model = model;
+
+            using (var writer = new StringWriter())
+            {
+                ViewEngineResult viewResult = 
+                    _viewEngine.FindView(ControllerContext, viewName, false);
+
+                ViewContext viewContext = new ViewContext(
+                    ControllerContext, 
+                    viewResult.View, 
+                    ViewData, 
+                    TempData, 
+                    writer, 
+                    new HtmlHelperOptions()
+                );
+
+                await viewResult.View.RenderAsync(viewContext);
+
+                return writer.GetStringBuilder().ToString();
+            }
+        }
+
+        public  async Task<FileResult> SaveQuote()
+        {
+
+            string jsonString = HttpContext.Session.GetString("tree");
+            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            });
+            QTree tree = fromJson;
+
+            TempData["root"] = tree.Root;                
+            Dictionary<string, string> selection;
+            selection = tree.GetSelections();
+
+            var renderedView = await RenderPartialViewToString("QuoteDetails", selection);
+
+            //Do what you want with the renderedView here
+
+            return File(Encoding.UTF8.GetBytes(renderedView), "text/plain", "Quote.html");
+        }
+
+		[HttpGet]		
 		public ContentResult SaveNodeInfo()
 		{
             string jsonString = HttpContext.Session.GetString("tree");
