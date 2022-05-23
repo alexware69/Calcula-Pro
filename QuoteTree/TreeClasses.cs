@@ -5428,10 +5428,19 @@ namespace QuoteTree;
                 s += start.Name;
                 if (start.ReportValue)
                 {
-                    s += " [";
-                    if (start.Units != "$") s += decimal.Round(start.Total(), 2) + " " + start.Units;
-                    else s += start.Units + decimal.Round(start.Total(), 2);
-                    s += "]";
+                    if(start.Type == NodeType.Text)
+                    {
+                        s += " [";
+                        s += ((TextNode)start).Text;
+                        s += "]";
+                    }
+                    else
+                    {
+                        s += " [";
+                        if (start.Units != "$") s += decimal.Round(start.Total(), 2) + " " + start.Units;
+                        else s += start.Units + decimal.Round(start.Total(), 2);
+                        s += "]";
+                    }
                 }
 
                 for (int i = 0; i < indent; i++) indentspace += " ";
