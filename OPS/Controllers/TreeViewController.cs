@@ -434,6 +434,7 @@ namespace OnlinePriceSystem.Controllers
                     {
                         (node as MathNode).Formula = value;
                     }
+                    if (node.Type == NodeType.Text) (node as TextNode).Text = value;
                 }
             }
 
@@ -748,6 +749,7 @@ namespace OnlinePriceSystem.Controllers
                     break;
                  case NodeType.Text:
                     Expression = (node as TextNode).Text;
+                    EditChildren = (node as TextNode).EditChildren;
                     break;
                 case NodeType.Range:
                     Expression = (node as RangeNode).Range;
@@ -982,7 +984,8 @@ namespace OnlinePriceSystem.Controllers
                             break;
                         case NodeType.Text:
                             Expression = (node as TextNode).Text;
-                        break;
+                            EditChildren = (node as TextNode).EditChildren;
+                            break;
                         case NodeType.Range:
                             Expression = (node as RangeNode).Range;
                             break;
@@ -1039,6 +1042,7 @@ namespace OnlinePriceSystem.Controllers
                     break;
                 case NodeType.Text:
                     Expression = (node as TextNode).Text;
+                    EditChildren = (node as TextNode).EditChildren;
                     break;
                 case NodeType.Date:
                     EditChildren = (node as DateNode).EditChildren;
@@ -1166,7 +1170,8 @@ namespace OnlinePriceSystem.Controllers
                     break;
                 case NodeType.Text:
                     Expression = (node as TextNode).Text;
-                break;
+                    EditChildren = (node as MathNode).EditChildren;
+                    break;
                 case NodeType.Range:
                     Expression = (node as RangeNode).Range;
                     EditChildren = (node as RangeNode).EditChildren;

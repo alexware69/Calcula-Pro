@@ -1,7 +1,7 @@
 ﻿@using OnlinePriceSystem.Controllers
 @using QuoteTree
 @{
-    var Model = (MathNode)TempData["node"];
+    var Model = (ANode)TempData["node"];
     var url = (string)TempData["url"];
     Layout = null;
 }
@@ -133,10 +133,18 @@
                                 <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString("0.#############################") + ", " + node.Max.ToString("0.#############################") + "]")</td>
                             </tr>     
                         }  
-                        else show_button = false;            
+                        else 
+                         if(!node.BranchHidden() && node.Type == NodeType.Text)
+                            {
+                                <tr>
+                                <td>@node.Name</td>
+                                <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                            </tr>   
+                            }
+                         else show_button = false;            
                     } 
                 } else {
-                    @if (!Model.BranchHidden() && Decimal.TryParse(Model.Formula, out output))
+                    @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode).Formula, out output))
                         { 
                         <tr>
                             <td> @Model.Name </td>
@@ -144,6 +152,14 @@
                             <td style="white-space:nowrap;"> @Html.Label("", "[" + Model.Min.ToString("0.#############################") + ", " + Model.Max.ToString("0.#############################") + "]") </td>
                         </tr>
                         }   
+                    else 
+                    if (!Model.BranchHidden() && Model.Type == NodeType.Text)
+                    {
+                        <tr>
+                            <td> @Model.Name </td>
+                            <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
+                        </tr>
+                    }
                     else show_button = false;                        
                     }
                 @if (show_button) { 

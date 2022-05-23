@@ -1234,7 +1234,7 @@ namespace QuoteTree;
 
 
 			//Set node url
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
+            this.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + this.Id;
 
 			//Get description from file in folder.
 			string s = "";
@@ -1305,7 +1305,7 @@ namespace QuoteTree;
             }
             this.Parent = node;
             this.ParentTree = tree;
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
+            this.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + this.Id;
 
             //check for same name
             if (node != null)
@@ -6099,9 +6099,10 @@ namespace QuoteTree;
                         break;
                     case NodeType.Text:
                         (node as TextNode).Text = values["expression"].Trim();
+                        (node as TextNode).EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
-                        node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
+                        node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         break;
                     case NodeType.Range:
                         (node as RangeNode).Range = values["expression"].Trim();
