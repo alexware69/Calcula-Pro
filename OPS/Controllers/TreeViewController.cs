@@ -1447,6 +1447,10 @@ namespace OnlinePriceSystem.Controllers
                     Expression = (node as MathNode).Formula;
                     EditChildren = (node as MathNode).EditChildren;
                     break;
+                case NodeType.Text:
+                    Expression = (node as TextNode).Text;
+                    EditChildren = (node as TextNode).EditChildren;
+                    break;
                 case NodeType.Range:
                     Expression = (node as RangeNode).Range;
                     EditChildren = (node as RangeNode).EditChildren;

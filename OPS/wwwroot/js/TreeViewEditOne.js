@@ -1476,10 +1476,6 @@ function removeNodes() {
 
 //Assemble the tree
 function Assemble(result, id) {
-    if (result == "_SessionTimeout_") {
-        document.location = "../SessionTimeOut.html";
-        return false;
-    }
     var li_id = id;
     //Get children from server if not already inserted
     var children_ul = $(id).children("ul");
@@ -1637,12 +1633,15 @@ function RenderTree(tree) {
         //Remove old
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today')
+        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
             expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
                 expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
-            else expression = " &nbsp;&nbsp;&nbsp;";
+            else 
+                if (tree.TypeStr == 'Text')
+                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+                else expression = " &nbsp;&nbsp;&nbsp;";
         $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();

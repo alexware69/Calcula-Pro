@@ -5558,6 +5558,8 @@ namespace QuoteTree;
 
 				if (type == "math") node = new MathNode(path, parent, this, id);
 
+                if (type == "text") node = new TextNode(path, parent, this, id);
+
 				if (type == "range") node = new RangeNode(path, parent, this, id);
 
 				if (type == "sumset") node = new SumSetNode(path, parent, this, id);
