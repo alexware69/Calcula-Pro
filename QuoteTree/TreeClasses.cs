@@ -1031,14 +1031,26 @@ namespace QuoteTree;
 	{
 		// *******Fields*****
 		string _Text;
+        bool _Entered;
         //bool _EditChildren;
 
 		// *****Properties*****
 		public string Text
 		{
 			get { return _Text; }
-            set { if (!this.ReadOnly) _Text = value; }
+            set 
+            { 
+                if (!this.ReadOnly) _Text = value; 
+                Entered = true;
+            }
 		}
+
+        public bool Entered
+        {
+            get { return _Entered; }
+            set { _Entered = value; }
+        }
+
 
 		// *****Methods*****
 		public override string GetXML()
@@ -1115,7 +1127,8 @@ namespace QuoteTree;
 
 		public override bool IsComplete()
 		{
-            if (Children == null || Children.Count == 0 || !BranchSelected()) return true;
+            if (!BranchSelected() || BranchHidden()) return true;
+            if (!Entered && (!Optional || (Optional && Selected))) return false;
 			foreach (ANode n in Children)
 			{
 				if (n.Selected && !n.IsComplete()) return false;
@@ -1147,6 +1160,7 @@ namespace QuoteTree;
 			this.Type = NodeType.Text;
 			this.Parent = null;
 			this.Amount = 1;
+            this.Entered = false;
 			this.Optional = false;
             this.DisableCondition = "0";
             this.DisabledMessage = "";
@@ -6076,6 +6090,8 @@ namespace QuoteTree;
         {
             if (node.Type == NodeType.Math)
                 ((MathNode)node).Entered = false;
+            if (node.Type == NodeType.Text)
+                ((TextNode)node).Entered = false;
             foreach (ANode n in node.Children)          
                 ResetEntered(n);        
         }
