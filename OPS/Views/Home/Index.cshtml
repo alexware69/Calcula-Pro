@@ -12,10 +12,25 @@
     transform: translate(50%,50%);
     position: absolute;
 }
+
+#overlay {
+		background-color: #aaaaaa;
+		z-index: 999;
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		opacity: .3;
+	}
 </style>
 <div class="center">
 	<button id="new-dialog" class="btn">New Product</button>	
 	<br/>
+	<div style="display:inline-block;vertical-align:middle;"> 
+	 	     	<img align="center" title='Working...' style='display:none;' class='loading' src='../Images/ajax-bar.gif' alt='Working...'>&nbsp;
+	</div>
 	<br/>
 	<button id="open-dialog" class="btn">Open Product</button>
 </div>
@@ -29,6 +44,12 @@
         });
 		ipcRenderer.on("open-dialog-reply", (sender, path) => {
 			if (!path) return;
+			//Show overlay
+ 			overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+ 			$("#overlay").show();
+			$("#new-dialog").hide();
+			$("#open-dialog").hide();
+			$(".loading").show();
 			document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
             return;
         });
