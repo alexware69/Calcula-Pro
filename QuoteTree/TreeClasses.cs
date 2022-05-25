@@ -5734,6 +5734,7 @@ namespace QuoteTree;
                 if (start.Type == NodeType.Text)
                 {
                     sw.WriteLine("text=\"" + (start as TextNode).Text + "\";");
+                    sw.WriteLine("editchildren=\"" + (start as TextNode).EditChildren.ToString().ToLower() + "\";");
                 }
                 if (start.Type == NodeType.Range)
                 {
