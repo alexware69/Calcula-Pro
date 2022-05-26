@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QLStZagO81pQqHQ7nBzPargdiBInNQOiEjbDOFtRk28=",
+  "Hash": "2SNwyzOVkkaxLJRRPWEi/V/+EgyFiZZiv277JXO8cyA=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2108,6 +2108,23 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/.DS_Store",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/.DS_Store"
+    },
+    {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/1dot1a.gif",
       "SourceId": "OPS",
       "SourceType": "Discovered",
@@ -2837,6 +2854,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/link.png"
+    },
+    {
+      "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/loading.gif",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/loading.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/loading.gif"
     },
     {
       "Identity": "/Users/alejandro/Online-Price-System-Native/OPS/wwwroot/Images/minus.gif",
