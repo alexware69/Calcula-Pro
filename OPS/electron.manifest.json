@@ -3,13 +3,13 @@
   "splashscreen": {
     "imageFile": ""
   },
-  "name": "OPS",
+  "name": "CalCool",
   "author": "Alejandro Penate-Diaz",
   "singleInstance": false,
   "environment": "Production",
   "build": {
-    "appId": "com.OPS.app",
-    "productName": "OPS",
+    "appId": "com.CalCool.app",
+    "productName": "CalCool",
     "copyright": "Copyright © 2022 Alejandro Penate-Diaz",
     "buildVersion": "1.0.0",
     "compression": "maximum",
