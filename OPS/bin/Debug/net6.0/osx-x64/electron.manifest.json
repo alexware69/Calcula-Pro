@@ -3,13 +3,13 @@
   "splashscreen": {
     "imageFile": ""
   },
-  "name": "CalCool",
+  "name": "CalculaPro",
   "author": "Alejandro Penate-Diaz",
   "singleInstance": false,
   "environment": "Production",
   "build": {
-    "appId": "com.CalCool.app",
-    "productName": "CalCool",
+    "appId": "com.CalculaPro.app",
+    "productName": "Calcula Pro",
     "copyright": "Copyright © 2022 Alejandro Penate-Diaz",
     "buildVersion": "1.0.0",
     "compression": "maximum",
