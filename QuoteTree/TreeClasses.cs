@@ -1245,6 +1245,8 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
             if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
 
 			//Set node url
@@ -1807,6 +1809,8 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
 			if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
 
 			//To set the url for the node
@@ -3099,6 +3103,8 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
 			if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 			//To set the url for the node
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
@@ -4095,6 +4101,8 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
 			if (parent == null) this.Selected = true;
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
 
 			//Set the node url
@@ -4953,6 +4961,8 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
 			if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
 
 			//To set the node url
@@ -5250,6 +5260,8 @@ namespace QuoteTree;
             if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
             if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
             if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.CheckBox)
+                if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
             //To set the node url
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
@@ -5725,6 +5737,8 @@ namespace QuoteTree;
 				sw.WriteLine("hidden=\"" + start.Hidden.ToString().ToLower() + "\";"); 
 				sw.WriteLine("readonly=\"" + start.ReadOnly.ToString().ToLower() + "\";");
 				sw.WriteLine("template=\"" + start.Template.ToString().ToLower() + "\";");
+                if (start.Optional)
+                    sw.WriteLine("selected=\"" + start.Selected.ToString().ToLower() + "\";");
 
 				if (start.Type == NodeType.Math)
 				{
