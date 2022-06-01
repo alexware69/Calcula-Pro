@@ -693,8 +693,15 @@ namespace OnlinePriceSystem.Controllers
             var renderedView = await RenderPartialViewToString("QuoteDetails", selection);
 
             //Do what you want with the renderedView here
+            //Removing the Save Quote button from the html file
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(renderedView);
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//input");
+            var button = nodes[0];
+            button.SetAttributeValue("hidden", "hidden");
+            var updatedStr = htmlDoc.DocumentNode.OuterHtml;
 
-            return File(Encoding.UTF8.GetBytes(renderedView), "text/plain", "Quote.html");
+            return File(Encoding.UTF8.GetBytes(updatedStr), "text/plain", "Quote.html");
         }
 
 		[HttpGet]		
