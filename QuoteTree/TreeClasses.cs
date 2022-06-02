@@ -6295,14 +6295,7 @@ namespace QuoteTree;
                 ANode clone = source.Clone();
 
                 clone.Parent = target;
-                //check for same name
-                /*foreach (ANode n in target.Children)
-                    if (n.Name.Trim() == clone.Name.Trim())
-                    {
-                        clone.Name = clone.Name.Trim() + "_Copy";
-                        break;
-                    }*/
-
+                
                 //check for same name
                 int m = 0;
                 string[] splitted = new string[1];
@@ -6340,14 +6333,6 @@ namespace QuoteTree;
                     else clone.Name = clone.Name.Trim() + "_Copy" + (m + 1).ToString();
                     
                 }
-
-
-
-
-
-
-
-
 
                 target.Children.Add(clone);
 
