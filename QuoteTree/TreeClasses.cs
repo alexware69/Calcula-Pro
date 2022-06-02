@@ -6296,12 +6296,59 @@ namespace QuoteTree;
 
                 clone.Parent = target;
                 //check for same name
-                foreach (ANode n in target.Children)
+                /*foreach (ANode n in target.Children)
                     if (n.Name.Trim() == clone.Name.Trim())
                     {
                         clone.Name = clone.Name.Trim() + "_Copy";
                         break;
+                    }*/
+
+                //check for same name
+                int m = 0;
+                string[] splitted = new string[1];
+                bool contains = false;
+                bool equals = false;
+                int intout;
+                foreach (ANode n in target.Children)
+                {
+                    if (n.Name.Trim() == clone.Name.Trim())
+                    {
+                        equals = true;
+                        //break;
                     }
+                
+                    if (n.Name.Trim().StartsWith(clone.Name.Trim()) && n.Name.Trim().Contains("_Copy")) 
+                    {
+                        contains = true;
+                        equals = false;
+                        splitted = n.Name.Trim().Split("_Copy");
+                        if (splitted.Count() > 1 && splitted[0] == clone.Name.Trim())
+                         if(int.TryParse(splitted[1], out intout))
+                         {
+                            if(int.Parse(splitted[1]) > m) m = int.Parse(splitted[1]);
+                         } 
+                    }
+                }
+                
+                if (equals)
+                {   
+                    clone.Name = clone.Name.Trim() + "_Copy";    
+                }
+                else if(contains)
+                {
+                    if (m == 0) clone.Name = clone.Name.Trim() + "_Copy1";
+                    else clone.Name = clone.Name.Trim() + "_Copy" + (m + 1).ToString();
+                    
+                }
+
+
+
+
+
+
+
+
+
                 target.Children.Add(clone);
 
                 //fix the node id and url
