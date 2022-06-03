@@ -71,7 +71,7 @@ namespace OnlinePriceSystem.Controllers
                     HttpContext.Session.Set("tree", array);  
                 }
 			}
-        
+            TempData["root"] = tree.Root;
 			return View("EditProduct");
 		}
 
@@ -124,7 +124,6 @@ namespace OnlinePriceSystem.Controllers
 
             string response = JsonConvert.SerializeObject(nodes, Formatting.Indented);
             return Content(response);
-            //return Json(nodes, JsonRequestBehavior.AllowGet);
         }
         
         public ContentResult DependentNodes(string id)
@@ -172,7 +171,6 @@ namespace OnlinePriceSystem.Controllers
 
             string response = JsonConvert.SerializeObject(nodes, Formatting.Indented);
             return Content(response);
-            //return Json(nodes, JsonRequestBehavior.AllowGet);
         }
         
         public ContentResult SetCheckboxState(string id, string state)
@@ -186,8 +184,6 @@ namespace OnlinePriceSystem.Controllers
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
-            //string Expression = node.type == NodeType.math ? (node as MathNode).formula : "";
-
 
             string Expression;
             bool EditChildren = false;
@@ -255,8 +251,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult GetTotalPrice()
         {
-            //QTree tree = TempData["tree"] as QTree;
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -298,7 +292,6 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);              
 
-            //MathNode node = (MathNode)tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node.Name);
@@ -536,7 +529,6 @@ namespace OnlinePriceSystem.Controllers
                 byte[] array = HttpContext.Session.Get("tree");
                 QTree tree = ByteArrayToObject(array);
 
-                //Dictionary<ANode, string> renamed = TempData["renamed"] != null ? TempData["renamed"] as Dictionary<ANode, string> : null;
                 Dictionary<string, string> renamed;
                 string jsonStringRenamed = HttpContext.Session.GetString("renamed");
                 if (jsonStringRenamed == "") renamed = new Dictionary<string, string>();
@@ -1120,7 +1112,7 @@ namespace OnlinePriceSystem.Controllers
                         }
                         bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
                         string dep = "";
-                        //foreach (ANode n in node.Dependents) dep = dep + n.Id + ";";
+                       
                         dep = node.DependentsStr;
                         NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
                         nodeDataList.Add(nodedata);
