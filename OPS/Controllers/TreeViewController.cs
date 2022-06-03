@@ -49,13 +49,7 @@ namespace OnlinePriceSystem.Controllers
 				{
                     HttpContext.Session.SetString("path", product);
 					tree = new QTree ();
-					/*var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All,
-                        PreserveReferencesHandling = PreserveReferencesHandling.All,
-                        Formatting = Formatting.Indented,
-                        MaxDepth = 400
-                    });*/    
+					
                     byte[] array = ObjectToByteArray(tree);
                     HttpContext.Session.Set("tree", array);
 				}
@@ -72,16 +66,9 @@ namespace OnlinePriceSystem.Controllers
                     }
                     //Reset the entered property
                     tree.ResetEntered(tree.Root);
-                    /*var toJson1 = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All,
-                        PreserveReferencesHandling = PreserveReferencesHandling.All,
-                        Formatting = Formatting.Indented,
-                        MaxDepth = 400
-                    });  */
+                   
                     byte[] array = ObjectToByteArray(tree);
                     HttpContext.Session.Set("tree", array);  
-                    //HttpContext.Session.SetString("tree", toJson1);
                 }
 			}
         
@@ -91,19 +78,9 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult ChildNodes(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });*/
-
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
-            //QTree tree = fromJson;
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
             List<NodeData> nodes = new List<NodeData>();
@@ -152,15 +129,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult DependentNodes(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });*/
-            //QTree tree = fromJson;
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -209,28 +177,12 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult SetCheckboxState(string id, string state)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });*/
-            //QTree tree = fromJson;
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);    
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
             node.Selected = state == "true" ? true : false;
-            /*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });*/    
-            //HttpContext.Session.SetString("tree", toJson);
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -283,18 +235,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult QuoteDetails(string id)
         {
-        //QTree tree;
-
-            //tree = TempData["tree"] as QTree;
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.All,
-                MaxDepth = 400
-            });
-            tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -333,16 +273,7 @@ namespace OnlinePriceSystem.Controllers
         }
         
         public ActionResult ChangeTreeValue(string id)
-        {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.All,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-            
+        {   
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -364,15 +295,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult Description(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);              
 
@@ -380,9 +302,6 @@ namespace OnlinePriceSystem.Controllers
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node.Name);
-
-            //var mainWindow = Electron.WindowManager.BrowserWindows.First();
-            //var options = new LoadURLOptions();
         
             var path = HttpContext.Session.GetString("path");
             HttpContext.Session.SetString("nodeID",id);
@@ -437,15 +356,6 @@ namespace OnlinePriceSystem.Controllers
         }
         public ActionResult AppendNodes(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -466,15 +376,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult CommitTreeValue()
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -496,14 +397,6 @@ namespace OnlinePriceSystem.Controllers
                 }
             }
 
-            /*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
-
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
             return Content(tree.Root.TotalStr);
@@ -513,15 +406,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult AppendNode(string sourceId, string targetId)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -562,16 +446,6 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult CommitAnyTreeValue(string id, string value)
 		{
-
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -595,14 +469,6 @@ namespace OnlinePriceSystem.Controllers
 					break;
 			}
 
-			/*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
-
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
 
@@ -622,15 +488,6 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult removeNodes(string ids)
 		{
-			/*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -653,13 +510,6 @@ namespace OnlinePriceSystem.Controllers
                     }         
                 }
             }
-			/*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -682,15 +532,6 @@ namespace OnlinePriceSystem.Controllers
 			if (HttpContext.Session.Get("tree") != null)
 			{
 				string isNew = HttpContext.Session.GetString("isNew");
-
-				/*string jsonString = HttpContext.Session.GetString("tree");
-                var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All,
-                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                    MaxDepth = 400
-                });
-                QTree tree = fromJson;*/
 
                 byte[] array = HttpContext.Session.Get("tree");
                 QTree tree = ByteArrayToObject(array);
@@ -758,16 +599,6 @@ namespace OnlinePriceSystem.Controllers
 
         public  async Task<FileResult> SaveQuote()
         {
-
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -793,15 +624,6 @@ namespace OnlinePriceSystem.Controllers
 		[HttpGet]		
 		public ContentResult SaveNodeInfo()
 		{
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -887,14 +709,6 @@ namespace OnlinePriceSystem.Controllers
             foreach (string n in node.Dependents) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
-            /*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
-
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
 
@@ -955,82 +769,30 @@ namespace OnlinePriceSystem.Controllers
 
         public JsonResult getJson()
         {
-            /*var id = HttpContext.Session.GetInt32("product_id");
-
-            if (id != 0)
+            if (HttpContext.Session.GetString("tree") != null)
             {
-            ops_inhouseEntities dc = new ops_inhouseEntities();
-            QTree tree;
+                byte[] array = HttpContext.Session.Get("tree");
+                QTree tree = ByteArrayToObject(array);
 
-            //Get the product from database
-            //var products = dc.products.Select(p => p).Where(p => p.id == id);
-            var qry = from p in dc.products
-                      where p.id == id
-                      select new
-                      {
-                          id = p.id,
-                          product = p.product,
-                          store_id = p.store_id
-                      };
-
-            //Deserialize the product
-            byte[] bytes_stream;
-            var prod = qry.First();
-            bytes_stream = prod.product.ToArray();
-
-            tree = QTree.Deserialize(bytes_stream);
-
-
-            var settings = new JsonSerializerSettings
-            {
-                Converters = new List<JsonConverter> { new TreeConverter() },
-                Formatting = Formatting.Indented,
-                TypeNameHandling = TypeNameHandling.Auto,
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects
-            };
-            this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
-            string json = JsonConvert.SerializeObject(tree.Root, settings);
-            //dynamic parsedJson = JObject.Parse(json);
-            //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
-            return Json(Compress(json));
-            }
-            else 
-            {*/
-                if (HttpContext.Session.GetString("tree") != null)
+                var settings = new JsonSerializerSettings
                 {
-                    /*string jsonString = HttpContext.Session.GetString("tree");
-                    var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All,
-                        PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                        MaxDepth = 400
-                    });
-                    QTree tree = fromJson;*/
-
-                    byte[] array = HttpContext.Session.Get("tree");
-                    QTree tree = ByteArrayToObject(array);
-
-                    var settings = new JsonSerializerSettings
-                    {
-                        Converters = new List<JsonConverter> { new TreeConverter() },
-                        Formatting = Formatting.Indented,
-                        TypeNameHandling = TypeNameHandling.Auto,
-                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                    };
-                    if (tree.Root != null)
-                    {
-                        //this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
-                        string json = JsonConvert.SerializeObject(tree.Root, settings);
-                        //dynamic parsedJson = JObject.Parse(json);
-                        //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
-                        return Json(Compress(json));
-                    }
-                    else return Json(null);
+                    Converters = new List<JsonConverter> { new TreeConverter() },
+                    Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                };
+                if (tree.Root != null)
+                {
+                    //this.pruneTree(tree.Root, tree.Root.ExpandedLevels);
+                    string json = JsonConvert.SerializeObject(tree.Root, settings);
+                    //dynamic parsedJson = JObject.Parse(json);
+                    //pruneTree2(parsedJson, tree.Root.ExpandedLevels);
+                    return Json(Compress(json));
                 }
                 else return Json(null);
-            //}
+            }
+            else return Json(null);
         }
         public static string Compress(string s)
         {
@@ -1096,15 +858,6 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult cloneNodes(string sourceId, string targetId)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -1152,13 +905,6 @@ namespace OnlinePriceSystem.Controllers
                     nodeDataList.Add(nodedata);
                 }
             }
-            /*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -1171,15 +917,6 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult NewNode()
 		{
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -1219,14 +956,6 @@ namespace OnlinePriceSystem.Controllers
             string dep = "";
             foreach (string n in node.Dependents) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root != null ? tree.Root.TotalStr : "0", node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
-			
-            /*var toJson = JsonConvert.SerializeObject(tree, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });    
-            HttpContext.Session.SetString("tree", toJson);*/
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -1239,16 +968,6 @@ namespace OnlinePriceSystem.Controllers
    
         public ContentResult BuildDependencies() 
         {
-
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -1280,15 +999,6 @@ namespace OnlinePriceSystem.Controllers
         
         public JsonResult jstreeChildNodes(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -1304,25 +1014,11 @@ namespace OnlinePriceSystem.Controllers
                 }
             }
 
-
-            //string response = JsonConvert.SerializeObject(nodes, Formatting.Indented);
-
-            //string response = new JavaScriptSerializer().Serialize(new NodeDatajsTree(node.children[0].name,new attributes(node.children[0].id)));
             return Json(nodes);
-            //return Json(new NodeDatajsTree(node.children[0].name, new attributes(node.children[0].id)), JsonRequestBehavior.AllowGet);
         }
         
         public ContentResult NodeInfo(string id)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array);
 
@@ -1377,19 +1073,9 @@ namespace OnlinePriceSystem.Controllers
         [HttpPost]
         public ContentResult NodesInfo(List<string> array)
         {
-            /*string jsonString = HttpContext.Session.GetString("tree");
-            var fromJson = JsonConvert.DeserializeObject<QTree>(jsonString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                MaxDepth = 400
-            });
-            QTree tree = fromJson;*/
-
             byte[] array2 = HttpContext.Session.Get("tree");
             QTree tree = ByteArrayToObject(array2);
 
-			//string[] idsParsed = ids.Split(";".ToCharArray());
 			List<NodeData> nodeDataList = new List<NodeData>();
 
 			foreach (string nodeID in array)
@@ -1577,12 +1263,7 @@ namespace OnlinePriceSystem.Controllers
                         array[index] = c;
                         index++;
                     }
-                    //index = array.Length - 1;
-                    //while (array[index] == ' ')
-                    //{
-                    //    array[index] = ':';
-                    //    index--;
-                    //}
+
                     return new string(array);
                 }
                 else return "";
@@ -1600,10 +1281,6 @@ namespace OnlinePriceSystem.Controllers
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            //node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, 
-            //dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, 
-            //node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), 
-            //node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage
             ANode node = (ANode)value;
             string Expression = "";
             bool EditChildren = false;
