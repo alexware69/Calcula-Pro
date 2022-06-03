@@ -6318,7 +6318,7 @@ namespace QuoteTree;
                         if (splitted.Count() > 1 && splitted[0] == clone.Name.Trim())
                          if(int.TryParse(splitted[1], out intout))
                          {
-                            if(int.Parse(splitted[1]) > m) m = int.Parse(splitted[1]);
+                            if(intout > m) m = intout;
                          } 
                     }
                 }
