@@ -768,15 +768,14 @@ namespace QuoteTree;
 		public MemoryStream Serialize()
 		{
 			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
-			using (MemoryStream ms = new MemoryStream())
-            {
-                BinaryFormatter formater = new BinaryFormatter();
-                //formater.Serialize(fs, this);
-                formater.Serialize(ms, this);
-                ms.Seek(0, SeekOrigin.Begin);
-                formater = null;
-                return ms;
-            }
+			MemoryStream ms = new MemoryStream();
+			BinaryFormatter formater = new BinaryFormatter();
+			//formater.Serialize(fs, this);
+			formater.Serialize(ms, this);
+			ms.Seek(0, SeekOrigin.Begin);
+			formater = null;
+			return ms;
+
 		}
 		public ANode Clone()
 		{
@@ -6441,13 +6440,14 @@ namespace QuoteTree;
 
 		public MemoryStream Serialize()
 		{
-			using (MemoryStream ms = new MemoryStream())
-            {
-                BinaryFormatter formater = new BinaryFormatter();
-                formater.Serialize(ms, this);
-                ms.Seek(0, SeekOrigin.Begin);
-                return ms;
-            }
+			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
+			MemoryStream ms = new MemoryStream();
+			BinaryFormatter formater = new BinaryFormatter();
+			//formater.Serialize(fs, this);
+			formater.Serialize(ms, this);
+			ms.Seek(0, SeekOrigin.Begin);
+			return ms;
+
 		}
 
 		public string SerializeToString()
@@ -6465,7 +6465,7 @@ namespace QuoteTree;
         public static QTree Deserialize(byte[] byte_array)
         {
             BinaryFormatter formater = new BinaryFormatter();
-            using (var memory_stream = new MemoryStream(byte_array))
+            using (MemoryStream memory_stream = new MemoryStream(byte_array))
             {
                 QTree tree = (formater.Deserialize(memory_stream)) as QTree;
                 tree.TotalCounter = 0;
