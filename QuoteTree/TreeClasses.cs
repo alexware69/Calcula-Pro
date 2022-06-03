@@ -768,14 +768,15 @@ namespace QuoteTree;
 		public MemoryStream Serialize()
 		{
 			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
-			MemoryStream ms = new MemoryStream();
-			BinaryFormatter formater = new BinaryFormatter();
-			//formater.Serialize(fs, this);
-			formater.Serialize(ms, this);
-			ms.Seek(0, SeekOrigin.Begin);
-			formater = null;
-			return ms;
-
+			using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryFormatter formater = new BinaryFormatter();
+                //formater.Serialize(fs, this);
+                formater.Serialize(ms, this);
+                ms.Seek(0, SeekOrigin.Begin);
+                formater = null;
+                return ms;
+            }
 		}
 		public ANode Clone()
 		{
@@ -785,6 +786,7 @@ namespace QuoteTree;
 			ms = this.Serialize();
 			node = formater.Deserialize(ms);
 			ms.Close();
+            ms.Dispose();
 			ms = null;
 			formater = null;
 			System.GC.Collect();
@@ -6340,9 +6342,10 @@ namespace QuoteTree;
                 FixClone(clone, target.ParentTree);
 
                 //Set dependencies
-                Stack<ANode> stack = new Stack<ANode>();
+                //Stack<ANode> stack = new Stack<ANode>();
                 //SetDependentsByHierarchy(Root, stack);
                 //SetDependentsByReference(target);
+                System.GC.Collect();
                 return clone;
             }
             catch (Exception) { return null; }
@@ -6427,6 +6430,8 @@ namespace QuoteTree;
 			BinaryFormatter formater = new BinaryFormatter();
 			MemoryStream serial = t.Serialize();
 			_Root = (formater.Deserialize(serial) as QTree)._Root;
+            serial.Close();
+            serial.Dispose();
 		}
 
 		public QTree()
@@ -6436,14 +6441,13 @@ namespace QuoteTree;
 
 		public MemoryStream Serialize()
 		{
-			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
-			MemoryStream ms = new MemoryStream();
-			BinaryFormatter formater = new BinaryFormatter();
-			//formater.Serialize(fs, this);
-			formater.Serialize(ms, this);
-			ms.Seek(0, SeekOrigin.Begin);
-			return ms;
-
+			using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryFormatter formater = new BinaryFormatter();
+                formater.Serialize(ms, this);
+                ms.Seek(0, SeekOrigin.Begin);
+                return ms;
+            }
 		}
 
 		public string SerializeToString()
@@ -6461,10 +6465,12 @@ namespace QuoteTree;
         public static QTree Deserialize(byte[] byte_array)
         {
             BinaryFormatter formater = new BinaryFormatter();
-            MemoryStream memory_stream = new MemoryStream(byte_array);
-            QTree tree = (formater.Deserialize(memory_stream)) as QTree;
-            tree.TotalCounter = 0;
-            return tree;
+            using (var memory_stream = new MemoryStream(byte_array))
+            {
+                QTree tree = (formater.Deserialize(memory_stream)) as QTree;
+                tree.TotalCounter = 0;
+                return tree;
+            }
         }
 	}
 

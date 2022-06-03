@@ -838,9 +838,11 @@ namespace OnlinePriceSystem.Controllers
             QTree tree;
             BinaryFormatter formater = new BinaryFormatter();
             byte[] bytes_stream;
-            MemoryStream memory_stream = new MemoryStream(array);
-            tree = (formater.Deserialize(memory_stream)) as QTree;
-            return tree;
+            using (MemoryStream memory_stream = new MemoryStream(array))
+            {
+                tree = (formater.Deserialize(memory_stream)) as QTree;
+                return tree;
+            }
         }
 
 
