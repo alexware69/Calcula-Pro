@@ -350,7 +350,7 @@ function UpdateNode(data) {
         //Remove old
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + data.id + "'>" + data.name + "</span>");
-        $(node).children('a').append("<span class='formula' id='formula_" + data.id + "' > " + (data.type != "Decision" && data.type != 'SumSet' && data.type != 'Date' && data.type != 'Today' ? " &nbsp;[<i>" + data.expression + "</i>]" : " &nbsp;&nbsp;&nbsp;") + "</span>");
+        $(node).children('a').append("<span class='formula' id='formula_" + data.id + "' > " + (data.type != "Decision" && data.type != 'SumSet' && data.type != 'Date' && data.type != 'Today' ? " &nbsp;[<i>" + data.expression.trim() + "</i>]" : " &nbsp;&nbsp;&nbsp;") + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         if ($(node).children(".subtotal")) $(node).children(".subtotal").remove();
         if ($(node).children(".filler")) $(node).children(".filler").remove();
@@ -1642,7 +1642,7 @@ function RenderTree(tree) {
                 if (tree.TypeStr == 'Text')
                     expression = "&nbsp;[<i>" + tree.Text + "</i>]";
                 else expression = " &nbsp;&nbsp;&nbsp;";
-        $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression + "</span>");
+        $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression.trim() + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
         $(node).children(".filler").remove();
