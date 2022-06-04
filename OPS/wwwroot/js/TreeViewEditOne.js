@@ -2149,7 +2149,8 @@ $(function () {
         //window.location.href = data.rslt.obj.attr("href");
         //The previous line doesnt work, data.rslt.obj.attr("href") returns "undefined"
         //window.location.assign(data.args[0].href);
-        document.getElementById('Iframe15').src = data.args[0].href;
+        if (data.args[0].href)
+            document.getElementById('Iframe15').src = data.args[0].href;
     });
 
     //If client is mobile....
