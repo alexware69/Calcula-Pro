@@ -2304,9 +2304,9 @@ $(function () {
     //			}
     //		});
     //Code to fix issue with dialog box sticking to mouse. doesnt work
-    $("#body").mouseleave(function () {
-        $(this).mouseup();
-    });
+    //$("#body").mouseleave(function () {
+    //    $(this).mouseup();
+    //});
 
     //If window width is less than 1024 then hide the description
     if ($(window).width() < "1024")

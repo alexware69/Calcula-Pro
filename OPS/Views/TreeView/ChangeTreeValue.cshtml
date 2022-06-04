@@ -181,7 +181,7 @@
 <iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
 
 <div>
-    <label onclick="$('#dependents').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>DEPENDENTS</U></label>
+    <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
     <ol class="list_dependents" id="dependents">
        @foreach (string dependent in Model.Dependents) {
         ANode dep = Model.ParentTree.GetNodeFromId(dependent);
@@ -194,7 +194,7 @@
     <br />
 </div>
 <div>
-    <label onclick="$('#references').toggle();resizeIframeParent('Iframe1');" style="color:blue"> <U>REFERENCES</U></label>
+    <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
     <ol class="list_references" id="references">
         @foreach (string reference in Model.References) {
         ANode refe = Model.ParentTree.GetNodeFromId(reference);
@@ -213,7 +213,7 @@
         $(".list_references li").sort(asc_sort).appendTo('.list_references');
         //$("#dependents").hide();
         //$("#references").hide();
-        resizeIframeParent('Iframe1');
+        
         $('#formID').keypress(function (e) {
             if (e.which == 13) {
                 e.preventDefault();
