@@ -56,21 +56,6 @@
             //window.frameElement.height = document.body.scrollHeight - 22;
         }
 
-        function resizeIframeParent(frameid) {
-            var currentfr = window.parent.document.getElementById(frameid);
-            if (currentfr) {
-                currentfr.style.display = "block";
-                if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
-                else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
-                if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
-                else if (currentfr.attachEvent) {
-                    currentfr.detachEvent("onload", readjustIframe);
-                    currentfr.attachEvent("onload", readjustIframe);
-                }
-            }
-            //var dif = document.body.scrollHeight - window.frameElement.height;
-            //window.frameElement.height = document.body.scrollHeight - 22;
-        }
         function readjustIframe(loadevt) {
             var crossevt = (window.event) ? event : loadevt;
             var iframeroot = (crossevt.currentTarget) ? crossevt.currentTarget : crossevt.srcElement;
