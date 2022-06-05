@@ -221,7 +221,7 @@ expressionList returns [List<LogicalExpression> value]
 @init {
 List<LogicalExpression> expressions = new List<LogicalExpression>();
 }
-	:	first=logicalExpression {expressions.Add($first.value);}  ( ';' follow=logicalExpression {expressions.Add($follow.value);})* 
+	:	first=logicalExpression {expressions.Add($first.value);}  ( ',' follow=logicalExpression {expressions.Add($follow.value);})* 
 	{ $value = expressions; }
 	;
 	
@@ -241,14 +241,14 @@ FALSE
 	;
 			
 ID 
-	: 	DIGIT* LETTER ((' ' LETTER | LETTER) | (' ' DIGIT | DIGIT )| '.' | ' .' | '\\' | ',' | ' ,')*
+	: 	DIGIT* LETTER ((' ' LETTER | LETTER) | (' ' DIGIT | DIGIT )| '.' | ' .' | '\\')*
 	;
 
 INTEGER
 	:	DIGIT+
 	;
 
-FLOAT
+FLOAT 
 	:	DIGIT* '.' DIGIT+ E?
 	|	DIGIT+ E
 	;
