@@ -6332,45 +6332,24 @@ namespace QuoteTree;
                 clone.Parent = target;
                 
                 //check for same name
-                int m = 0;
-                string[] splitted = new string[1];
-                string[] splitted_clone = new string[1];
-                bool contains = false;
                 bool equals = false;
-                int intout;
+
                 foreach (ANode n in target.Children)
                 {
-                    if (n.Name.Trim() == clone.Name.Trim() && !n.Name.Trim().Contains("_Copy"))
+                    if (n.Name.Trim() == clone.Name.Trim())
                     {
                         equals = true;
-                        //break;
+                        break;
                     }
-                    else
-                    if (n.Name.Trim().Contains("_Copy")) 
-                    {
-                        contains = true;
-                        equals = false;
-                        splitted = n.Name.Trim().Split("_Copy");
-                        splitted_clone = clone.Name.Trim().Split("_Copy");
-                        if (splitted.Count() > 1 && splitted[0] == splitted_clone[0])
-                         if(int.TryParse(splitted[1], out intout))
-                         {
-                            if(intout > m) m = intout;
-                         } 
-                    }
-                }
-                
-                if (equals)
-                {   
-                    clone.Name = clone.Name.Trim() + "_Copy";    
-                }
-                else if(contains)
-                {
-                    if (m == 0) clone.Name = clone.Name.Trim() + "_Copy1";
-                    else clone.Name = splitted[0] + "_Copy" + (m + 1).ToString();
-                    
                 }
 
+                if (equals) return(null);
+                if (target.Type == NodeType.Decision)
+                {
+                    clone.Optional = true;
+                    clone.CheckBox = true;
+                    clone.Selected = false;
+                }
                 target.Children.Add(clone);
 
                 //fix the node id and url

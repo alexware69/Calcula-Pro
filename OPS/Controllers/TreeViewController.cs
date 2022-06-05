@@ -871,6 +871,7 @@ namespace OnlinePriceSystem.Controllers
                 if (nodeID != String.Empty)
                 {
                     ANode node = tree.CloneNode(nodeID, targetId);
+                    if (node == null) return Content(null);
 
                     string Expression;
                     bool EditChildren = false;

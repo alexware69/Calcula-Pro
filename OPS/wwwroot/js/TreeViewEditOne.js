@@ -1984,12 +1984,13 @@ $(function () {
                                             $("#overlay").remove();
                                             creatingNewNode = false;
                                         },
+                                        error: function () {
+                                            alert("A node with the same name already exists.");
+                                            $(".loading").hide();
+                                            $("#overlay").remove();
+                                            creatingNewNode = false;
+                                        },
                                         success: function (result) {
-                                            if (result == "_SessionTimeout_") {
-                                                document.location = "../SessionTimeOut.html";
-                                                return false;
-                                            }
-
                                             for (var i = 0; i < result.length; i++) {
                                                 creatingNewNode = true;
                                                 $("#container").jstree("create", obj, parseInt(result[i].order), { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result[i].id } }, false, true);
