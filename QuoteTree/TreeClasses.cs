@@ -1287,6 +1287,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -1328,14 +1334,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -1873,6 +1871,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -1924,14 +1928,6 @@ namespace QuoteTree;
                 this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
             }
 
-            //check for same name
-            if (node != null)
-            foreach (ANode n in node.Children)
-                if (n.Name.Trim() == this.Name.Trim())
-                {
-                    this.Name = this.Name.Trim() + "_Copy";
-                    break;
-                }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -2137,6 +2133,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -2180,15 +2182,6 @@ namespace QuoteTree;
             //To set the url for the node
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -2432,6 +2425,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -2475,15 +2474,6 @@ namespace QuoteTree;
             //To set the url for the node
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -3156,6 +3146,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -3198,14 +3194,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -3842,6 +3830,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -3884,14 +3878,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -4162,6 +4148,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -4201,14 +4193,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (node != null)
             {
@@ -4706,6 +4690,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -4747,14 +4737,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (!this.HasErrors())
             {
@@ -5029,6 +5011,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
             decimal decimalResult;
@@ -5069,14 +5057,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (node != null)
             {
@@ -5330,6 +5310,12 @@ namespace QuoteTree;
             }
             else
                 node = null;
+
+            //check for same name
+            if (node != null)
+            foreach (ANode n in node.Children)
+                if (n.Name.Trim() == values["name"].Trim()) return;
+
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
 
@@ -5359,14 +5345,6 @@ namespace QuoteTree;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 
-            //check for same name
-            if (node != null)
-                foreach (ANode n in node.Children)
-                    if (n.Name.Trim() == this.Name.Trim())
-                    {
-                        this.Name = this.Name.Trim() + "_Copy";
-                        break;
-                    }
             //Add new node to children
             if (node != null)
             {

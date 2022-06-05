@@ -528,7 +528,7 @@ namespace OnlinePriceSystem.Controllers
 		}
 
 		
-		public ActionResult SaveProduct()
+		public ContentResult SaveProduct()
 		{
 			if (HttpContext.Session.Get("tree") != null)
 			{
@@ -566,7 +566,7 @@ namespace OnlinePriceSystem.Controllers
                 //TempData["renamed"] = null;
                 HttpContext.Session.SetString("renamed", "");
 			}
-            return RedirectToAction("Index", "Home");
+            return Content("");
 		}
 
         //This method is needed to get html in a string

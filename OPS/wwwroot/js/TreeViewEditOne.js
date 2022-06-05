@@ -229,10 +229,6 @@ function BuildDependencies() {
             $("#overlay").remove();
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             if (result.length == 2) {
                 alert("Circular reference between nodes: \"" + result[0].name + "\" and \"" + result[1].name + "\"");
             }
@@ -1853,6 +1849,29 @@ function RenderTree(tree) {
     $("#container").jstree("deselect_node", $("li[id='" + "li_" + parentId + "']"));
 }
 
+function SaveDefinition(){
+    //Show overlay
+    overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+    $("#overlay").show();
+    $(".loading").show();
+
+    $.ajax({
+        url: "SaveProduct",
+        type: 'GET',
+        dataType: "json",
+        cache: false,
+        beforeSend: function () {
+
+        },
+        complete: function () {
+            $(".loading").hide();
+            $("#overlay").remove();
+        },
+        success: function () {
+            
+        }
+    });   //end ajax
+}
 
 //This function was replaced by conditional serialization in the server side
 function PruneTree(tree,Root) {
