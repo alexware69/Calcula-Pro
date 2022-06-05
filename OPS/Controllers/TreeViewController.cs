@@ -486,6 +486,13 @@ namespace OnlinePriceSystem.Controllers
 
             string[] parsedIds = ids.Trim().Split(";".ToCharArray());
             string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory") != null ? HttpContext.Session.GetString("removeNodesFromDirectory"): "";
+
+            foreach (string id in parsedIds)
+            {
+                ANode node = tree.GetNodeFromId(id);
+                if (node != null) 
+                    if (node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return Content(null);
+            }
             foreach (string id in parsedIds)
             {
                 if (id.Trim() != "")
@@ -500,7 +507,8 @@ namespace OnlinePriceSystem.Controllers
                         else path = path + "/" + node.GetPath().Replace("\\","/");
                         HttpContext.Session.SetString("removeNodesFromDirectory", path);
                         node.Remove();
-                    }         
+                    } 
+                    else return Content(null);      
                 }
             }
 

@@ -1464,6 +1464,7 @@ function removeNodes() {
         url: "removeNodes?ids=" + removeNodeIds,
         type: 'GET',
         async: false,
+        dataType: "text",
         cache: false,
         beforeSend: function () {
         },
@@ -1471,27 +1472,26 @@ function removeNodes() {
             removenodedialog.dialog("close");
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
-            //Update the price in the page
-            //top.asynchronous = false;
-            price = document.getElementById("price");
-            $(price).text("Total: " + result);
-            //top.asynchronous = true;
-            var ids = removeNodeIds.split(";");
-            for (var i = 0; i < ids.length; i++) {
-                if (ids[i] != "") {
-                    var parentulID = $("li[id='li_" + ids[i] + "']").parent().attr("id");
-                    //Show siblings if parent is Decision node
-                    if ($("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision")
-                        $("li[id='li_" + ids[i] + "']").siblings().show();
-                    $("li[id='li_" + ids[i] + "']").remove();
+            if (result != ""){
+                //Update the price in the page
+                //top.asynchronous = false;
+                price = document.getElementById("price");
+                $(price).text("Total: " + result);
+                //top.asynchronous = true;
+                var ids = removeNodeIds.split(";");
+                for (var i = 0; i < ids.length; i++) {
+                    if (ids[i] != "") {
+                        var parentulID = $("li[id='li_" + ids[i] + "']").parent().attr("id");
+                        //Show siblings if parent is Decision node
+                        if ($("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision")
+                            $("li[id='li_" + ids[i] + "']").siblings().show();
+                        $("li[id='li_" + ids[i] + "']").remove();
+                    }
                 }
+                UpdateTree(1);
             }
-            UpdateTree(1);
-        },
+            else alert ("Some nodes could not be removed.");
+        }
 
     });   //end ajax
 }

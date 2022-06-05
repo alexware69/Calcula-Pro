@@ -661,6 +661,7 @@ namespace QuoteTree;
 
 		public void Remove()
 		{
+            if (this.Parent != null && (this.Parent.Type == NodeType.Date || this.Parent.Type == NodeType.Today)) return;
             try
             {
                 RemoveBranchFromDependencies(this, ParentTree.Root);
