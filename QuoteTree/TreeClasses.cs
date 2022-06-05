@@ -6334,23 +6334,25 @@ namespace QuoteTree;
                 //check for same name
                 int m = 0;
                 string[] splitted = new string[1];
+                string[] splitted_clone = new string[1];
                 bool contains = false;
                 bool equals = false;
                 int intout;
                 foreach (ANode n in target.Children)
                 {
-                    if (n.Name.Trim() == clone.Name.Trim())
+                    if (n.Name.Trim() == clone.Name.Trim() && !n.Name.Trim().Contains("_Copy"))
                     {
                         equals = true;
                         //break;
                     }
-                
-                    if (n.Name.Trim().StartsWith(clone.Name.Trim()) && n.Name.Trim().Contains("_Copy")) 
+                    else
+                    if (n.Name.Trim().Contains("_Copy")) 
                     {
                         contains = true;
                         equals = false;
                         splitted = n.Name.Trim().Split("_Copy");
-                        if (splitted.Count() > 1 && splitted[0] == clone.Name.Trim())
+                        splitted_clone = clone.Name.Trim().Split("_Copy");
+                        if (splitted.Count() > 1 && splitted[0] == splitted_clone[0])
                          if(int.TryParse(splitted[1], out intout))
                          {
                             if(intout > m) m = intout;
@@ -6365,7 +6367,7 @@ namespace QuoteTree;
                 else if(contains)
                 {
                     if (m == 0) clone.Name = clone.Name.Trim() + "_Copy1";
-                    else clone.Name = clone.Name.Trim() + "_Copy" + (m + 1).ToString();
+                    else clone.Name = splitted[0] + "_Copy" + (m + 1).ToString();
                     
                 }
 
