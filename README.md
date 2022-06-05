@@ -31,7 +31,7 @@
 ## Node properties
 
 * **Name**: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
-'*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ‘:'
+'*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ‘:', ','
 * **Type**: Math, Decision, Conditional, Conditional Rules, Range, SumSet, Reference, Date, Today, DateDiff.
 * **Units**: There are currently some common predefined units, custom units can be set.
 * **Expression**: Some node types require an expression or formula, like Math, Conditional, Conditional Rules, Range and Reference.
@@ -99,13 +99,13 @@ Expressions can contain most common math functions in addition to IF conditions.
 | Cos           | Returns the cosine of the specified angle.                                                                                                                                                                   | Cos(0)              | 1d     |
 | Exp           | Returns e raised to the specified power.                                                                                                                                                                     | Exp(0)              | 1d     |
 | Floor         | Returns the largest integer less than or equal to the specified number.                                                                                                                                      | Floor(1.5)          | 1d     |
-| IEEERemainder | Returns the remainder resulting from the division of a specified number by another specified number.                                                                                                         | IEEERemainder(3; 2) | -1d    |
-| Log           | Returns the logarithm of a specified number.                                                                                                                                                                 | Log(1; 10)          | 0d     |
+| IEEERemainder | Returns the remainder resulting from the division of a specified number by another specified number.                                                                                                         | IEEERemainder(3, 2) | -1d    |
+| Log           | Returns the logarithm of a specified number.                                                                                                                                                                 | Log(1, 10)          | 0d     |
 | Log10         | Returns the base 10 logarithm of a specified number.                                                                                                                                                         | Log10(1)            | 0d     |
-| Max           | Returns the larger of two specified numbers.                                                                                                                                                                 | Max(1; 2)           | 2      |
-| Min           | Returns the smaller of two numbers.                                                                                                                                                                          | Min(1; 2)           | 1      |
-| Pow           | Returns a specified number raised to the specified power.                                                                                                                                                    | Pow(3; 2)           | 9d     |
-| Round         | Rounds a value to the nearest integer or specified number of decimal places. The mid number behaviour can be changed by using EvaluateOption.RoundAwayFromZero during construction of the Expression object. | Round(3.222; 2)     | 3.22d  |
+| Max           | Returns the larger of two specified numbers.                                                                                                                                                                 | Max(1, 2)           | 2      |
+| Min           | Returns the smaller of two numbers.                                                                                                                                                                          | Min(1, 2)           | 1      |
+| Pow           | Returns a specified number raised to the specified power.                                                                                                                                                    | Pow(3, 2)           | 9d     |
+| Round         | Rounds a value to the nearest integer or specified number of decimal places. The mid number behaviour can be changed by using EvaluateOption.RoundAwayFromZero during construction of the Expression object. | Round(3.222, 2)     | 3.22d  |
 | Sign          | Returns a value indicating the sign of a number.                                                                                                                                                             | Sign(-10)           | -1     |
 | Sin           | Returns the sine of the specified angle.                                                                                                                                                                     | Sin(0)              | 0d     |
 | Sqrt          | Returns the square root of a specified number.                                                                                                                                                               | Sqrt(4)             | 2d     |

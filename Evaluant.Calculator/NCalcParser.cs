@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.1 C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g 2019-04-06 11:08:49
+// $ANTLR 3.5.1 /Users/alejandropenate/NCalc.g 2022-06-05 02:16:31
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -22,17 +22,23 @@
 
 using System.Text;
 using System.Globalization;
+using System.Collections.Generic;
 using NCalc.Domain;
+
+
+using System.Collections.Generic;
 using Antlr.Runtime;
 using Antlr.Runtime.Misc;
+
+
 using Antlr.Runtime.Tree;
+using RewriteRuleITokenStream = Antlr.Runtime.Tree.RewriteRuleTokenStream;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "3.5.1")]
-[System.CLSCompliant(false)]
 public partial class NCalcParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "DIGIT", "E", "EscapeSequence", "FALSE", "FLOAT", "HexDigit", "ID", "INTEGER", "LETTER", "NAME", "STRING", "TRUE", "UnicodeEscape", "WS", "'!'", "'!='", "'%'", "'&&'", "'&'", "'('", "')'", "'*'", "'+'", "'-'", "'/'", "':'", "';'", "'<'", "'<<'", "'<='", "'<>'", "'='", "'=='", "'>'", "'>='", "'>>'", "'?'", "'^'", "'and'", "'not'", "'or'", "'|'", "'||'", "'~'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "DIGIT", "E", "EscapeSequence", "FALSE", "FLOAT", "HexDigit", "ID", "INTEGER", "LETTER", "NAME", "STRING", "TRUE", "UnicodeEscape", "WS", "'!'", "'!='", "'%'", "'&&'", "'&'", "'('", "')'", "'*'", "'+'", "','", "'-'", "'/'", "':'", "'<'", "'<<'", "'<='", "'<>'", "'='", "'=='", "'>'", "'>='", "'>>'", "'?'", "'^'", "'and'", "'not'", "'or'", "'|'", "'||'", "'~'"
 	};
 	public const int EOF=-1;
 	public const int T__18=18;
@@ -111,7 +117,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	}
 
 	public override string[] TokenNames { get { return NCalcParser.tokenNames; } }
-	public override string GrammarFileName { get { return "C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g"; } }
+	public override string GrammarFileName { get { return "/Users/alejandropenate/NCalc.g"; } }
 
 
 	private const char BS = '\\';
@@ -129,8 +135,8 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	        switch (escapeType)
 	        {
 	            case 'u':
-	              string hcode = string.Concat(sb[slashIndex+4], sb[slashIndex+5]);
-	              string lcode = string.Concat(sb[slashIndex+2], sb[slashIndex+3]);
+	              string hcode = String.Concat(sb[slashIndex+4], sb[slashIndex+5]);
+	              string lcode = String.Concat(sb[slashIndex+2], sb[slashIndex+3]);
 	              char unicodeChar = Encoding.Unicode.GetChars(new byte[] { System.Convert.ToByte(hcode, 16), System.Convert.ToByte(lcode, 16)} )[0];
 	              sb.Remove(slashIndex, 6).Insert(slashIndex, unicodeChar); 
 	              break;
@@ -154,7 +160,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 
 	public List<string> Errors { get; private set; }
 
-	public override void DisplayRecognitionError(string[] tokenNames, RecognitionException e) {
+	public override void DisplayRecognitionError(String[] tokenNames, RecognitionException e) {
 	    
 	    base.DisplayRecognitionError(tokenNames, e);
 	    
@@ -163,8 +169,8 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	    	Errors = new List<string>();
 	    }
 	    
-	    string hdr = GetErrorHeader(e);
-	    string msg = GetErrorMessage(e, tokenNames);
+	    String hdr = GetErrorHeader(e);
+	    String msg = GetErrorMessage(e, tokenNames);
 	    Errors.Add(msg + " at " + hdr);
 	}
 
@@ -184,7 +190,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_ncalcExpression();
 	partial void LeaveRule_ncalcExpression();
 	// $ANTLR start "ncalcExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:77:1: ncalcExpression returns [LogicalExpression value] : logicalExpression EOF !;
+	// /Users/alejandropenate/NCalc.g:77:1: ncalcExpression returns [LogicalExpression value] : logicalExpression EOF !;
 	[GrammarRule("ncalcExpression")]
 	public NCalcParser.ncalcExpression_return ncalcExpression()
 	{
@@ -204,9 +210,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(77, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:78:2: ( logicalExpression EOF !)
+			// /Users/alejandropenate/NCalc.g:78:2: ( logicalExpression EOF !)
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:78:4: logicalExpression EOF !
+			// /Users/alejandropenate/NCalc.g:78:4: logicalExpression EOF !
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -259,7 +265,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_logicalExpression();
 	partial void LeaveRule_logicalExpression();
 	// $ANTLR start "logicalExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:81:1: logicalExpression returns [LogicalExpression value] : left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )? ;
+	// /Users/alejandropenate/NCalc.g:81:1: logicalExpression returns [LogicalExpression value] : left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )? ;
 	[GrammarRule("logicalExpression")]
 	private NCalcParser.logicalExpression_return logicalExpression()
 	{
@@ -283,9 +289,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(81, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:82:2: (left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )? )
+			// /Users/alejandropenate/NCalc.g:82:2: (left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )? )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:82:4: left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )?
+			// /Users/alejandropenate/NCalc.g:82:4: left= conditionalExpression ( '?' middle= conditionalExpression ':' right= conditionalExpression )?
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -298,7 +304,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(82, 31);
 			 retval.value = (left!=null?((NCalcParser.conditionalExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(82, 57);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:82:57: ( '?' middle= conditionalExpression ':' right= conditionalExpression )?
+			// /Users/alejandropenate/NCalc.g:82:57: ( '?' middle= conditionalExpression ':' right= conditionalExpression )?
 			int alt1=2;
 			try { DebugEnterSubRule(1);
 			try { DebugEnterDecision(1, false);
@@ -313,7 +319,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:82:59: '?' middle= conditionalExpression ':' right= conditionalExpression
+				// /Users/alejandropenate/NCalc.g:82:59: '?' middle= conditionalExpression ':' right= conditionalExpression
 				{
 				DebugLocation(82, 59);
 				char_literal3=(IToken)Match(input,40,Follow._40_in_logicalExpression84); 
@@ -326,7 +332,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 
 				adaptor.AddChild(root_0, middle.Tree);
 				DebugLocation(82, 92);
-				char_literal4=(IToken)Match(input,29,Follow._29_in_logicalExpression90); 
+				char_literal4=(IToken)Match(input,30,Follow._30_in_logicalExpression90); 
 				char_literal4_tree = (CommonTree)adaptor.Create(char_literal4);
 				adaptor.AddChild(root_0, char_literal4_tree);
 				DebugLocation(82, 101);
@@ -383,7 +389,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_conditionalExpression();
 	partial void LeaveRule_conditionalExpression();
 	// $ANTLR start "conditionalExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:85:1: conditionalExpression returns [LogicalExpression value] : left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )* ;
+	// /Users/alejandropenate/NCalc.g:85:1: conditionalExpression returns [LogicalExpression value] : left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )* ;
 	[GrammarRule("conditionalExpression")]
 	private NCalcParser.conditionalExpression_return conditionalExpression()
 	{
@@ -407,9 +413,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(85, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:89:2: (left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )* )
+			// /Users/alejandropenate/NCalc.g:89:2: (left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:89:4: left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )*
+			// /Users/alejandropenate/NCalc.g:89:4: left= booleanAndExpression ( ( '||' | 'or' ) right= conditionalExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -422,7 +428,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(89, 30);
 			 retval.value = (left!=null?((NCalcParser.booleanAndExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(89, 56);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:89:56: ( ( '||' | 'or' ) right= conditionalExpression )*
+			// /Users/alejandropenate/NCalc.g:89:56: ( ( '||' | 'or' ) right= conditionalExpression )*
 			try { DebugEnterSubRule(2);
 			while (true)
 			{
@@ -441,7 +447,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:90:4: ( '||' | 'or' ) right= conditionalExpression
+					// /Users/alejandropenate/NCalc.g:90:4: ( '||' | 'or' ) right= conditionalExpression
 					{
 					DebugLocation(90, 4);
 
@@ -522,7 +528,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_booleanAndExpression();
 	partial void LeaveRule_booleanAndExpression();
 	// $ANTLR start "booleanAndExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:95:1: booleanAndExpression returns [LogicalExpression value] : left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )* ;
+	// /Users/alejandropenate/NCalc.g:95:1: booleanAndExpression returns [LogicalExpression value] : left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )* ;
 	[GrammarRule("booleanAndExpression")]
 	private NCalcParser.booleanAndExpression_return booleanAndExpression()
 	{
@@ -546,9 +552,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(95, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:99:2: (left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )* )
+			// /Users/alejandropenate/NCalc.g:99:2: (left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:99:4: left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )*
+			// /Users/alejandropenate/NCalc.g:99:4: left= bitwiseOrExpression ( ( '&&' | 'and' ) right= bitwiseOrExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -561,7 +567,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(99, 29);
 			 retval.value = (left!=null?((NCalcParser.bitwiseOrExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(99, 55);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:99:55: ( ( '&&' | 'and' ) right= bitwiseOrExpression )*
+			// /Users/alejandropenate/NCalc.g:99:55: ( ( '&&' | 'and' ) right= bitwiseOrExpression )*
 			try { DebugEnterSubRule(3);
 			while (true)
 			{
@@ -580,7 +586,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:100:4: ( '&&' | 'and' ) right= bitwiseOrExpression
+					// /Users/alejandropenate/NCalc.g:100:4: ( '&&' | 'and' ) right= bitwiseOrExpression
 					{
 					DebugLocation(100, 4);
 
@@ -661,7 +667,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_bitwiseOrExpression();
 	partial void LeaveRule_bitwiseOrExpression();
 	// $ANTLR start "bitwiseOrExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:105:1: bitwiseOrExpression returns [LogicalExpression value] : left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )* ;
+	// /Users/alejandropenate/NCalc.g:105:1: bitwiseOrExpression returns [LogicalExpression value] : left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )* ;
 	[GrammarRule("bitwiseOrExpression")]
 	private NCalcParser.bitwiseOrExpression_return bitwiseOrExpression()
 	{
@@ -685,9 +691,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(105, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:109:2: (left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )* )
+			// /Users/alejandropenate/NCalc.g:109:2: (left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:109:4: left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )*
+			// /Users/alejandropenate/NCalc.g:109:4: left= bitwiseXOrExpression ( '|' right= bitwiseOrExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -700,7 +706,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(109, 30);
 			 retval.value = (left!=null?((NCalcParser.bitwiseXOrExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(109, 56);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:109:56: ( '|' right= bitwiseOrExpression )*
+			// /Users/alejandropenate/NCalc.g:109:56: ( '|' right= bitwiseOrExpression )*
 			try { DebugEnterSubRule(4);
 			while (true)
 			{
@@ -719,7 +725,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:110:4: '|' right= bitwiseOrExpression
+					// /Users/alejandropenate/NCalc.g:110:4: '|' right= bitwiseOrExpression
 					{
 					DebugLocation(110, 4);
 					char_literal7=(IToken)Match(input,45,Follow._45_in_bitwiseOrExpression246); 
@@ -788,7 +794,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_bitwiseXOrExpression();
 	partial void LeaveRule_bitwiseXOrExpression();
 	// $ANTLR start "bitwiseXOrExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:115:1: bitwiseXOrExpression returns [LogicalExpression value] : left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )* ;
+	// /Users/alejandropenate/NCalc.g:115:1: bitwiseXOrExpression returns [LogicalExpression value] : left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )* ;
 	[GrammarRule("bitwiseXOrExpression")]
 	private NCalcParser.bitwiseXOrExpression_return bitwiseXOrExpression()
 	{
@@ -812,9 +818,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(115, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:119:2: (left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )* )
+			// /Users/alejandropenate/NCalc.g:119:2: (left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:119:4: left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )*
+			// /Users/alejandropenate/NCalc.g:119:4: left= bitwiseAndExpression ( '^' right= bitwiseAndExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -827,7 +833,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(119, 30);
 			 retval.value = (left!=null?((NCalcParser.bitwiseAndExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(119, 56);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:119:56: ( '^' right= bitwiseAndExpression )*
+			// /Users/alejandropenate/NCalc.g:119:56: ( '^' right= bitwiseAndExpression )*
 			try { DebugEnterSubRule(5);
 			while (true)
 			{
@@ -846,7 +852,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:120:4: '^' right= bitwiseAndExpression
+					// /Users/alejandropenate/NCalc.g:120:4: '^' right= bitwiseAndExpression
 					{
 					DebugLocation(120, 4);
 					char_literal8=(IToken)Match(input,41,Follow._41_in_bitwiseXOrExpression299); 
@@ -915,7 +921,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_bitwiseAndExpression();
 	partial void LeaveRule_bitwiseAndExpression();
 	// $ANTLR start "bitwiseAndExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:125:1: bitwiseAndExpression returns [LogicalExpression value] : left= equalityExpression ( '&' right= equalityExpression )* ;
+	// /Users/alejandropenate/NCalc.g:125:1: bitwiseAndExpression returns [LogicalExpression value] : left= equalityExpression ( '&' right= equalityExpression )* ;
 	[GrammarRule("bitwiseAndExpression")]
 	private NCalcParser.bitwiseAndExpression_return bitwiseAndExpression()
 	{
@@ -939,9 +945,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(125, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:129:2: (left= equalityExpression ( '&' right= equalityExpression )* )
+			// /Users/alejandropenate/NCalc.g:129:2: (left= equalityExpression ( '&' right= equalityExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:129:4: left= equalityExpression ( '&' right= equalityExpression )*
+			// /Users/alejandropenate/NCalc.g:129:4: left= equalityExpression ( '&' right= equalityExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -954,7 +960,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(129, 28);
 			 retval.value = (left!=null?((NCalcParser.equalityExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(129, 54);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:129:54: ( '&' right= equalityExpression )*
+			// /Users/alejandropenate/NCalc.g:129:54: ( '&' right= equalityExpression )*
 			try { DebugEnterSubRule(6);
 			while (true)
 			{
@@ -973,7 +979,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:130:4: '&' right= equalityExpression
+					// /Users/alejandropenate/NCalc.g:130:4: '&' right= equalityExpression
 					{
 					DebugLocation(130, 4);
 					char_literal9=(IToken)Match(input,22,Follow._22_in_bitwiseAndExpression350); 
@@ -1042,7 +1048,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_equalityExpression();
 	partial void LeaveRule_equalityExpression();
 	// $ANTLR start "equalityExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:135:1: equalityExpression returns [LogicalExpression value] : left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )* ;
+	// /Users/alejandropenate/NCalc.g:135:1: equalityExpression returns [LogicalExpression value] : left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )* ;
 	[GrammarRule("equalityExpression")]
 	private NCalcParser.equalityExpression_return equalityExpression()
 	{
@@ -1068,9 +1074,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(135, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:139:2: (left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )* )
+			// /Users/alejandropenate/NCalc.g:139:2: (left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:139:4: left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )*
+			// /Users/alejandropenate/NCalc.g:139:4: left= relationalExpression ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -1083,7 +1089,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(139, 30);
 			 retval.value = (left!=null?((NCalcParser.relationalExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(139, 56);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:139:56: ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )*
+			// /Users/alejandropenate/NCalc.g:139:56: ( ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression )*
 			try { DebugEnterSubRule(8);
 			while (true)
 			{
@@ -1102,10 +1108,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:140:4: ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression
+					// /Users/alejandropenate/NCalc.g:140:4: ( ( '==' | '=' ) | ( '!=' | '<>' ) ) right= relationalExpression
 					{
 					DebugLocation(140, 4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:140:4: ( ( '==' | '=' ) | ( '!=' | '<>' ) )
+					// /Users/alejandropenate/NCalc.g:140:4: ( ( '==' | '=' ) | ( '!=' | '<>' ) )
 					int alt7=2;
 					try { DebugEnterSubRule(7);
 					try { DebugEnterDecision(7, false);
@@ -1130,7 +1136,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:140:6: ( '==' | '=' )
+						// /Users/alejandropenate/NCalc.g:140:6: ( '==' | '=' )
 						{
 						DebugLocation(140, 6);
 
@@ -1155,7 +1161,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:141:6: ( '!=' | '<>' )
+						// /Users/alejandropenate/NCalc.g:141:6: ( '!=' | '<>' )
 						{
 						DebugLocation(141, 6);
 
@@ -1243,7 +1249,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_relationalExpression();
 	partial void LeaveRule_relationalExpression();
 	// $ANTLR start "relationalExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:146:1: relationalExpression returns [LogicalExpression value] : left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )* ;
+	// /Users/alejandropenate/NCalc.g:146:1: relationalExpression returns [LogicalExpression value] : left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )* ;
 	[GrammarRule("relationalExpression")]
 	private NCalcParser.relationalExpression_return relationalExpression()
 	{
@@ -1273,9 +1279,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(146, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:150:2: (left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )* )
+			// /Users/alejandropenate/NCalc.g:150:2: (left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:150:4: left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )*
+			// /Users/alejandropenate/NCalc.g:150:4: left= shiftExpression ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -1288,7 +1294,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(150, 25);
 			 retval.value = (left!=null?((NCalcParser.shiftExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(150, 51);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:150:51: ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )*
+			// /Users/alejandropenate/NCalc.g:150:51: ( ( '<' | '<=' | '>' | '>=' ) right= shiftExpression )*
 			try { DebugEnterSubRule(10);
 			while (true)
 			{
@@ -1307,10 +1313,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:151:4: ( '<' | '<=' | '>' | '>=' ) right= shiftExpression
+					// /Users/alejandropenate/NCalc.g:151:4: ( '<' | '<=' | '>' | '>=' ) right= shiftExpression
 					{
 					DebugLocation(151, 4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:151:4: ( '<' | '<=' | '>' | '>=' )
+					// /Users/alejandropenate/NCalc.g:151:4: ( '<' | '<=' | '>' | '>=' )
 					int alt9=4;
 					try { DebugEnterSubRule(9);
 					try { DebugEnterDecision(9, false);
@@ -1349,7 +1355,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:151:6: '<'
+						// /Users/alejandropenate/NCalc.g:151:6: '<'
 						{
 						DebugLocation(151, 6);
 						char_literal12=(IToken)Match(input,31,Follow._31_in_relationalExpression485); 
@@ -1362,7 +1368,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:152:6: '<='
+						// /Users/alejandropenate/NCalc.g:152:6: '<='
 						{
 						DebugLocation(152, 6);
 						string_literal13=(IToken)Match(input,33,Follow._33_in_relationalExpression495); 
@@ -1375,7 +1381,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 3:
 						DebugEnterAlt(3);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:153:6: '>'
+						// /Users/alejandropenate/NCalc.g:153:6: '>'
 						{
 						DebugLocation(153, 6);
 						char_literal14=(IToken)Match(input,37,Follow._37_in_relationalExpression506); 
@@ -1388,7 +1394,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 4:
 						DebugEnterAlt(4);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:154:6: '>='
+						// /Users/alejandropenate/NCalc.g:154:6: '>='
 						{
 						DebugLocation(154, 6);
 						string_literal15=(IToken)Match(input,38,Follow._38_in_relationalExpression516); 
@@ -1464,7 +1470,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_shiftExpression();
 	partial void LeaveRule_shiftExpression();
 	// $ANTLR start "shiftExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:159:1: shiftExpression returns [LogicalExpression value] : left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )* ;
+	// /Users/alejandropenate/NCalc.g:159:1: shiftExpression returns [LogicalExpression value] : left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )* ;
 	[GrammarRule("shiftExpression")]
 	private NCalcParser.shiftExpression_return shiftExpression()
 	{
@@ -1490,9 +1496,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(159, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:163:2: (left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )* )
+			// /Users/alejandropenate/NCalc.g:163:2: (left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:163:4: left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )*
+			// /Users/alejandropenate/NCalc.g:163:4: left= additiveExpression ( ( '<<' | '>>' ) right= additiveExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -1505,7 +1511,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(163, 28);
 			 retval.value = (left!=null?((NCalcParser.additiveExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(163, 54);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:163:54: ( ( '<<' | '>>' ) right= additiveExpression )*
+			// /Users/alejandropenate/NCalc.g:163:54: ( ( '<<' | '>>' ) right= additiveExpression )*
 			try { DebugEnterSubRule(12);
 			while (true)
 			{
@@ -1524,10 +1530,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:164:4: ( '<<' | '>>' ) right= additiveExpression
+					// /Users/alejandropenate/NCalc.g:164:4: ( '<<' | '>>' ) right= additiveExpression
 					{
 					DebugLocation(164, 4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:164:4: ( '<<' | '>>' )
+					// /Users/alejandropenate/NCalc.g:164:4: ( '<<' | '>>' )
 					int alt11=2;
 					try { DebugEnterSubRule(11);
 					try { DebugEnterDecision(11, false);
@@ -1552,7 +1558,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:164:6: '<<'
+						// /Users/alejandropenate/NCalc.g:164:6: '<<'
 						{
 						DebugLocation(164, 6);
 						string_literal16=(IToken)Match(input,32,Follow._32_in_shiftExpression571); 
@@ -1565,7 +1571,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:165:6: '>>'
+						// /Users/alejandropenate/NCalc.g:165:6: '>>'
 						{
 						DebugLocation(165, 6);
 						string_literal17=(IToken)Match(input,39,Follow._39_in_shiftExpression581); 
@@ -1641,7 +1647,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_additiveExpression();
 	partial void LeaveRule_additiveExpression();
 	// $ANTLR start "additiveExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:170:1: additiveExpression returns [LogicalExpression value] : left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )* ;
+	// /Users/alejandropenate/NCalc.g:170:1: additiveExpression returns [LogicalExpression value] : left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )* ;
 	[GrammarRule("additiveExpression")]
 	private NCalcParser.additiveExpression_return additiveExpression()
 	{
@@ -1667,9 +1673,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(170, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:174:2: (left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )* )
+			// /Users/alejandropenate/NCalc.g:174:2: (left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:174:4: left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )*
+			// /Users/alejandropenate/NCalc.g:174:4: left= multiplicativeExpression ( ( '+' | '-' ) right= multiplicativeExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -1682,7 +1688,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(174, 34);
 			 retval.value = (left!=null?((NCalcParser.multiplicativeExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(174, 60);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:174:60: ( ( '+' | '-' ) right= multiplicativeExpression )*
+			// /Users/alejandropenate/NCalc.g:174:60: ( ( '+' | '-' ) right= multiplicativeExpression )*
 			try { DebugEnterSubRule(14);
 			while (true)
 			{
@@ -1690,7 +1696,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				try { DebugEnterDecision(14, false);
 				int LA14_1 = input.LA(1);
 
-				if (((LA14_1>=26 && LA14_1<=27)))
+				if ((LA14_1==26||LA14_1==28))
 				{
 					alt14 = 1;
 				}
@@ -1701,10 +1707,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:175:4: ( '+' | '-' ) right= multiplicativeExpression
+					// /Users/alejandropenate/NCalc.g:175:4: ( '+' | '-' ) right= multiplicativeExpression
 					{
 					DebugLocation(175, 4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:175:4: ( '+' | '-' )
+					// /Users/alejandropenate/NCalc.g:175:4: ( '+' | '-' )
 					int alt13=2;
 					try { DebugEnterSubRule(13);
 					try { DebugEnterDecision(13, false);
@@ -1714,7 +1720,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 						alt13 = 1;
 					}
-					else if ((LA13_1==27))
+					else if ((LA13_1==28))
 					{
 						alt13 = 2;
 					}
@@ -1729,7 +1735,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:175:6: '+'
+						// /Users/alejandropenate/NCalc.g:175:6: '+'
 						{
 						DebugLocation(175, 6);
 						char_literal18=(IToken)Match(input,26,Follow._26_in_additiveExpression636); 
@@ -1742,10 +1748,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:176:6: '-'
+						// /Users/alejandropenate/NCalc.g:176:6: '-'
 						{
 						DebugLocation(176, 6);
-						char_literal19=(IToken)Match(input,27,Follow._27_in_additiveExpression646); 
+						char_literal19=(IToken)Match(input,28,Follow._28_in_additiveExpression646); 
 						char_literal19_tree = (CommonTree)adaptor.Create(char_literal19);
 						adaptor.AddChild(root_0, char_literal19_tree);
 						DebugLocation(176, 10);
@@ -1818,7 +1824,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_multiplicativeExpression();
 	partial void LeaveRule_multiplicativeExpression();
 	// $ANTLR start "multiplicativeExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:181:1: multiplicativeExpression returns [LogicalExpression value] : left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )* ;
+	// /Users/alejandropenate/NCalc.g:181:1: multiplicativeExpression returns [LogicalExpression value] : left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )* ;
 	[GrammarRule("multiplicativeExpression")]
 	private NCalcParser.multiplicativeExpression_return multiplicativeExpression()
 	{
@@ -1846,9 +1852,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(181, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:185:2: (left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )* )
+			// /Users/alejandropenate/NCalc.g:185:2: (left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:185:4: left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )*
+			// /Users/alejandropenate/NCalc.g:185:4: left= unaryExpression ( ( '*' | '/' | '%' ) right= unaryExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -1861,7 +1867,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(185, 25);
 			 retval.value = (left!=null?((NCalcParser.unaryExpression_return)left).value:default(LogicalExpression)); 
 			DebugLocation(185, 52);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:185:52: ( ( '*' | '/' | '%' ) right= unaryExpression )*
+			// /Users/alejandropenate/NCalc.g:185:52: ( ( '*' | '/' | '%' ) right= unaryExpression )*
 			try { DebugEnterSubRule(16);
 			while (true)
 			{
@@ -1869,7 +1875,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				try { DebugEnterDecision(16, false);
 				int LA16_1 = input.LA(1);
 
-				if ((LA16_1==20||LA16_1==25||LA16_1==28))
+				if ((LA16_1==20||LA16_1==25||LA16_1==29))
 				{
 					alt16 = 1;
 				}
@@ -1880,10 +1886,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:186:4: ( '*' | '/' | '%' ) right= unaryExpression
+					// /Users/alejandropenate/NCalc.g:186:4: ( '*' | '/' | '%' ) right= unaryExpression
 					{
 					DebugLocation(186, 4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:186:4: ( '*' | '/' | '%' )
+					// /Users/alejandropenate/NCalc.g:186:4: ( '*' | '/' | '%' )
 					int alt15=3;
 					try { DebugEnterSubRule(15);
 					try { DebugEnterDecision(15, false);
@@ -1894,7 +1900,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						alt15 = 1;
 						}
 						break;
-					case 28:
+					case 29:
 						{
 						alt15 = 2;
 						}
@@ -1917,7 +1923,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:186:6: '*'
+						// /Users/alejandropenate/NCalc.g:186:6: '*'
 						{
 						DebugLocation(186, 6);
 						char_literal20=(IToken)Match(input,25,Follow._25_in_multiplicativeExpression701); 
@@ -1930,10 +1936,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:187:6: '/'
+						// /Users/alejandropenate/NCalc.g:187:6: '/'
 						{
 						DebugLocation(187, 6);
-						char_literal21=(IToken)Match(input,28,Follow._28_in_multiplicativeExpression711); 
+						char_literal21=(IToken)Match(input,29,Follow._29_in_multiplicativeExpression711); 
 						char_literal21_tree = (CommonTree)adaptor.Create(char_literal21);
 						adaptor.AddChild(root_0, char_literal21_tree);
 						DebugLocation(187, 10);
@@ -1943,7 +1949,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 						break;
 					case 3:
 						DebugEnterAlt(3);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:188:6: '%'
+						// /Users/alejandropenate/NCalc.g:188:6: '%'
 						{
 						DebugLocation(188, 6);
 						char_literal22=(IToken)Match(input,20,Follow._20_in_multiplicativeExpression721); 
@@ -2019,7 +2025,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_unaryExpression();
 	partial void LeaveRule_unaryExpression();
 	// $ANTLR start "unaryExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:194:1: unaryExpression returns [LogicalExpression value] : ( primaryExpression | ( '!' | 'not' ) primaryExpression | ( '~' ) primaryExpression | '-' primaryExpression );
+	// /Users/alejandropenate/NCalc.g:194:1: unaryExpression returns [LogicalExpression value] : ( primaryExpression | ( '!' | 'not' ) primaryExpression | ( '~' ) primaryExpression | '-' primaryExpression );
 	[GrammarRule("unaryExpression")]
 	private NCalcParser.unaryExpression_return unaryExpression()
 	{
@@ -2046,7 +2052,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(194, 4);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:195:2: ( primaryExpression | ( '!' | 'not' ) primaryExpression | ( '~' ) primaryExpression | '-' primaryExpression )
+			// /Users/alejandropenate/NCalc.g:195:2: ( primaryExpression | ( '!' | 'not' ) primaryExpression | ( '~' ) primaryExpression | '-' primaryExpression )
 			int alt17=4;
 			try { DebugEnterDecision(17, false);
 			switch (input.LA(1))
@@ -2074,7 +2080,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				alt17 = 3;
 				}
 				break;
-			case 27:
+			case 28:
 				{
 				alt17 = 4;
 				}
@@ -2092,7 +2098,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:195:4: primaryExpression
+				// /Users/alejandropenate/NCalc.g:195:4: primaryExpression
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2109,7 +2115,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:196:8: ( '!' | 'not' ) primaryExpression
+				// /Users/alejandropenate/NCalc.g:196:8: ( '!' | 'not' ) primaryExpression
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2142,14 +2148,14 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:197:8: ( '~' ) primaryExpression
+				// /Users/alejandropenate/NCalc.g:197:8: ( '~' ) primaryExpression
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(197, 8);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:197:8: ( '~' )
+				// /Users/alejandropenate/NCalc.g:197:8: ( '~' )
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:197:9: '~'
+				// /Users/alejandropenate/NCalc.g:197:9: '~'
 				{
 				DebugLocation(197, 9);
 				char_literal26=(IToken)Match(input,47,Follow._47_in_unaryExpression791); 
@@ -2171,12 +2177,12 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:198:8: '-' primaryExpression
+				// /Users/alejandropenate/NCalc.g:198:8: '-' primaryExpression
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(198, 8);
-				char_literal28=(IToken)Match(input,27,Follow._27_in_unaryExpression805); 
+				char_literal28=(IToken)Match(input,28,Follow._28_in_unaryExpression805); 
 				char_literal28_tree = (CommonTree)adaptor.Create(char_literal28);
 				adaptor.AddChild(root_0, char_literal28_tree);
 				DebugLocation(198, 12);
@@ -2228,7 +2234,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_primaryExpression();
 	partial void LeaveRule_primaryExpression();
 	// $ANTLR start "primaryExpression"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:201:1: primaryExpression returns [LogicalExpression value] : ( '(' logicalExpression ')' |expr= value | identifier ( arguments )? );
+	// /Users/alejandropenate/NCalc.g:201:1: primaryExpression returns [LogicalExpression value] : ( '(' logicalExpression ')' |expr= value | identifier ( arguments )? );
 	[GrammarRule("primaryExpression")]
 	private NCalcParser.primaryExpression_return primaryExpression()
 	{
@@ -2253,7 +2259,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(201, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:202:2: ( '(' logicalExpression ')' |expr= value | identifier ( arguments )? )
+			// /Users/alejandropenate/NCalc.g:202:2: ( '(' logicalExpression ')' |expr= value | identifier ( arguments )? )
 			int alt19=3;
 			try { DebugEnterDecision(19, false);
 			switch (input.LA(1))
@@ -2291,7 +2297,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:202:4: '(' logicalExpression ')'
+				// /Users/alejandropenate/NCalc.g:202:4: '(' logicalExpression ')'
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2316,7 +2322,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:203:4: expr= value
+				// /Users/alejandropenate/NCalc.g:203:4: expr= value
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2333,7 +2339,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:204:4: identifier ( arguments )?
+				// /Users/alejandropenate/NCalc.g:204:4: identifier ( arguments )?
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2346,7 +2352,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				DebugLocation(204, 15);
 				retval.value = (LogicalExpression) (identifier33!=null?((NCalcParser.identifier_return)identifier33).value:default(Identifier)); 
 				DebugLocation(204, 66);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:204:66: ( arguments )?
+				// /Users/alejandropenate/NCalc.g:204:66: ( arguments )?
 				int alt18=2;
 				try { DebugEnterSubRule(18);
 				try { DebugEnterDecision(18, false);
@@ -2361,7 +2367,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:204:67: arguments
+					// /Users/alejandropenate/NCalc.g:204:67: arguments
 					{
 					DebugLocation(204, 67);
 					PushFollow(Follow._arguments_in_primaryExpression856);
@@ -2419,7 +2425,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_value();
 	partial void LeaveRule_value();
 	// $ANTLR start "value"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:207:1: value returns [ValueExpression value] : ( INTEGER | FLOAT | STRING | TRUE | FALSE );
+	// /Users/alejandropenate/NCalc.g:207:1: value returns [ValueExpression value] : ( INTEGER | FLOAT | STRING | TRUE | FALSE );
 	[GrammarRule("value")]
 	private NCalcParser.value_return value()
 	{
@@ -2446,7 +2452,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(207, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:208:2: ( INTEGER | FLOAT | STRING | TRUE | FALSE )
+			// /Users/alejandropenate/NCalc.g:208:2: ( INTEGER | FLOAT | STRING | TRUE | FALSE )
 			int alt20=5;
 			try { DebugEnterDecision(20, false);
 			switch (input.LA(1))
@@ -2489,7 +2495,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:208:5: INTEGER
+				// /Users/alejandropenate/NCalc.g:208:5: INTEGER
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2504,7 +2510,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:209:4: FLOAT
+				// /Users/alejandropenate/NCalc.g:209:4: FLOAT
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2519,7 +2525,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:210:4: STRING
+				// /Users/alejandropenate/NCalc.g:210:4: STRING
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2534,7 +2540,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:211:4: TRUE
+				// /Users/alejandropenate/NCalc.g:211:4: TRUE
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2549,7 +2555,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 5:
 				DebugEnterAlt(5);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:212:4: FALSE
+				// /Users/alejandropenate/NCalc.g:212:4: FALSE
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2600,7 +2606,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_identifier();
 	partial void LeaveRule_identifier();
 	// $ANTLR start "identifier"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:215:1: identifier returns [Identifier value] : ( ID | NAME );
+	// /Users/alejandropenate/NCalc.g:215:1: identifier returns [Identifier value] : ( ID | NAME );
 	[GrammarRule("identifier")]
 	private NCalcParser.identifier_return identifier()
 	{
@@ -2621,7 +2627,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(215, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:216:2: ( ID | NAME )
+			// /Users/alejandropenate/NCalc.g:216:2: ( ID | NAME )
 			int alt21=2;
 			try { DebugEnterDecision(21, false);
 			int LA21_1 = input.LA(1);
@@ -2645,7 +2651,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:216:5: ID
+				// /Users/alejandropenate/NCalc.g:216:5: ID
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2660,7 +2666,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:217:5: NAME
+				// /Users/alejandropenate/NCalc.g:217:5: NAME
 				{
 				root_0 = (CommonTree)adaptor.Nil();
 
@@ -2711,7 +2717,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_expressionList();
 	partial void LeaveRule_expressionList();
 	// $ANTLR start "expressionList"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:220:1: expressionList returns [List<LogicalExpression> value] : first= logicalExpression ( ';' follow= logicalExpression )* ;
+	// /Users/alejandropenate/NCalc.g:220:1: expressionList returns [List<LogicalExpression> value] : first= logicalExpression ( ',' follow= logicalExpression )* ;
 	[GrammarRule("expressionList")]
 	private NCalcParser.expressionList_return expressionList()
 	{
@@ -2735,9 +2741,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(220, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:224:2: (first= logicalExpression ( ';' follow= logicalExpression )* )
+			// /Users/alejandropenate/NCalc.g:224:2: (first= logicalExpression ( ',' follow= logicalExpression )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:224:4: first= logicalExpression ( ';' follow= logicalExpression )*
+			// /Users/alejandropenate/NCalc.g:224:4: first= logicalExpression ( ',' follow= logicalExpression )*
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -2750,7 +2756,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			DebugLocation(224, 28);
 			expressions.Add((first!=null?((NCalcParser.logicalExpression_return)first).value:default(LogicalExpression)));
 			DebugLocation(224, 62);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:224:62: ( ';' follow= logicalExpression )*
+			// /Users/alejandropenate/NCalc.g:224:62: ( ',' follow= logicalExpression )*
 			try { DebugEnterSubRule(22);
 			while (true)
 			{
@@ -2758,7 +2764,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				try { DebugEnterDecision(22, false);
 				int LA22_1 = input.LA(1);
 
-				if ((LA22_1==30))
+				if ((LA22_1==27))
 				{
 					alt22 = 1;
 				}
@@ -2769,10 +2775,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:224:64: ';' follow= logicalExpression
+					// /Users/alejandropenate/NCalc.g:224:64: ',' follow= logicalExpression
 					{
 					DebugLocation(224, 64);
-					char_literal42=(IToken)Match(input,30,Follow._30_in_expressionList965); 
+					char_literal42=(IToken)Match(input,27,Follow._27_in_expressionList965); 
 					char_literal42_tree = (CommonTree)adaptor.Create(char_literal42);
 					adaptor.AddChild(root_0, char_literal42_tree);
 					DebugLocation(224, 74);
@@ -2838,7 +2844,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 	partial void EnterRule_arguments();
 	partial void LeaveRule_arguments();
 	// $ANTLR start "arguments"
-	// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:228:1: arguments returns [List<LogicalExpression> value] : '(' ( expressionList )? ')' ;
+	// /Users/alejandropenate/NCalc.g:228:1: arguments returns [List<LogicalExpression> value] : '(' ( expressionList )? ')' ;
 	[GrammarRule("arguments")]
 	private NCalcParser.arguments_return arguments()
 	{
@@ -2863,9 +2869,9 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		DebugLocation(228, 1);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:232:2: ( '(' ( expressionList )? ')' )
+			// /Users/alejandropenate/NCalc.g:232:2: ( '(' ( expressionList )? ')' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:232:4: '(' ( expressionList )? ')'
+			// /Users/alejandropenate/NCalc.g:232:4: '(' ( expressionList )? ')'
 			{
 			root_0 = (CommonTree)adaptor.Nil();
 
@@ -2874,13 +2880,13 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			char_literal43_tree = (CommonTree)adaptor.Create(char_literal43);
 			adaptor.AddChild(root_0, char_literal43_tree);
 			DebugLocation(232, 8);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:232:8: ( expressionList )?
+			// /Users/alejandropenate/NCalc.g:232:8: ( expressionList )?
 			int alt23=2;
 			try { DebugEnterSubRule(23);
 			try { DebugEnterDecision(23, false);
 			int LA23_1 = input.LA(1);
 
-			if (((LA23_1>=FALSE && LA23_1<=FLOAT)||(LA23_1>=ID && LA23_1<=INTEGER)||(LA23_1>=NAME && LA23_1<=TRUE)||LA23_1==18||LA23_1==23||LA23_1==27||LA23_1==43||LA23_1==47))
+			if (((LA23_1>=FALSE && LA23_1<=FLOAT)||(LA23_1>=ID && LA23_1<=INTEGER)||(LA23_1>=NAME && LA23_1<=TRUE)||LA23_1==18||LA23_1==23||LA23_1==28||LA23_1==43||LA23_1==47))
 			{
 				alt23 = 1;
 			}
@@ -2889,7 +2895,7 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:232:10: expressionList
+				// /Users/alejandropenate/NCalc.g:232:10: expressionList
 				{
 				DebugLocation(232, 10);
 				PushFollow(Follow._expressionList_in_arguments1002);
@@ -2947,56 +2953,56 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		public static readonly BitSet _logicalExpression_in_ncalcExpression56 = new BitSet(new ulong[]{0x0UL});
 		public static readonly BitSet _EOF_in_ncalcExpression58 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _conditionalExpression_in_logicalExpression78 = new BitSet(new ulong[]{0x10000000002UL});
-		public static readonly BitSet _40_in_logicalExpression84 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _conditionalExpression_in_logicalExpression88 = new BitSet(new ulong[]{0x20000000UL});
-		public static readonly BitSet _29_in_logicalExpression90 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _40_in_logicalExpression84 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _conditionalExpression_in_logicalExpression88 = new BitSet(new ulong[]{0x40000000UL});
+		public static readonly BitSet _30_in_logicalExpression90 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _conditionalExpression_in_logicalExpression94 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _booleanAndExpression_in_conditionalExpression121 = new BitSet(new ulong[]{0x500000000002UL});
-		public static readonly BitSet _set_in_conditionalExpression130 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _set_in_conditionalExpression130 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _conditionalExpression_in_conditionalExpression146 = new BitSet(new ulong[]{0x500000000002UL});
 		public static readonly BitSet _bitwiseOrExpression_in_booleanAndExpression180 = new BitSet(new ulong[]{0x40000200002UL});
-		public static readonly BitSet _set_in_booleanAndExpression189 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _set_in_booleanAndExpression189 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _bitwiseOrExpression_in_booleanAndExpression205 = new BitSet(new ulong[]{0x40000200002UL});
 		public static readonly BitSet _bitwiseXOrExpression_in_bitwiseOrExpression237 = new BitSet(new ulong[]{0x200000000002UL});
-		public static readonly BitSet _45_in_bitwiseOrExpression246 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _45_in_bitwiseOrExpression246 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _bitwiseOrExpression_in_bitwiseOrExpression256 = new BitSet(new ulong[]{0x200000000002UL});
 		public static readonly BitSet _bitwiseAndExpression_in_bitwiseXOrExpression290 = new BitSet(new ulong[]{0x20000000002UL});
-		public static readonly BitSet _41_in_bitwiseXOrExpression299 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _41_in_bitwiseXOrExpression299 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _bitwiseAndExpression_in_bitwiseXOrExpression309 = new BitSet(new ulong[]{0x20000000002UL});
 		public static readonly BitSet _equalityExpression_in_bitwiseAndExpression341 = new BitSet(new ulong[]{0x400002UL});
-		public static readonly BitSet _22_in_bitwiseAndExpression350 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _22_in_bitwiseAndExpression350 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _equalityExpression_in_bitwiseAndExpression360 = new BitSet(new ulong[]{0x400002UL});
 		public static readonly BitSet _relationalExpression_in_equalityExpression394 = new BitSet(new ulong[]{0x1C00080002UL});
-		public static readonly BitSet _set_in_equalityExpression405 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _set_in_equalityExpression422 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _set_in_equalityExpression405 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _set_in_equalityExpression422 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _relationalExpression_in_equalityExpression441 = new BitSet(new ulong[]{0x1C00080002UL});
 		public static readonly BitSet _shiftExpression_in_relationalExpression474 = new BitSet(new ulong[]{0x6280000002UL});
-		public static readonly BitSet _31_in_relationalExpression485 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _33_in_relationalExpression495 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _37_in_relationalExpression506 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _38_in_relationalExpression516 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _31_in_relationalExpression485 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _33_in_relationalExpression495 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _37_in_relationalExpression506 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _38_in_relationalExpression516 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _shiftExpression_in_relationalExpression528 = new BitSet(new ulong[]{0x6280000002UL});
 		public static readonly BitSet _additiveExpression_in_shiftExpression560 = new BitSet(new ulong[]{0x8100000002UL});
-		public static readonly BitSet _32_in_shiftExpression571 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _39_in_shiftExpression581 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _32_in_shiftExpression571 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _39_in_shiftExpression581 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _additiveExpression_in_shiftExpression593 = new BitSet(new ulong[]{0x8100000002UL});
-		public static readonly BitSet _multiplicativeExpression_in_additiveExpression625 = new BitSet(new ulong[]{0xC000002UL});
-		public static readonly BitSet _26_in_additiveExpression636 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _27_in_additiveExpression646 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _multiplicativeExpression_in_additiveExpression658 = new BitSet(new ulong[]{0xC000002UL});
-		public static readonly BitSet _unaryExpression_in_multiplicativeExpression690 = new BitSet(new ulong[]{0x12100002UL});
-		public static readonly BitSet _25_in_multiplicativeExpression701 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _28_in_multiplicativeExpression711 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _20_in_multiplicativeExpression721 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _unaryExpression_in_multiplicativeExpression733 = new BitSet(new ulong[]{0x12100002UL});
+		public static readonly BitSet _multiplicativeExpression_in_additiveExpression625 = new BitSet(new ulong[]{0x14000002UL});
+		public static readonly BitSet _26_in_additiveExpression636 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _28_in_additiveExpression646 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _multiplicativeExpression_in_additiveExpression658 = new BitSet(new ulong[]{0x14000002UL});
+		public static readonly BitSet _unaryExpression_in_multiplicativeExpression690 = new BitSet(new ulong[]{0x22100002UL});
+		public static readonly BitSet _25_in_multiplicativeExpression701 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _29_in_multiplicativeExpression711 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _20_in_multiplicativeExpression721 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _unaryExpression_in_multiplicativeExpression733 = new BitSet(new ulong[]{0x22100002UL});
 		public static readonly BitSet _primaryExpression_in_unaryExpression760 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _set_in_unaryExpression771 = new BitSet(new ulong[]{0x80ED80UL});
 		public static readonly BitSet _primaryExpression_in_unaryExpression779 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _47_in_unaryExpression791 = new BitSet(new ulong[]{0x80ED80UL});
 		public static readonly BitSet _primaryExpression_in_unaryExpression794 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _27_in_unaryExpression805 = new BitSet(new ulong[]{0x80ED80UL});
+		public static readonly BitSet _28_in_unaryExpression805 = new BitSet(new ulong[]{0x80ED80UL});
 		public static readonly BitSet _primaryExpression_in_unaryExpression807 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _23_in_primaryExpression829 = new BitSet(new ulong[]{0x88000884ED80UL});
+		public static readonly BitSet _23_in_primaryExpression829 = new BitSet(new ulong[]{0x88001084ED80UL});
 		public static readonly BitSet _logicalExpression_in_primaryExpression831 = new BitSet(new ulong[]{0x1000000UL});
 		public static readonly BitSet _24_in_primaryExpression833 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _value_in_primaryExpression843 = new BitSet(new ulong[]{0x2UL});
@@ -3009,10 +3015,10 @@ public partial class NCalcParser : Antlr.Runtime.Parser
 		public static readonly BitSet _FALSE_in_value908 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _ID_in_identifier926 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _NAME_in_identifier934 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _logicalExpression_in_expressionList958 = new BitSet(new ulong[]{0x40000002UL});
-		public static readonly BitSet _30_in_expressionList965 = new BitSet(new ulong[]{0x88000884ED80UL});
-		public static readonly BitSet _logicalExpression_in_expressionList969 = new BitSet(new ulong[]{0x40000002UL});
-		public static readonly BitSet _23_in_arguments998 = new BitSet(new ulong[]{0x88000984ED80UL});
+		public static readonly BitSet _logicalExpression_in_expressionList958 = new BitSet(new ulong[]{0x8000002UL});
+		public static readonly BitSet _27_in_expressionList965 = new BitSet(new ulong[]{0x88001084ED80UL});
+		public static readonly BitSet _logicalExpression_in_expressionList969 = new BitSet(new ulong[]{0x8000002UL});
+		public static readonly BitSet _23_in_arguments998 = new BitSet(new ulong[]{0x88001184ED80UL});
 		public static readonly BitSet _expressionList_in_arguments1002 = new BitSet(new ulong[]{0x1000000UL});
 		public static readonly BitSet _24_in_arguments1009 = new BitSet(new ulong[]{0x2UL});
 	}

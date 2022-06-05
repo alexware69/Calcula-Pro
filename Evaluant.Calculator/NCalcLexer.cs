@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.5.1 C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g 2019-04-06 11:08:49
+// $ANTLR 3.5.1 /Users/alejandropenate/NCalc.g 2022-06-05 02:16:31
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -23,10 +23,8 @@
 using System.Collections.Generic;
 using Antlr.Runtime;
 using Antlr.Runtime.Misc;
-using Antlr.Runtime.Tree;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "3.5.1")]
-[System.CLSCompliant(false)]
 public partial class NCalcLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
@@ -94,7 +92,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 
 		OnCreated();
 	}
-	public override string GrammarFileName { get { return "C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g"; } }
+	public override string GrammarFileName { get { return "/Users/alejandropenate/NCalc.g"; } }
 
 
 	partial void OnCreated();
@@ -115,9 +113,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__18;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:7:7: ( '!' )
+			// /Users/alejandropenate/NCalc.g:7:7: ( '!' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:7:9: '!'
+			// /Users/alejandropenate/NCalc.g:7:9: '!'
 			{
 			DebugLocation(7, 9);
 			Match('!'); 
@@ -150,9 +148,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__19;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:8:7: ( '!=' )
+			// /Users/alejandropenate/NCalc.g:8:7: ( '!=' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:8:9: '!='
+			// /Users/alejandropenate/NCalc.g:8:9: '!='
 			{
 			DebugLocation(8, 9);
 			Match("!="); 
@@ -186,9 +184,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__20;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:9:7: ( '%' )
+			// /Users/alejandropenate/NCalc.g:9:7: ( '%' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:9:9: '%'
+			// /Users/alejandropenate/NCalc.g:9:9: '%'
 			{
 			DebugLocation(9, 9);
 			Match('%'); 
@@ -221,9 +219,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__21;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:10:7: ( '&&' )
+			// /Users/alejandropenate/NCalc.g:10:7: ( '&&' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:10:9: '&&'
+			// /Users/alejandropenate/NCalc.g:10:9: '&&'
 			{
 			DebugLocation(10, 9);
 			Match("&&"); 
@@ -257,9 +255,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__22;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:11:7: ( '&' )
+			// /Users/alejandropenate/NCalc.g:11:7: ( '&' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:11:9: '&'
+			// /Users/alejandropenate/NCalc.g:11:9: '&'
 			{
 			DebugLocation(11, 9);
 			Match('&'); 
@@ -292,9 +290,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__23;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:12:7: ( '(' )
+			// /Users/alejandropenate/NCalc.g:12:7: ( '(' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:12:9: '('
+			// /Users/alejandropenate/NCalc.g:12:9: '('
 			{
 			DebugLocation(12, 9);
 			Match('('); 
@@ -327,9 +325,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__24;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:13:7: ( ')' )
+			// /Users/alejandropenate/NCalc.g:13:7: ( ')' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:13:9: ')'
+			// /Users/alejandropenate/NCalc.g:13:9: ')'
 			{
 			DebugLocation(13, 9);
 			Match(')'); 
@@ -362,9 +360,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__25;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:14:7: ( '*' )
+			// /Users/alejandropenate/NCalc.g:14:7: ( '*' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:14:9: '*'
+			// /Users/alejandropenate/NCalc.g:14:9: '*'
 			{
 			DebugLocation(14, 9);
 			Match('*'); 
@@ -397,9 +395,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__26;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:15:7: ( '+' )
+			// /Users/alejandropenate/NCalc.g:15:7: ( '+' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:15:9: '+'
+			// /Users/alejandropenate/NCalc.g:15:9: '+'
 			{
 			DebugLocation(15, 9);
 			Match('+'); 
@@ -432,12 +430,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__27;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:16:7: ( '-' )
+			// /Users/alejandropenate/NCalc.g:16:7: ( ',' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:16:9: '-'
+			// /Users/alejandropenate/NCalc.g:16:9: ','
 			{
 			DebugLocation(16, 9);
-			Match('-'); 
+			Match(','); 
 
 			}
 
@@ -467,12 +465,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__28;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:17:7: ( '/' )
+			// /Users/alejandropenate/NCalc.g:17:7: ( '-' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:17:9: '/'
+			// /Users/alejandropenate/NCalc.g:17:9: '-'
 			{
 			DebugLocation(17, 9);
-			Match('/'); 
+			Match('-'); 
 
 			}
 
@@ -502,12 +500,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__29;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:18:7: ( ':' )
+			// /Users/alejandropenate/NCalc.g:18:7: ( '/' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:18:9: ':'
+			// /Users/alejandropenate/NCalc.g:18:9: '/'
 			{
 			DebugLocation(18, 9);
-			Match(':'); 
+			Match('/'); 
 
 			}
 
@@ -537,12 +535,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__30;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:19:7: ( ';' )
+			// /Users/alejandropenate/NCalc.g:19:7: ( ':' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:19:9: ';'
+			// /Users/alejandropenate/NCalc.g:19:9: ':'
 			{
 			DebugLocation(19, 9);
-			Match(';'); 
+			Match(':'); 
 
 			}
 
@@ -572,9 +570,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__31;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:20:7: ( '<' )
+			// /Users/alejandropenate/NCalc.g:20:7: ( '<' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:20:9: '<'
+			// /Users/alejandropenate/NCalc.g:20:9: '<'
 			{
 			DebugLocation(20, 9);
 			Match('<'); 
@@ -607,9 +605,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__32;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:21:7: ( '<<' )
+			// /Users/alejandropenate/NCalc.g:21:7: ( '<<' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:21:9: '<<'
+			// /Users/alejandropenate/NCalc.g:21:9: '<<'
 			{
 			DebugLocation(21, 9);
 			Match("<<"); 
@@ -643,9 +641,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__33;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:22:7: ( '<=' )
+			// /Users/alejandropenate/NCalc.g:22:7: ( '<=' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:22:9: '<='
+			// /Users/alejandropenate/NCalc.g:22:9: '<='
 			{
 			DebugLocation(22, 9);
 			Match("<="); 
@@ -679,9 +677,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__34;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:23:7: ( '<>' )
+			// /Users/alejandropenate/NCalc.g:23:7: ( '<>' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:23:9: '<>'
+			// /Users/alejandropenate/NCalc.g:23:9: '<>'
 			{
 			DebugLocation(23, 9);
 			Match("<>"); 
@@ -715,9 +713,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__35;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:24:7: ( '=' )
+			// /Users/alejandropenate/NCalc.g:24:7: ( '=' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:24:9: '='
+			// /Users/alejandropenate/NCalc.g:24:9: '='
 			{
 			DebugLocation(24, 9);
 			Match('='); 
@@ -750,9 +748,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__36;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:25:7: ( '==' )
+			// /Users/alejandropenate/NCalc.g:25:7: ( '==' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:25:9: '=='
+			// /Users/alejandropenate/NCalc.g:25:9: '=='
 			{
 			DebugLocation(25, 9);
 			Match("=="); 
@@ -786,9 +784,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__37;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:26:7: ( '>' )
+			// /Users/alejandropenate/NCalc.g:26:7: ( '>' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:26:9: '>'
+			// /Users/alejandropenate/NCalc.g:26:9: '>'
 			{
 			DebugLocation(26, 9);
 			Match('>'); 
@@ -821,9 +819,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__38;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:27:7: ( '>=' )
+			// /Users/alejandropenate/NCalc.g:27:7: ( '>=' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:27:9: '>='
+			// /Users/alejandropenate/NCalc.g:27:9: '>='
 			{
 			DebugLocation(27, 9);
 			Match(">="); 
@@ -857,9 +855,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__39;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:28:7: ( '>>' )
+			// /Users/alejandropenate/NCalc.g:28:7: ( '>>' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:28:9: '>>'
+			// /Users/alejandropenate/NCalc.g:28:9: '>>'
 			{
 			DebugLocation(28, 9);
 			Match(">>"); 
@@ -893,9 +891,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__40;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:29:7: ( '?' )
+			// /Users/alejandropenate/NCalc.g:29:7: ( '?' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:29:9: '?'
+			// /Users/alejandropenate/NCalc.g:29:9: '?'
 			{
 			DebugLocation(29, 9);
 			Match('?'); 
@@ -928,9 +926,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__41;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:30:7: ( '^' )
+			// /Users/alejandropenate/NCalc.g:30:7: ( '^' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:30:9: '^'
+			// /Users/alejandropenate/NCalc.g:30:9: '^'
 			{
 			DebugLocation(30, 9);
 			Match('^'); 
@@ -963,9 +961,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__42;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:31:7: ( 'and' )
+			// /Users/alejandropenate/NCalc.g:31:7: ( 'and' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:31:9: 'and'
+			// /Users/alejandropenate/NCalc.g:31:9: 'and'
 			{
 			DebugLocation(31, 9);
 			Match("and"); 
@@ -999,9 +997,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__43;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:32:7: ( 'not' )
+			// /Users/alejandropenate/NCalc.g:32:7: ( 'not' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:32:9: 'not'
+			// /Users/alejandropenate/NCalc.g:32:9: 'not'
 			{
 			DebugLocation(32, 9);
 			Match("not"); 
@@ -1035,9 +1033,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__44;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:33:7: ( 'or' )
+			// /Users/alejandropenate/NCalc.g:33:7: ( 'or' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:33:9: 'or'
+			// /Users/alejandropenate/NCalc.g:33:9: 'or'
 			{
 			DebugLocation(33, 9);
 			Match("or"); 
@@ -1071,9 +1069,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__45;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:34:7: ( '|' )
+			// /Users/alejandropenate/NCalc.g:34:7: ( '|' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:34:9: '|'
+			// /Users/alejandropenate/NCalc.g:34:9: '|'
 			{
 			DebugLocation(34, 9);
 			Match('|'); 
@@ -1106,9 +1104,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__46;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:35:7: ( '||' )
+			// /Users/alejandropenate/NCalc.g:35:7: ( '||' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:35:9: '||'
+			// /Users/alejandropenate/NCalc.g:35:9: '||'
 			{
 			DebugLocation(35, 9);
 			Match("||"); 
@@ -1142,9 +1140,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = T__47;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:36:7: ( '~' )
+			// /Users/alejandropenate/NCalc.g:36:7: ( '~' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:36:9: '~'
+			// /Users/alejandropenate/NCalc.g:36:9: '~'
 			{
 			DebugLocation(36, 9);
 			Match('~'); 
@@ -1177,9 +1175,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = TRUE;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:236:2: ( 'true' )
+			// /Users/alejandropenate/NCalc.g:236:2: ( 'true' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:236:4: 'true'
+			// /Users/alejandropenate/NCalc.g:236:4: 'true'
 			{
 			DebugLocation(236, 4);
 			Match("true"); 
@@ -1213,9 +1211,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = FALSE;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:240:2: ( 'false' )
+			// /Users/alejandropenate/NCalc.g:240:2: ( 'false' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:240:4: 'false'
+			// /Users/alejandropenate/NCalc.g:240:4: 'false'
 			{
 			DebugLocation(240, 4);
 			Match("false"); 
@@ -1249,12 +1247,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = ID;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:2: ( ( DIGIT )* LETTER ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' | ',' | ' ,' )* )
+			// /Users/alejandropenate/NCalc.g:244:2: ( ( DIGIT )* LETTER ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:5: ( DIGIT )* LETTER ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' | ',' | ' ,' )*
+			// /Users/alejandropenate/NCalc.g:244:5: ( DIGIT )* LETTER ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' )*
 			{
 			DebugLocation(244, 5);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:5: ( DIGIT )*
+			// /Users/alejandropenate/NCalc.g:244:5: ( DIGIT )*
 			try { DebugEnterSubRule(1);
 			while (true)
 			{
@@ -1273,7 +1271,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+					// /Users/alejandropenate/NCalc.g:
 					{
 					DebugLocation(244, 5);
 					input.Consume();
@@ -1295,11 +1293,11 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			DebugLocation(244, 12);
 			mLETTER(); 
 			DebugLocation(244, 19);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:19: ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' | ',' | ' ,' )*
+			// /Users/alejandropenate/NCalc.g:244:19: ( ( ' ' LETTER | LETTER ) | ( ' ' DIGIT | DIGIT ) | '.' | ' .' | '\\\\' )*
 			try { DebugEnterSubRule(4);
 			while (true)
 			{
-				int alt4=8;
+				int alt4=6;
 				try { DebugEnterDecision(4, false);
 				switch (input.LA(1))
 				{
@@ -1310,11 +1308,6 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					case '.':
 						{
 						alt4 = 4;
-						}
-						break;
-					case ',':
-						{
-						alt4 = 7;
 						}
 						break;
 					case '#':
@@ -1479,11 +1472,6 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					alt4 = 5;
 					}
 					break;
-				case ',':
-					{
-					alt4 = 6;
-					}
-					break;
 				}
 
 				} finally { DebugExitDecision(4); }
@@ -1491,10 +1479,10 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:20: ( ' ' LETTER | LETTER )
+					// /Users/alejandropenate/NCalc.g:244:20: ( ' ' LETTER | LETTER )
 					{
 					DebugLocation(244, 20);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:20: ( ' ' LETTER | LETTER )
+					// /Users/alejandropenate/NCalc.g:244:20: ( ' ' LETTER | LETTER )
 					int alt2=2;
 					try { DebugEnterSubRule(2);
 					try { DebugEnterDecision(2, false);
@@ -1519,7 +1507,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:21: ' ' LETTER
+						// /Users/alejandropenate/NCalc.g:244:21: ' ' LETTER
 						{
 						DebugLocation(244, 21);
 						Match(' '); 
@@ -1530,7 +1518,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:34: LETTER
+						// /Users/alejandropenate/NCalc.g:244:34: LETTER
 						{
 						DebugLocation(244, 34);
 						mLETTER(); 
@@ -1546,10 +1534,10 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:44: ( ' ' DIGIT | DIGIT )
+					// /Users/alejandropenate/NCalc.g:244:44: ( ' ' DIGIT | DIGIT )
 					{
 					DebugLocation(244, 44);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:44: ( ' ' DIGIT | DIGIT )
+					// /Users/alejandropenate/NCalc.g:244:44: ( ' ' DIGIT | DIGIT )
 					int alt3=2;
 					try { DebugEnterSubRule(3);
 					try { DebugEnterDecision(3, false);
@@ -1574,7 +1562,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:45: ' ' DIGIT
+						// /Users/alejandropenate/NCalc.g:244:45: ' ' DIGIT
 						{
 						DebugLocation(244, 45);
 						Match(' '); 
@@ -1585,7 +1573,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 						break;
 					case 2:
 						DebugEnterAlt(2);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:57: DIGIT
+						// /Users/alejandropenate/NCalc.g:244:57: DIGIT
 						{
 						DebugLocation(244, 57);
 						mDIGIT(); 
@@ -1601,7 +1589,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					break;
 				case 3:
 					DebugEnterAlt(3);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:66: '.'
+					// /Users/alejandropenate/NCalc.g:244:66: '.'
 					{
 					DebugLocation(244, 66);
 					Match('.'); 
@@ -1610,7 +1598,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					break;
 				case 4:
 					DebugEnterAlt(4);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:72: ' .'
+					// /Users/alejandropenate/NCalc.g:244:72: ' .'
 					{
 					DebugLocation(244, 72);
 					Match(" ."); 
@@ -1620,29 +1608,10 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					break;
 				case 5:
 					DebugEnterAlt(5);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:79: '\\\\'
+					// /Users/alejandropenate/NCalc.g:244:79: '\\\\'
 					{
 					DebugLocation(244, 79);
 					Match('\\'); 
-
-					}
-					break;
-				case 6:
-					DebugEnterAlt(6);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:86: ','
-					{
-					DebugLocation(244, 86);
-					Match(','); 
-
-					}
-					break;
-				case 7:
-					DebugEnterAlt(7);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:244:92: ' ,'
-					{
-					DebugLocation(244, 92);
-					Match(" ,"); 
-
 
 					}
 					break;
@@ -1686,12 +1655,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = INTEGER;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:248:2: ( ( DIGIT )+ )
+			// /Users/alejandropenate/NCalc.g:248:2: ( ( DIGIT )+ )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:248:4: ( DIGIT )+
+			// /Users/alejandropenate/NCalc.g:248:4: ( DIGIT )+
 			{
 			DebugLocation(248, 4);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:248:4: ( DIGIT )+
+			// /Users/alejandropenate/NCalc.g:248:4: ( DIGIT )+
 			int cnt5=0;
 			try { DebugEnterSubRule(5);
 			while (true)
@@ -1711,7 +1680,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+					// /Users/alejandropenate/NCalc.g:
 					{
 					DebugLocation(248, 4);
 					input.Consume();
@@ -1764,7 +1733,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = FLOAT;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:2: ( ( DIGIT )* '.' ( DIGIT )+ ( E )? | ( DIGIT )+ E )
+			// /Users/alejandropenate/NCalc.g:252:2: ( ( DIGIT )* '.' ( DIGIT )+ ( E )? | ( DIGIT )+ E )
 			int alt10=2;
 			try { DebugEnterDecision(10, false);
 			try
@@ -1781,10 +1750,10 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:4: ( DIGIT )* '.' ( DIGIT )+ ( E )?
+				// /Users/alejandropenate/NCalc.g:252:4: ( DIGIT )* '.' ( DIGIT )+ ( E )?
 				{
 				DebugLocation(252, 4);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:4: ( DIGIT )*
+				// /Users/alejandropenate/NCalc.g:252:4: ( DIGIT )*
 				try { DebugEnterSubRule(6);
 				while (true)
 				{
@@ -1803,7 +1772,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+						// /Users/alejandropenate/NCalc.g:
 						{
 						DebugLocation(252, 4);
 						input.Consume();
@@ -1825,7 +1794,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				DebugLocation(252, 11);
 				Match('.'); 
 				DebugLocation(252, 15);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:15: ( DIGIT )+
+				// /Users/alejandropenate/NCalc.g:252:15: ( DIGIT )+
 				int cnt7=0;
 				try { DebugEnterSubRule(7);
 				while (true)
@@ -1845,7 +1814,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+						// /Users/alejandropenate/NCalc.g:
 						{
 						DebugLocation(252, 15);
 						input.Consume();
@@ -1870,7 +1839,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				} finally { DebugExitSubRule(7); }
 
 				DebugLocation(252, 22);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:22: ( E )?
+				// /Users/alejandropenate/NCalc.g:252:22: ( E )?
 				int alt8=2;
 				try { DebugEnterSubRule(8);
 				try { DebugEnterDecision(8, false);
@@ -1885,7 +1854,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:252:22: E
+					// /Users/alejandropenate/NCalc.g:252:22: E
 					{
 					DebugLocation(252, 22);
 					mE(); 
@@ -1901,10 +1870,10 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:253:4: ( DIGIT )+ E
+				// /Users/alejandropenate/NCalc.g:253:4: ( DIGIT )+ E
 				{
 				DebugLocation(253, 4);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:253:4: ( DIGIT )+
+				// /Users/alejandropenate/NCalc.g:253:4: ( DIGIT )+
 				int cnt9=0;
 				try { DebugEnterSubRule(9);
 				while (true)
@@ -1924,7 +1893,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+						// /Users/alejandropenate/NCalc.g:
 						{
 						DebugLocation(253, 4);
 						input.Consume();
@@ -1981,14 +1950,14 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = STRING;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:6: ( '\\'' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )* '\\'' )
+			// /Users/alejandropenate/NCalc.g:257:6: ( '\\'' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )* '\\'' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:10: '\\'' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )* '\\''
+			// /Users/alejandropenate/NCalc.g:257:10: '\\'' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )* '\\''
 			{
 			DebugLocation(257, 10);
 			Match('\''); 
 			DebugLocation(257, 15);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )*
+			// /Users/alejandropenate/NCalc.g:257:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) ) )*
 			try { DebugEnterSubRule(11);
 			while (true)
 			{
@@ -2011,7 +1980,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:17: EscapeSequence
+					// /Users/alejandropenate/NCalc.g:257:17: EscapeSequence
 					{
 					DebugLocation(257, 17);
 					mEscapeSequence(); 
@@ -2020,12 +1989,12 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 					break;
 				case 2:
 					DebugEnterAlt(2);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
+					// /Users/alejandropenate/NCalc.g:257:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
 					{
 					DebugLocation(257, 34);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
+					// /Users/alejandropenate/NCalc.g:257:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:257:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
+					// /Users/alejandropenate/NCalc.g:257:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
 					{
 					DebugLocation(257, 61);
 					input.Consume();
@@ -2078,19 +2047,19 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = NAME;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:260:6: ( '[' ( options {greedy=false; } : (~ ( ']' ) )* ) ']' )
+			// /Users/alejandropenate/NCalc.g:260:6: ( '[' ( options {greedy=false; } : (~ ( ']' ) )* ) ']' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:260:9: '[' ( options {greedy=false; } : (~ ( ']' ) )* ) ']'
+			// /Users/alejandropenate/NCalc.g:260:9: '[' ( options {greedy=false; } : (~ ( ']' ) )* ) ']'
 			{
 			DebugLocation(260, 9);
 			Match('['); 
 			DebugLocation(260, 13);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:260:13: ( options {greedy=false; } : (~ ( ']' ) )* )
+			// /Users/alejandropenate/NCalc.g:260:13: ( options {greedy=false; } : (~ ( ']' ) )* )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:260:40: (~ ( ']' ) )*
+			// /Users/alejandropenate/NCalc.g:260:40: (~ ( ']' ) )*
 			{
 			DebugLocation(260, 40);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:260:40: (~ ( ']' ) )*
+			// /Users/alejandropenate/NCalc.g:260:40: (~ ( ']' ) )*
 			try { DebugEnterSubRule(12);
 			while (true)
 			{
@@ -2109,7 +2078,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+					// /Users/alejandropenate/NCalc.g:
 					{
 					DebugLocation(260, 40);
 					input.Consume();
@@ -2162,9 +2131,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = E;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:263:3: ( ( 'E' | 'e' ) ( '+' | '-' )? ( DIGIT )+ )
+			// /Users/alejandropenate/NCalc.g:263:3: ( ( 'E' | 'e' ) ( '+' | '-' )? ( DIGIT )+ )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:263:5: ( 'E' | 'e' ) ( '+' | '-' )? ( DIGIT )+
+			// /Users/alejandropenate/NCalc.g:263:5: ( 'E' | 'e' ) ( '+' | '-' )? ( DIGIT )+
 			{
 			DebugLocation(263, 5);
 			if (input.LA(1)=='E'||input.LA(1)=='e')
@@ -2180,7 +2149,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			}
 
 			DebugLocation(263, 15);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:263:15: ( '+' | '-' )?
+			// /Users/alejandropenate/NCalc.g:263:15: ( '+' | '-' )?
 			int alt13=2;
 			try { DebugEnterSubRule(13);
 			try { DebugEnterDecision(13, false);
@@ -2195,7 +2164,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+				// /Users/alejandropenate/NCalc.g:
 				{
 				DebugLocation(263, 15);
 				input.Consume();
@@ -2208,7 +2177,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			} finally { DebugExitSubRule(13); }
 
 			DebugLocation(263, 26);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:263:26: ( DIGIT )+
+			// /Users/alejandropenate/NCalc.g:263:26: ( DIGIT )+
 			int cnt14=0;
 			try { DebugEnterSubRule(14);
 			while (true)
@@ -2228,7 +2197,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+					// /Users/alejandropenate/NCalc.g:
 					{
 					DebugLocation(263, 26);
 					input.Consume();
@@ -2279,9 +2248,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		TraceIn("LETTER", 39);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:267:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '#' | '{' | '}' )
+			// /Users/alejandropenate/NCalc.g:267:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '#' | '{' | '}' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+			// /Users/alejandropenate/NCalc.g:
 			{
 			DebugLocation(267, 2);
 			if (input.LA(1)=='#'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='{')||input.LA(1)=='}')
@@ -2321,9 +2290,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		TraceIn("DIGIT", 40);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:276:2: ( '0' .. '9' )
+			// /Users/alejandropenate/NCalc.g:276:2: ( '0' .. '9' )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+			// /Users/alejandropenate/NCalc.g:
 			{
 			DebugLocation(276, 2);
 			if ((input.LA(1)>='0' && input.LA(1)<='9'))
@@ -2363,14 +2332,14 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		TraceIn("EscapeSequence", 41);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:280:2: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape ) )
+			// /Users/alejandropenate/NCalc.g:280:2: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape ) )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:280:4: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
+			// /Users/alejandropenate/NCalc.g:280:4: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
 			{
 			DebugLocation(280, 4);
 			Match('\\'); 
 			DebugLocation(281, 4);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:281:4: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
+			// /Users/alejandropenate/NCalc.g:281:4: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
 			int alt15=6;
 			try { DebugEnterSubRule(15);
 			try { DebugEnterDecision(15, false);
@@ -2419,7 +2388,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:282:5: 'n'
+				// /Users/alejandropenate/NCalc.g:282:5: 'n'
 				{
 				DebugLocation(282, 5);
 				Match('n'); 
@@ -2428,7 +2397,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:283:4: 'r'
+				// /Users/alejandropenate/NCalc.g:283:4: 'r'
 				{
 				DebugLocation(283, 4);
 				Match('r'); 
@@ -2437,7 +2406,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:284:4: 't'
+				// /Users/alejandropenate/NCalc.g:284:4: 't'
 				{
 				DebugLocation(284, 4);
 				Match('t'); 
@@ -2446,7 +2415,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:285:4: '\\''
+				// /Users/alejandropenate/NCalc.g:285:4: '\\''
 				{
 				DebugLocation(285, 4);
 				Match('\''); 
@@ -2455,7 +2424,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 5:
 				DebugEnterAlt(5);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:286:4: '\\\\'
+				// /Users/alejandropenate/NCalc.g:286:4: '\\\\'
 				{
 				DebugLocation(286, 4);
 				Match('\\'); 
@@ -2464,7 +2433,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				break;
 			case 6:
 				DebugEnterAlt(6);
-				// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:287:4: UnicodeEscape
+				// /Users/alejandropenate/NCalc.g:287:4: UnicodeEscape
 				{
 				DebugLocation(287, 4);
 				mUnicodeEscape(); 
@@ -2500,9 +2469,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		TraceIn("HexDigit", 42);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:292:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// /Users/alejandropenate/NCalc.g:292:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:
+			// /Users/alejandropenate/NCalc.g:
 			{
 			DebugLocation(292, 2);
 			if ((input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f'))
@@ -2542,9 +2511,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		TraceIn("UnicodeEscape", 43);
 		try
 		{
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:296:6: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+			// /Users/alejandropenate/NCalc.g:296:6: ( 'u' HexDigit HexDigit HexDigit HexDigit )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:296:12: 'u' HexDigit HexDigit HexDigit HexDigit
+			// /Users/alejandropenate/NCalc.g:296:12: 'u' HexDigit HexDigit HexDigit HexDigit
 			{
 			DebugLocation(296, 12);
 			Match('u'); 
@@ -2583,9 +2552,9 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 			int _type = WS;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:300:4: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+			// /Users/alejandropenate/NCalc.g:300:4: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:300:7: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+			// /Users/alejandropenate/NCalc.g:300:7: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
 			{
 			DebugLocation(300, 7);
 			if ((input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ')
@@ -2619,7 +2588,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:8: ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | TRUE | FALSE | ID | INTEGER | FLOAT | STRING | NAME | E | WS )
+		// /Users/alejandropenate/NCalc.g:1:8: ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | TRUE | FALSE | ID | INTEGER | FLOAT | STRING | NAME | E | WS )
 		int alt16=39;
 		try { DebugEnterDecision(16, false);
 		try
@@ -2636,7 +2605,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		{
 		case 1:
 			DebugEnterAlt(1);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:10: T__18
+			// /Users/alejandropenate/NCalc.g:1:10: T__18
 			{
 			DebugLocation(1, 10);
 			mT__18(); 
@@ -2645,7 +2614,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 2:
 			DebugEnterAlt(2);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:16: T__19
+			// /Users/alejandropenate/NCalc.g:1:16: T__19
 			{
 			DebugLocation(1, 16);
 			mT__19(); 
@@ -2654,7 +2623,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 3:
 			DebugEnterAlt(3);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:22: T__20
+			// /Users/alejandropenate/NCalc.g:1:22: T__20
 			{
 			DebugLocation(1, 22);
 			mT__20(); 
@@ -2663,7 +2632,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 4:
 			DebugEnterAlt(4);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:28: T__21
+			// /Users/alejandropenate/NCalc.g:1:28: T__21
 			{
 			DebugLocation(1, 28);
 			mT__21(); 
@@ -2672,7 +2641,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 5:
 			DebugEnterAlt(5);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:34: T__22
+			// /Users/alejandropenate/NCalc.g:1:34: T__22
 			{
 			DebugLocation(1, 34);
 			mT__22(); 
@@ -2681,7 +2650,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 6:
 			DebugEnterAlt(6);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:40: T__23
+			// /Users/alejandropenate/NCalc.g:1:40: T__23
 			{
 			DebugLocation(1, 40);
 			mT__23(); 
@@ -2690,7 +2659,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 7:
 			DebugEnterAlt(7);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:46: T__24
+			// /Users/alejandropenate/NCalc.g:1:46: T__24
 			{
 			DebugLocation(1, 46);
 			mT__24(); 
@@ -2699,7 +2668,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 8:
 			DebugEnterAlt(8);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:52: T__25
+			// /Users/alejandropenate/NCalc.g:1:52: T__25
 			{
 			DebugLocation(1, 52);
 			mT__25(); 
@@ -2708,7 +2677,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 9:
 			DebugEnterAlt(9);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:58: T__26
+			// /Users/alejandropenate/NCalc.g:1:58: T__26
 			{
 			DebugLocation(1, 58);
 			mT__26(); 
@@ -2717,7 +2686,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 10:
 			DebugEnterAlt(10);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:64: T__27
+			// /Users/alejandropenate/NCalc.g:1:64: T__27
 			{
 			DebugLocation(1, 64);
 			mT__27(); 
@@ -2726,7 +2695,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 11:
 			DebugEnterAlt(11);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:70: T__28
+			// /Users/alejandropenate/NCalc.g:1:70: T__28
 			{
 			DebugLocation(1, 70);
 			mT__28(); 
@@ -2735,7 +2704,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 12:
 			DebugEnterAlt(12);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:76: T__29
+			// /Users/alejandropenate/NCalc.g:1:76: T__29
 			{
 			DebugLocation(1, 76);
 			mT__29(); 
@@ -2744,7 +2713,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 13:
 			DebugEnterAlt(13);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:82: T__30
+			// /Users/alejandropenate/NCalc.g:1:82: T__30
 			{
 			DebugLocation(1, 82);
 			mT__30(); 
@@ -2753,7 +2722,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 14:
 			DebugEnterAlt(14);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:88: T__31
+			// /Users/alejandropenate/NCalc.g:1:88: T__31
 			{
 			DebugLocation(1, 88);
 			mT__31(); 
@@ -2762,7 +2731,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 15:
 			DebugEnterAlt(15);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:94: T__32
+			// /Users/alejandropenate/NCalc.g:1:94: T__32
 			{
 			DebugLocation(1, 94);
 			mT__32(); 
@@ -2771,7 +2740,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 16:
 			DebugEnterAlt(16);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:100: T__33
+			// /Users/alejandropenate/NCalc.g:1:100: T__33
 			{
 			DebugLocation(1, 100);
 			mT__33(); 
@@ -2780,7 +2749,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 17:
 			DebugEnterAlt(17);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:106: T__34
+			// /Users/alejandropenate/NCalc.g:1:106: T__34
 			{
 			DebugLocation(1, 106);
 			mT__34(); 
@@ -2789,7 +2758,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 18:
 			DebugEnterAlt(18);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:112: T__35
+			// /Users/alejandropenate/NCalc.g:1:112: T__35
 			{
 			DebugLocation(1, 112);
 			mT__35(); 
@@ -2798,7 +2767,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 19:
 			DebugEnterAlt(19);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:118: T__36
+			// /Users/alejandropenate/NCalc.g:1:118: T__36
 			{
 			DebugLocation(1, 118);
 			mT__36(); 
@@ -2807,7 +2776,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 20:
 			DebugEnterAlt(20);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:124: T__37
+			// /Users/alejandropenate/NCalc.g:1:124: T__37
 			{
 			DebugLocation(1, 124);
 			mT__37(); 
@@ -2816,7 +2785,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 21:
 			DebugEnterAlt(21);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:130: T__38
+			// /Users/alejandropenate/NCalc.g:1:130: T__38
 			{
 			DebugLocation(1, 130);
 			mT__38(); 
@@ -2825,7 +2794,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 22:
 			DebugEnterAlt(22);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:136: T__39
+			// /Users/alejandropenate/NCalc.g:1:136: T__39
 			{
 			DebugLocation(1, 136);
 			mT__39(); 
@@ -2834,7 +2803,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 23:
 			DebugEnterAlt(23);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:142: T__40
+			// /Users/alejandropenate/NCalc.g:1:142: T__40
 			{
 			DebugLocation(1, 142);
 			mT__40(); 
@@ -2843,7 +2812,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 24:
 			DebugEnterAlt(24);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:148: T__41
+			// /Users/alejandropenate/NCalc.g:1:148: T__41
 			{
 			DebugLocation(1, 148);
 			mT__41(); 
@@ -2852,7 +2821,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 25:
 			DebugEnterAlt(25);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:154: T__42
+			// /Users/alejandropenate/NCalc.g:1:154: T__42
 			{
 			DebugLocation(1, 154);
 			mT__42(); 
@@ -2861,7 +2830,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 26:
 			DebugEnterAlt(26);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:160: T__43
+			// /Users/alejandropenate/NCalc.g:1:160: T__43
 			{
 			DebugLocation(1, 160);
 			mT__43(); 
@@ -2870,7 +2839,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 27:
 			DebugEnterAlt(27);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:166: T__44
+			// /Users/alejandropenate/NCalc.g:1:166: T__44
 			{
 			DebugLocation(1, 166);
 			mT__44(); 
@@ -2879,7 +2848,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 28:
 			DebugEnterAlt(28);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:172: T__45
+			// /Users/alejandropenate/NCalc.g:1:172: T__45
 			{
 			DebugLocation(1, 172);
 			mT__45(); 
@@ -2888,7 +2857,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 29:
 			DebugEnterAlt(29);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:178: T__46
+			// /Users/alejandropenate/NCalc.g:1:178: T__46
 			{
 			DebugLocation(1, 178);
 			mT__46(); 
@@ -2897,7 +2866,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 30:
 			DebugEnterAlt(30);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:184: T__47
+			// /Users/alejandropenate/NCalc.g:1:184: T__47
 			{
 			DebugLocation(1, 184);
 			mT__47(); 
@@ -2906,7 +2875,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 31:
 			DebugEnterAlt(31);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:190: TRUE
+			// /Users/alejandropenate/NCalc.g:1:190: TRUE
 			{
 			DebugLocation(1, 190);
 			mTRUE(); 
@@ -2915,7 +2884,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 32:
 			DebugEnterAlt(32);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:195: FALSE
+			// /Users/alejandropenate/NCalc.g:1:195: FALSE
 			{
 			DebugLocation(1, 195);
 			mFALSE(); 
@@ -2924,7 +2893,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 33:
 			DebugEnterAlt(33);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:201: ID
+			// /Users/alejandropenate/NCalc.g:1:201: ID
 			{
 			DebugLocation(1, 201);
 			mID(); 
@@ -2933,7 +2902,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 34:
 			DebugEnterAlt(34);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:204: INTEGER
+			// /Users/alejandropenate/NCalc.g:1:204: INTEGER
 			{
 			DebugLocation(1, 204);
 			mINTEGER(); 
@@ -2942,7 +2911,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 35:
 			DebugEnterAlt(35);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:212: FLOAT
+			// /Users/alejandropenate/NCalc.g:1:212: FLOAT
 			{
 			DebugLocation(1, 212);
 			mFLOAT(); 
@@ -2951,7 +2920,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 36:
 			DebugEnterAlt(36);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:218: STRING
+			// /Users/alejandropenate/NCalc.g:1:218: STRING
 			{
 			DebugLocation(1, 218);
 			mSTRING(); 
@@ -2960,7 +2929,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 37:
 			DebugEnterAlt(37);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:225: NAME
+			// /Users/alejandropenate/NCalc.g:1:225: NAME
 			{
 			DebugLocation(1, 225);
 			mNAME(); 
@@ -2969,7 +2938,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 38:
 			DebugEnterAlt(38);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:230: E
+			// /Users/alejandropenate/NCalc.g:1:230: E
 			{
 			DebugLocation(1, 230);
 			mE(); 
@@ -2978,7 +2947,7 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 			break;
 		case 39:
 			DebugEnterAlt(39);
-			// C:\\Users\\Alejandro\\OneDrive\\My Code\\New-Updated Code\\new grammar\\NCalc.g:1:232: WS
+			// /Users/alejandropenate/NCalc.g:1:232: WS
 			{
 			DebugLocation(1, 232);
 			mWS(); 
@@ -3096,8 +3065,8 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 		private static readonly string[] DFA16_transitionS =
 			{
 				"\x2\x1E\x1\xFFFF\x2\x1E\x12\xFFFF\x1\x1E\x1\x1\x1\xFFFF\x1\x1D\x1\xFFFF"+
-				"\x1\x2\x1\x3\x1\x1B\x1\x4\x1\x5\x1\x6\x1\x7\x1\xFFFF\x1\x8\x1\x1A\x1"+
-				"\x9\xA\x18\x1\xA\x1\xB\x1\xC\x1\xD\x1\xE\x1\xF\x1\xFFFF\x4\x1D\x1\x19"+
+				"\x1\x2\x1\x3\x1\x1B\x1\x4\x1\x5\x1\x6\x1\x7\x1\x8\x1\x9\x1\x1A\x1\xA"+
+				"\xA\x18\x1\xB\x1\xFFFF\x1\xC\x1\xD\x1\xE\x1\xF\x1\xFFFF\x4\x1D\x1\x19"+
 				"\x15\x1D\x1\x1C\x2\xFFFF\x1\x10\x1\x1D\x1\xFFFF\x1\x11\x3\x1D\x1\x19"+
 				"\x1\x17\x7\x1D\x1\x12\x1\x13\x4\x1D\x1\x16\x7\x1D\x1\x14\x1\x1D\x1\x15",
 				"\x1\x1F",
@@ -3146,9 +3115,8 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				"",
 				"\x1\x37",
 				"\x1\x38",
-				"\x1\x1D\x2\xFFFF\x1\x1D\x8\xFFFF\x1\x1D\x1\xFFFF\x1\x1D\x1\xFFFF\xA"+
-				"\x1D\x7\xFFFF\x1A\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D"+
-				"\x1\xFFFF\x1\x1D",
+				"\x1\x1D\x2\xFFFF\x1\x1D\xA\xFFFF\x1\x1D\x1\xFFFF\xA\x1D\x7\xFFFF\x1A"+
+				"\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D\x1\xFFFF\x1\x1D",
 				"",
 				"",
 				"\x1\x3A",
@@ -3157,26 +3125,22 @@ public partial class NCalcLexer : Antlr.Runtime.Lexer
 				"",
 				"\xA\x35",
 				"",
-				"\x1\x1D\x2\xFFFF\x1\x1D\x8\xFFFF\x1\x1D\x1\xFFFF\x1\x1D\x1\xFFFF\xA"+
-				"\x1D\x7\xFFFF\x1A\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D"+
-				"\x1\xFFFF\x1\x1D",
-				"\x1\x1D\x2\xFFFF\x1\x1D\x8\xFFFF\x1\x1D\x1\xFFFF\x1\x1D\x1\xFFFF\xA"+
-				"\x1D\x7\xFFFF\x1A\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D"+
-				"\x1\xFFFF\x1\x1D",
+				"\x1\x1D\x2\xFFFF\x1\x1D\xA\xFFFF\x1\x1D\x1\xFFFF\xA\x1D\x7\xFFFF\x1A"+
+				"\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D\x1\xFFFF\x1\x1D",
+				"\x1\x1D\x2\xFFFF\x1\x1D\xA\xFFFF\x1\x1D\x1\xFFFF\xA\x1D\x7\xFFFF\x1A"+
+				"\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D\x1\xFFFF\x1\x1D",
 				"",
 				"\x1\x3F",
 				"\x1\x40",
 				"\xA\x3C",
 				"",
 				"",
-				"\x1\x1D\x2\xFFFF\x1\x1D\x8\xFFFF\x1\x1D\x1\xFFFF\x1\x1D\x1\xFFFF\xA"+
-				"\x1D\x7\xFFFF\x1A\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D"+
-				"\x1\xFFFF\x1\x1D",
+				"\x1\x1D\x2\xFFFF\x1\x1D\xA\xFFFF\x1\x1D\x1\xFFFF\xA\x1D\x7\xFFFF\x1A"+
+				"\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D\x1\xFFFF\x1\x1D",
 				"\x1\x42",
 				"",
-				"\x1\x1D\x2\xFFFF\x1\x1D\x8\xFFFF\x1\x1D\x1\xFFFF\x1\x1D\x1\xFFFF\xA"+
-				"\x1D\x7\xFFFF\x1A\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D"+
-				"\x1\xFFFF\x1\x1D",
+				"\x1\x1D\x2\xFFFF\x1\x1D\xA\xFFFF\x1\x1D\x1\xFFFF\xA\x1D\x7\xFFFF\x1A"+
+				"\x1D\x1\xFFFF\x1\x1D\x2\xFFFF\x1\x1D\x1\xFFFF\x1B\x1D\x1\xFFFF\x1\x1D",
 				""
 			};
 
