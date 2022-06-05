@@ -26,7 +26,7 @@
 <hr>
 <ul>
 <li><strong>Name</strong>: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
-&#39;*&#39;, &#39;/&#39;, &#39;+&#39;, &#39;-&#39;, &#39;|&#39;, &#39;[&#39;, &#39;]&#39;, &#39;?&#39;, &#39;&amp;&#39;, &#39;!&#39;, &#39;(&#39;, &#39;)&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;=&#39;, ‘:&#39;</li>
+&#39;*&#39;, &#39;/&#39;, &#39;+&#39;, &#39;-&#39;, &#39;|&#39;, &#39;[&#39;, &#39;]&#39;, &#39;?&#39;, &#39;&amp;&#39;, &#39;!&#39;, &#39;(&#39;, &#39;)&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;=&#39;, ‘:&#39;, &#39;,&#39;</li>
 <li><strong>Type</strong>: Math, Decision, Conditional, SumSet, Reference, Date, Today, DateDiff.</li>
 <li><strong>Units</strong>: There are currently some common predefined units, custom units can be set.</li>
 <li><strong>Expression</strong>: Some node types require an expression or formula, like Math, Conditional and Reference.</li>
@@ -130,13 +130,13 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
 <tr>
 <td>IEEERemainder</td>
 <td>Returns the remainder resulting from the division of a specified number by another specified number.</td>
-<td>IEEERemainder(3; 2)</td>
+<td>IEEERemainder(3, 2)</td>
 <td>-1d</td>
 </tr>
 <tr>
 <td>Log</td>
 <td>Returns the logarithm of a specified number.</td>
-<td>Log(1; 10)</td>
+<td>Log(1, 10)</td>
 <td>0d</td>
 </tr>
 <tr>
@@ -148,25 +148,25 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
 <tr>
 <td>Max</td>
 <td>Returns the larger of two specified numbers.</td>
-<td>Max(1; 2)</td>
+<td>Max(1, 2)</td>
 <td>2</td>
 </tr>
 <tr>
 <td>Min</td>
 <td>Returns the smaller of two numbers.</td>
-<td>Min(1; 2)</td>
+<td>Min(1, 2)</td>
 <td>1</td>
 </tr>
 <tr>
 <td>Pow</td>
 <td>Returns a specified number raised to the specified power.</td>
-<td>Pow(3; 2)</td>
+<td>Pow(3, 2)</td>
 <td>9d</td>
 </tr>
 <tr>
 <td>Round</td>
 <td>Rounds a value to the nearest integer or specified number of decimal places.</td>
-<td>Round(3.222; 2)</td>
+<td>Round(3.222, 2)</td>
 <td>3.22d</td>
 </tr>
 <tr>

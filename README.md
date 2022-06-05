@@ -59,7 +59,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 ```
 * (Colors+Image Complexity)*(Sq Ft of Plastic-Sq Ft of Digital Face Per Print) 
 * Plastic Face\Length of Plastic*Plastic Face\Height of Plastic/144 
-* Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers; 0) 
+* Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers, 0) 
 * {1.6}*{1.5}/144 
 ```
 
