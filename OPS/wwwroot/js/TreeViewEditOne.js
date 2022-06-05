@@ -1387,15 +1387,37 @@ function NewNode() {
                 $("#overlay").remove();
                 creatingNewNode = false;
             },
+            error: function () {
+                alert("Couldn't insert the new node.");
+                $("#newinodeName").val("");
+                $("#newinodeExpression").val("");
+                $("#newinodeExpandedLevels").val("");
+                $("#newinodeOrder").val("");
+                $("#newinodeMin").val("");
+                $("#newinodeMax").val("");
+                $("#newinodeDiscount").val("");
+                $("#newinodeHidden").attr('checked', false);
+                $("#newinodeOptional").attr('checked', false);
+                $("#newinodeEditChildren").attr('checked', false);
+                $("#newinodeReport").attr('checked', false);
+                $("#newinodeReportValue").attr('checked', false);
+                $("#newinodeUnits").val("");
+                newnodedialog.dialog("close");
+                $(".loading").hide();
+                $("#overlay").remove();
+                creatingNewNode = false;
+            },
             success: function (result) {
                 if (result == "_SessionTimeout_") {
                     document.location = "../SessionTimeOut.html";
                     return false;
                 }
+                
                 if (result.hasErrors) {
                     alert(result.error);
                 }
-                else {
+                else 
+                if (result != null){
                     //create new node, if it is the root it is already created so just update
                     creatingNewNode = true;
                     if (addToNodeId != "") {

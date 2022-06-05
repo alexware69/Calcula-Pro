@@ -915,6 +915,7 @@ namespace OnlinePriceSystem.Controllers
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.NewNode(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
+            if (node == null) return Content(null);
             string Expression = "";
             bool EditChildren = false;
             switch (node.Type)

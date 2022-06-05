@@ -1279,8 +1279,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+            if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -1863,7 +1866,10 @@ namespace QuoteTree;
             string id = values["id"];
             ANode node;
             if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -2124,7 +2130,10 @@ namespace QuoteTree;
             string id = values["id"];
             ANode node;
             if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -2416,7 +2425,10 @@ namespace QuoteTree;
             string id = values["id"];
             ANode node;
             if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -3136,8 +3148,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+           if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -3819,8 +3834,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+            if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -4136,8 +4154,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+            if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -4677,8 +4698,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+            if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -4997,8 +5021,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+           if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -5295,8 +5322,11 @@ namespace QuoteTree;
         {
             string id = values["id"];
             ANode node;
-            if (id != "")
+            if (id != null && id != "")
+            {
                 node = tree.GetNodeFromId(id);
+                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+            }
             else
                 node = null;
             Stack<ANode> stack = new Stack<ANode>();
@@ -6285,7 +6315,7 @@ namespace QuoteTree;
                 default:
                     break;
             }
-
+            if (newnode == null || newnode.Name.Trim() == "") return null;
             return newnode;
         }
         public ANode CloneNode(string sourceId, string targetId)
