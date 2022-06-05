@@ -1810,6 +1810,7 @@ namespace QuoteTree;
 			if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
 			if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
 			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
+            if (this.GetValueFromDirectory("readonly", path) == "true") { this.ReadOnly = true; }
             if (this.CheckBox)
                 if (this.GetValueFromDirectory("selected", path) == "true") { this.Selected = true; }
 
