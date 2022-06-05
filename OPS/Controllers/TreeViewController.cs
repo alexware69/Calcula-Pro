@@ -648,7 +648,7 @@ namespace OnlinePriceSystem.Controllers
                 });
                 renamed = fromJsonStringRenamed;
             }
-            if (oldname.Trim() != newname.Trim())
+            if (oldname.Trim() != newname.Trim() && !renamed.ContainsKey(node.Id))
             {
                 renamed.Add(node.Id, oldname.Trim());
                 //Implement refactor

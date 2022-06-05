@@ -6152,7 +6152,9 @@ namespace QuoteTree;
                 ANode node = GetNodeFromId(id);
                 //first set the read-only attribute to false
                 node.ReadOnly = false;
-                node.Name = values["name"].Trim();
+                if (node.Parent == null || !(node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) 
+                    node.Name = values["name"].Trim();
+                    
                 node.Units = values["units"].Trim();
                 Stack<ANode> stack = new Stack<ANode>();
                 switch (node.Type)
