@@ -666,6 +666,7 @@ namespace OnlinePriceSystem.Controllers
 
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
+            if (node  == null) return Content(null);
             tree.TotalCounter = 0;
             string Expression = "";
             bool EditChildren = false;

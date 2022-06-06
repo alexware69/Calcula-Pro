@@ -6128,6 +6128,16 @@ namespace QuoteTree;
             {
                 string id = values["id"];
                 ANode node = GetNodeFromId(id);
+
+                //check for same name
+                if (node != Root)
+                    foreach (ANode n in node.Parent.Children)
+                        if (n.Name.Trim() == values["name"].Trim() && n != node)
+                        {
+                            return null;
+                        }
+
+
                 //first set the read-only attribute to false
                 node.ReadOnly = false;
                 if (node.Parent == null || !(node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) 
@@ -6234,15 +6244,6 @@ namespace QuoteTree;
                 node.ReportValue = values["reportValue"] == "true" ? true : false;
                 node.Template = values["template"] == "true" ? true : false;
                 node.ReadOnly = values["readOnly"] == "true" ? true : false;
-
-                //check for same name
-                if (node != Root)
-                    foreach (ANode n in node.Parent.Children)
-                        if (n.Name.Trim() == node.Name.Trim() && n != node)
-                        {
-                            node.Name = node.Name.Trim() + "_Copy";
-                            break;
-                        }
 
                 Root.SortChildren();
                 //SetDependentsByHierarchy(Root, stack);

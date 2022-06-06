@@ -1259,6 +1259,12 @@ function SaveNodeInfo() {
             cache: false,
             beforeSend: function () {
             },
+            error: function () {
+                alert("Couldn't save node. A node with the same name already exists.");
+                $(".loading").hide();
+                $("#overlay").remove();
+                editdialog.dialog("close");
+            },
             complete: function () {
             },
             success: function (result) {
