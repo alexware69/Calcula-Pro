@@ -1,5 +1,5 @@
 # Calcula Pro
-[![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula_Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
+[![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
 [![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/alexwareb9/Calcula-Pro/total.svg)](https://github.com/alexwareb9/Calcula-Pro/releases)
 [![GitHub Follow](https://img.shields.io/github/followers/alexwareb9?style=social&logo=github)](https://github.com/alexwareb9)
