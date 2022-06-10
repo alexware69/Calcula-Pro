@@ -1,4 +1,5 @@
-![Calcula Pro logo](raw.githubusercontent.com/alexwareb9/Calcula-Pro/master/OPS/wwwroot/Images/ops.png)
+[<img src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="100" />](https://github.com/alexwareb9/Calcula-Pro)
+
 # Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
 [![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
