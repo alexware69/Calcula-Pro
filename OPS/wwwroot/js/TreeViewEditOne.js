@@ -242,9 +242,7 @@ function UpdateNode(data) {
         //next line is needed to avoid fillers problem
         $(node).css("white-space", "normal");
         //Adjust the node width
-        /*if (!$("input[id='Description']").is(':checked'))
-            $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         //Refresh node's elements
         var checked;
         var html;
@@ -273,36 +271,14 @@ function UpdateNode(data) {
             var href = "../" + data.url + "&nocache=" + new Date().getTime();
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
-            //Set the <a> onclick to open the url in a new window
-            //if (true/*!mobile*/) {
-            //    $(node).children('a').click(function() {
-            //        window.open(href, 'details');
-            //      });
-                //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-            //}
-            //else {
-            //    $(node).children('a').on("click", function (e) {
-            //        e.preventDefault();
-            //        var width = "100%";
-            //        var height = width;
-            //        iframe.attr({
-            //            width: +width,
-            //            height: +height,
-            //            src: this.href
-            //        });
-            //        dialog.dialog("open");
-            //    });
-            //}
+
         }
-        //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-        var href = "../" + data.url + "&nocache=" + new Date().getTime();
-        $(node).children('a').attr("href", href);
-        $(node).children('a').attr("target", 'details');
-        //Set the <a> onclick to open the url in a new window
-       // $(node).children('a').click(function() {
-       //     window.open(href, 'details');
-        //  });
-        //$(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+        else {
+            //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
+            var href = "../" + data.url + "&nocache=" + new Date().getTime();
+            $(node).children('a').attr("href", href);
+            $(node).children('a').attr("target", 'details');
+        }
 
         //Set leaves to red color
         if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
@@ -355,8 +331,6 @@ function UpdateNode(data) {
         $(node).children('a').after("<span title='Add node' id='add_" + data.id + "' class='add'></span>");
         $(node).children('a').after("<span title='Edit: " + data.name + "' id='edit_" + data.id + "' class='edit'></span>");
 
-
-        var formula_value = data.expression;
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
@@ -413,33 +387,7 @@ function UpdateNode(data) {
         var formula = $(node).children("a").children(".formula");
         var name = $(node).children("a").children(".name");
         
-        //If node is hidden then show it to get correct widths, then hide it again
-        //var hideParentUL = false;
-        //var hideNode = false;
-        //this step is needed to restore the node visibility that was temporarily changed to get correct widths
-        //if ($(node).parent("ul").css("display") == "none") {
-        //    hideParentUL = true;
-        //}
-        //if ($(node).css("display") == "none") {
-        //    hideNode = true;
-        //}
-
-        //var hiddenUL = $('ul').filter(function () {
-        //    return $(this).css('display') == 'none';
-        //});
-        //var hiddenLI = $('li').filter(function () {
-        //    return $(this).css('display') == 'none';
-        //});
-
-        //show nodes and ul
-        //hiddenUL.show();
-        //hiddenLI.show();
-        //$(node).parent("ul").show();
-        //$(node).show();
-
-        /*if (!$("input[id='Description']").is(':checked'))
-            $(node).width($(".content-wrapper").width() - ($(node).offset().left - $("#container").offset().left));
-        else*/ $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
+        $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
         nodeWidth = $(node).width();
         //nodeWidth = $("#container").width() - $(node).position().left;
@@ -456,19 +404,7 @@ function UpdateNode(data) {
         else formulaWidth = formula.width();
         nameWidth = name.width();
         if (formula.children("i").length == 0) formulaWidth = 0;
-        //if (hideParentUL) $(node).parent("ul").hide();
-        //if (hideNode) $(node).hide();
-        //hiddenUL.hide();
-        //hiddenLI.hide();
-
-        //If mobile remove the filler and the formula
-        //if (mobile) {
-        //    // some code..
-        //    $(node).children(".filler").remove();
-        //    $(node).children("a").children(".formula").hide();
-        //    $(node).children(".name").width("100%");
-        //}
-        //else {
+        
         //Set the formula element's width
         if (anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 > nodeWidth) {
             var extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
@@ -484,13 +420,7 @@ function UpdateNode(data) {
             name.width(nameWidth + 5);
         }
 
-        //detect OS and Set the filler's width
-        var OSName = "Unknown OS";
-        if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
-        if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
-        if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
-        if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
-        var scrollbarWidth = /*OSName == "MacOS" ? 0 :*/ getScrollbarWidth(document.getElementById("container"));
+        var scrollbarWidth = getScrollbarWidth(document.getElementById("container"));
 
         //Set the filler's width
         $(node).children(".filler").css("width", nodeWidth - anchorWidth - subtotalWidth - insWidth - checkboxWidth - imageVisibleWidth - editWidth - addWidth - removeWidth - 30 - scrollbarWidth);
