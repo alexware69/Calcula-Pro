@@ -59,30 +59,30 @@ Expressions can contain most common math functions in addition to IF conditions.
 
 **Math:**
 ```
-* (Colors+Image Complexity)*(Sq Ft of Plastic-Sq Ft of Digital Face Per Print) 
-* Plastic Face\Length of Plastic*Plastic Face\Height of Plastic/144 
-* Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers, 0) 
-* {1.6}*{1.5}/144 
+* (Colors+Image Complexity)*(Sq Ft of Plastic-Sq Ft of Digital Face Per Print)
+* Plastic Face\Length of Plastic*Plastic Face\Height of Plastic/144
+* Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers, 0)
+* {1.6}*{1.5}/144
 ```
 
 **Range:**
 ```
-* Height|0:36:42|37:48:54|49:60:66|61:72:78|73:102 
+* Height|0:36:42|37:48:54|49:60:66|61:72:78|73:102
 ```
 
 **Conditional (IF conditions):**
 ```
-* if(TriFace Sign\Motor Type\1_3 HP.selected,10,60) (discontinued syntax) 
-* TriFace Sign\Motor Type\1_3 HP.selected?10:60 (same as above with correct syntax) 
-* TriFace Sign\BomGen\Side Frm=4?0.75:0 
-* TriFace Sign\BomGen\Side Frm.max> TriFace Sign\Length?0.75:0 
-* TriFace Sign\Louver Orientation\Vertical.selected?2*O10:0 
-* this.selected?price:0 
+* if(TriFace Sign\Motor Type\1_3 HP.selected,10,60) (discontinued syntax)
+* TriFace Sign\Motor Type\1_3 HP.selected?10:60 (same as above with correct syntax)
+* TriFace Sign\BomGen\Side Frm=4?0.75:0
+* TriFace Sign\BomGen\Side Frm.max> TriFace Sign\Length?0.75:0
+* TriFace Sign\Louver Orientation\Vertical.selected?2*O10:0
+* this.selected?price:0
 ```
 
 **Conditional Rules:** Conditional Rules nodes return the value of the first matching rule. If no rule is matched they return zero.  
 ```
-* [TriFace Sign\BomGen\Centers 4_6=4?4][TriFace Sign\BomGen\Centers 4_6=6?5.75] 
+* [TriFace Sign\BomGen\Centers 4_6=4?4][TriFace Sign\BomGen\Centers 4_6=6?5.75]
 ```
 
 **Reference:** Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  

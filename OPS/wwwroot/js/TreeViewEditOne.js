@@ -68,10 +68,6 @@
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             //Update the price in the page
             $("#price").text("Total: " + result.total);
 
@@ -149,10 +145,6 @@ function UpdateParent(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             var parentulID = $("li[id='li_" + result.id + "']").parent().attr("id");
 
             //Add the image for the complete/incomplete status if parent node is not Decision
@@ -594,10 +586,6 @@ function UpdateNodesFromServer(ids) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             var showSelectors = '';
             var hideSelectors = '';
             for (var i = 0; i < result.length; i++) {
@@ -1158,11 +1146,6 @@ function FillNodeDialogInfo(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
-
             $("#inodeName").val(result.name);
             $("#inodeType").val(result.type);
             $("#inodeExpression").val(result.expression);
