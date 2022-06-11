@@ -48,7 +48,7 @@ namespace OnlinePriceSystem.Controllers
 				var mainWindow = Electron.WindowManager.BrowserWindows.First();
 				var options = new OpenDialogOptions
 				{
-					Title = "Open Product Directory",
+					Title = "Open Definition Directory",
                     Properties = new OpenDialogProperty[] {
                         OpenDialogProperty.openDirectory
                     }
