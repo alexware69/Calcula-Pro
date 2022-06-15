@@ -1088,7 +1088,7 @@ namespace OnlinePriceSystem.Controllers
 		{
           if (!list.Contains(node.Name.Replace(" ","_"))) list.Add(node.Name.Replace(" ","_"));
           foreach (ANode child in node.Children)
-            if(!list.Contains(child.Name.Replace(" ","_"))) list.Add(child.Name.Replace(" ","_"));
+            getNames(child,list);
         }
         
         [HttpPost]
