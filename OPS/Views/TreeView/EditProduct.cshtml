@@ -429,7 +429,7 @@
 
 	 <script>
   $( function() {
-    var availableTags = $(".name").map(function(){return $(this).text();}).get();
+    var availableTags = $(".name").map(function(){return $(this).text().replace(/ /g,"_");}).get();
     function split( val ) {
       return val.split(/\s/);
     }
@@ -461,7 +461,7 @@
           // remove the current input
           terms.pop();
           // add the selected item
-          terms.push( ui.item.value );
+          terms.push( ui.item.value.replace(/_/g," ") );
           // add placeholder to get the comma-and-space at the end
           terms.push( "" );
           this.value = terms.join( " " );
