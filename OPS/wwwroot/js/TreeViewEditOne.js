@@ -1841,6 +1841,7 @@ $(function () {
     treeIsLoaded = false;
     expandingLevels = false;
     creatingNewNode = false;
+    allNames = [];
     // TO CREATE AN INSTANCE
     // select the tree container using jQuery
     $("#container")
@@ -2024,7 +2025,62 @@ $(function () {
                 }
             });   //end ajax
             
-            //ExpandLevels(1, ExpLevels);
+            //Save all node names into a global array
+            $.ajax({
+                url: "getAllNames",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    
+                    for (var i of result) {
+                        allNames.push(i);
+                    }
+                }
+            });
+
+            function split( val ) {
+                return val.split(/\s/);
+              }
+              function extractLast( term ) {
+                return split( term ).pop();
+              }
+           
+              $( "textarea" )
+                // don't navigate away from the field on tab when selecting an item
+                .on( "keydown", function( event ) {
+                  if ( event.keyCode === $.ui.keyCode.TAB &&
+                      $( this ).autocomplete( "instance" ).menu.active ) {
+                    event.preventDefault();
+                  }
+                })
+                .autocomplete({
+                  minLength: 0,
+                  source: function( request, response ) {
+                    // delegate back to autocomplete, but extract the last term
+                    response( $.ui.autocomplete.filter(
+                      allNames, extractLast( request.term ) ) );
+                  },
+                  focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                  },
+                  select: function( event, ui ) {
+                    var terms = split( this.value );
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push( ui.item.value.replace(/_/g," ") );
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push( "" );
+                    this.value = terms.join( " " );
+                    return false;
+                  }
+                });
 
             // you get two params - event & data - check the core docs for a detailed description
         });

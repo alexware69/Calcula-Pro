@@ -1074,6 +1074,22 @@ namespace OnlinePriceSystem.Controllers
             string response = JsonConvert.SerializeObject(nodedata, Formatting.Indented);
             return Content(response);
         }
+        [HttpGet]		
+
+        public JsonResult getAllNames()
+		{
+            byte[] array = HttpContext.Session.Get("tree");
+            QTree tree = ByteArrayToObject(array);
+            ArrayList list = new ArrayList();
+            getNames(tree.Root, list);
+            return Json(list.ToArray());
+        }
+		public void getNames(ANode node, ArrayList list)
+		{
+          if (!list.Contains(node.Name.Replace(" ","_"))) list.Add(node.Name.Replace(" ","_"));
+          foreach (ANode child in node.Children)
+            if(!list.Contains(child.Name.Replace(" ","_"))) list.Add(child.Name.Replace(" ","_"));
+        }
         
         [HttpPost]
         public ContentResult NodesInfo(List<string> array)
