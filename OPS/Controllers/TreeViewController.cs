@@ -1087,6 +1087,7 @@ namespace OnlinePriceSystem.Controllers
 		public void getNames(ANode node, ArrayList list)
 		{
           if (!list.Contains(node.Name.Replace(" ","_"))) list.Add(node.Name.Replace(" ","_"));
+          if (!list.Contains(node.GetPath().Replace(" ","_"))) list.Add(node.GetPath().Replace(" ","_"));
           foreach (ANode child in node.Children)
             getNames(child,list);
         }
