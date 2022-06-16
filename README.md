@@ -14,7 +14,7 @@
 * Product definitions are independent of product quotes and orders, changes to product definitions won’t affect existing quotes.
 * Product definitions are a hierarchy of folders, which contain the details, formulas, images and descriptions.
 * Folder nature of product definitions makes teamwork easy and natural, as well as making possible to backup and storing definitions offline.
-* Readable formulas are made of words.
+* Readable formulas are made of words, now with autocomplete.
 * Supports most common math expressions and logic conditions.
 * Multiple same-name fields are supported (compare to Excel single-name naming of cells)
 * Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.
@@ -50,12 +50,12 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected
 * **Edit Children**: When set, all child nodes which are Math and their formula is a number (value nodes) will be editable in the description page.
 * **Report**: When set, the node name will be shown (reported) in the Quote Details page.
 * **Report Value**: When set, the node’s subtotal will be shown beside the node name in the Quote Details page.
-* **Template**: When set, the node will be considered a template in order to repeat it multiple times inside a SumSet node. This is useful to let the user add multiple similar “bundles” which may contain different selections to the order.
+* **Template**: When set, the node will be considered a template in order to repeat it multiple times inside a SumSet node. This is useful to let the user add multiple similar "bundles" which may contain different selections to the order.
 * **Read Only**: If set for a Math node the node’s value cannot be changed in the description page. This is useful to create value nodes for "display only”.
 
 ## Expression Examples
 
-Expressions can contain most common math functions in addition to IF conditions. IF conditions can query node properties like“selected”, “min", “max"and "discount”and can query the current node’s properties through the use of the “this” keyword. Also nodes can be referenced by their id, so "Plastic Face\Length of Plastic” could be referenced as {1.6}.
+Expressions can contain most common math functions in addition to IF conditions. IF conditions can query node properties like "selected", "min", "max" and "discount" and can query the current node’s properties through the use of the "this" keyword. Also nodes can be referenced by their id, so "Plastic Face\Length of Plastic" could be referenced as {1.6}.
 
 **Math:**
 ```
