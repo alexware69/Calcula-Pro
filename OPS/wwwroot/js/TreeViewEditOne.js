@@ -2081,7 +2081,7 @@ $(function () {
                     return false;
                   }
                 });
-                $( "textarea" ).autocomplete("widget").addClass("fixedHeight");
+                //$( "textarea" ).autocomplete("widget").addClass("fixedHeight");
 
             // you get two params - event & data - check the core docs for a detailed description
         });
