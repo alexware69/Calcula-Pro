@@ -33,7 +33,7 @@
 ## Node properties
 
 * **Name**: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
-'*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ':', ','
+'*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ':', ',', '_'.
 * **Type**: Math, Decision, Conditional, Conditional Rules, Range, SumSet, Reference, Date, Today, DateDiff.
 * **Units**: There are currently some common predefined units, custom units can be set.
 * **Expression**: Some node types require an expression or formula, like Math, Conditional, Conditional Rules, Range and Reference.
