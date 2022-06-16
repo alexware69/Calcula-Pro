@@ -1124,7 +1124,7 @@ function SaveNodeInfo() {
     var template = $("#inodeTemplate").is(":checked");
     var readOnly = $("#inodeReadOnly").is(":checked");
 
-    var specialChars = "*/\+-|[]?&!()><=#{};:,";
+    var specialChars = "*/\+-|[]?&!()><=#{};:,_";
     var check = function (string) {
         for (i = 0; i < specialChars.length; i++) {
             if (string.indexOf(specialChars[i]) > -1) {
@@ -1240,7 +1240,7 @@ function NewNode() {
     var template = $("#newinodeTemplate").is(":checked");
     var readOnly = $("#newinodeReadOnly").is(":checked");
 
-    var specialChars = "*/\+-|[]?&!()><=#{};:,";
+    var specialChars = "*/\+-|[]?&!()><=#{};:,_";
     var check = function (string) {
         for (i = 0; i < specialChars.length; i++) {
             if (string.indexOf(specialChars[i]) > -1) {
