@@ -16,7 +16,7 @@ namespace OnlinePriceSystem.Controllers
 {
     public class DialogsController : Controller
     {
-        //private static bool saveAdded;
+        private static bool openAdded;
         /*public IActionResult Index()
         {
             if (!HybridSupport.IsElectronActive || saveAdded) return Ok();
@@ -42,7 +42,7 @@ namespace OnlinePriceSystem.Controllers
 
         public IActionResult Index()
 		{
-			//if (!HybridSupport.IsElectronActive || saveAdded) return Ok();
+			if (!HybridSupport.IsElectronActive || openAdded) return Ok();
 			Electron.IpcMain.On("open-dialog", async (args) =>
 			{
 				var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -82,6 +82,7 @@ namespace OnlinePriceSystem.Controllers
 					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
 				Electron.IpcMain.Send(mainWindow, "new-dialog-reply", result);
 			});
+			openAdded = true;
 			return Ok();
 		}
     }
