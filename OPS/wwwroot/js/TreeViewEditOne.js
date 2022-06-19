@@ -331,6 +331,9 @@ function UpdateNode(data) {
         $(node).children('a').after("<span title='Add node' id='add_" + data.id + "' class='add'></span>");
         $(node).children('a').after("<span title='Edit: " + data.name + "' id='edit_" + data.id + "' class='edit'></span>");
 
+        //Add the node expression as a tooltip
+        $(node).children('a').attr("title", data.expression.trim());
+
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
