@@ -361,7 +361,8 @@ function UpdateNode(data) {
                 complete: function () {
                 },
                 success: function (result) {
-                    
+                    //Reset the array
+                    allNames.length = 0;
                     for (var i of result) {
                         allNames.push(i);
                     }
@@ -407,7 +408,8 @@ function UpdateNode(data) {
                 complete: function () {
                 },
                 success: function (result) {
-                    
+                    //Reset the array
+                    allNames.length = 0;
                     for (var i of result) {
                         allNames.push(i);
                     }
@@ -1656,7 +1658,8 @@ function RenderTree(tree) {
                 complete: function () {
                 },
                 success: function (result) {
-                    
+                    //Reset the array
+                    allNames.length = 0;
                     for (var i of result) {
                         allNames.push(i);
                     }
@@ -1702,7 +1705,8 @@ function RenderTree(tree) {
                 complete: function () {
                 },
                 success: function (result) {
-                    
+                    //Reset the array
+                    allNames.length = 0;
                     for (var i of result) {
                         allNames.push(i);
                     }
