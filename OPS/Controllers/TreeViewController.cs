@@ -664,6 +664,11 @@ namespace OnlinePriceSystem.Controllers
             HttpContext.Session.SetString("renamed", toJsonStringRenamed);
             //TempData["renamed"] = renamed;
 
+            //before saving node, save curent expression in temp
+            string oldExpression = "";
+            if (node.Type == NodeType.Math) oldExpression = (node as MathNode).Formula;
+            if (node.Type == NodeType.Conditional) oldExpression = (node as ConditionalNode).Formula;
+
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
             if (node  == null) return Content(null);
@@ -709,6 +714,10 @@ namespace OnlinePriceSystem.Controllers
             string dep = "";
             foreach (string n in node.Dependents) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+
+            //Restore old formula if there are errors
+            if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode).Formula = oldExpression;
+            if (node.Type == NodeType.Conditional && node.HasErrors()) (node as ConditionalNode).Formula = oldExpression;
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
