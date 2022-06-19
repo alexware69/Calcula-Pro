@@ -1176,7 +1176,7 @@ function SaveNodeInfo() {
             beforeSend: function () {
             },
             error: function () {
-                alert("Couldn't save node. A node with the same name already exists.");
+                alert("Couldn't save node. Either the name is empty or a node with the same name already exists.");
                 $(".loading").hide();
                 $("#overlay").remove();
                 editdialog.dialog("close");
@@ -1184,10 +1184,6 @@ function SaveNodeInfo() {
             complete: function () {
             },
             success: function (result) {
-                if (result == "_SessionTimeout_") {
-                    document.location = "../SessionTimeOut.html";
-                    return false;
-                }
                 //this is needed to refresh the order of nodes in case the order property was modified
                 if (editedNodeId != 1) {
                     var parentId = $("li[id='li_" + editedNodeId + "']").parent().attr("id").replace(/li_ul_/g, "");

@@ -5393,6 +5393,9 @@ namespace QuoteTree;
                 string id = values["id"];
                 ANode node = GetNodeFromId(id);
 
+                //Check for empty name
+                if (values["name"].Trim() == "") return null;
+                
                 //check for same name
                 if (node != Root)
                     foreach (ANode n in node.Parent.Children)
