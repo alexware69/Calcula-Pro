@@ -350,6 +350,23 @@ function UpdateNode(data) {
             FillNodeDialogInfo(editedNodeId);
             editdialog.dialog('option', 'title', 'Edit: \"' + data.name + '\"');
             editdialog.dialog("open");
+            //Save all node names into a global array
+            $.ajax({
+                url: "getAllNames",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    
+                    for (var i of result) {
+                        allNames.push(i);
+                    }
+                }
+            });
         });
         $(node).children('.remove').on("click", function (e) {
             e.preventDefault();
@@ -379,6 +396,23 @@ function UpdateNode(data) {
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + data.name + '\"');
             newnodedialog.dialog("open");
+            //Save all node names into a global array
+            $.ajax({
+                url: "getAllNames",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    
+                    for (var i of result) {
+                        allNames.push(i);
+                    }
+                }
+            });
         });
         //Declare some width related variables
         var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
@@ -1611,6 +1645,23 @@ function RenderTree(tree) {
             FillNodeDialogInfo(editedNodeId);
             editdialog.dialog('option', 'title', 'Edit: \"' + tree.Name + '\"');
             editdialog.dialog("open");
+            //Save all node names into a global array
+            $.ajax({
+                url: "getAllNames",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    
+                    for (var i of result) {
+                        allNames.push(i);
+                    }
+                }
+            });
         });
         $(node).children('.remove').on("click", function (e) {
             e.preventDefault();
@@ -1640,6 +1691,23 @@ function RenderTree(tree) {
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + tree.Name + '\"');
             newnodedialog.dialog("open");
+            //Save all node names into a global array
+            $.ajax({
+                url: "getAllNames",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    
+                    for (var i of result) {
+                        allNames.push(i);
+                    }
+                }
+            });
         });
         //Declare some width related variables
         var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
@@ -2023,24 +2091,6 @@ $(function () {
                     $("#container").height($(window).height() - descriptionOffsetTop - 40);
                 }
             });   //end ajax
-            
-            //Save all node names into a global array
-            $.ajax({
-                url: "getAllNames",
-                type: 'GET',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                    
-                    for (var i of result) {
-                        allNames.push(i);
-                    }
-                }
-            });
 
             function split( val ) {
                 return val.split(/\s/);
