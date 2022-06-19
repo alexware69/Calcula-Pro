@@ -1283,6 +1283,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -1762,6 +1763,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -2024,6 +2026,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -2316,6 +2319,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -2762,6 +2766,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -3168,6 +3173,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -3486,6 +3492,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -3941,6 +3948,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -4262,6 +4270,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
@@ -4561,6 +4570,7 @@ namespace QuoteTree;
             {
                 node = tree.GetNodeFromId(id);
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
