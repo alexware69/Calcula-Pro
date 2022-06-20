@@ -1995,7 +1995,7 @@ $(function () {
                                             creatingNewNode = false;
                                         },
                                         error: function () {
-                                            alert("A node with the same name already exists.");
+                                            alert("An error occurred while copying the node.");
                                             $(".loading").hide();
                                             $("#overlay").remove();
                                             creatingNewNode = false;

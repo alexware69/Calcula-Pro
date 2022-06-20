@@ -5579,17 +5579,39 @@ namespace QuoteTree;
                 
                 //check for same name
                 bool equals = false;
+                int counter = 0;
 
                 foreach (ANode n in target.Children)
                 {
                     if (n.Name.Trim() == clone.Name.Trim())
                     {
                         equals = true;
-                        break;
                     }
+                    else
+                        if (n.Name.Trim().Length > clone.Name.Trim().Length && n.Name.Trim().StartsWith(clone.Name.Trim()))
+                        {
+                            int result;
+                            int lengthDifference = n.Name.Trim().Length - clone.Name.Trim().Length;
+                            string ending  = n.Name.Trim().Substring(clone.Name.Trim().Length, lengthDifference);
+                            if (ending.StartsWith(" "))
+                                if (int.TryParse(ending.TrimStart(), out result))
+                                {
+                                    if (result > counter) counter = result;
+                                }
+                        }
                 }
 
-                if (equals) return(null);
+                if (counter > 0)
+                {
+                    clone.Name = clone.Name.Trim() + " " + (counter + 1).ToString();
+                }
+                else
+                    if (equals) 
+                    {
+                        clone.Name = clone.Name.Trim() + " 1";
+                    }
+
+
                 if (target.Type == NodeType.Decision)
                 {
                     clone.Optional = true;
@@ -5608,7 +5630,10 @@ namespace QuoteTree;
                 System.GC.Collect();
                 return clone;
             }
-            catch (Exception) { return null; }
+            catch (Exception) 
+            { 
+                return null; 
+            }
         }
         public ANode CloneTemplate(string sourceId, string targetId)
         {
