@@ -5618,10 +5618,14 @@ namespace QuoteTree;
                     clone.CheckBox = true;
                     clone.Selected = false;
                 }
+                clone.Parent = target;
+                clone.ParentTree = this;
+                clone.Dependents = source.Dependents;
+                clone.References = source.References;
                 target.Children.Add(clone);
 
                 //fix the node id and url
-                FixClone(clone, target.ParentTree);
+                FixClone(clone, this);
 
                 //Set dependencies
                 //Stack<ANode> stack = new Stack<ANode>();
@@ -5659,8 +5663,8 @@ namespace QuoteTree;
         {
             node.Id = node.Parent.NewId();
             node.Url = node.Url.Split('=')[0] + "=" + node.Id;
-            node.References.Clear();
-            node.Dependents.Clear();
+            //node.References.Clear();
+            //node.Dependents.Clear();
             node.ParentTree = parentTree;
             FixClonedChildren(node.Children, node);
         }
@@ -5675,8 +5679,10 @@ namespace QuoteTree;
                     id_splitted = child.Id.Split('.');
                     child.Id = parent.Id + "." + id_splitted[id_splitted.Length - 1];
                     child.Url = child.Url.Split('=')[0] + "=" + child.Id;
-                    child.References.Clear();
-                    child.Dependents.Clear();
+                    //child.References.Clear();
+                    //child.Dependents.Clear();
+                    child.Parent = parent;
+                    child.ParentTree = parent.ParentTree;
                     FixClonedChildren(child.Children, child);
                 }
             }
