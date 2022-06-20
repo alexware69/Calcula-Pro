@@ -5594,7 +5594,7 @@ namespace QuoteTree;
                             int lengthDifference = n.Name.Trim().Length - clone.Name.Trim().Length;
                             string ending  = n.Name.Trim().Substring(clone.Name.Trim().Length, lengthDifference);
                             if (ending.StartsWith(" "))
-                                if (int.TryParse(ending.TrimStart(), out result))
+                                if (int.TryParse(ending.Remove(0,1), out result))
                                 {
                                     if (result > counter) counter = result;
                                 }
