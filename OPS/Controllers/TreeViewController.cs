@@ -1006,6 +1006,11 @@ namespace OnlinePriceSystem.Controllers
                 NodeData nodedata1 = new NodeData(node1.Name, node1.Id, "", node1.Url, node1.CheckBox, node1.Type.ToString(), node1.Selected, node1.IsComplete(), tree.Root.TotalStr, node1.Optional, node1.TotalStr, false, node1.Hidden, node1.ExpandedLevels, "", false, node1.Min.ToString(), node1.Max.ToString(), node1.Discount.ToString(), node1.Order.ToString(), node1.Report, node1.ReportValue, node1.Units, node1.Parent != null && node1.Parent.Type == NodeType.Decision, node1.Template, node1.HasErrors(), node1.Error, node1.ReadOnly, node1.DisableCondition, node1.Disabled, node1.DisabledMessage);
                 nodeDataList.Add(nodedata1);
             }
+
+            array = ObjectToByteArray(tree);
+            HttpContext.Session.Set("tree", array);
+
+
             string response = JsonConvert.SerializeObject(nodeDataList, Formatting.Indented);
             return Content(response);
         }
