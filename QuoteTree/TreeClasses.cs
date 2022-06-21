@@ -5659,6 +5659,7 @@ namespace QuoteTree;
                 ANode target = GetNodeFromId(targetId);
                 ANode clone = source.Clone();
                 clone.Parent = target;
+                clone.ParentTree = this;
                 clone.Template = false;
                 clone.Hidden = false;
                 FixClone(clone, this);

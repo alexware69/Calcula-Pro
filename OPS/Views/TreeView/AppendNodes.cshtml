@@ -82,87 +82,7 @@
                            screen.availHeight + (2 * offset));
         }
 
-    </script>
-    <style>
-        li { background: FloralWhite; }
-        li:nth-child(odd) { background: PowderBlue; }
-    </style>
-</head>
-<body onunload="">
-@using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
-    {
-        <div style="text-align:center">
-            @{
-                string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
-            }
-            <span style="color:red; font-size:medium; font-style:italic">
-                @s
-            </span>
-            <br />
-            <br />
-            @if (Model.Disabled){
-            <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
-            <br />
-            }
-            <table style="text-align:right; margin: auto">
-                 @foreach(ANode node in Model.Children){
-                    @if (node.Template) {
-                    <tr>
-                        <td><input type="button" id="@node.Id" class="input" onclick="AppendNode(this.id);" value="Add" /></td>
-                        <td>@node.Name</td>                        
-                    </tr> 
-                    }                
-                }
-            </table>
-        </div>
-    }
-    <br />
-    @{
-       url = url.Replace("http:///","file:///");
-    }
-    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")' </iframe>
-
-    <div>
-    <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
-    <ol class="list_dependents" id="dependents">
-       @foreach (string dependent in Model.Dependents) {
-        ANode dep = Model.ParentTree.GetNodeFromId(dependent);
-        <li>
-            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
-            </li>
-        } 
-    </ol>
-    <br />
-    </div>
-    <div>
-        <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
-        <ol class="list_references" id="references">
-            @foreach (string reference in Model.References) {
-            ANode refe = Model.ParentTree.GetNodeFromId(reference);
-            <li>
-                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
-            </li>
-            } 
-        </ol>
-        <br />
-        <br />
-    </div>
-    <script>
-        $(function () {
-            $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
-            $(".list_references li").sort(asc_sort).appendTo('.list_references');
-            $("#dependents").hide();
-            $("#references").hide();
-            
-            $('#formID').keypress(function (e) {
-                if (e.which == 13) {
-                    e.preventDefault();
-                    $('.input').click();
-                }
-            });
-        });
-        
-        function AppendNode(source) {
+     function AppendNode(source) {
             //Post values to server
             var data = $('#formID').serialize();
             //First open the node
@@ -274,6 +194,85 @@
             if ($("li[id='li_" + id + "']", parent.document).parent().parent().attr("id") != "container")
                 UnHideBranch(parentulID.replace(/li_ul_/g, ""));
         }
+    </script>
+    <style>
+        li { background: FloralWhite; }
+        li:nth-child(odd) { background: PowderBlue; }
+    </style>
+</head>
+<body onunload="">
+@using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
+    {
+        <div style="text-align:center">
+            @{
+                string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
+            }
+            <span style="color:red; font-size:medium; font-style:italic">
+                @s
+            </span>
+            <br />
+            <br />
+            @if (Model.Disabled){
+            <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
+            <br />
+            }
+            <table style="text-align:right; margin: auto">
+                 @foreach(ANode node in Model.Children){
+                    @if (node.Template) {
+                    <tr>
+                        <td><input type="button" id="@node.Id" class="input" onclick="AppendNode(this.id);" value="Add" /></td>
+                        <td>@node.Name</td>                        
+                    </tr> 
+                    }                
+                }
+            </table>
+        </div>
+    }
+    <br />
+    @{
+       url = url.Replace("http:///","file:///");
+    }
+    <iframe scrolling="no" style="overflow: hidden; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")' </iframe>
+
+    <div>
+    <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
+    <ol class="list_dependents" id="dependents">
+       @foreach (string dependent in Model.Dependents) {
+        ANode dep = Model.ParentTree.GetNodeFromId(dependent);
+        <li>
+            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
+            </li>
+        } 
+    </ol>
+    <br />
+    </div>
+    <div>
+        <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
+        <ol class="list_references" id="references">
+            @foreach (string reference in Model.References) {
+            ANode refe = Model.ParentTree.GetNodeFromId(reference);
+            <li>
+                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
+            </li>
+            } 
+        </ol>
+        <br />
+        <br />
+    </div>
+    <script>
+        $(function () {
+            $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
+            $(".list_references li").sort(asc_sort).appendTo('.list_references');
+            $("#dependents").hide();
+            $("#references").hide();
+            
+            $('#formID').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $('.input').click();
+                }
+            });
+        });  
     </script>
 </body>
 </html>

@@ -392,6 +392,7 @@ namespace OnlinePriceSystem.Controllers
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
+
             return Content(tree.Root.TotalStr);
         }
 
@@ -430,7 +431,9 @@ namespace OnlinePriceSystem.Controllers
             foreach (string n in node.Dependents) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
-            //TempData["tree"] = tree;
+            array = ObjectToByteArray(tree);
+            HttpContext.Session.Set("tree", array);
+            
             string response = JsonConvert.SerializeObject(nodedata, Formatting.Indented);
             return Content(response);
         }
