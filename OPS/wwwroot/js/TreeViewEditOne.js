@@ -43,18 +43,6 @@
         }
     }
 
-    //Show the description page in the description section
-    if (cb.checked && !descriptionhidden) {
-        $("li[id='li_" + checkboxIDClean + "']").children("a").click();
-    }
-
-    //Show the parent's description page in the description section if unchecked
-    if (!cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision" && !descriptionhidden) {
-        //href = $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").attr("href");
-        //window.open(href, 'details');
-        $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").click();
-    }
-
     //Set the checked/unchecked state in the server tree and get the total. Also update tree nodes.
     var checkboxstate = cb.checked ? "true" : "false";
     $.ajax({
@@ -122,6 +110,18 @@
             //UpdateTreeSync();
         }
         //$("li[id='" + parentliID + "']").siblings().children(':checkbox').attr('checked', false);
+    }
+
+    //Show the description page in the description section
+    if (cb.checked && !descriptionhidden) {
+        $("li[id='li_" + checkboxIDClean + "']").children("a").click();
+    }
+
+    //Show the parent's description page in the description section if unchecked
+    if (!cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision" && !descriptionhidden) {
+        //href = $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").attr("href");
+        //window.open(href, 'details');
+        $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").click();
     }
 
     //Expand levels
