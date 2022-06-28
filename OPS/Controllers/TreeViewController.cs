@@ -280,7 +280,7 @@ namespace OnlinePriceSystem.Controllers
         
             var path = HttpContext.Session.GetString("path");
             HttpContext.Session.SetString("nodeID",id);
-            if (path.LastIndexOf("/") > 0)
+            if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
@@ -299,7 +299,7 @@ namespace OnlinePriceSystem.Controllers
         
             var path = HttpContext.Session.GetString("path");
             HttpContext.Session.SetString("nodeID",id);
-            if (path.LastIndexOf("/") > 0)
+            if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
