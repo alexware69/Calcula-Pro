@@ -351,10 +351,7 @@ namespace OnlinePriceSystem.Controllers
                 }
                 updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
-            catch(Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            catch {}
             
             return Content(updatedStr,"text/html");            
         }
