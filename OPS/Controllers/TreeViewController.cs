@@ -301,6 +301,9 @@ namespace OnlinePriceSystem.Controllers
             HttpContext.Session.SetString("nodeID",id);
             if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
+            if (path.LastIndexOf("\\") >= 0)
+                path = path.Remove(path.LastIndexOf("\\"));
+            
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
@@ -310,7 +313,8 @@ namespace OnlinePriceSystem.Controllers
         public ContentResult GetHtml()
         {
             var url = HttpContext.Session.GetString("url");
-            url = url.Replace("\\","/");
+            url = url.Replace("\\", "/");
+            //url = url.Replace('/', Path.PathSeparator);
             var urlTemp = url;
             string updatedStr = "";      
             try
@@ -345,7 +349,10 @@ namespace OnlinePriceSystem.Controllers
                 }
                 updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
-            catch{}
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
             
             return Content(updatedStr,"text/html");            
         }
