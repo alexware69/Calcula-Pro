@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj": {}
+    "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj": {}
   },
   "projects": {
-    "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+    "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj",
+        "projectUniqueName": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj",
         "projectName": "NCalc",
-        "projectPath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/Evaluant.Calculator.csproj",
-        "packagesPath": "/Users/alejandro/.nuget/packages/",
-        "outputPath": "/Users/alejandro/Online-Price-System-Native/Evaluant.Calculator/obj/",
+        "projectPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj",
+        "packagesPath": "C:\\Users\\alexp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\alexp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -55,16 +55,20 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
-              "version": "[6.0.4, 6.0.4]"
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[6.0.6, 6.0.6]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
-              "version": "[6.0.4, 6.0.4]"
+              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
+              "version": "[6.0.6, 6.0.6]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
-              "version": "[6.0.4, 6.0.4]"
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[6.0.6, 6.0.6]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[6.0.6, 6.0.6]"
             }
           ],
           "frameworkReferences": {
@@ -72,11 +76,11 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
-        "osx-x64": {
+        "win-x64": {
           "#import": []
         }
       }
