@@ -568,7 +568,13 @@ namespace OnlinePriceSystem.Controllers
 				//Save to folder
                 string path = HttpContext.Session.GetString("path");
                 if(isNew != "true")
+                {
+                 if(path.LastIndexOf("/") >= 0)
                     path = path.Remove(path.LastIndexOf('/'));
+                 else
+                 if(path.LastIndexOf("\\") >= 0)
+                    path = path.Remove(path.LastIndexOf('\\'));
+                }
                 string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory");
                 tree.removeNodesFromDirectory(currentRemoved);
                 HttpContext.Session.SetString("removeNodesFromDirectory","");
