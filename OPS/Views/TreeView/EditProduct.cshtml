@@ -517,7 +517,7 @@
 		}
 
 		function activateLightMode() {
-		// set style to dark
+		// set style to light
 			$("#top-left").attr("src", "../../Images/top left gray.jpg");
 			$("#top-right").attr("src", "../../Images/top right gray.jpg");
 
@@ -527,6 +527,16 @@
 				if ($(this).css("color") == "rgb(128, 128, 128)") 
 					$(this).css('color', 'black');
 			});
+		}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			$("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+		}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+			$("#top-left").attr("src", "../../Images/top left gray.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray.jpg");
 		}
 
 		window.matchMedia("(prefers-color-scheme: dark)").addListener(
