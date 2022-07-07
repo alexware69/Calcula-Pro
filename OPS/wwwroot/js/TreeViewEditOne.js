@@ -933,6 +933,13 @@ function RefreshFillers(id, recursive) {
                 $(node).children('a').attr("style", "color:gray;");
         }
 
+         //Check for light mode
+         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // dark mode
+            if ($(node).children('a').css("color") != "rgb(255, 0, 0)" && $(node).children('a').css("color") != "rgb(0, 128, 0)") 
+                $(node).children('a').attr("style", "color:black;");
+        }
+
         //Declare some width related variables
         var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
         checkboxWidth = $("input[id='ckbx_" + id + "']").length ? 13 : 0;
