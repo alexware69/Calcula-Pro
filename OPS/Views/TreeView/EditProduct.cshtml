@@ -502,19 +502,41 @@
 		//$( "textarea" ).autocomplete({source: availableTags});
 	});
 
-	 $(document).ready(function() {
-             //Detect dark mode
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // dark mode
-                $("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
-                $("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
-            }  		
-            else{
-                // light mode
-                $("#top-left").attr("src", "../../Images/top left gray.jpg");
-                $("#top-right").attr("src", "../../Images/top right gray.jpg");
-            }
-         });
+		function activateDarkMode() {
+			// set style to dark
+			$("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+
+			$('.name').each(function(){
+				//if statement here 
+				// use $(this) to reference the current
+				//alert($(this).css("color"));
+				if ($(this).css("color") == "rgb(0, 0, 0)") 
+					$(this).css('color', 'gray');
+			});
+		}
+
+		function activateLightMode() {
+		// set style to dark
+			$("#top-left").attr("src", "../../Images/top left gray.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray.jpg");
+
+			$('.name').each(function(){
+				//if statement here 
+				// use $(this) to reference the current
+				if ($(this).css("color") == "rgb(128, 128, 128)") 
+					$(this).css('color', 'black');
+			});
+		}
+
+		window.matchMedia("(prefers-color-scheme: dark)").addListener(
+			e => e.matches && activateDarkMode() // listener
+		);
+
+		window.matchMedia("(prefers-color-scheme: light)").addListener(
+			e => e.matches && activateLightMode() // listener
+		);
+
      </script>
 
 	
