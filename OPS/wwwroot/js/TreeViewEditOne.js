@@ -279,7 +279,7 @@ function UpdateNode(data) {
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
         }
-
+        
         //Set leaves to red color
         if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
         else $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
@@ -333,6 +333,12 @@ function UpdateNode(data) {
 
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", data.expression.trim());
+
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:gray;");
+        }
 
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
@@ -920,6 +926,12 @@ function RefreshFillers(id, recursive) {
         $(node).children('a').after(newFiller);
         $(node).children('a').after(newSubtotal);
 
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:gray;");
+        }
+
         //Declare some width related variables
         var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
         checkboxWidth = $("input[id='ckbx_" + id + "']").length ? 13 : 0;
@@ -1496,6 +1508,11 @@ function Assemble(result, id) {
         //}
         //Add the node expression as a tooltip
         $("li[id='li_" + result[i].id + "']").children('a').attr("title", result[i].expression);
+         //Check for dark mode
+         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $("li[id='li_" + result[i].id + "']").children('a').attr("style", "color:gray;");
+        }
     }
     //Set the id for the automatically generated ul
     $("li[id='" + li_id + "']").children('ul').attr("id", "li_ul_" + li_id.replace(/li_/g, ""));
@@ -1584,6 +1601,11 @@ function RenderTree(tree) {
             else expression = "";
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", expression);
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:gray;");
+        }
         //Add the hidden input storing the node type
         html = "<input type='hidden' id='nodetype_" + tree.Id + "' value='" + tree.TypeStr + "'/> ";
         $("li[id='li_" + tree.Id + "']").append(html);

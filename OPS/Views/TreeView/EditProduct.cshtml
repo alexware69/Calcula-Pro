@@ -8,61 +8,26 @@
 
  <script src="../../js/TreeViewEditOne.js"></script>
     <style>
-		input[type="checkbox"]{
-			vertical-align: middle;
-		}
-        html {
-            overflow-y: scroll;
-        }
-		hr {
-            margin: 8px 0;
-            border: 0;
-            opacity: 0.25;
-        }
-        #description {
-            float: left;
-            width: 40%;
-            background: #cccccc;
-        }
-
-        #container {
-            float: right;
-            width: 60%;
-            font-family: Verdana;
-        }
-		.jstree a {
-			display: inline-block;
-			line-height: 16px;
-			height: 18px;
-		}
-		
-		div.container{
-            max-width: 100%;
-        }
-        .filler {
+		        /* Light mode */
+        @@media (prefers-color-scheme: light) {
+            body {
+                background-color: white;
+                color: black;
+            }
+            .filler {
             display: inline-block;
             float:right;  
             clear: both;
             height: 90%;  
             /*background-repeat:repeat-x ;*/
             background:url('../../Images/dot.gif') repeat-x  center;
+            margin-right:0px;
         }
-        .filler:hover {
-            background:url('../../Images/dot-bold.gif') repeat-x  center;
-        }
-        .build{
-            display: inline-block;
-            height:24px;
-			width:24px;
-            cursor: pointer;
-            background: url('../../Images/link_anchor-128.png') center no-repeat;
-			background-size: 16px 16px;
-			vertical-align: middle;
-        }
-        .build:hover {
-            background-color: #f6a828;
-		}
-		.remove {
+            .filler:hover {
+                background:url('../../Images/dot-bold.gif') repeat-x  center;
+            }
+
+			.remove {
 			display: inline-block;
             cursor: pointer; 
             margin-left:6px;
@@ -115,6 +80,100 @@
 			background: url('../../Images/pencil_orange.png') center;
 			background-size: 12px 12px;
 			vertical-align: middle;
+		}
+        }
+        /* Dark mode */
+        @@media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: white;
+            }
+            .filler {
+            display: inline-block;
+            float:right;  
+            clear: both;
+            height: 90%;  
+            /*background-repeat:repeat-x ;*/
+            background:url('../../Images/dot-white.gif') repeat-x  center;
+            margin-right:0px;
+        }
+            .filler:hover {
+                background:url('../../Images/dot-bold-white.gif') repeat-x  center;
+            }
+
+		.remove {
+			display: inline-block;
+            cursor: pointer; 
+            margin-left:6px;
+			height:12px;
+			width:12px;
+			background: url('../../Images/badge_minus_orange.png') center;
+			background-size: 12px 12px;
+			vertical-align: middle;
+		}
+		.add {
+			display: inline-block;
+            cursor: pointer; 
+            margin-left:6px;
+			height:12px;
+			width:12px;
+			background: url('../../Images/badge_plus_orange.png') center;
+			background-size: 12px 12px;
+			vertical-align: middle;
+		}
+		.edit {
+			display: inline-block;
+            cursor: pointer; 
+            margin-left:6px;
+			height:12px;
+			width:12px;
+			background: url('../../Images/pencil_orange.png') center;
+			background-size: 12px 12px;
+			vertical-align: middle;
+		}
+        }
+		input[type="checkbox"]{
+			vertical-align: middle;
+		}
+        html {
+            overflow-y: scroll;
+        }
+		hr {
+            margin: 8px 0;
+            border: 0;
+            opacity: 0.25;
+        }
+        #description {
+            float: left;
+            width: 40%;
+            background: #cccccc;
+        }
+
+        #container {
+            float: right;
+            width: 60%;
+            font-family: Verdana;
+        }
+		.jstree a {
+			display: inline-block;
+			line-height: 16px;
+			height: 18px;
+		}
+		
+		div.container{
+            max-width: 100%;
+        }
+        .build{
+            display: inline-block;
+            height:24px;
+			width:24px;
+            cursor: pointer;
+            background: url('../../Images/link_anchor-128.png') center no-repeat;
+			background-size: 16px 16px;
+			vertical-align: middle;
+        }
+        .build:hover {
+            background-color: #f6a828;
 		}
         .formula {
             position:relative;
@@ -206,11 +265,11 @@
 		</div>
      <br/>
      <br/>
-    <div id="description" class="follow-scroll" style="text-align: center">
+     <div id="description" class="follow-scroll" style="text-align: center">
         <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
     	    <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description.jpg" height="15"/>
-            <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
-            <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
+            <img id=top-left style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
+            <img id=top-right style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
         </div>
         <div style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
             <div style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
@@ -225,10 +284,9 @@
                 <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
             </div>
         </div>
-		<span style="font-size: 7pt; color: #999999; padding: 0px 0px 0px 0px; height: 15px; border-width: 0px; vertical-align: top;">PATENT PENDING</span>
+        <span style="font-size: 7pt; color: #999999; padding: 0px 0px 0px 0px; height: 15px; border-width: 0px; vertical-align: top;">GPL-3.0 LICENSE</span>
         <br />
     </div>
-     
 	<span id="price" style="float: right">  Total: @price</span>
     <span id="space" style="float: right">&nbsp;</span>
     <a href="QuoteDetails" target="details" style="float: right; color: black">Quote</a>
@@ -443,6 +501,20 @@
 		//var availableTags = $("span").map(function(){return $(this).text();}).get();
 		//$( "textarea" ).autocomplete({source: availableTags});
 	});
+
+	 $(document).ready(function() {
+             //Detect dark mode
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // dark mode
+                $("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+                $("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+            }  		
+            else{
+                // light mode
+                $("#top-left").attr("src", "../../Images/top left gray.jpg");
+                $("#top-right").attr("src", "../../Images/top right gray.jpg");
+            }
+         });
      </script>
 
 	

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HA3HhZYVAHEqMma2OU04GAtk4cWpJIKm4QZt5hkTi+I=",
+  "Hash": "8R3jNn4w4BfeTyGUt2YoRQi6c9HdxVag9UMkjghuAKY=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2888,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\minus.gif"
+    },
+    {
+      "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\Images\\ops-win.png",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/ops-win.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\ops-win.png"
     },
     {
       "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\Images\\ops.png",
