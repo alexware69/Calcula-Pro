@@ -515,7 +515,11 @@ namespace OnlinePriceSystem.Controllers
                     if (node != null) 
                     {
                         string path = HttpContext.Session.GetString("path");
-                        path = path.Remove(path.LastIndexOf('/'));
+                        if (path.LastIndexOf("/") >= 0)
+                            path = path.Remove(path.LastIndexOf('/'));
+                        else
+                        if (path.LastIndexOf("\\") >= 0)
+                            path = path.Remove(path.LastIndexOf('\\'));
                         if (currentRemoved != "")
                             path = currentRemoved + ";" + path + "/" + node.GetPath().Replace("\\","/");
                         else path = path + "/" + node.GetPath().Replace("\\","/");

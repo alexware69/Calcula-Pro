@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8NoscvtZFBMaQFvftTbrqSLt9p25j9x212G4e6RjWtE=",
+  "Hash": "6RB5rMdcvV1nv82bL4HfZndk7cgolxQUZ3qxlAWi7VE=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -2497,6 +2497,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\buy-128.png"
+    },
+    {
+      "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\Images\\calcula-splash.png",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\",
+      "BasePath": "_content/OPS",
+      "RelativePath": "Images/calcula-splash.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\calcula-splash.png"
     },
     {
       "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\Images\\check-mark-8-512.png",
