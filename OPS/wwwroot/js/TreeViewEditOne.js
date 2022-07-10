@@ -309,7 +309,7 @@ function UpdateNode(data) {
         html = "<input type='hidden' id='isoptional_" + data.id + "' value='" + data.optional + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
         //Add the hidden input storing the node dependents, separated by ;
-        html = "<input type='hidden' id='dependents_" + data.id + "' value='" + data.DependentsStr + "'/> ";
+        html = "<input type='hidden' id='dependents_" + data.id + "' value='" + data.dependents + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
         html = "<input type='hidden' id='editchildren_" + data.id + "' value='" + data.editChildren + "'/> ";
         $("li[id='li_" + data.id + "']").append(html);
