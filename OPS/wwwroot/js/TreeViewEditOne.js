@@ -1106,6 +1106,9 @@ function ExpandLevels2(node, levels) {
             });   //end ajax
         }
         else {
+            //Open the node
+            $("#container").jstree("open_node", $("li[id='li_" + node + "']"));
+            RefreshFillers(node, true);
             var children = $("li[id='li_" + node + "']").children('ul').children('li');
             for (var j = 0; j < children.length; j++) {
                 ExpandLevels2(children[j].id.replace(/li_/g, ""), levels - 1);
