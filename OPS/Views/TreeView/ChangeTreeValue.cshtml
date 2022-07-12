@@ -146,9 +146,9 @@
                                 <td>@node.Name</td>
                                 <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
                             </tr>   
-                            }
-                         else show_button = false;            
+                            }       
                     } 
+                if (Model.Template || Model.BranchHidden()) show_button = false;     
                 } else {
                     @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode).Formula, out output))
                         { 
@@ -166,7 +166,7 @@
                             <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
                         </tr>
                     }
-                    else show_button = false;                        
+                   if (Model.Template || Model.BranchHidden()) show_button = false;                         
                     }
                 @if (show_button) { 
                     <tr>
