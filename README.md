@@ -36,7 +36,7 @@
 ```
 * / \ + - | [ ] ? & ! ( ) > < = # { } ; : , _
 ```
-* **Type**: Math, Decision, Conditional, Conditional Rules, Range, SumSet, Reference, Date, Today, DateDiff.
+* **Type**: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today, DateDiff.
 * **Units**: There are currently some common predefined units, custom units can be set.
 * **Expression**: Some node types require an expression or formula, like Math, Conditional, Conditional Rules, Range and Reference.
 * **Expanded Levels**: The number of levels that will be automatically expanded from the root node on product load and from any node on node selection. This is useful to cover the most screen on product load and to show multiple nested options on selection.
