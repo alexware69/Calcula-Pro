@@ -184,7 +184,7 @@
 @{
     url = url.Replace("http:///","file:///");
 }
-<iframe scrolling="yes" style="overflow: scroll; width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
+<iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
 
 <div>
     <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
