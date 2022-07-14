@@ -239,7 +239,7 @@
             <br />
             }
             <table style="text-align:right; margin: auto">
-                 @foreach(ANode node in Model.Children){
+                 @foreach(ANode node in Model.Children!){
                     @if (node.Template) {
                     <tr>
                         <td><input type="button" id="@node.Id" class="input" onclick="AppendNode(this.id);" value="Add" /></td>
@@ -260,7 +260,7 @@
     <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
     <ol class="list_dependents" id="dependents">
        @foreach (string dependent in Model.Dependents) {
-        ANode dep = Model.ParentTree.GetNodeFromId(dependent);
+        ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
         <li>
             <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
             </li>
@@ -272,7 +272,7 @@
         <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
         <ol class="list_references" id="references">
             @foreach (string reference in Model.References) {
-            ANode refe = Model.ParentTree.GetNodeFromId(reference);
+            ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
             <li>
                 <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
             </li>

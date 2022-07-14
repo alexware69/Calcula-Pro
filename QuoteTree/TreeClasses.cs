@@ -623,7 +623,7 @@ namespace QuoteTree;
         public bool ShouldSerializeChildren()
         {
             QTree tree = this.ParentTree;
-            int expandedLevels = tree.Root.ExpandedLevels;
+            int expandedLevels = tree.Root!.ExpandedLevels;
             string id = this.Id;
             int countDots = id.Split(".".ToCharArray()).Length - 1;
             return (countDots < expandedLevels);
@@ -663,7 +663,7 @@ namespace QuoteTree;
             if (this.Parent != null && (this.Parent.Type == NodeType.Date || this.Parent.Type == NodeType.Today)) return;
             try
             {
-                RemoveBranchFromDependencies(this, ParentTree.Root);
+                RemoveBranchFromDependencies(this, ParentTree.Root!);
                 this.Parent!.Children!.Remove(this);
             }
             catch (Exception) { }
@@ -1021,8 +1021,10 @@ namespace QuoteTree;
 	[Serializable]
 	public class NodeComparer : IComparer<ANode>
 	{
-		int IComparer<ANode>.Compare(ANode a, ANode b)
+		int IComparer<ANode>.Compare(ANode? a, ANode? b)
 		{
+            if (a == null) return 0;
+            if (b == null) return 0;
 			return (a.Order - b.Order);
 		}
 	}
@@ -1056,7 +1058,6 @@ namespace QuoteTree;
 		// *****Methods*****
 		public override string GetXML()
 		{
-			decimal o;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
@@ -2377,7 +2378,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(this.Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -2437,10 +2438,10 @@ namespace QuoteTree;
 	public class ConditionalNode : ANode
 	{
 		// *******Fields*****
-		string _Formula;
-		string _ThenFormula;
-		string _ElseFormula;
-		string _IfCondition;
+		string _Formula = "";
+		string _ThenFormula = "";
+		string _ElseFormula = "";
+		string _IfCondition = "";
         //bool _EditChildren;
 
 		#region Properties
@@ -2841,7 +2842,7 @@ namespace QuoteTree;
 	public class ConditionalRulesNode : ANode
 	{
 		// *******Fields*****
-		string _Expression;
+		string _Expression = "";
         //bool _EditChildren;
 		SerializableDictionary<string, string> _Rules = new SerializableDictionary<string, string>();
 
@@ -3260,7 +3261,6 @@ namespace QuoteTree;
 		// *****Methods** ***
 		public override string GetXML()
 		{
-			decimal o;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
@@ -3561,7 +3561,7 @@ namespace QuoteTree;
 	public class RangeNode : ANode
 	{
 		// *******Fields*****
-		string _Range;
+		string _Range = "";
         //bool _EditChildren;
 
 		// *****Properties*****
@@ -3579,7 +3579,6 @@ namespace QuoteTree;
 		// *****Methods*****
 		public override string GetXML()
 		{
-			decimal o;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
@@ -4036,7 +4035,6 @@ namespace QuoteTree;
 		// *****Methods*****
 		public override string GetXML()
 		{
-			decimal o;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
@@ -4340,8 +4338,8 @@ namespace QuoteTree;
     public class ReferenceNode : ANode
     {
         // *******Fields*****
-        string _Target;
-        ANode _TargetNode;
+        string _Target = "";
+        ANode? _TargetNode = null;
 
         // *****Properties*****
         public string Target
@@ -4349,7 +4347,7 @@ namespace QuoteTree;
             get { return _Target; }
             set { if (!this.ReadOnly) _Target = value; }
         }
-        public ANode TargetNode
+        public ANode? TargetNode
         {
             get { return _TargetNode; }
             set { _TargetNode = value; }
@@ -4402,7 +4400,6 @@ namespace QuoteTree;
         // *****Methods*****
         public override string GetXML()
         {
-            decimal o;
             //Check for extreme conditions that can make the math node invalid.
             if (this.Hidden) return "";
             if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
@@ -4635,7 +4632,7 @@ namespace QuoteTree;
         public int TotalCounter = 0;
         public int EvaluateParameterCounter = 0;
 
-		public ANode Root
+		public ANode? Root
 		{
 			get { return _Root; }
 			set { _Root = value;}
@@ -4645,13 +4642,13 @@ namespace QuoteTree;
 
 		public string GetXML()
 		{
-			return "<?xml version=\"1.0\" ?> " + "<TREENODES> " + this.Root.GetXML() + " </TREENODES>";
+			return "<?xml version=\"1.0\" ?> " + "<TREENODES> " + this.Root!.GetXML() + " </TREENODES>";
 		}
 
         public Dictionary<string, string> GetSelections()
 		{
             Dictionary<string, string> selection = new Dictionary<string, string>();
-            GetSelections(Root, 0, selection);
+            GetSelections(Root!, 0, selection);
 			return selection;
 		}
 
@@ -4804,9 +4801,9 @@ namespace QuoteTree;
 					}
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				return null;
+				return "";
 			}
 
 			//s = s.Replace(" ", "");
@@ -5317,16 +5314,16 @@ namespace QuoteTree;
 
         public Tuple<ANode, ANode>? SetDependents()
         {
-            RemoveDependents(Root);
-            RemoveReferences(Root);
+            RemoveDependents(Root!);
+            RemoveReferences(Root!);
             Stack<ANode> stack = new Stack<ANode>();
             Tuple<ANode, ANode>? tuple = null;
             //the following method call is no longer needed, improves greatly performance.
             //SetDependentsByHierarchy(Root, stack);
             //This needs to be done twice in order to catch all dependents
-            tuple = SetDependentsByReference(Root, true);
+            tuple = SetDependentsByReference(Root!, true);
             if (tuple == null)
-                tuple = SetDependentsByReference(Root, true);
+                tuple = SetDependentsByReference(Root!, true);
 
             if (tuple != null) return tuple;
             return null;
@@ -5524,7 +5521,7 @@ namespace QuoteTree;
                 node.Template = values["template"] == "true" ? true : false;
                 node.ReadOnly = values["readOnly"] == "true" ? true : false;
 
-                Root.SortChildren();
+                Root!.SortChildren();
                 //SetDependentsByHierarchy(Root, stack);
                 //SetDependentsByReference(node, false);
 
