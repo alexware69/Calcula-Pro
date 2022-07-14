@@ -39,7 +39,7 @@ namespace OnlinePriceSystem.Controllers
 		public ActionResult Edit(string product, string isNew)
 		{
 
-			QTree tree = null;
+			QTree? tree = null;
             HttpContext.Session.SetString("renamed", "");
             HttpContext.Session.SetString("isNew", isNew);
 
@@ -71,14 +71,14 @@ namespace OnlinePriceSystem.Controllers
                     HttpContext.Session.Set("tree", array);  
                 }
 			}
-            TempData["root"] = tree.Root;
+            TempData["root"] = tree!.Root;
 			return View("EditProduct");
 		}
 
         
         public ContentResult ChildNodes(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
@@ -93,20 +93,20 @@ namespace OnlinePriceSystem.Controllers
                     switch (child.Type) 
                     {
                         case NodeType.Math:
-                            Expression = (child as MathNode).Formula;
-                            EditChildren = (child as MathNode).EditChildren;
+                            Expression = (child as MathNode)!.Formula;
+                            EditChildren = (child as MathNode)!.EditChildren;
                             break;
                         case NodeType.Range:
-                            Expression = (child as RangeNode).Range;
+                            Expression = (child as RangeNode)!.Range;
                             break;
                         case NodeType.ConditionalRules:
-                            Expression = (child as ConditionalRulesNode).Expression;
+                            Expression = (child as ConditionalRulesNode)!.Expression;
                             break;
                         case NodeType.Conditional:
-                            Expression = (child as ConditionalNode).Formula;
+                            Expression = (child as ConditionalNode)!.Formula;
                             break;
                         case NodeType.Reference:
-                            Expression = (child as ReferenceNode).Target;
+                            Expression = (child as ReferenceNode)!.Target;
                             break;
                         default:
                             Expression = "";
@@ -128,7 +128,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult DependentNodes(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
@@ -144,17 +144,17 @@ namespace OnlinePriceSystem.Controllers
                     switch (dep.Type)
                     {
                         case NodeType.Math:
-                            Expression = (dep as MathNode).Formula;
-                            EditChildren = (dep as MathNode).EditChildren;
+                            Expression = (dep as MathNode)!.Formula;
+                            EditChildren = (dep as MathNode)!.EditChildren;
                             break;
                         case NodeType.Range:
-                            Expression = (dep as RangeNode).Range;
+                            Expression = (dep as RangeNode)!.Range;
                             break;
                         case NodeType.ConditionalRules:
-                            Expression = (dep as ConditionalRulesNode).Expression;
+                            Expression = (dep as ConditionalRulesNode)!.Expression;
                             break;
                         case NodeType.Conditional:
-                            Expression = (dep as ConditionalNode).Formula;
+                            Expression = (dep as ConditionalNode)!.Formula;
                             break;
                         default:
                             Expression = "";
@@ -175,7 +175,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult SetCheckboxState(string id, string state)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);    
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
@@ -190,17 +190,17 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
+                    Expression = (node as MathNode)!.Formula;
+                    EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
+                    Expression = (node as RangeNode)!.Range;
                     break;
                 case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
+                    Expression = (node as ConditionalRulesNode)!.Expression;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
+                    Expression = (node as ConditionalNode)!.Formula;
                     break;
                 default:
                     Expression = "";
@@ -231,7 +231,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult QuoteDetails(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             TempData["root"] = tree.Root;                
@@ -251,7 +251,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult GetTotalPrice()
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             string total;
@@ -268,7 +268,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult ChangeTreeValue(string id)
         {   
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
@@ -278,7 +278,7 @@ namespace OnlinePriceSystem.Controllers
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
             var options = new LoadURLOptions();
         
-            var path = HttpContext.Session.GetString("path");
+            var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
             if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
@@ -292,14 +292,14 @@ namespace OnlinePriceSystem.Controllers
         
         public ActionResult Description(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);              
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node.Name);
         
-            var path = HttpContext.Session.GetString("path");
+            var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
             if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
@@ -314,7 +314,7 @@ namespace OnlinePriceSystem.Controllers
 
         public ContentResult GetHtml()
         {
-            var url = HttpContext.Session.GetString("url");
+            var url = HttpContext.Session.GetString("url")!;
             url = url.Replace("\\", "/");
             //url = url.Replace('/', Path.PathSeparator);
             var urlTemp = url;
@@ -332,7 +332,7 @@ namespace OnlinePriceSystem.Controllers
                 htmlDoc.LoadHtml(contents);
                 string mediaName = "";
                 var path = "";
-                string nodeName = HttpContext.Session.GetString("nodeName");
+                string nodeName = HttpContext.Session.GetString("nodeName")!;
                 var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
                 if(nodes == null || nodes.Count == 0) updatedStr = contents;
                 else
@@ -357,14 +357,14 @@ namespace OnlinePriceSystem.Controllers
         }
         public ActionResult AppendNodes(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", "")); 
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node.Name);
 
-            var path = HttpContext.Session.GetString("path");
+            var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
             if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
@@ -380,7 +380,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult CommitTreeValue()
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             NameValueCollection keys = new NameValueCollection();
@@ -389,15 +389,15 @@ namespace OnlinePriceSystem.Controllers
             {
                 if (key.ToString() != "_")
                 {
-                    var value = keys.Get(key.ToString());
-                    string nodeID = key.ToString().Replace("NodeValue", "");
+                    var value = keys.Get(key.ToString())!;
+                    string nodeID = key.ToString()!.Replace("NodeValue", "");
                     ANode node = tree.GetNodeFromId(nodeID);
                     decimal result;
                     if (Decimal.TryParse(value, out result))
                     {
-                        (node as MathNode).Formula = value;
+                        (node as MathNode)!.Formula = value;
                     }
-                    if (node.Type == NodeType.Text) (node as TextNode).Text = value;
+                    if (node.Type == NodeType.Text) (node as TextNode)!.Text = value;
                 }
             }
 
@@ -411,7 +411,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult AppendNode(string sourceId, string targetId)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.CloneTemplate(sourceId, targetId);
@@ -421,17 +421,17 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
+                    Expression = (node as MathNode)!.Formula;
+                    EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
+                    Expression = (node as RangeNode)!.Range;
                     break;
                 case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
+                    Expression = (node as ConditionalRulesNode)!.Expression;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
+                    Expression = (node as ConditionalNode)!.Formula;
                     break;
                 default:
                     Expression = "";
@@ -453,7 +453,7 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult CommitAnyTreeValue(string id, string value)
 		{
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
 			ANode node = tree.GetNodeFromId(id);
@@ -461,16 +461,16 @@ namespace OnlinePriceSystem.Controllers
 			switch (node.Type)
 			{
 				case NodeType.Math:
-					(node as MathNode).Formula = value;
+					(node as MathNode)!.Formula = value;
 					break;
 				case NodeType.Range:
-					(node as RangeNode).Range = value;
+					(node as RangeNode)!.Range = value;
 					break;
 				case NodeType.ConditionalRules:
-					(node as ConditionalRulesNode).Expression = value;
+					(node as ConditionalRulesNode)!.Expression = value;
 					break;
 				case NodeType.Conditional:
-					(node as ConditionalNode).Formula = value;
+					(node as ConditionalNode)!.Formula = value;
 					break;
 				default:
 					break;
@@ -495,17 +495,17 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult removeNodes(string ids)
 		{
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             string[] parsedIds = ids.Trim().Split(";".ToCharArray());
-            string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory") != null ? HttpContext.Session.GetString("removeNodesFromDirectory"): "";
+            string? currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory") != null ? HttpContext.Session.GetString("removeNodesFromDirectory"): "";
 
             foreach (string id in parsedIds)
             {
                 ANode node = tree.GetNodeFromId(id);
                 if (node != null) 
-                    if (node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return Content(null);
+                    if (node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return Content("");
             }
             foreach (string id in parsedIds)
             {
@@ -514,7 +514,7 @@ namespace OnlinePriceSystem.Controllers
                     ANode node = tree.GetNodeFromId(id);
                     if (node != null) 
                     {
-                        string path = HttpContext.Session.GetString("path");
+                        string path = HttpContext.Session.GetString("path")!;
                         if (path.LastIndexOf("/") >= 0)
                             path = path.Remove(path.LastIndexOf('/'));
                         else
@@ -526,7 +526,7 @@ namespace OnlinePriceSystem.Controllers
                         HttpContext.Session.SetString("removeNodesFromDirectory", path);
                         node.Remove();
                     } 
-                    else return Content(null);      
+                    else return Content("");      
                 }
             }
 
@@ -550,13 +550,13 @@ namespace OnlinePriceSystem.Controllers
 		{
 			if (HttpContext.Session.Get("tree") != null)
 			{
-				string isNew = HttpContext.Session.GetString("isNew");
+				string isNew = HttpContext.Session.GetString("isNew")!;
 
-                byte[] array = HttpContext.Session.Get("tree");
+                byte[] array = HttpContext.Session.Get("tree")!;
                 QTree tree = ByteArrayToObject(array);
 
                 Dictionary<string, string> renamed;
-                string jsonStringRenamed = HttpContext.Session.GetString("renamed");
+                string jsonStringRenamed = HttpContext.Session.GetString("renamed")!;
                 if (jsonStringRenamed == "") renamed = new Dictionary<string, string>();
                 else
                 {
@@ -566,11 +566,11 @@ namespace OnlinePriceSystem.Controllers
                         PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                         MaxDepth = 400
                     });
-                    renamed = fromJsonStringRenamed;
+                    renamed = fromJsonStringRenamed!;
                 }
 
 				//Save to folder
-                string path = HttpContext.Session.GetString("path");
+                string path = HttpContext.Session.GetString("path")!;
                 if(isNew != "true")
                 {
                  if(path.LastIndexOf("/") >= 0)
@@ -579,7 +579,7 @@ namespace OnlinePriceSystem.Controllers
                  if(path.LastIndexOf("\\") >= 0)
                     path = path.Remove(path.LastIndexOf('\\'));
                 }
-                string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory");
+                string currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory")!;
                 tree.removeNodesFromDirectory(currentRemoved);
                 HttpContext.Session.SetString("removeNodesFromDirectory","");
                 tree.SaveTreeTo (tree.Root, path, renamed);
@@ -608,14 +608,14 @@ namespace OnlinePriceSystem.Controllers
 
                 ViewContext viewContext = new ViewContext(
                     ControllerContext, 
-                    viewResult.View, 
+                    viewResult.View!, 
                     ViewData, 
                     TempData, 
                     writer, 
                     new HtmlHelperOptions()
                 );
 
-                await viewResult.View.RenderAsync(viewContext);
+                await viewResult.View!.RenderAsync(viewContext);
 
                 return writer.GetStringBuilder().ToString();
             }
@@ -623,7 +623,7 @@ namespace OnlinePriceSystem.Controllers
 
         public  async Task<FileResult> SaveQuote()
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
 
@@ -648,19 +648,19 @@ namespace OnlinePriceSystem.Controllers
 		[HttpGet]		
 		public ContentResult SaveNodeInfo()
 		{
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node;
 
             //if the node was renamed add node and old name to session variable (this code has been commented...needs to be fixed and uncommented...have to serialize and save to session)
-            string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"];
+            string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"]!;
             node = tree.GetNodeFromId(id);
             string oldname = node.Name;
-            string newname = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["name"];
+            string newname = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["name"]!;
 
             Dictionary<string, string> renamed;
-            string jsonStringRenamed = HttpContext.Session.GetString("renamed");
+            string jsonStringRenamed = HttpContext.Session.GetString("renamed")!;
             if (jsonStringRenamed == "") renamed = new Dictionary<string, string>();
             else
             {
@@ -670,7 +670,7 @@ namespace OnlinePriceSystem.Controllers
                     PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                     MaxDepth = 400
                 });
-                renamed = fromJsonStringRenamed;
+                renamed = fromJsonStringRenamed!;
             }
             if (oldname.Trim() != newname.Trim() && !renamed.ContainsKey(node.Id))
             {
@@ -690,45 +690,45 @@ namespace OnlinePriceSystem.Controllers
 
             //before saving node, save curent expression in temp
             string oldExpression = "";
-            if (node.Type == NodeType.Math) oldExpression = (node as MathNode).Formula;
-            if (node.Type == NodeType.Conditional) oldExpression = (node as ConditionalNode).Formula;
+            if (node.Type == NodeType.Math) oldExpression = (node as MathNode)!.Formula;
+            if (node.Type == NodeType.Conditional) oldExpression = (node as ConditionalNode)!.Formula;
 
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
-            if (node  == null) return Content(null);
+            if (node  == null) return Content("");
             tree.TotalCounter = 0;
             string Expression = "";
             bool EditChildren = false;
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
+                    Expression = (node as MathNode)!.Formula;
+                    EditChildren = (node as MathNode)!.EditChildren;
                     break;
                  case NodeType.Text:
-                    Expression = (node as TextNode).Text;
-                    EditChildren = (node as TextNode).EditChildren;
+                    Expression = (node as TextNode)!.Text;
+                    EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
-                    EditChildren = (node as RangeNode).EditChildren;
+                    Expression = (node as RangeNode)!.Range;
+                    EditChildren = (node as RangeNode)!.EditChildren;
                     break;
                 case NodeType.Date:                   
-                    EditChildren = (node as DateNode).EditChildren;
+                    EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
-                    EditChildren = (node as ConditionalRulesNode).EditChildren;
+                    Expression = (node as ConditionalRulesNode)!.Expression;
+                    EditChildren = (node as ConditionalRulesNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
-                    EditChildren = (node as ConditionalNode).EditChildren;
+                    Expression = (node as ConditionalNode)!.Formula;
+                    EditChildren = (node as ConditionalNode)!.EditChildren;
                     break;
                 case NodeType.SumSet:
-                    EditChildren = (node as SumSetNode).EditChildren;
+                    EditChildren = (node as SumSetNode)!.EditChildren;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode).Target;
+                    Expression = (node as ReferenceNode)!.Target;
                     break;
                 default:
                     Expression = "";
@@ -740,8 +740,8 @@ namespace OnlinePriceSystem.Controllers
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             //Restore old formula if there are errors
-            if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode).Formula = oldExpression;
-            if (node.Type == NodeType.Conditional && node.HasErrors()) (node as ConditionalNode).Formula = oldExpression;
+            if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode)!.Formula = oldExpression;
+            if (node.Type == NodeType.Conditional && node.HasErrors()) (node as ConditionalNode)!.Formula = oldExpression;
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -805,12 +805,11 @@ namespace OnlinePriceSystem.Controllers
         {
             if (HttpContext.Session.GetString("tree") != null)
             {
-                byte[] array = HttpContext.Session.Get("tree");
+                byte[] array = HttpContext.Session.Get("tree")!;
                 QTree tree = ByteArrayToObject(array);
 
                 var settings = new JsonSerializerSettings
                 {
-                    Converters = new List<JsonConverter> { new TreeConverter() },
                     Formatting = Formatting.Indented,
                     TypeNameHandling = TypeNameHandling.Auto,
                     ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
@@ -879,11 +878,10 @@ namespace OnlinePriceSystem.Controllers
         {
             QTree tree;
             BinaryFormatter formater = new BinaryFormatter();
-            byte[] bytes_stream;
             using (MemoryStream memory_stream = new MemoryStream(array))
             {
                 tree = (formater.Deserialize(memory_stream)) as QTree;
-                return tree;
+                return tree!;
             }
         }
 
@@ -894,7 +892,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult cloneNodes(string sourceId, string targetId)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             string[] idsParsed = sourceId.Split(";".ToCharArray());
@@ -912,24 +910,24 @@ namespace OnlinePriceSystem.Controllers
                     switch (node.Type)
                     {
                         case NodeType.Math:
-                            Expression = (node as MathNode).Formula;
-                            EditChildren = (node as MathNode).EditChildren;
+                            Expression = (node as MathNode)!.Formula;
+                            EditChildren = (node as MathNode)!.EditChildren;
                             break;
                         case NodeType.Text:
-                            Expression = (node as TextNode).Text;
-                            EditChildren = (node as TextNode).EditChildren;
+                            Expression = (node as TextNode)!.Text;
+                            EditChildren = (node as TextNode)!.EditChildren;
                             break;
                         case NodeType.Range:
-                            Expression = (node as RangeNode).Range;
+                            Expression = (node as RangeNode)!.Range;
                             break;
                         case NodeType.ConditionalRules:
-                            Expression = (node as ConditionalRulesNode).Expression;
+                            Expression = (node as ConditionalRulesNode)!.Expression;
                             break;
                         case NodeType.Conditional:
-                            Expression = (node as ConditionalNode).Formula;
+                            Expression = (node as ConditionalNode)!.Formula;
                             break;
                         case NodeType.Reference:
-                            Expression = (node as ReferenceNode).Target;
+                            Expression = (node as ReferenceNode)!.Target;
                             break;
                         default:
                             Expression = "";
@@ -954,37 +952,37 @@ namespace OnlinePriceSystem.Controllers
 		
 		public ContentResult NewNode()
 		{
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.NewNode(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
-            if (node == null) return Content(null);
+            if (node == null) return Content("");
             string Expression = "";
             bool EditChildren = false;
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
+                    Expression = (node as MathNode)!.Formula;
+                    EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode).Text;
-                    EditChildren = (node as TextNode).EditChildren;
+                    Expression = (node as TextNode)!.Text;
+                    EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    EditChildren = (node as DateNode).EditChildren;
+                    EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
+                    Expression = (node as RangeNode)!.Range;
                     break;
                 case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
+                    Expression = (node as ConditionalRulesNode)!.Expression;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
+                    Expression = (node as ConditionalNode)!.Formula;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode).Target;
+                    Expression = (node as ReferenceNode)!.Target;
                     break;
                 default:
                     Expression = "";
@@ -1006,11 +1004,11 @@ namespace OnlinePriceSystem.Controllers
    
         public ContentResult BuildDependencies() 
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             Stack<ANode> stack = new Stack<ANode>();
-            Tuple<ANode, ANode> tuple = null;
+            Tuple<ANode, ANode>? tuple = null;
             tuple = tree.SetDependents();
             
             List<NodeData> nodeDataList = new List<NodeData>();
@@ -1042,7 +1040,7 @@ namespace OnlinePriceSystem.Controllers
         
         public JsonResult jstreeChildNodes(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", ""));
@@ -1062,7 +1060,7 @@ namespace OnlinePriceSystem.Controllers
         
         public ContentResult NodeInfo(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
             ANode node = tree.GetNodeFromId(id.Replace("li_ul_", ""));
@@ -1072,33 +1070,33 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
+                    Expression = (node as MathNode)!.Formula;
+                    EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode).Text;
-                    EditChildren = (node as TextNode).EditChildren;
+                    Expression = (node as TextNode)!.Text;
+                    EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
-                    EditChildren = (node as RangeNode).EditChildren;
+                    Expression = (node as RangeNode)!.Range;
+                    EditChildren = (node as RangeNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    EditChildren = (node as DateNode).EditChildren;
+                    EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
-                    EditChildren = (node as ConditionalRulesNode).EditChildren;
+                    Expression = (node as ConditionalRulesNode)!.Expression;
+                    EditChildren = (node as ConditionalRulesNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
-                    EditChildren = (node as ConditionalNode).EditChildren;
+                    Expression = (node as ConditionalNode)!.Formula;
+                    EditChildren = (node as ConditionalNode)!.EditChildren;
                     break;
                 case NodeType.SumSet:
-                    EditChildren = (node as SumSetNode).EditChildren;
+                    EditChildren = (node as SumSetNode)!.EditChildren;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode).Target;
+                    Expression = (node as ReferenceNode)!.Target;
                     break;
                 default:
                     Expression = "";
@@ -1116,7 +1114,7 @@ namespace OnlinePriceSystem.Controllers
 
         public JsonResult getAllNames()
 		{
-            byte[] array = HttpContext.Session.Get("tree");
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
             ArrayList list = new ArrayList();
             getNames(tree.Root, list);
@@ -1136,7 +1134,7 @@ namespace OnlinePriceSystem.Controllers
         [HttpPost]
         public ContentResult NodesInfo(List<string> array)
         {
-            byte[] array2 = HttpContext.Session.Get("tree");
+            byte[] array2 = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array2);
 
 			List<NodeData> nodeDataList = new List<NodeData>();
@@ -1154,28 +1152,28 @@ namespace OnlinePriceSystem.Controllers
                         switch (node.Type)
                         {
                             case NodeType.Math:
-                                Expression = (node as MathNode).Formula;
-                                EditChildren = (node as MathNode).EditChildren;
+                                Expression = (node as MathNode)!.Formula;
+                                EditChildren = (node as MathNode)!.EditChildren;
                                 break;
                             case NodeType.Text:
-                                Expression = (node as TextNode).Text;
-                                EditChildren = (node as TextNode).EditChildren;
+                                Expression = (node as TextNode)!.Text;
+                                EditChildren = (node as TextNode)!.EditChildren;
                                 break;
                             case NodeType.Date:
                                 Expression = "";
-                                EditChildren = (node as DateNode).EditChildren;
+                                EditChildren = (node as DateNode)!.EditChildren;
                                 break;
                             case NodeType.Range:
-                                Expression = (node as RangeNode).Range;
+                                Expression = (node as RangeNode)!.Range;
                                 break;
                             case NodeType.ConditionalRules:
-                                Expression = (node as ConditionalRulesNode).Expression;
+                                Expression = (node as ConditionalRulesNode)!.Expression;
                                 break;
                             case NodeType.Conditional:
-                                Expression = (node as ConditionalNode).Formula;
+                                Expression = (node as ConditionalNode)!.Formula;
                                 break;
                             case NodeType.Reference:
-                                Expression = (node as ReferenceNode).Target;
+                                Expression = (node as ReferenceNode)!.Target;
                                 break;
                             default:
                                 Expression = "";
@@ -1229,22 +1227,6 @@ namespace OnlinePriceSystem.Controllers
         public string disableCondition;
         public string disabledMessage;
 
-        public NodeData()
-        {
-            name = "";
-            id = "";
-            expression = "";
-            url = "";
-            checkbox = false;
-            type = "";
-            selected = false;
-            complete = false;
-            total = "";
-            optional = false;
-            expandedLevels = 0;
-            dependents = "";
-            
-        }
 		public NodeData(string Name, string Id,string Expression, string Url, bool Checkbox, string Type, bool Selected, bool Complete, string Total, bool Optional, string Subtotal, bool isLeaf, bool isHidden, int ExpandedLevels, string Dependents, bool EditChildren, string Min, string Max, string Discount, string Order, bool Report, bool ReportValue, string Units, bool ParentIsDecision, bool Template, bool HasErrors, string Error, bool ReadOnly, string DisableCondition, bool Disabled, string DisabledMessage)
         {
             name = Name;
@@ -1308,122 +1290,6 @@ namespace OnlinePriceSystem.Controllers
         public attributes(string ID)
         {
             id = ID;
-        }
-    }
-
-    static class Helper
-    {
-        public static string ReplaceSpaces(string s, char c)
-        {
-            try
-            {
-                char[] array = s.ToCharArray();
-                int index = 0;
-                if (array.Length > 0)
-                {
-                    while (array[index] == ' ')
-                    {
-                        array[index] = c;
-                        index++;
-                    }
-
-                    return new string(array);
-                }
-                else return "";
-            }
-            catch (Exception) { return null; }
-        }
-    }
-
-    public class TreeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return (objectType == typeof(ANode));
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            ANode node = (ANode)value;
-            string Expression = "";
-            bool EditChildren = false;
-            switch (node.Type)
-            {
-                case NodeType.Math:
-                    Expression = (node as MathNode).Formula;
-                    EditChildren = (node as MathNode).EditChildren;
-                    break;
-                case NodeType.Text:
-                    Expression = (node as TextNode).Text;
-                    EditChildren = (node as TextNode).EditChildren;
-                    break;
-                case NodeType.Range:
-                    Expression = (node as RangeNode).Range;
-                    EditChildren = (node as RangeNode).EditChildren;
-                    break;
-                case NodeType.ConditionalRules:
-                    Expression = (node as ConditionalRulesNode).Expression;
-                    EditChildren = (node as ConditionalRulesNode).EditChildren;
-                    break;
-                case NodeType.Conditional:
-                    Expression = (node as ConditionalNode).Formula;
-                    EditChildren = (node as ConditionalNode).EditChildren;
-                    break;
-                case NodeType.SumSet:
-                    EditChildren = (node as SumSetNode).EditChildren;
-                    break;
-                case NodeType.Reference:
-                    Expression = (node as ReferenceNode).Target;
-                    break;
-                default:
-                    Expression = "";
-                    break;
-            }
-            bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
-            string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
-            JObject obj = new JObject();
-            obj.Add("Name", node.Name);
-            obj.Add("Id", node.Id);
-            obj.Add("Expression", Expression);
-            obj.Add("Url", node.Url);
-            obj.Add("Checkbox", node.CheckBox);
-            obj.Add("Type", node.Type.ToString());
-            obj.Add("Selected", node.Selected);
-            obj.Add("IsComplete", node.IsComplete());
-            obj.Add("Optional", node.Optional);
-            obj.Add("TotalStr", node.TotalStr);
-            obj.Add("Hidden", node.Hidden);
-            obj.Add("ExpandedLevels", node.ExpandedLevels);
-            obj.Add("Dependents", dep);
-            obj.Add("EditChildren", EditChildren);
-            obj.Add("Min", node.Min.ToString());
-            obj.Add("Max", node.Max.ToString());
-            obj.Add("Discount", node.Discount.ToString());
-            obj.Add("Order", node.Order.ToString());
-            obj.Add("Report", node.Report);
-            obj.Add("ReportValue", node.ReportValue);
-            obj.Add("Units", node.Units);
-            obj.Add("ParentIsDecision", node.Parent != null && node.Parent.Type == NodeType.Decision);
-            obj.Add("Template", node.Template);
-            obj.Add("HasErrors", node.HasErrors());
-            obj.Add("Error", node.Error);
-            obj.Add("ReadOnly", node.ReadOnly);
-            obj.Add("DisableCondition", node.DisableCondition);
-            obj.Add("Disabled", node.Disabled);
-            obj.Add("DisabledMessage", node.DisabledMessage);
-            obj.Add("Children", JArray.FromObject(node.Children, serializer));
-            obj.WriteTo(writer);
-        }
-
-        public override bool CanRead
-        {
-            get { return false; }
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
         }
     }
 }
