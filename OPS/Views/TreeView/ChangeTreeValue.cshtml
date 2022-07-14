@@ -1,8 +1,8 @@
 ﻿@using OnlinePriceSystem.Controllers
 @using QuoteTree
 @{
-    var Model = (ANode)TempData["node"];
-    var url = (string)TempData["url"];
+    var Model = (ANode)TempData["node"]!;
+    var url = (string)TempData["url"]!;
     Layout = null;
 }
 
@@ -131,7 +131,7 @@
             <table style="text-align:right; margin: auto">
                 @if (Model.EditChildren){ 
                     @foreach(ANode node in Model.Children){ 
-                        @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode).Formula, out output))
+                        @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode)!.Formula, out output))
                             { 
                             <tr>
                                 <td>@node.Name</td>
@@ -150,7 +150,7 @@
                     } 
                 if (Model.Template || Model.BranchHidden()) show_button = false;     
                 } else {
-                    @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode).Formula, out output))
+                    @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode)!.Formula, out output))
                         { 
                         <tr>
                             <td> @Model.Name </td>

@@ -1,7 +1,7 @@
 ﻿@using OnlinePriceSystem.Controllers
 @using QuoteTree
 @{
-    var Model = (ANode)TempData["root"];
+    var Model = (ANode)TempData["root"]!;
 	var price = Model == null? "0": Model.TotalStr;
 	ViewData["Title"] = "Edit Definition";
 }

@@ -4,7 +4,7 @@
 @using System.Collections
 @model Dictionary<string,string>
     @{
-    var root = (ANode)TempData["root"];
+    var root = (ANode)TempData["root"]!;
     Layout = null;
 }
 
@@ -22,7 +22,7 @@
     </script>
 </head>
 <body>
-    @if(ViewData["error"] != null && ViewData["error"] != ""){ 
+    @if(ViewData["error"] != null && (string)ViewData["error"]! != ""){ 
     <label>@ViewData["error"]</label>
     <br />
     <br />
