@@ -22,7 +22,7 @@ namespace QuoteTree
         }
 
 		#region IXmlSerializable Members
-		public System.Xml.Schema.XmlSchema GetSchema()
+		public System.Xml.Schema.XmlSchema? GetSchema()
 		{
 			return null;
 		}
@@ -43,11 +43,11 @@ namespace QuoteTree
 				reader.ReadStartElement("item");
 
 				reader.ReadStartElement("key");
-				TKey key = (TKey)keySerializer.Deserialize(reader);
+				TKey key = (TKey)keySerializer.Deserialize(reader)!;
 				reader.ReadEndElement();
 
 				reader.ReadStartElement("value");
-				TValue value = (TValue)valueSerializer.Deserialize(reader);
+				TValue value = (TValue)valueSerializer.Deserialize(reader)!;
 				reader.ReadEndElement();
 
 				this.Add(key, value);

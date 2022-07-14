@@ -81,7 +81,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
             List<NodeData> nodes = new List<NodeData>();
             if (node != null && node.Children != null)
@@ -131,14 +131,14 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
             List<NodeData> nodes = new List<NodeData>();
             if (node != null && node.Dependents != null)
             {
                 foreach (string dependent in node.Dependents)
                 {
-                    ANode dep = tree.GetNodeFromId(dependent);
+                    ANode dep = tree.GetNodeFromId(dependent)!;
                     string Expression;
                     bool EditChildren = false;
                     switch (dep.Type)
@@ -178,9 +178,9 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);    
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
-            node.Selected = state == "true" ? true : false;
+            node!.Selected = state == "true" ? true : false;
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -271,9 +271,9 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
-            HttpContext.Session.SetString("nodeName",node.Name);
+            HttpContext.Session.SetString("nodeName",node!.Name);
 
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
             var options = new LoadURLOptions();
@@ -295,9 +295,9 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);              
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
-            HttpContext.Session.SetString("nodeName",node.Name);
+            HttpContext.Session.SetString("nodeName",node!.Name);
         
             var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
@@ -360,9 +360,9 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", "")); 
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", "")); 
             TempData["node"] = node; 
-            HttpContext.Session.SetString("nodeName",node.Name);
+            HttpContext.Session.SetString("nodeName",node!.Name);
 
             var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
@@ -391,7 +391,7 @@ namespace OnlinePriceSystem.Controllers
                 {
                     var value = keys.Get(key.ToString())!;
                     string nodeID = key.ToString()!.Replace("NodeValue", "");
-                    ANode node = tree.GetNodeFromId(nodeID);
+                    ANode node = tree.GetNodeFromId(nodeID)!;
                     decimal result;
                     if (Decimal.TryParse(value, out result))
                     {
@@ -414,7 +414,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.CloneTemplate(sourceId, targetId);
+            ANode node = tree.CloneTemplate(sourceId, targetId)!;
 
             string Expression;
             bool EditChildren = false;
@@ -456,7 +456,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-			ANode node = tree.GetNodeFromId(id);
+			ANode node = tree.GetNodeFromId(id)!;
 
 			switch (node.Type)
 			{
@@ -503,7 +503,7 @@ namespace OnlinePriceSystem.Controllers
 
             foreach (string id in parsedIds)
             {
-                ANode node = tree.GetNodeFromId(id);
+                ANode? node = tree.GetNodeFromId(id);
                 if (node != null) 
                     if (node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return Content("");
             }
@@ -511,7 +511,7 @@ namespace OnlinePriceSystem.Controllers
             {
                 if (id.Trim() != "")
                 {
-                    ANode node = tree.GetNodeFromId(id);
+                    ANode? node = tree.GetNodeFromId(id);
                     if (node != null) 
                     {
                         string path = HttpContext.Session.GetString("path")!;
@@ -651,11 +651,11 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node;
+            ANode? node;
 
             //if the node was renamed add node and old name to session variable (this code has been commented...needs to be fixed and uncommented...have to serialize and save to session)
             string id = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["id"]!;
-            node = tree.GetNodeFromId(id);
+            node = tree.GetNodeFromId(id)!;
             string oldname = node.Name;
             string newname = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString())["name"]!;
 
@@ -758,11 +758,11 @@ namespace OnlinePriceSystem.Controllers
                 countDots = n.Id.Split(".".ToCharArray()).Length - 1;
                 if (countDots == RootExpandedLevels)
                 {
-                    n.Children.Clear();
+                    n.Children!.Clear();
                     return;
                 }
             }
-            for (int i = 0; i < n.Children.Count; i++)
+            for (int i = 0; i < n.Children!.Count; i++)
             {
                 pruneTree(n.Children[i], RootExpandedLevels);
             }
@@ -902,8 +902,8 @@ namespace OnlinePriceSystem.Controllers
             {
                 if (nodeID != String.Empty)
                 {
-                    ANode node = tree.CloneNode(nodeID, targetId);
-                    if (node == null) return Content(null);
+                    ANode? node = tree.CloneNode(nodeID, targetId);
+                    if (node == null) return Content("");
 
                     string Expression;
                     bool EditChildren = false;
@@ -955,7 +955,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.NewNode(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
+            ANode? node = tree.NewNode(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
             if (node == null) return Content("");
             string Expression = "";
             bool EditChildren = false;
@@ -1043,7 +1043,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", ""));
+            ANode node = tree.GetNodeFromId(id.Replace("ckbx_", ""))!;
 
             List<NodeDatajsTree> nodes = new List<NodeDatajsTree>();
             if (node != null && node.Children != null)
@@ -1063,7 +1063,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            ANode node = tree.GetNodeFromId(id.Replace("li_ul_", ""));
+            ANode node = tree.GetNodeFromId(id.Replace("li_ul_", ""))!;
 
             string Expression = "";
             bool EditChildren = false;
@@ -1126,7 +1126,7 @@ namespace OnlinePriceSystem.Controllers
             {
                 if (!list.Contains(node.Name.Replace(" ","_"))) list.Add(node.Name.Replace(" ","_"));
                 if (!list.Contains(node.GetPath().Replace(" ","_"))) list.Add(node.GetPath().Replace(" ","_"));
-                foreach (ANode child in node.Children)
+                foreach (ANode child in node.Children!)
                     getNames(child,list);
             }
         }
@@ -1143,7 +1143,7 @@ namespace OnlinePriceSystem.Controllers
 			{
 				if (nodeID != String.Empty)
 				{
-					ANode node = tree.GetNodeFromId(nodeID);
+					ANode? node = tree.GetNodeFromId(nodeID);
 
 					string Expression;
 					bool EditChildren = false;

@@ -52,7 +52,7 @@ namespace QuoteTree;
             set;
         }
 
-        List<ANode> Children
+        List<ANode>? Children
 		{
 			get;
 			set;
@@ -183,7 +183,7 @@ namespace QuoteTree;
             set;
         }
 
-		ANode Parent
+		ANode? Parent
 		{
 			get;
 			set;
@@ -228,7 +228,7 @@ namespace QuoteTree;
 
         decimal Total();
 		//string TotalStr();
-		ANode FindChildNode(string name);
+		ANode? FindChildNode(string name);
 		string GetPath();
 		bool IsComplete();
 		void SortChildren();
@@ -260,7 +260,7 @@ namespace QuoteTree;
 		private string _ID;
 		private NodeType _Type;
         [JsonProperty]
-        private List<ANode> _Children;
+        private List<ANode>? _Children;
         [XmlIgnore]
         
         private List<string> _Dependents;
@@ -286,7 +286,7 @@ namespace QuoteTree;
         private string _DisableCondition;
         private string _DisabledMessage;
         [XmlIgnore]
-        private ANode _Parent;
+        private ANode? _Parent;
 		private string _Description;
         [XmlIgnore]
         private QTree _ParentTree;
@@ -351,7 +351,7 @@ namespace QuoteTree;
             set { }
         }
        [JsonIgnore]
-        public List<ANode> Children
+        public List<ANode>? Children
 		{
 			get { return _Children; }
 			set { _Children = value; }
@@ -427,7 +427,7 @@ namespace QuoteTree;
 				_Selected = value;
 				if (value == true && this.Parent != null && this.Parent.Type == NodeType.Decision)
 				{
-					foreach (ANode n in Parent.Children)
+					foreach (ANode n in Parent.Children!)
 					{
 						if (n.Name != this.Name) n.Selected = false;
 					}
@@ -528,7 +528,7 @@ namespace QuoteTree;
 
 		[XmlIgnore]
        
-        public ANode Parent
+        public ANode? Parent
 		{
 			get { return _Parent; }
 			set { _Parent = value; }
@@ -664,7 +664,7 @@ namespace QuoteTree;
             try
             {
                 RemoveBranchFromDependencies(this, ParentTree.Root);
-                this.Parent.Children.Remove(this);
+                this.Parent!.Children!.Remove(this);
             }
             catch (Exception) { }
 		}
@@ -672,7 +672,7 @@ namespace QuoteTree;
 		public void RemoveBranchFromDependencies(ANode node, ANode start)
 		{
 			RemoveNodeFromDependencies (node, start);
-			foreach (ANode child in node.Children)
+			foreach (ANode child in node.Children!)
 				RemoveBranchFromDependencies (child, start);
 		}
 
@@ -681,7 +681,7 @@ namespace QuoteTree;
 			if (start.Dependents.Contains(node.Id)) 
 				start.Dependents.Remove(node.Id);
 			if (start.References.Contains(node.Id)) start.References.Remove(node.Id);
-			foreach (ANode child in start.Children)
+			foreach (ANode child in start.Children!)
 				RemoveNodeFromDependencies(node, child);
 		}
 
@@ -701,7 +701,7 @@ namespace QuoteTree;
 
         public bool BranchHidden() 
         {           
-            ANode parent = this;
+            ANode? parent = this;
             while (parent != null)
             {
                 if (parent.Hidden) return true;
@@ -713,7 +713,7 @@ namespace QuoteTree;
 		public string GetValueFromDirectory(string field, string dir)
 		{
 
-			String line;
+			String? line;
 			string s = "";
 			string[] splitted;
 
@@ -761,7 +761,7 @@ namespace QuoteTree;
 		}
 		public void SortChildren()
 		{
-			this._Children.Sort(new NodeComparer());
+			this._Children!.Sort(new NodeComparer());
 			foreach (ANode n in this._Children)
 				n.SortChildren();
 		}
@@ -769,7 +769,7 @@ namespace QuoteTree;
 		{
 			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
 			MemoryStream ms = new MemoryStream();
-			BinaryFormatter formater = new BinaryFormatter();
+			BinaryFormatter? formater = new BinaryFormatter();
 			//formater.Serialize(fs, this);
 			formater.Serialize(ms, this);
 			ms.Seek(0, SeekOrigin.Begin);
@@ -779,9 +779,9 @@ namespace QuoteTree;
 		}
 		public ANode Clone()
 		{
-			MemoryStream ms;
+			MemoryStream? ms;
 			object node;
-			BinaryFormatter formater = new BinaryFormatter();
+			BinaryFormatter? formater = new BinaryFormatter();
 			ms = this.Serialize();
 			node = formater.Deserialize(ms);
 			ms.Close();
@@ -789,7 +789,7 @@ namespace QuoteTree;
 			ms = null;
 			formater = null;
 			System.GC.Collect();
-			return node as ANode;
+			return (node as ANode)!;
 		}
 		public string GetPath()
 		{
@@ -804,7 +804,7 @@ namespace QuoteTree;
 			return s;
 
 		}
-		public ANode FindChildNode(string name)
+		public ANode? FindChildNode(string name)
 		{
 			if (this._Children == null) return null;
 			foreach (ANode n in this._Children)
@@ -865,17 +865,17 @@ namespace QuoteTree;
                         else
                         if (name.Contains("\\"))
                         {
-                            args.Result = this.ParentTree.GetNodeFromPath(tempName).Selected ? 1 : 0;
+                            args.Result = this.ParentTree.GetNodeFromPath(tempName)!.Selected ? 1 : 0;
                         }
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1,tempName.Length - 2);
-                            args.Result = this.ParentTree.GetNodeFromId(tempName).Selected ? 1 : 0;
+                            args.Result = this.ParentTree.GetNodeFromId(tempName)!.Selected ? 1 : 0;
                         }                     
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -890,16 +890,16 @@ namespace QuoteTree;
                             args.Result = this.Disabled ? 1 : 0;
                         else 
                         if (name.Contains("\\"))
-                            args.Result = this.ParentTree.GetNodeFromPath(tempName).Disabled ? 1 : 0;
+                            args.Result = this.ParentTree.GetNodeFromPath(tempName)!.Disabled ? 1 : 0;
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = this.ParentTree.GetNodeFromId(tempName).Disabled ? 1 : 0;
+                            args.Result = this.ParentTree.GetNodeFromId(tempName)!.Disabled ? 1 : 0;
                         }
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -914,16 +914,16 @@ namespace QuoteTree;
                             args.Result = Double.Parse(this.Max.ToString());
                         else 
                         if (name.Contains("\\"))
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName).Max.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName)!.Max.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName).Max.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName)!.Max.ToString());
                         }
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -938,16 +938,16 @@ namespace QuoteTree;
                             args.Result = Double.Parse(this.Min.ToString());
                         else 
                         if (name.Contains("\\"))
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName).Min.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName)!.Min.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName).Min.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName)!.Min.ToString());
                         }
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -962,17 +962,17 @@ namespace QuoteTree;
                             args.Result = Double.Parse(this.Discount.ToString());
                         else
                         if (name.Contains("\\"))
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName).Discount.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(tempName)!.Discount.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName).Discount.ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName)!.Discount.ToString());
 
                         }
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -984,17 +984,17 @@ namespace QuoteTree;
                         break;
                     default:
                         if (name.Contains("\\"))
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(name).Total().ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(name)!.Total().ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName).Total().ToString());
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromId(tempName)!.Total().ToString());
 
                         }
                         else
                         {
-                            foreach (ANode child in this.Children)
+                            foreach (ANode child in this.Children!)
                             {
                                 if (child.Name == name)
                                 {
@@ -1031,7 +1031,7 @@ namespace QuoteTree;
 	public class TextNode : ANode
 	{
 		// *******Fields*****
-		string _Text;
+		string _Text = "";
         bool _Entered;
         //bool _EditChildren;
 
@@ -1130,7 +1130,7 @@ namespace QuoteTree;
 		{
             if (!BranchSelected() || BranchHidden()) return true;
             if (!Entered && (!Optional || (Optional && Selected))) return false;
-			foreach (ANode n in Children)
+			foreach (ANode n in Children!)
 			{
 				if (n.Selected && !n.IsComplete()) return false;
 			}
@@ -1189,7 +1189,7 @@ namespace QuoteTree;
 			this.Expanded = false;
 		}
 
-		public TextNode(string path, ANode parent, QTree parentTree, string id)
+		public TextNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -1255,7 +1255,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -1277,11 +1277,11 @@ namespace QuoteTree;
         public TextNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
-                node = tree.GetNodeFromId(id);
+                node = tree.GetNodeFromId(id)!;
                 if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
@@ -1289,9 +1289,9 @@ namespace QuoteTree;
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -1301,9 +1301,9 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Text = values["expression"];
+            this.Text = values["expression"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -1323,14 +1323,14 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
                 this.Dependents.Add(node.Id);
             }
-            this.Parent = node;
+            this.Parent = node!;
             this.ParentTree = tree;
             this.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + this.Id;
 
@@ -1339,7 +1339,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -1357,7 +1357,7 @@ namespace QuoteTree;
 	public class MathNode : ANode
 	{
 		// *******Fields*****
-		string _Formula;
+		string _Formula = "";
         bool _Entered;
 		//bool _EditChildren;
 
@@ -1427,7 +1427,7 @@ namespace QuoteTree;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode).EditChildren &&
+			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
 				decimal.TryParse((this as MathNode).Formula, out o)) return "";
 			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
 
@@ -1439,7 +1439,7 @@ namespace QuoteTree;
 			if (this.EditChildren)
 			{
 				Text += " (";
-				foreach (ANode child in this.Children)
+				foreach (ANode child in this.Children!)
 				{
 					if (!child.Hidden)
 						Text += child.Total() + " " + child.Units + ", ";
@@ -1556,7 +1556,7 @@ namespace QuoteTree;
                     ParentTree.TotalCounter = 0;
                     throw new Exception("Incorrect expression for this type of node");
                 }
-                formula_result = decimal.Parse(result.ToString());
+                formula_result = decimal.Parse(result.ToString()!);
             }
             catch (CircularReferenceException)
             {
@@ -1599,7 +1599,7 @@ namespace QuoteTree;
             {
                 if (!Entered && (!Optional || (Optional && Selected))) return false;
             }
-			foreach (ANode n in Children)
+			foreach (ANode n in Children!)
 			{
 				if (n.Selected && !n.IsComplete()) return false;
 			}
@@ -1650,7 +1650,7 @@ namespace QuoteTree;
 			this.Expanded = false;
 		}
 
-		public MathNode(string path, ANode parent, QTree parentTree, string id)
+		public MathNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -1734,7 +1734,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -1757,21 +1757,21 @@ namespace QuoteTree;
         public MathNode(NameValueCollection values,QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -1781,10 +1781,10 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Formula = values["expression"];
+            this.Formula = values["expression"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"];
-            this.Units = values["units"];
+            this.Name = values["name"]!;
+            this.Units = values["units"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -1804,8 +1804,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -1829,7 +1829,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(this.Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -1847,7 +1847,7 @@ namespace QuoteTree;
     public class DateNode : ANode
     {
         // *******Fields*****
-        string _Formula;
+        string _Formula = "";
         //bool _Entered;
         //bool _EditChildren;
 
@@ -1877,7 +1877,7 @@ namespace QuoteTree;
         public override bool IsComplete()
         {
             if (!BranchSelected()) return true;
-            foreach (ANode n in Children)
+            foreach (ANode n in Children!)
             {
                 if (n.Selected && !n.IsComplete()) return false;
             }
@@ -1925,7 +1925,7 @@ namespace QuoteTree;
             this.Expanded = false;
         }
 
-        public DateNode(string path, ANode parent, QTree parentTree, string id)
+        public DateNode(string path, ANode? parent, QTree parentTree, string id)
             : this()
         {
             if (parent != null) this.Parent = parent;
@@ -1997,7 +1997,7 @@ namespace QuoteTree;
 
             //Get description from file in folder.
             string s = "";
-            string line = "";
+            string? line = "";
             try
             {
                 using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -2020,21 +2020,21 @@ namespace QuoteTree;
         public DateNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -2045,8 +2045,8 @@ namespace QuoteTree;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
             this.EditChildren = true;
-            this.Name = values["name"];
-            this.Units = values["units"];
+            this.Name = values["name"]!;
+            this.Units = values["units"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -2066,8 +2066,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             this.Selected = true;
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -2084,7 +2084,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(this.Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -2102,13 +2102,13 @@ namespace QuoteTree;
             month.Parent = this;
             month.ParentTree = tree;
             month.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + month.Id;
-            (month as MathNode).Formula = "1";
+            (month as MathNode)!.Formula = "1";
             month.Min = 1;
             month.Max = 12;
             month.Dependents.Add(this.Id);
             month.Order = 0;
             month.Selected = true;
-            this.Children.Add(month);
+            this.Children!.Add(month);
 
             ANode day = new MathNode();
             day.Id = this.NewId();
@@ -2116,7 +2116,7 @@ namespace QuoteTree;
             day.Parent = this;
             day.ParentTree = tree;
             day.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + day.Id;
-            (day as MathNode).Formula = "1";
+            (day as MathNode)!.Formula = "1";
             day.Min = 1;
             day.Max = 31;
             day.Dependents.Add(this.Id);
@@ -2130,7 +2130,7 @@ namespace QuoteTree;
             year.Parent = this;
             year.ParentTree = tree;
             year.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + year.Id;
-            (year as MathNode).Formula = "2000";
+            (year as MathNode)!.Formula = "2000";
             year.Min = 2000;
             year.Max = 2100;
             year.Dependents.Add(this.Id);
@@ -2144,7 +2144,7 @@ namespace QuoteTree;
     public class TodayNode : ANode
     {
         // *******Fields*****
-        string _Formula;
+        string _Formula = "";
         //bool _Entered;
         //bool _EditChildren;
 
@@ -2218,7 +2218,7 @@ namespace QuoteTree;
             this.Expanded = false;
         }
 
-        public TodayNode(string path, ANode parent, QTree parentTree, string id)
+        public TodayNode(string path, ANode? parent, QTree parentTree, string id)
             : this()
         {
             if (parent != null) this.Parent = parent;
@@ -2290,7 +2290,7 @@ namespace QuoteTree;
 
             //Get description from file in folder.
             string s = "";
-            string line = "";
+            string? line = "";
             try
             {
                 using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -2313,21 +2313,21 @@ namespace QuoteTree;
         public TodayNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -2338,8 +2338,8 @@ namespace QuoteTree;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
             this.EditChildren = true;
-            this.Name = values["name"];
-            this.Units = values["units"];
+            this.Name = values["name"]!;
+            this.Units = values["units"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -2359,8 +2359,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -2395,13 +2395,13 @@ namespace QuoteTree;
             month.Parent = this;
             month.ParentTree = tree;
             month.Url = "TreeView" + "/Description" + "?id=" + month.Id;
-            (month as MathNode).Formula = DateTime.Today.Month.ToString();
+            (month as MathNode)!.Formula = DateTime.Today.Month.ToString();
             month.Min = 1;
             month.Max = 12;
             month.Dependents.Add(this.Id);
             month.ReadOnly = true;
             month.Order = 0;
-            this.Children.Add(month);
+            this.Children!.Add(month);
 
             ANode day = new MathNode();
             day.Id = this.NewId();
@@ -2409,7 +2409,7 @@ namespace QuoteTree;
             day.Parent = this;
             day.ParentTree = tree;
             day.Url = "TreeView" + "/Description" + "?id=" + day.Id;
-            (day as MathNode).Formula = DateTime.Today.Day.ToString();
+            (day as MathNode)!.Formula = DateTime.Today.Day.ToString();
             day.Min = 1;
             day.Max = 31;
             day.Dependents.Add(this.Id);
@@ -2423,7 +2423,7 @@ namespace QuoteTree;
             year.Parent = this;
             year.ParentTree = tree;
             year.Url = "TreeView" + "/Description" + "?id=" + year.Id;
-            (year as MathNode).Formula = DateTime.Today.Year.ToString();
+            (year as MathNode)!.Formula = DateTime.Today.Year.ToString();
             year.Min = 0;
             year.Max = 0;
             year.Dependents.Add(this.Id);
@@ -2497,7 +2497,7 @@ namespace QuoteTree;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode).EditChildren &&
+			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
 				decimal.TryParse((this as ConditionalNode).Formula, out o)) return "";
 			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
 
@@ -2585,7 +2585,7 @@ namespace QuoteTree;
                     ParentTree.TotalCounter = 0;
                     throw new Exception("Incorrect expression for this type of node");
                 }
-                formula_result = decimal.Parse(result.ToString());
+                formula_result = decimal.Parse(result.ToString()!);
                 ParentTree.TotalCounter--;
                 if (this.Max != 0 && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                 else
@@ -2670,7 +2670,7 @@ namespace QuoteTree;
 			this.Expanded = false;
 		}
 
-		public ConditionalNode(string path, ANode parent, QTree parentTree, string id)
+		public ConditionalNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -2738,7 +2738,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -2760,21 +2760,21 @@ namespace QuoteTree;
         public ConditionalNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
            if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -2784,10 +2784,10 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Formula = values["expression"];
+            this.Formula = values["expression"]!;
             //this.parseFormula();
             this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -2807,8 +2807,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -2823,7 +2823,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -2890,7 +2890,7 @@ namespace QuoteTree;
 			//Check for extreme conditions that can make the math node invalid.
 			if (this.Hidden) return "";
 			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode).EditChildren &&
+			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
 				decimal.TryParse((this as ConditionalRulesNode).Expression, out o)) return "";
 			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
 
@@ -2981,7 +2981,7 @@ namespace QuoteTree;
                         e1.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
 
                         object result1 = e1.Evaluate();
-                        formula_result = decimal.Parse(result1.ToString());
+                        formula_result = decimal.Parse(result1.ToString()!);
                         ParentTree.TotalCounter--;
                         if (this.Max != 0 && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                         else
@@ -3081,7 +3081,7 @@ namespace QuoteTree;
 			this.Expanded = false;
 		}
 
-		public ConditionalRulesNode(string path, ANode parent, QTree parentTree, string id)
+		public ConditionalRulesNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -3145,7 +3145,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -3167,21 +3167,21 @@ namespace QuoteTree;
         public ConditionalRulesNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -3191,10 +3191,10 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Expression = values["expression"];
+            this.Expression = values["expression"]!;
             this.parseExpression();
             this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -3214,8 +3214,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -3230,7 +3230,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -3359,7 +3359,7 @@ namespace QuoteTree;
 			//Get selected child total
 			decimal selected_child_result = 0;
 
-			foreach (ANode n in this.Children)
+			foreach (ANode n in this.Children!)
 			{
 				if (n.Selected) { selected_child_result = n.Total(); break; }
 			}
@@ -3400,7 +3400,7 @@ namespace QuoteTree;
 
 		}
 
-		public DecisionNode(string path, ANode parent, QTree parentTree, string id)
+		public DecisionNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			string value = "";
@@ -3464,7 +3464,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -3486,21 +3486,21 @@ namespace QuoteTree;
         public DecisionNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -3510,7 +3510,7 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -3530,8 +3530,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -3544,7 +3544,7 @@ namespace QuoteTree;
             //Add new node to children
             if (node != null)
             {
-                node.Children.Add(this);
+                node.Children!.Add(this);
                 //SetDependentsByHierarchy(Root, stack);
                 //SetDependentsByReference(node, false);
             }
@@ -3747,11 +3747,11 @@ namespace QuoteTree;
                     try
                     {
                         object result = eFloor.Evaluate();
-                        floor = decimal.Parse(result.ToString());
+                        floor = decimal.Parse(result.ToString()!);
                         result = eCeiling.Evaluate();
-                        ceiling = decimal.Parse(result.ToString());
+                        ceiling = decimal.Parse(result.ToString()!);
                         result = eValue.Evaluate();
-                        value = decimal.Parse(result.ToString());
+                        value = decimal.Parse(result.ToString()!);
                     }
                     catch (CircularReferenceException)
                     {
@@ -3775,7 +3775,7 @@ namespace QuoteTree;
                                 try 
                                 {
                                     object result = eOutput.Evaluate();
-                                    output = decimal.Parse(result.ToString());
+                                    output = decimal.Parse(result.ToString()!);
                                 }
                                 catch (CircularReferenceException)
                                 {
@@ -3856,7 +3856,7 @@ namespace QuoteTree;
 			this.Expanded = false;
 		}
 
-		public RangeNode(string path, ANode parent, QTree parentTree, string id)
+		public RangeNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -3920,7 +3920,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -3942,21 +3942,21 @@ namespace QuoteTree;
         public RangeNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -3966,9 +3966,9 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Range = values["expression"];
+            this.Range = values["expression"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -3988,8 +3988,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -4004,7 +4004,7 @@ namespace QuoteTree;
             {
                 if (node != null)
                 {
-                    node.Children.Add(this);
+                    node.Children!.Add(this);
                     //SetDependentsByHierarchy(Root, stack);
                     //SetDependentsByReference(node, false);
                 }
@@ -4126,7 +4126,7 @@ namespace QuoteTree;
             }
 
 			decimal sum = 0;
-			foreach (ANode n in this.Children)
+			foreach (ANode n in this.Children!)
 			{
 				if (!n.Template) sum += n.Total();
 
@@ -4177,7 +4177,7 @@ namespace QuoteTree;
 			this.ReadOnly = false;
 			this.Expanded = false;
 		}
-		public SumSetNode(string path, ANode parent, QTree parentTree, string id)
+		public SumSetNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
 			if (parent != null) this.Parent = parent;
@@ -4242,7 +4242,7 @@ namespace QuoteTree;
 
 			//Get description from file in folder.
 			string s = "";
-			string line = "";
+			string? line = "";
 			try
 			{
 				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -4264,21 +4264,21 @@ namespace QuoteTree;
         public SumSetNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
            if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -4288,7 +4288,7 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Name = values["name"];
+            this.Name = values["name"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
@@ -4309,8 +4309,8 @@ namespace QuoteTree;
 
             if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
             else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"];
-            this.DisabledMessage = values["disabledMessage"];
+            this.DisableCondition = values["disable"]!;
+            this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
                 this.Dependents.AddRange(node.Dependents);
@@ -4323,7 +4323,7 @@ namespace QuoteTree;
             //Add new node to children
             if (node != null)
             {
-                node.Children.Add(this);
+                node.Children!.Add(this);
                 //SetDependentsByHierarchy(Root, stack);
                 //SetDependentsByReference(node, false);
             }
@@ -4507,7 +4507,7 @@ namespace QuoteTree;
             this.Template = false;
         }
         
-        public ReferenceNode(string path, ANode parent, QTree parentTree, string id)
+        public ReferenceNode(string path, ANode? parent, QTree parentTree, string id)
             : this()
         {
             if (parent != null) this.Parent = parent;
@@ -4519,7 +4519,7 @@ namespace QuoteTree;
 
             value = this.GetValueFromDirectory("target", path);
             if (value != "") this.Target = value;
-            this.TargetNode = ParentTree.GetNodeFromPath(Target);
+            this.TargetNode = ParentTree.GetNodeFromPath(Target)!;
 
             value = this.GetValueFromDirectory("expandedlevels", path);
             int.TryParse(value, out intResult);
@@ -4542,7 +4542,7 @@ namespace QuoteTree;
 
             //Get description from file in folder.
             string s = "";
-            string line = "";
+            string? line = "";
             try
             {
                 using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
@@ -4564,21 +4564,21 @@ namespace QuoteTree;
         public ReferenceNode(NameValueCollection values, QTree tree)
             : this()
         {
-            string id = values["id"];
-            ANode node;
+            string id = values["id"]!;
+            ANode? node;
             if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
-                if (node.Type == NodeType.Date || node.Type == NodeType.Today) return;
+                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
                 if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
             }
             else
                 node = null;
 
             //check for same name
-            if (node != null)
+            if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"].Trim()) return;
+                if (n.Name.Trim() == values["name"]!.Trim()) return;
 
             Stack<ANode> stack = new Stack<ANode>();
             int intResult;
@@ -4587,9 +4587,9 @@ namespace QuoteTree;
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
             else this.Id = node.NewId();
-            this.Target = values["expression"];
-            this.TargetNode = tree.GetNodeFromPath(values["expression"]);
-            this.Name = values["name"];
+            this.Target = values["expression"]!;
+            this.TargetNode = tree.GetNodeFromPath(values["expression"]!)!;
+            this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
@@ -4612,7 +4612,7 @@ namespace QuoteTree;
             //Add new node to children
             if (node != null)
             {
-                node.Children.Add(this);
+                node.Children!.Add(this);
                 //SetDependentsByHierarchy(Root, stack);
                 //SetDependentsByReference(node, false);
             }
@@ -4630,7 +4630,7 @@ namespace QuoteTree;
 	public class QTree
 	{
 		// *****Fields*****
-		ANode _Root;
+		ANode? _Root;
         // Next field is used to detect circular references.
         public int TotalCounter = 0;
         public int EvaluateParameterCounter = 0;
@@ -4777,7 +4777,7 @@ namespace QuoteTree;
 
 		public bool dontReportChildren(ANode node)
 		{
-			foreach (ANode child in node.Children)
+			foreach (ANode child in node.Children!)
 			{
 				if (!child.Hidden && child.Report) return false;
 			}
@@ -4787,7 +4787,7 @@ namespace QuoteTree;
 		public string GetValueFromDirectory(string field, string dir)
 		{
 
-			String line;
+			String? line;
 			string s = "";
 			string[] splitted;
 
@@ -4831,7 +4831,7 @@ namespace QuoteTree;
 
 		}
 
-		public void Fill(string path, ref ANode node, ANode parent, string id)
+		public void Fill(string path, ref ANode? node, ANode? parent, string id)
 		{
 			string type = this.GetValueFromDirectory("type", path);
 
@@ -4881,26 +4881,26 @@ namespace QuoteTree;
 					int child_id = 1;
 					foreach (string dir in dirs)
 					{
-						ANode newnode = null;
-						Fill(dir, ref newnode, node, id + "." + child_id.ToString());
-						if (newnode != null && node != null) node.Children.Add(newnode);
+						ANode? newnode = null;
+						Fill(dir, ref newnode, node!, id + "." + child_id.ToString());
+						if (newnode != null && node != null) node.Children!.Add(newnode);
 						child_id++;
 					}
 				}
 			}
 		}
 
-		public ANode GetNodeFromId(string id)
+		public ANode? GetNodeFromId(string id)
 		{
 			try
 			{
 				string[] arr = id.Split(".".ToCharArray());
-				ANode node = this._Root;
-				string ID = node.Id;
+				ANode? node = this._Root;
+				string ID = node!.Id;
 				for (int i = 1; i < arr.Length; i++)
 				{
 					ID += "." + arr[i];
-					foreach (ANode child in node.Children)
+					foreach (ANode child in node.Children!)
 					{
 						if (child.Id == ID)
 						{
@@ -4920,17 +4920,17 @@ namespace QuoteTree;
 
 		public ANode GetNode(string name)
 		{
-			return GetNode(name, this._Root);
+			return GetNode(name, this._Root!)!;
 		}
 
-		public ANode GetNodeFromPath(string path)
+		public ANode? GetNodeFromPath(string path)
 		{
 			path = path.Replace("\\", "/");
 			string[] parts = path.Split("/".ToCharArray());
-			ANode n = this._Root;
+			ANode? n = this._Root;
             try
             {
-                if (parts.Length == 0 || n.Name.Trim() != parts[0].Trim()) return null;
+                if (parts.Length == 0 || n!.Name.Trim() != parts[0].Trim()) return null;
                 else if (parts.Length == 1) return n;
                 for (int i = 1; i < parts.Length; i++)
                 {
@@ -4943,7 +4943,7 @@ namespace QuoteTree;
             catch (Exception) { return null; }
 		}
 
-		ANode GetNode(string name, ANode start)
+		ANode? GetNode(string name, ANode start)
 		{
 			if (start == null) return null;
 			else
@@ -4952,7 +4952,7 @@ namespace QuoteTree;
 					if (start.Children == null || start.Children.Count == 0) return null;
 					else
 					{
-						ANode tmp;
+						ANode? tmp;
 						foreach (ANode n in start.Children)
 						{
 							tmp = GetNode(name, n);
@@ -5017,37 +5017,37 @@ namespace QuoteTree;
 
 				if (start.Type == NodeType.Math)
 				{
-					sw.WriteLine("formula=\"" + (start as MathNode).Formula + "\";"); 
-					sw.WriteLine("editchildren=\"" + (start as MathNode).EditChildren.ToString().ToLower() + "\";");
+					sw.WriteLine("formula=\"" + (start as MathNode)!.Formula + "\";"); 
+					sw.WriteLine("editchildren=\"" + (start as MathNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
                 if (start.Type == NodeType.Text)
                 {
-                    sw.WriteLine("text=\"" + (start as TextNode).Text + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as TextNode).EditChildren.ToString().ToLower() + "\";");
+                    sw.WriteLine("text=\"" + (start as TextNode)!.Text + "\";");
+                    sw.WriteLine("editchildren=\"" + (start as TextNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
                 if (start.Type == NodeType.Range)
                 {
-                    sw.WriteLine("range=\"" + (start as RangeNode).Range + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as RangeNode).EditChildren.ToString().ToLower() + "\";");
+                    sw.WriteLine("range=\"" + (start as RangeNode)!.Range + "\";");
+                    sw.WriteLine("editchildren=\"" + (start as RangeNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
                 if (start.Type == NodeType.Conditional)
                 {
-                    sw.WriteLine("formula=\"" + (start as ConditionalNode).Formula + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as ConditionalNode).EditChildren.ToString().ToLower() + "\";");
+                    sw.WriteLine("formula=\"" + (start as ConditionalNode)!.Formula + "\";");
+                    sw.WriteLine("editchildren=\"" + (start as ConditionalNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
                 if (start.Type == NodeType.ConditionalRules)
                 {
-                    sw.WriteLine("expression=\"" + (start as ConditionalRulesNode).Expression + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as ConditionalRulesNode).EditChildren.ToString().ToLower() + "\";");
+                    sw.WriteLine("expression=\"" + (start as ConditionalRulesNode)!.Expression + "\";");
+                    sw.WriteLine("editchildren=\"" + (start as ConditionalRulesNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
                 if (start.Type == NodeType.Reference)
                 {
-                    sw.WriteLine("target=\"" + (start as ReferenceNode).Target + "\";");
+                    sw.WriteLine("target=\"" + (start as ReferenceNode)!.Target + "\";");
                 }
 				sw.Close();
 
-				foreach (ANode child in start.Children)
-					SaveTreeTo(child, path + Path.DirectorySeparatorChar + start.Name, renamed);
+				foreach (ANode child in start.Children!)
+					SaveTreeTo(child, path + Path.DirectorySeparatorChar + start.Name, renamed!);
 			}
 			catch(Exception e)
 			{
@@ -5060,15 +5060,15 @@ namespace QuoteTree;
         {
             char[] charArr = { '*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ':', ';' };
             s.Push(node);
-            foreach (ANode child in node.Children)
+            foreach (ANode child in node.Children!)
             {
                 if (node.Type == NodeType.Decision
                     || node.Type == NodeType.SumSet
                     || node.Type == NodeType.Date
-                    || (node.Type == NodeType.Math && Array.IndexOf((node as MathNode).Formula.Split(charArr),child.Name) > -1)
-                    || (node.Type == NodeType.Range && Array.IndexOf((node as RangeNode).Range.Split(charArr), child.Name) > -1)
-                    || (node.Type == NodeType.Conditional && Array.IndexOf((node as ConditionalNode).Formula.Split(charArr), child.Name) > -1)
-                    || (node.Type == NodeType.ConditionalRules && Array.IndexOf((node as ConditionalRulesNode).Expression.Split(charArr), child.Name) > -1))
+                    || (node.Type == NodeType.Math && Array.IndexOf((node as MathNode)!.Formula.Split(charArr),child.Name) > -1)
+                    || (node.Type == NodeType.Range && Array.IndexOf((node as RangeNode)!.Range.Split(charArr), child.Name) > -1)
+                    || (node.Type == NodeType.Conditional && Array.IndexOf((node as ConditionalNode)!.Formula.Split(charArr), child.Name) > -1)
+                    || (node.Type == NodeType.ConditionalRules && Array.IndexOf((node as ConditionalRulesNode)!.Expression.Split(charArr), child.Name) > -1))
                 {
                     foreach (ANode dependent in s)
                         if (!child.Dependents.Contains(dependent.Id))
@@ -5084,30 +5084,30 @@ namespace QuoteTree;
         }
 
 		//Takes care of the external references and then some more.
-        public Tuple<ANode, ANode> SetDependentsByReference(ANode node, bool recursive)
+        public Tuple<ANode, ANode>? SetDependentsByReference(ANode node, bool recursive)
 		{
-            Tuple<ANode, ANode> tuple = null;
-            ANode NodeFromPath, NodeFromId;
+            Tuple<ANode, ANode>? tuple = null;
+            ANode? NodeFromPath, NodeFromId;
 			if (node.Type == NodeType.Math || node.Type == NodeType.Range || node.Type == NodeType.Conditional || node.Type == NodeType.ConditionalRules || node.Type == NodeType.Reference)
 			{
 				string expression = "";
 				switch (node.Type)
 				{
 				case NodeType.Math:
-					expression = (node as MathNode).Formula;
+					expression = (node as MathNode)!.Formula;
 					break;
 				case NodeType.Range:
-					expression = (node as RangeNode).Range;
+					expression = (node as RangeNode)!.Range;
 					break;
 				case NodeType.Conditional:
-					expression = (node as ConditionalNode).Formula;
+					expression = (node as ConditionalNode)!.Formula;
 						break;
 				case NodeType.ConditionalRules:
-					foreach (KeyValuePair<string,string> rule in (node as ConditionalRulesNode).Rules)
+					foreach (KeyValuePair<string,string> rule in (node as ConditionalRulesNode)!.Rules)
 						expression = expression + '|' + rule.Key + '|' + rule.Value + '|';
 					break;
                 case NodeType.Reference:
-                    expression = (node as ReferenceNode).Target;
+                    expression = (node as ReferenceNode)!.Target;
                     break;
 				default:
 					expression = "";
@@ -5179,7 +5179,7 @@ namespace QuoteTree;
                     }                   
 					else
 					{
-						foreach (ANode child in node.Children)
+						foreach (ANode child in node.Children!)
 						{
 							//check for local references
 							if (s.Contains(child.Name))
@@ -5266,7 +5266,7 @@ namespace QuoteTree;
                     }
                     else
                     {
-                        foreach (ANode child in node.Children)
+                        foreach (ANode child in node.Children!)
                         {
                             //check for local references
                             if (s.Contains(child.Name))
@@ -5293,7 +5293,7 @@ namespace QuoteTree;
             }
 			if (node.Type == NodeType.Decision || node.Type == NodeType.SumSet || node.Type == NodeType.Date)
 			{
-                foreach (ANode child in node.Children)
+                foreach (ANode child in node.Children!)
                 {
                     //foreach (ANode dependent in GetDependencies(child))
                     //{
@@ -5303,7 +5303,7 @@ namespace QuoteTree;
                 }
 			}
 
-			foreach (ANode child in node.Children)
+			foreach (ANode child in node.Children!)
 			{
                 if (recursive)
                 {
@@ -5315,12 +5315,12 @@ namespace QuoteTree;
             else return null;
 		}
 
-        public Tuple<ANode, ANode> SetDependents()
+        public Tuple<ANode, ANode>? SetDependents()
         {
             RemoveDependents(Root);
             RemoveReferences(Root);
             Stack<ANode> stack = new Stack<ANode>();
-            Tuple<ANode, ANode> tuple = null;
+            Tuple<ANode, ANode>? tuple = null;
             //the following method call is no longer needed, improves greatly performance.
             //SetDependentsByHierarchy(Root, stack);
             //This needs to be done twice in order to catch all dependents
@@ -5337,7 +5337,7 @@ namespace QuoteTree;
             if (start != null)
             {
                 start.Dependents.Clear();
-                foreach (ANode child in start.Children)
+                foreach (ANode child in start.Children!)
                     RemoveDependents(child);
             }
         }
@@ -5347,15 +5347,15 @@ namespace QuoteTree;
             if (start != null)
             {
                 start.References.Clear();
-                foreach (ANode child in start.Children)
+                foreach (ANode child in start.Children!)
                     RemoveReferences(child);
             }
         }
 
 		//If A depends on B and B depends on C and D then A depends on C and D
-        public Tuple<ANode, ANode> SetDependenciesRecursively(ANode start, ANode dependent)
+        public Tuple<ANode, ANode>? SetDependenciesRecursively(ANode start, ANode dependent)
 		{
-            Tuple<ANode, ANode> tuple = null;
+            Tuple<ANode, ANode>? tuple = null;
             if (dependent.Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, dependent);
 			if (!start.Dependents.Contains(dependent.Id)) start.Dependents.Add(dependent.Id);
 			foreach (ANode node in GetDependencies(start))
@@ -5367,8 +5367,8 @@ namespace QuoteTree;
 			}
             foreach (string dependent2 in dependent.Dependents)
             {
-                if (this.GetNodeFromId(dependent2).Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, this.GetNodeFromId(dependent2));
-                tuple = SetDependenciesRecursively(start, this.GetNodeFromId(dependent2));
+                if (this.GetNodeFromId(dependent2)!.Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, this.GetNodeFromId(dependent2)!);
+                tuple = SetDependenciesRecursively(start, this.GetNodeFromId(dependent2)!);
                 if (tuple != null) return tuple;
             }
             return null;
@@ -5377,14 +5377,14 @@ namespace QuoteTree;
 		public List<ANode> GetDependencies(ANode dependent)
 		{
 			List<ANode> list = new List<ANode>();
-			GetDependencies(dependent, this._Root, list);
+			GetDependencies(dependent, this._Root!, list);
 			return list;
 		}
 
 		private void GetDependencies(ANode dependent, ANode start, List<ANode> returnedList) 
 		{
 			if (start.Dependents.Contains(dependent.Id)) returnedList.Add(start);
-			foreach (ANode child in start.Children)
+			foreach (ANode child in start.Children!)
 				GetDependencies(dependent, child, returnedList);
 		}
 
@@ -5394,24 +5394,24 @@ namespace QuoteTree;
                 ((MathNode)node).Entered = false;
             if (node.Type == NodeType.Text)
                 ((TextNode)node).Entered = false;
-            foreach (ANode n in node.Children)          
+            foreach (ANode n in node.Children!)          
                 ResetEntered(n);        
         }
 
-        public ANode SaveNodeInfo(NameValueCollection values)
+        public ANode? SaveNodeInfo(NameValueCollection values)
         {
             try
             {
-                string id = values["id"];
-                ANode node = GetNodeFromId(id);
+                string id = values["id"]!;
+                ANode node = GetNodeFromId(id)!;
 
                 //Check for empty name
-                if (values["name"].Trim() == "") return null;
+                if (values["name"]!.Trim() == "") return null;
                 
                 //check for same name
                 if (node != Root)
-                    foreach (ANode n in node.Parent.Children)
-                        if (n.Name.Trim() == values["name"].Trim() && n != node)
+                    foreach (ANode n in node.Parent!.Children!)
+                        if (n.Name.Trim() == values["name"]!.Trim() && n != node)
                         {
                             return null;
                         }
@@ -5420,19 +5420,19 @@ namespace QuoteTree;
                 //first set the read-only attribute to false
                 node.ReadOnly = false;
                 if (node.Parent == null || !(node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) 
-                    node.Name = values["name"].Trim();
+                    node.Name = values["name"]!.Trim();
                     
-                node.Units = values["units"].Trim();
+                node.Units = values["units"]!.Trim();
                 Stack<ANode> stack = new Stack<ANode>();
                 switch (node.Type)
                 {
                     case NodeType.Math:
-                        (node as MathNode).Formula = values["expression"].Trim();
-                        (node as MathNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as MathNode)!.Formula = values["expression"]!.Trim();
+                        (node as MathNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //To set the url for the node
                         decimal flag;
-                        if (decimal.TryParse((node as MathNode).Formula, out flag) || (node as MathNode).EditChildren)
+                        if (decimal.TryParse((node as MathNode)!.Formula, out flag) || (node as MathNode)!.EditChildren)
                         {
                             node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         }
@@ -5442,56 +5442,56 @@ namespace QuoteTree;
                         }
                         break;
                     case NodeType.Text:
-                        (node as TextNode).Text = values["expression"].Trim();
-                        (node as TextNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as TextNode)!.Text = values["expression"]!.Trim();
+                        (node as TextNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
                         node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         break;
                     case NodeType.Range:
-                        (node as RangeNode).Range = values["expression"].Trim();
-                        (node as RangeNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as RangeNode)!.Range = values["expression"]!.Trim();
+                        (node as RangeNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Date:
-                        (node as DateNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as DateNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Today:
-                        (node as TodayNode).EditChildren = false;
+                        (node as TodayNode)!.EditChildren = false;
 
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.ConditionalRules:
-                        (node as ConditionalRulesNode).Expression = values["expression"].Trim();
-                        (node as ConditionalRulesNode).parseExpression();
-                        (node as ConditionalRulesNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as ConditionalRulesNode)!.Expression = values["expression"]!.Trim();
+                        (node as ConditionalRulesNode)!.parseExpression();
+                        (node as ConditionalRulesNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //To set the url for the node
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Conditional:
-                        (node as ConditionalNode).Formula = values["expression"].Trim();
+                        (node as ConditionalNode)!.Formula = values["expression"]!.Trim();
                         //(node as ConditionalNode).parseFormula();
-                        (node as ConditionalNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as ConditionalNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //To set the url for the node
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.SumSet:
-                        (node as SumSetNode).EditChildren = values["editChildren"] == "true" ? true : false;
+                        (node as SumSetNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //To set the url for the node
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Reference:
-                        (node as ReferenceNode).Target = values["expression"].Trim();
-                        (node as ReferenceNode).TargetNode = GetNodeFromPath(values["expression"]);
+                        (node as ReferenceNode)!.Target = values["expression"]!.Trim();
+                        (node as ReferenceNode)!.TargetNode = GetNodeFromPath(values["expression"]!)!;
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
@@ -5515,8 +5515,8 @@ namespace QuoteTree;
                     if (decimal.TryParse(values["discount"], out decimalResult))
                         node.Discount = decimalResult;
                     node.Optional = values["optional"] == "true" ? true : false;
-                    node.DisableCondition = values["disable"].Trim();
-                    node.DisabledMessage = values["disabledMessage"].Trim();
+                    node.DisableCondition = values["disable"]!.Trim();
+                    node.DisabledMessage = values["disabledMessage"]!.Trim();
                 }
                 node.Hidden = values["hidden"] == "true" ? true : false;
                 node.Report = values["report"] == "true" ? true : false;
@@ -5537,10 +5537,10 @@ namespace QuoteTree;
             }
         }
 
-        public ANode NewNode(NameValueCollection values)
+        public ANode? NewNode(NameValueCollection values)
         {
-            ANode newnode = null;
-            string nodeType = values["type"];
+            ANode? newnode = null;
+            string nodeType = values["type"]!;
             switch (nodeType)
             {
                 case "Math":
@@ -5579,12 +5579,12 @@ namespace QuoteTree;
             if (newnode == null || newnode.Name.Trim() == "") return null;
             return newnode;
         }
-        public ANode CloneNode(string sourceId, string targetId)
+        public ANode? CloneNode(string sourceId, string targetId)
         {
             try
             {
-                ANode source = GetNodeFromId(sourceId);
-                ANode target = GetNodeFromId(targetId);
+                ANode source = GetNodeFromId(sourceId)!;
+                ANode target = GetNodeFromId(targetId)!;
                 ANode clone = source.Clone();
 
                 clone.Parent = target;
@@ -5593,7 +5593,7 @@ namespace QuoteTree;
                 bool equals = false;
                 int counter = 0;
 
-                foreach (ANode n in target.Children)
+                foreach (ANode n in target.Children!)
                 {
                     if (n.Name.Trim() == clone.Name.Trim())
                     {
@@ -5651,19 +5651,19 @@ namespace QuoteTree;
                 return null; 
             }
         }
-        public ANode CloneTemplate(string sourceId, string targetId)
+        public ANode? CloneTemplate(string sourceId, string targetId)
         {
             try
             {
-                ANode source = GetNodeFromId(sourceId);
-                ANode target = GetNodeFromId(targetId);
+                ANode source = GetNodeFromId(sourceId)!;
+                ANode target = GetNodeFromId(targetId)!;
                 ANode clone = source.Clone();
                 clone.Parent = target;
                 clone.ParentTree = this;
                 clone.Template = false;
                 clone.Hidden = false;
                 FixClone(clone, this);
-                target.Children.Add(clone);
+                target.Children!.Add(clone);
                 //Set dependencies
                 Stack<ANode> stack = new Stack<ANode>();
                 SetDependentsByHierarchy(Root, stack);
@@ -5674,12 +5674,12 @@ namespace QuoteTree;
 
         public void FixClone(ANode node, QTree parentTree)
         {
-            node.Id = node.Parent.NewId();
+            node.Id = node.Parent!.NewId();
             node.Url = node.Url.Split('=')[0] + "=" + node.Id;
             node.References.Clear();
             node.Dependents.Clear();
             node.ParentTree = parentTree;
-            FixClonedChildren(node.Children, node);
+            FixClonedChildren(node.Children!, node);
         }
 
         public void FixClonedChildren(List<ANode> children, ANode parent)
@@ -5696,7 +5696,7 @@ namespace QuoteTree;
                     child.Dependents.Clear();
                     child.Parent = parent;
                     child.ParentTree = parent.ParentTree;
-                    FixClonedChildren(child.Children, child);
+                    FixClonedChildren(child.Children!, child);
                 }
             }
         }
@@ -5720,7 +5720,7 @@ namespace QuoteTree;
 			_Root = null;
 			//Stack<ANode> stack = new Stack<ANode>();
 			this.Fill(path, ref _Root, null,"1");
-			this._Root.SortChildren();
+			this._Root!.SortChildren();
 			if (dependencies) {
 				//this.SetDependentsByHierarchy (_Root, stack);
 				//This needs to be done twice in order to catch all dependents
@@ -5773,7 +5773,7 @@ namespace QuoteTree;
             using (MemoryStream memory_stream = new MemoryStream(byte_array))
             {
                 QTree tree = (formater.Deserialize(memory_stream)) as QTree;
-                tree.TotalCounter = 0;
+                tree!.TotalCounter = 0;
                 return tree;
             }
         }
