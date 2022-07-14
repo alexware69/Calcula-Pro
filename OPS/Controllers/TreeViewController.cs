@@ -116,7 +116,7 @@ namespace OnlinePriceSystem.Controllers
                    
                     bool leaf = child.Children == null || child.Children.Count == 0 ? true : false;
                     string dep = "";
-                    foreach (string n in child.Dependents) dep = dep + n + ";";
+                    foreach (string n in child.Dependents!) dep = dep + n + ";";
 
                     nodes.Add(new NodeData(child.Name, child.Id, Expression, Url.Content("~/") + child.Url, child.CheckBox, child.Type.ToString(), child.Selected, child.IsComplete(), tree.Root!.TotalStr, child.Optional, child.TotalStr, leaf, child.Hidden, child.ExpandedLevels, dep, EditChildren, child.Min.ToString(), child.Max.ToString(), child.Discount.ToString(), child.Order.ToString(), child.Report, child.ReportValue, child.Units, child.Parent != null && child.Parent.Type == NodeType.Decision, child.Template, child.HasErrors(), child.Error, child.ReadOnly, child.DisableCondition, child.Disabled, child.DisabledMessage));
                 }
@@ -164,7 +164,7 @@ namespace OnlinePriceSystem.Controllers
 
                     bool leaf = dep.Children == null || dep.Children.Count == 0 ? true : false;
                     string depStr = "";
-                    foreach (string n in dep.Dependents) depStr = depStr + n + ";";
+                    foreach (string n in dep.Dependents!) depStr = depStr + n + ";";
                     nodes.Add(new NodeData(dep.Name, dep.Id, Expression, Url.Content("~/") + dep.Url, dep.CheckBox, dep.Type.ToString(), dep.Selected, dep.IsComplete(), tree.Root!.TotalStr, dep.Optional, dep.TotalStr, leaf, dep.Hidden, dep.ExpandedLevels, depStr, EditChildren, dep.Min.ToString(), dep.Max.ToString(), dep.Discount.ToString(), dep.Order.ToString(), dep.Report, dep.ReportValue, dep.Units, dep.Parent != null && dep.Parent.Type == NodeType.Decision, dep.Template, dep.HasErrors(), dep.Error, dep.ReadOnly, dep.DisableCondition, dep.Disabled, dep.DisabledMessage));
                 }
             }
@@ -212,7 +212,7 @@ namespace OnlinePriceSystem.Controllers
 
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
+            foreach (string n in node.Dependents!) dep = dep + n + ";";
             string total;
             try
             {
@@ -439,7 +439,7 @@ namespace OnlinePriceSystem.Controllers
             }
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
+            foreach (string n in node.Dependents!) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             array = ObjectToByteArray(tree);
@@ -736,7 +736,7 @@ namespace OnlinePriceSystem.Controllers
             }
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
+            foreach (string n in node.Dependents!) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             //Restore old formula if there are errors
@@ -880,8 +880,8 @@ namespace OnlinePriceSystem.Controllers
             BinaryFormatter formater = new BinaryFormatter();
             using (MemoryStream memory_stream = new MemoryStream(array))
             {
-                tree = (formater.Deserialize(memory_stream)) as QTree;
-                return tree!;
+                tree = ((formater.Deserialize(memory_stream)) as QTree)!;
+                return tree;
             }
         }
 
@@ -935,7 +935,7 @@ namespace OnlinePriceSystem.Controllers
                     }
                     bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
                     string dep = "";
-                    foreach (string n in node.Dependents) dep = dep + n + ";";
+                    foreach (string n in node.Dependents!) dep = dep + n + ";";
                     NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
                     nodeDataList.Add(nodedata);
                 }
@@ -990,7 +990,7 @@ namespace OnlinePriceSystem.Controllers
             }
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
+            foreach (string n in node.Dependents!) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root! != null ? tree.Root!.TotalStr : "0", node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             array = ObjectToByteArray(tree);
@@ -1104,7 +1104,7 @@ namespace OnlinePriceSystem.Controllers
             }
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
-            foreach (string n in node.Dependents) dep = dep + n + ";";
+            foreach (string n in node.Dependents!) dep = dep + n + ";";
             NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             string response = JsonConvert.SerializeObject(nodedata, Formatting.Indented);
