@@ -58,7 +58,7 @@ namespace QuoteTree;
 			set;
 		}
 
-		List<string> Dependents
+		List<string>? Dependents
 		{
 			get;
 			set;
@@ -70,7 +70,7 @@ namespace QuoteTree;
             set;
         }
 
-		List<string> References
+		List<string>? References
 		{
 			get;
 			set;
@@ -233,7 +233,6 @@ namespace QuoteTree;
 		bool IsComplete();
 		void SortChildren();
 		ANode Clone();
-		string GetXML();
 		string NewId ();
 		void Remove();
 		void RemoveNodeFromDependencies(ANode node, ANode start);
@@ -256,17 +255,17 @@ namespace QuoteTree;
 
 		#region Private fields
 
-		private string _Name;
-		private string _ID;
+		private string _Name = "";
+		private string _ID = "";
 		private NodeType _Type;
         [JsonProperty]
         private List<ANode>? _Children;
         [XmlIgnore]
         
-        private List<string> _Dependents;
+        private List<string>? _Dependents;
         [XmlIgnore]
         
-        private List<string> _References;
+        private List<string>? _References;
 		private decimal _Discount;
 		private decimal _Max;
 		private decimal _Min;
@@ -279,21 +278,21 @@ namespace QuoteTree;
         [JsonProperty]
         private bool _Leaf;
         private int _ExpandedLevels;
-		private string _Units;
+		private string _Units = "";
 		private bool _Report;
 		private bool _ReportValue;
 		private bool _Optional;
-        private string _DisableCondition;
-        private string _DisabledMessage;
+        private string _DisableCondition = "";
+        private string _DisabledMessage = "";
         [XmlIgnore]
         private ANode? _Parent;
-		private string _Description;
+		private string _Description = "";
         [XmlIgnore]
-        private QTree _ParentTree;
+        private QTree? _ParentTree;
 		private decimal _Amount;
 		private bool _CheckBox;
-		private string _Url;
-        private string _Error;
+		private string _Url = "";
+        private string _Error = "";
         private bool _EditChildren;
 
 		#endregion
@@ -357,7 +356,7 @@ namespace QuoteTree;
 			set { _Children = value; }
 		}
 
-        public List<string> Dependents
+        public List<string>? Dependents
 		{
 			get { return _Dependents; }
 			set { _Dependents = value; }
@@ -367,13 +366,13 @@ namespace QuoteTree;
         {
             get {
                 string dep = "";
-                foreach (string n in this.Dependents) dep = dep + n + ";";
+                foreach (string n in this.Dependents!) dep = dep + n + ";";
                 return dep;
             }
             set { }
         }
 
-        public List<string> References
+        public List<string>? References
 		{
 			get { return _References; }
 			set { _References = value; }
@@ -543,7 +542,7 @@ namespace QuoteTree;
         [XmlIgnore]
 		public QTree ParentTree
 		{
-			get { return _ParentTree; }
+			get { return _ParentTree!; }
 			set { _ParentTree = value; }
 		}
 
@@ -612,7 +611,6 @@ namespace QuoteTree;
 
 		abstract public decimal Total();
 		abstract public bool IsComplete();
-		abstract public string GetXML();
         abstract public bool HasErrors();
 
         #endregion
@@ -678,9 +676,9 @@ namespace QuoteTree;
 
 		public void RemoveNodeFromDependencies(ANode node, ANode start)
 		{
-			if (start.Dependents.Contains(node.Id)) 
+			if (start.Dependents!.Contains(node.Id)) 
 				start.Dependents.Remove(node.Id);
-			if (start.References.Contains(node.Id)) start.References.Remove(node.Id);
+			if (start.References!.Contains(node.Id)) start.References.Remove(node.Id);
 			foreach (ANode child in start.Children!)
 				RemoveNodeFromDependencies(node, child);
 		}
@@ -1056,71 +1054,6 @@ namespace QuoteTree;
 
 
 		// *****Methods*****
-		public override string GetXML()
-		{
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
 
         public override bool HasErrors()
         {
@@ -1151,6 +1084,7 @@ namespace QuoteTree;
 
 		public TextNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
             this.Text = "";
@@ -1176,18 +1110,6 @@ namespace QuoteTree;
 			this.ReportValue = false;
             this.EditChildren = false;
 			this.Template = false;
-		}
-		public TextNode(string name, NodeType type, string text, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this._Text = text;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
 		}
 
 		public TextNode(string path, ANode? parent, QTree parentTree, string id)
@@ -1328,7 +1250,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node!;
@@ -1422,91 +1344,6 @@ namespace QuoteTree;
         }
 
 		// *****Methods*****
-		public override string GetXML()
-		{
-			decimal o;
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
-				decimal.TryParse((this as MathNode).Formula, out o)) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-			if (this.EditChildren)
-			{
-				Text += " (";
-				foreach (ANode child in this.Children!)
-				{
-					if (!child.Hidden)
-						Text += child.Total() + " " + child.Units + ", ";
-				}
-				Text = Text.TrimEnd(" ".ToCharArray());
-				Text = Text.TrimEnd(",".ToCharArray());
-				Text += ")";
-			}
-			else
-				if (Decimal.TryParse(this.Formula, out o)) Name += ": " + this.Formula + " " + this.Units;
-			//else
-			//Show formulas if not a fixed number
-			//if (this.CheckBox1.Checked) name += " [" + (node as MathNode).formula + "]"; 
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
-
         public override decimal Total()
         {
             //First check if parent is a Today node
@@ -1636,19 +1473,6 @@ namespace QuoteTree;
 			this.EditChildren = false;
 			this.Template = false;
 			this.CheckBox = false;
-		}
-
-		public MathNode(string name, NodeType type, string formula, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this._Formula = formula;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
 		}
 
 		public MathNode(string path, ANode? parent, QTree parentTree, string id)
@@ -1809,7 +1633,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -1860,11 +1684,6 @@ namespace QuoteTree;
         //}
        
         // *****Methods*****
-        public override string GetXML()
-        {
-            return "";
-        }
-
         public override decimal Total()
         {
             return 0;
@@ -1911,19 +1730,6 @@ namespace QuoteTree;
             this.EditChildren = true;
             this.Template = false;
             this.CheckBox = false;
-        }
-
-        public DateNode(string name, NodeType type, string formula, int min, int max)
-        {
-            this.Name = name;
-            this.Type = type;
-            this._Formula = formula;
-            this.Min = min;
-            this.Max = max;
-            this.Children = null;
-            this.Hidden = false;
-            this.ReadOnly = false;
-            this.Expanded = false;
         }
 
         public DateNode(string path, ANode? parent, QTree parentTree, string id)
@@ -2071,7 +1877,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -2106,7 +1912,7 @@ namespace QuoteTree;
             (month as MathNode)!.Formula = "1";
             month.Min = 1;
             month.Max = 12;
-            month.Dependents.Add(this.Id);
+            month.Dependents!.Add(this.Id);
             month.Order = 0;
             month.Selected = true;
             this.Children!.Add(month);
@@ -2120,7 +1926,7 @@ namespace QuoteTree;
             (day as MathNode)!.Formula = "1";
             day.Min = 1;
             day.Max = 31;
-            day.Dependents.Add(this.Id);
+            day.Dependents!.Add(this.Id);
             day.Order = 1;
             day.Selected = true;
             this.Children.Add(day);
@@ -2134,7 +1940,7 @@ namespace QuoteTree;
             (year as MathNode)!.Formula = "2000";
             year.Min = 2000;
             year.Max = 2100;
-            year.Dependents.Add(this.Id);
+            year.Dependents!.Add(this.Id);
             year.Order = 2;
             year.Selected = true;
             this.Children.Add(year);
@@ -2157,11 +1963,6 @@ namespace QuoteTree;
         //}
 
         // *****Methods*****
-        public override string GetXML()
-        {
-            return "";
-        }
-
         public override decimal Total()
         {
             return 0;
@@ -2204,19 +2005,6 @@ namespace QuoteTree;
             this.EditChildren = false;
             this.Template = false;
             this.CheckBox = false;
-        }
-
-        public TodayNode(string name, NodeType type, string formula, int min, int max)
-        {
-            this.Name = name;
-            this.Type = type;
-            this._Formula = formula;
-            this.Min = min;
-            this.Max = max;
-            this.Children = null;
-            this.Hidden = false;
-            this.ReadOnly = false;
-            this.Expanded = false;
         }
 
         public TodayNode(string path, ANode? parent, QTree parentTree, string id)
@@ -2364,7 +2152,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -2399,7 +2187,7 @@ namespace QuoteTree;
             (month as MathNode)!.Formula = DateTime.Today.Month.ToString();
             month.Min = 1;
             month.Max = 12;
-            month.Dependents.Add(this.Id);
+            month.Dependents!.Add(this.Id);
             month.ReadOnly = true;
             month.Order = 0;
             this.Children!.Add(month);
@@ -2413,7 +2201,7 @@ namespace QuoteTree;
             (day as MathNode)!.Formula = DateTime.Today.Day.ToString();
             day.Min = 1;
             day.Max = 31;
-            day.Dependents.Add(this.Id);
+            day.Dependents!.Add(this.Id);
             day.ReadOnly = true;
             day.Order = 1;
             this.Children.Add(day);
@@ -2427,7 +2215,7 @@ namespace QuoteTree;
             (year as MathNode)!.Formula = DateTime.Today.Year.ToString();
             year.Min = 0;
             year.Max = 0;
-            year.Dependents.Add(this.Id);
+            year.Dependents!.Add(this.Id);
             year.ReadOnly = true;
             year.Order = 2;
             this.Children.Add(year);
@@ -2491,79 +2279,6 @@ namespace QuoteTree;
         //    this.ThenFormula = formula_parts[1].Trim();
         //    this.ElseFormula = formula_parts[2].Trim();
         //}
-
-		public override string GetXML()
-		{
-			decimal o;
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
-				decimal.TryParse((this as ConditionalNode).Formula, out o)) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			if (Decimal.TryParse(this.Formula, out o)) Name += ": " + this.Formula + " " + this.Units;
-			//else
-			//Show formulas if not a fixed number
-			//if (this.CheckBox1.Checked) name += " [" + (node as MathNode).formula + "]"; 
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
 
         public override decimal Total() 
         {
@@ -2632,6 +2347,7 @@ namespace QuoteTree;
 
 		public ConditionalNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
 			this.Order = 0;
@@ -2656,19 +2372,6 @@ namespace QuoteTree;
             this.EditChildren = false;
 			this.Template = false;
 			this.CheckBox = false;
-		}
-
-		public ConditionalNode(string name, NodeType type, string formula, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this._Formula = formula;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
 		}
 
 		public ConditionalNode(string path, ANode? parent, QTree parentTree, string id)
@@ -2812,7 +2515,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -2882,79 +2585,6 @@ namespace QuoteTree;
 					result = s.Split('?')[1].Trim();
 					this.Rules.Add(condition, result);
 				}
-			}
-		}
-
-		public override string GetXML()
-		{
-			decimal o;
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Type == NodeType.Math && (this.Parent as MathNode)!.EditChildren &&
-				decimal.TryParse((this as ConditionalRulesNode).Expression, out o)) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			if (Decimal.TryParse(this.Expression, out o)) Name += ": " + this.Expression + " " + this.Units;
-			//else
-			//Show formulas if not a fixed number
-			//if (this.CheckBox1.Checked) name += " [" + (node as MathNode).formula + "]"; 
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
 			}
 		}
 
@@ -3043,6 +2673,7 @@ namespace QuoteTree;
 
 		public ConditionalRulesNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
 			this.Order = 0;
@@ -3067,19 +2698,6 @@ namespace QuoteTree;
             this.EditChildren = false;
 			this.Template = false;
 			this.CheckBox = false;
-		}
-
-		public ConditionalRulesNode(string name, NodeType type, string formula, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this._Expression = formula;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
 		}
 
 		public ConditionalRulesNode(string path, ANode? parent, QTree parentTree, string id)
@@ -3219,7 +2837,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -3259,71 +2877,6 @@ namespace QuoteTree;
 		}
 
 		// *****Methods** ***
-		public override string GetXML()
-		{
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
 
         public override bool HasErrors()
         {
@@ -3375,6 +2928,7 @@ namespace QuoteTree;
 
 		public DecisionNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
 			this.Order = 0;
@@ -3534,7 +3088,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -3577,72 +3131,6 @@ namespace QuoteTree;
         //}
 
 		// *****Methods*****
-		public override string GetXML()
-		{
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
-
         public override bool HasErrors()
         {
             try
@@ -3818,6 +3306,7 @@ namespace QuoteTree;
 
 		public RangeNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
 			this.Order = 0;
@@ -3841,18 +3330,6 @@ namespace QuoteTree;
 			this.ReportValue = false;
             this.EditChildren = false;
 			this.Template = false;
-		}
-		public RangeNode(string name, NodeType type, string range, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this._Range = range;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
 		}
 
 		public RangeNode(string path, ANode? parent, QTree parentTree, string id)
@@ -3991,7 +3468,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -4033,72 +3510,6 @@ namespace QuoteTree;
 
 
 		// *****Methods*****
-		public override string GetXML()
-		{
-			//Check for extreme conditions that can make the math node invalid.
-			if (this.Hidden) return "";
-			if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-			if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-			//Logic used to render the node attributes as xml
-
-
-			#region Attribute "Text"
-			string Text = this.Name;
-
-			Text = " Text=\"" + Text + "\" ";
-			#endregion
-
-			#region Attribute "ImageUrl"
-			string ImageUrl = "";
-			if (this.Selected)
-			{
-				try
-				{
-					if (!this.IsComplete())
-						ImageUrl = "4anidot1a.gif";
-					if (this.Hidden)
-						ImageUrl = "h.gif";
-				}
-				catch (Exception) { }
-			}
-			ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-			#endregion
-
-			#region Attribute "Checked"
-			string Checked = "";
-			if (this.Selected)
-				Checked = "true";
-
-			Checked = " Checked=\"" + Checked + "\" ";
-			#endregion
-
-			#region Attribute "Checkbox"
-			string CheckBox = "";
-			if (this.Optional) CheckBox = "true";
-			CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-			#endregion
-
-			//Set the attributes 
-			string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-			//If node has children
-			if (this.Children != null && this.Children.Count > 0)
-			{
-				string children_nodes = "";
-				foreach (ANode n in this.Children)
-					children_nodes += " " + n.GetXML();
-				return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-			}
-			//If node has not children
-			else
-			{
-				return "<treenode" + attributes + " />";
-			}
-		}
-
         public override bool HasErrors()
         {
             return false;
@@ -4140,6 +3551,7 @@ namespace QuoteTree;
 
 		public SumSetNode()
 		{
+            this.Name = "";
 			this.Discount = 0;
 			this.Min = this.Max = 0;
 			this.Order = 0;
@@ -4164,17 +3576,7 @@ namespace QuoteTree;
 			this.EditChildren = false;
 			this.Template = false;
 		}
-		public SumSetNode(string name, NodeType type, string formula, int min, int max)
-		{
-			this.Name = name;
-			this.Type = type;
-			this.Min = min;
-			this.Max = max;
-			this.Children = null;
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
-		}
+        
 		public SumSetNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
@@ -4311,7 +3713,7 @@ namespace QuoteTree;
             this.DisabledMessage = values["disabledMessage"]!;
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -4398,71 +3800,6 @@ namespace QuoteTree;
         }
 
         // *****Methods*****
-        public override string GetXML()
-        {
-            //Check for extreme conditions that can make the math node invalid.
-            if (this.Hidden) return "";
-            if (this.Parent != null && this.Parent.Parent != null && this.Parent.Parent.Type == NodeType.Decision && !this.Parent.Selected) return "";
-            if (this.Parent != null && this.Parent.Optional && !this.Parent.Selected) return "";
-
-            //Logic used to render the node attributes as xml
-
-
-            #region Attribute "Text"
-            string Text = this.Name;
-
-            Text = " Text=\"" + Text + "\" ";
-            #endregion
-
-            #region Attribute "ImageUrl"
-            string ImageUrl = "";
-            if (this.Selected)
-            {
-                try
-                {
-                    if (!this.IsComplete())
-                        ImageUrl = "4anidot1a.gif";
-                    if (this.Hidden)
-                        ImageUrl = "h.gif";
-                }
-                catch (Exception) { }
-            }
-            ImageUrl = " ImageUrl=\"" + ImageUrl + "\" ";
-            #endregion
-
-            #region Attribute "Checked"
-            string Checked = "";
-            if (this.Selected)
-                Checked = "true";
-
-            Checked = " Checked=\"" + Checked + "\" ";
-            #endregion
-
-            #region Attribute "Checkbox"
-            string CheckBox = "";
-            if (this.Optional) CheckBox = "true";
-            CheckBox = " CheckBox=\"" + CheckBox + "\" ";
-            #endregion
-
-            //Set the attributes 
-            string attributes = Text + ImageUrl + Checked + CheckBox;
-
-
-            //If node has children
-            if (this.Children != null && this.Children.Count > 0)
-            {
-                string children_nodes = "";
-                foreach (ANode n in this.Children)
-                    children_nodes += " " + n.GetXML();
-                return "<treenode" + attributes + ">" + children_nodes + " </treenode>";
-
-            }
-            //If node has not children
-            else
-            {
-                return "<treenode" + attributes + " />";
-            }
-        }
 
         public override bool HasErrors()
         {
@@ -4481,6 +3818,7 @@ namespace QuoteTree;
 
         public ReferenceNode()
         {
+            this.Name = "";
             //this.Discount = 0;
             //this.Min = this.Max = 0;
             this.Target = "";
@@ -4599,7 +3937,7 @@ namespace QuoteTree;
 
             if (node != null && node.Type == NodeType.Decision)
             {
-                this.Dependents.AddRange(node.Dependents);
+                this.Dependents!.AddRange(node.Dependents!);
                 this.Dependents.Add(node.Id);
             }
             this.Parent = node;
@@ -4639,11 +3977,6 @@ namespace QuoteTree;
 		}
 
 		// *****Methods*****
-
-		public string GetXML()
-		{
-			return "<?xml version=\"1.0\" ?> " + "<TREENODES> " + this.Root!.GetXML() + " </TREENODES>";
-		}
 
         public Dictionary<string, string> GetSelections()
 		{
@@ -5068,12 +4401,12 @@ namespace QuoteTree;
                     || (node.Type == NodeType.ConditionalRules && Array.IndexOf((node as ConditionalRulesNode)!.Expression.Split(charArr), child.Name) > -1))
                 {
                     foreach (ANode dependent in s)
-                        if (!child.Dependents.Contains(dependent.Id))
+                        if (!child.Dependents!.Contains(dependent.Id))
                             child.Dependents.Add(dependent.Id);
                         
                     SetDependentsByHierarchy(child, s);
                     //Add reference
-                    if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
+                    if (!child.References!.Contains(node.Id)) child.References.Add(node.Id);
                 }
                 else SetDependentsByHierarchy(child, new Stack<ANode>());
             }
@@ -5146,7 +4479,7 @@ namespace QuoteTree;
 							//	if (!NodeFromPath.dependents.Contains (dependent))
 							//		NodeFromPath.dependents.Add (dependent);
 							//Add reference
-							if (!NodeFromPath.References.Contains (node.Id))
+							if (!NodeFromPath.References!.Contains (node.Id))
 								NodeFromPath.References.Add (node.Id);
 						}
 					}
@@ -5170,7 +4503,7 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromId.References.Contains(node.Id))
+                            if (!NodeFromId.References!.Contains(node.Id))
                                 NodeFromId.References.Add(node.Id);
                         }
                     }                   
@@ -5195,7 +4528,7 @@ namespace QuoteTree;
                                 if (tuple != null) return tuple;
                                 //}
 								//Add reference
-								if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
+								if (!child.References!.Contains(node.Id)) child.References.Add(node.Id);
 							}
 						}
 					}
@@ -5234,7 +4567,7 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromPath.References.Contains(node.Id))
+                            if (!NodeFromPath.References!.Contains(node.Id))
                                 NodeFromPath.References.Add(node.Id);
                         }
                     }
@@ -5257,7 +4590,7 @@ namespace QuoteTree;
                             //	if (!NodeFromPath.dependents.Contains (dependent))
                             //		NodeFromPath.dependents.Add (dependent);
                             //Add reference
-                            if (!NodeFromId.References.Contains(node.Id))
+                            if (!NodeFromId.References!.Contains(node.Id))
                                 NodeFromId.References.Add(node.Id);
                         }
                     }
@@ -5282,7 +4615,7 @@ namespace QuoteTree;
                                 if (tuple != null) return tuple;
                                 //}
                                 //Add reference
-                                if (!child.References.Contains(node.Id)) child.References.Add(node.Id);
+                                if (!child.References!.Contains(node.Id)) child.References.Add(node.Id);
                             }
                         }
                     }
@@ -5333,7 +4666,7 @@ namespace QuoteTree;
         {
             if (start != null)
             {
-                start.Dependents.Clear();
+                start.Dependents!.Clear();
                 foreach (ANode child in start.Children!)
                     RemoveDependents(child);
             }
@@ -5343,7 +4676,7 @@ namespace QuoteTree;
         {
             if (start != null)
             {
-                start.References.Clear();
+                start.References!.Clear();
                 foreach (ANode child in start.Children!)
                     RemoveReferences(child);
             }
@@ -5353,18 +4686,18 @@ namespace QuoteTree;
         public Tuple<ANode, ANode>? SetDependenciesRecursively(ANode start, ANode dependent)
 		{
             Tuple<ANode, ANode>? tuple = null;
-            if (dependent.Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, dependent);
-			if (!start.Dependents.Contains(dependent.Id)) start.Dependents.Add(dependent.Id);
+            if (dependent.Dependents!.Contains(start.Id)) return new Tuple<ANode, ANode>(start, dependent);
+			if (!start.Dependents!.Contains(dependent.Id)) start.Dependents.Add(dependent.Id);
 			foreach (ANode node in GetDependencies(start))
 			{
                 if (dependent.Dependents.Contains(node.Id)) return new Tuple<ANode, ANode>(node, dependent);
-				if (!node.Dependents.Contains(dependent.Id)) node.Dependents.Add(dependent.Id);
+				if (!node.Dependents!.Contains(dependent.Id)) node.Dependents.Add(dependent.Id);
 				tuple = SetDependenciesRecursively(node, dependent);
                 if (tuple != null) return tuple;
 			}
             foreach (string dependent2 in dependent.Dependents)
             {
-                if (this.GetNodeFromId(dependent2)!.Dependents.Contains(start.Id)) return new Tuple<ANode, ANode>(start, this.GetNodeFromId(dependent2)!);
+                if (this.GetNodeFromId(dependent2)!.Dependents!.Contains(start.Id)) return new Tuple<ANode, ANode>(start, this.GetNodeFromId(dependent2)!);
                 tuple = SetDependenciesRecursively(start, this.GetNodeFromId(dependent2)!);
                 if (tuple != null) return tuple;
             }
@@ -5380,7 +4713,7 @@ namespace QuoteTree;
 
 		private void GetDependencies(ANode dependent, ANode start, List<ANode> returnedList) 
 		{
-			if (start.Dependents.Contains(dependent.Id)) returnedList.Add(start);
+			if (start.Dependents!.Contains(dependent.Id)) returnedList.Add(start);
 			foreach (ANode child in start.Children!)
 				GetDependencies(dependent, child, returnedList);
 		}
@@ -5673,8 +5006,8 @@ namespace QuoteTree;
         {
             node.Id = node.Parent!.NewId();
             node.Url = node.Url.Split('=')[0] + "=" + node.Id;
-            node.References.Clear();
-            node.Dependents.Clear();
+            node.References!.Clear();
+            node.Dependents!.Clear();
             node.ParentTree = parentTree;
             FixClonedChildren(node.Children!, node);
         }
@@ -5689,8 +5022,8 @@ namespace QuoteTree;
                     id_splitted = child.Id.Split('.');
                     child.Id = parent.Id + "." + id_splitted[id_splitted.Length - 1];
                     child.Url = child.Url.Split('=')[0] + "=" + child.Id;
-                    child.References.Clear();
-                    child.Dependents.Clear();
+                    child.References!.Clear();
+                    child.Dependents!.Clear();
                     child.Parent = parent;
                     child.ParentTree = parent.ParentTree;
                     FixClonedChildren(child.Children!, child);
