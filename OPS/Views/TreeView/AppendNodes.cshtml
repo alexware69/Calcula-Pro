@@ -254,7 +254,7 @@
     @{
        url = url.Replace("http:///","file:///");
     }
-    <iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")' </iframe>
+    <iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'> </iframe>
 
     <div>
     <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
@@ -285,8 +285,8 @@
         $(function () {
             $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
             $(".list_references li").sort(asc_sort).appendTo('.list_references');
-            $("#dependents").hide();
-            $("#references").hide();
+            //$("#dependents").hide();
+            //$("#references").hide();
             
             $('#formID').keypress(function (e) {
                 if (e.which == 13) {

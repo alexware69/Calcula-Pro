@@ -357,23 +357,24 @@ namespace OnlinePriceSystem.Controllers
         }
         public ActionResult AppendNodes(string id)
         {
-            byte[] array = HttpContext.Session.Get("tree")!;
-            QTree tree = ByteArrayToObject(array);
+             byte[] array = HttpContext.Session.Get("tree")!;
+            QTree tree = ByteArrayToObject(array);              
 
-            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", "")); 
+            ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node!.Name);
-
+        
             var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
             if (path.LastIndexOf("/") >= 0)
                 path = path.Remove(path.LastIndexOf("/"));
             if (path.LastIndexOf("\\") >= 0)
                 path = path.Remove(path.LastIndexOf("\\"));
+            
             var url = path + "/" + node.GetPath() + "/homepage.htm";
-            TempData["url"] = url;
-
-            return View((SumSetNode)node);
+            TempData["url"] = url; 
+            HttpContext.Session.SetString("url",url);
+            return View();
         }
 
         [HttpGet]
