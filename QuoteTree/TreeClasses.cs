@@ -5102,7 +5102,7 @@ namespace QuoteTree;
             BinaryFormatter formater = new BinaryFormatter();
             using (MemoryStream memory_stream = new MemoryStream(byte_array))
             {
-                QTree tree = (formater.Deserialize(memory_stream)) as QTree;
+                QTree tree = ((formater.Deserialize(memory_stream)) as QTree)!;
                 tree!.TotalCounter = 0;
                 return tree;
             }

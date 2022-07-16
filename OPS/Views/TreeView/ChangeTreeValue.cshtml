@@ -206,7 +206,7 @@
         ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
         String href = refe.Url.Contains("ChangeTreeValue")? Url.Content("~/" + refe.Url):"Description?id=" + refe.Id;
         <li>
-            <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="href">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
+            <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@href">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
         </li>
         } 
     </ol>
