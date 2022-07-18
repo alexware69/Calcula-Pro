@@ -501,6 +501,7 @@ namespace OnlinePriceSystem.Controllers
 
             string[] parsedIds = ids.Trim().Split(";".ToCharArray());
             string? currentRemoved = HttpContext.Session.GetString("removeNodesFromDirectory") != null ? HttpContext.Session.GetString("removeNodesFromDirectory"): "";
+            string path = "";
 
             foreach (string id in parsedIds)
             {
@@ -515,21 +516,20 @@ namespace OnlinePriceSystem.Controllers
                     ANode? node = tree.GetNodeFromId(id);
                     if (node != null) 
                     {
-                        string path = HttpContext.Session.GetString("path")!;
+                        path = HttpContext.Session.GetString("path")!;
                         if (path.LastIndexOf("/") >= 0)
                             path = path.Remove(path.LastIndexOf('/'));
                         else
                         if (path.LastIndexOf("\\") >= 0)
                             path = path.Remove(path.LastIndexOf('\\'));
-                        if (currentRemoved != "")
-                            path = currentRemoved + ";" + path + "/" + node.GetPath().Replace("\\","/");
-                        else path = path + "/" + node.GetPath().Replace("\\","/");
-                        HttpContext.Session.SetString("removeNodesFromDirectory", path);
+                        currentRemoved = currentRemoved + ";" + path + "/" + node.GetPath().Replace("\\","/");
                         node.Remove();
                     } 
                     else return Content("");      
                 }
             }
+
+            HttpContext.Session.SetString("removeNodesFromDirectory", currentRemoved!);
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
