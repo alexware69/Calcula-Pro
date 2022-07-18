@@ -278,7 +278,7 @@
        @foreach (string dependent in Model.Dependents!) {
         ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
         <li>
-            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
+            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@dep.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @dep.Url):"Description?id=" + @dep.Id">@dep.Name</a><label style="color: black; font-size:small" > (@dep.GetPath()) </label>
             </li>
         } 
     </ol>
@@ -290,7 +290,7 @@
             @foreach (string reference in Model.References!) {
             ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
             <li>
-                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
+                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@refe.Url.Contains("ChangeTreeValue")? @Url.Content("~/" + @refe.Url):"Description?id=" + @refe.Id">@refe.Name</a><label style="color: black; font-size:small" > (@refe.GetPath()) </label>
             </li>
             } 
         </ol>

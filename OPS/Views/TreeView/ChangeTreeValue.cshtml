@@ -210,7 +210,7 @@
         ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
         String href = dep.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dep.Url):"Description?id=" + dep.Id;
         <li>
-            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@href">@dep.Name</a><label style="font-size:small" > (@dep.GetPath()) </label>
+            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@href">@dep.Name</a><label style="color: black; font-size:small" > (@dep.GetPath()) </label>
             </li>
         } 
     </ol>
@@ -223,7 +223,7 @@
         ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
         String href = refe.Url.Contains("ChangeTreeValue")? Url.Content("~/" + refe.Url):"Description?id=" + refe.Id;
         <li>
-            <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@href">@refe.Name</a><label style="font-size:small" > (@refe.GetPath()) </label>
+            <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@href">@refe.Name</a><label style="color: black; font-size:small" > (@refe.GetPath()) </label>
         </li>
         } 
     </ol>
