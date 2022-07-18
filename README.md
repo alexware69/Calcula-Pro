@@ -9,7 +9,7 @@
 
 ## Features of Calcula Pro
 
-* Is web-based.
+* It is web-based.
 * Near instant intelligent updates in web page.
 * Product definitions are independent of product quotes and orders, changes to product definitions won’t affect existing quotes.
 * Product definitions are a hierarchy of folders, which contain the details, formulas, images and descriptions.
