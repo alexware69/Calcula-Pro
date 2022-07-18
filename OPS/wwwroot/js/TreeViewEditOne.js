@@ -286,6 +286,12 @@ function UpdateNode(data) {
             $(node).children('a').attr("style", "color:gray;");
         }
 
+        //Check for light mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:black;");
+        }
+
         //Set leaves to red color
         if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
         //else $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
