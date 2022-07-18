@@ -39,8 +39,18 @@ a {
         color: #333;
     }
 
-    a:hover {
-        background-color: #fef7db;
+     /* Light mode */
+     @media (prefers-color-scheme: light) {
+        a:hover {
+            background-color: #fef7db;
+        }
+    }
+   
+    /* dark mode */
+    @media (prefers-color-scheme: dark) {
+        a:hover {
+            background-color: gray;
+        }
     }
 
 header, footer, hgroup,

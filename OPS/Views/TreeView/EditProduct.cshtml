@@ -81,6 +81,18 @@
 			background-size: 12px 12px;
 			vertical-align: middle;
 		}
+		 .build{
+            display: inline-block;
+            height:24px;
+			width:24px;
+            cursor: pointer;
+            background: url('../../Images/link_anchor-128.png') center no-repeat;
+			background-size: 16px 16px;
+			vertical-align: middle;
+        }
+        .build:hover {
+            background-color: #f6a828;
+		}
         }
         /* Dark mode */
         @@media (prefers-color-scheme: dark) {
@@ -171,10 +183,8 @@
             background: url('../../Images/link_anchor-128.png') center no-repeat;
 			background-size: 16px 16px;
 			vertical-align: middle;
+			background-color: #f6a828;
         }
-        .build:hover {
-            background-color: #f6a828;
-		}
         .formula {
             position:relative;
             -o-text-overflow: ellipsis;
@@ -281,8 +291,8 @@
             <div style="display:inline-block;vertical-align:middle;"> 
 	 	     	<span class="build" title='Build dependencies' onclick="javascript: BuildDependencies();"></span>&nbsp;
      		</div>
-	        <a href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:inline-block; padding: 5px;" class="nav-link text-dark">Save definition</a>&nbsp;
-	     	<a href="../Home/Index" style="text-decoration: none;display:inline-block; padding: 5px;" class="nav-link text-dark">Discard changes</a>
+	        <a id="save" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:inline-block; padding: 5px;">Save definition</a>&nbsp;
+	     	<a id="discard" href="../Home/Index" style="text-decoration: none;display:inline-block; padding: 5px;">Discard changes</a>
 		</div>
      <br/>
      <br/>
@@ -310,7 +320,7 @@
     </div>
 	<span id="price" style="float: right">  Total: @price</span>
     <span id="space" style="float: right">&nbsp;</span>
-    <a href="QuoteDetails" target="details" style="float: right; color: black">Quote</a>
+    <a id="quote" href="QuoteDetails" target="details" style="float: right; color: black">Quote</a>
 
     <div style="white-space: nowrap;display: inline-block;color:green;">
         &nbsp; &nbsp;<input type="checkbox" id="HiddenFields" name="HiddenFields" checked="checked" onchange="javascript: ToggleHiddenFields();"><label style="display: inline-block; " onclick="javascript:$('#HiddenFields').click();">&nbsp; Hidden</label>
@@ -534,6 +544,14 @@
 			$("#top-div").css("background-color", "black");
 			$("#top-div2").css("background-color", "black");
 			$("#bottom-div").css("background-color", "black");
+			$("#inodeInfo").css("background-color", "black");
+			$("#inodeInfo").css("color", "white");
+			$("#inewnodeInfo").css("background-color", "black");
+			$("#inewnodeInfo").css("color", "white");
+			$(".ui-widget-content").css("background", "black");
+			$("#save").css("color", "white");
+			$("#discard").css("color", "white");
+			$("#quote").css("color", "white");
 
 			$('.name').each(function(){
 				//if statement here 
@@ -555,6 +573,14 @@
 			$("#top-div").css("background-color", "white");
 			$("#top-div2").css("background-color", "white");
 			$("#bottom-div").css("background-color", "white");
+			$("#inodeInfo").css("background-color", "#EEEEEE");
+			$("#inodeInfo").css("color", "black");
+			$("#inewnodeInfo").css("background-color", "#EEEEEE");
+			$("#inewnodeInfo").css("color", "black");
+			$(".ui-widget-content").css("background", "#EEEEEE");
+			$("#save").css("color", "black");
+			$("#discard").css("color", "black");
+			$("#quote").css("color", "black");
 
 			$('.name').each(function(){
 				//if statement here 
@@ -564,7 +590,19 @@
 			});
 		}
 
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		window.matchMedia("(prefers-color-scheme: dark)").addListener(
+			e => e.matches && activateDarkMode() // listener
+		);
+
+		window.matchMedia("(prefers-color-scheme: light)").addListener(
+			e => e.matches && activateLightMode() // listener
+		);
+
+
+
+
+	$( document ).ready(function() {
+    	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			$("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
 			$("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
 			$("#top-left2").attr("src", "../../Images/top left dark.jpg");
@@ -574,6 +612,14 @@
 			$("#top-div").css("background-color", "black");
 			$("#top-div2").css("background-color", "black");
 			$("#bottom-div").css("background-color", "black");
+			$("#inodeInfo").css("background-color", "black");
+			$("#inodeInfo").css("color", "white");
+			$("#inewnodeInfo").css("background-color", "black");
+			$("#inewnodeInfo").css("color", "white");
+			$(".ui-widget-content").css("background", "black");
+			$("#save").css("color", "white");
+			$("#discard").css("color", "white");
+			$("#quote").css("color", "white");
 		}
 
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -586,16 +632,16 @@
 			$("#top-div").css("background-color", "white");
 			$("#top-div2").css("background-color", "white");
 			$("#bottom-div").css("background-color", "white");
+			$("#inodeInfo").css("background-color", "#EEEEEE");
+			$("#inodeInfo").css("color", "black");
+			$("#inewnodeInfo").css("background-color", "#EEEEEE");
+			$("#inewnodeInfo").css("color", "black");
+			$(".ui-widget-content").css("background", "#EEEEEE");
+			$("#save").css("color", "black");
+			$("#discard").css("color", "black");
+			$("#quote").css("color", "black");
 		}
-
-		window.matchMedia("(prefers-color-scheme: dark)").addListener(
-			e => e.matches && activateDarkMode() // listener
-		);
-
-		window.matchMedia("(prefers-color-scheme: light)").addListener(
-			e => e.matches && activateLightMode() // listener
-		);
-
+	});
      </script>
 
 	
