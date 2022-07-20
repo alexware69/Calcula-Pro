@@ -21,7 +21,7 @@
 
 .jstree-default .jstree-no-dots li, 
 .jstree-default .jstree-no-dots .jstree-leaf > ins { background:transparent; }
-.jstree-default .jstree-no-dots .jstree-open > ins { background-position:0 0; }
+.jstree-default .jstree-no-dots .jstree-open > ins { background-position:-18px 0; }
 .jstree-default .jstree-no-dots .jstree-closed > ins { background-position:0 0; }
 
 .jstree-default .jstree-no-icons a .jstree-icon { display:none; }
