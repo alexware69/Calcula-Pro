@@ -21,11 +21,38 @@
     <script src="~/js/jquery.hotkeys.js"></script>
    
     @await RenderSectionAsync("Scripts", required: false)
-    
+
+    <style>
+        /* Light mode */
+        @@media (prefers-color-scheme: light) {
+            nav{
+                background-color: white;
+            }
+            #home {
+                color:black;
+            }
+            #about {
+                color:black;
+            }
+        }
+
+        /* Dark mode */
+        @@media (prefers-color-scheme: dark) {
+            nav{
+                background-color: black;
+            }
+            #home {
+                color:white;
+            }
+            #about {
+                color:white;
+            }
+        }
+    </style>   
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <!-- <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OPS</a> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -35,10 +62,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a id="home" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a id="about" class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                     </ul>
                 </div>

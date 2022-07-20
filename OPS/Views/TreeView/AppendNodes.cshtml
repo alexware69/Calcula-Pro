@@ -196,12 +196,15 @@
         }
     </script>
     <style>
-        /* Light mode */
-        @@media (prefers-color-scheme: light) {
-            body {
+         /* Light mode */
+    @@media (prefers-color-scheme: light) {
+        body {
                 background-color: white;
                 color: black;
             }
+    
+            li { background: FloralWhite; }
+            li:nth-child(odd) { background: PowderBlue; }
         }
 
         /* Dark mode */
@@ -210,10 +213,10 @@
                 background-color: black;
                 color: white;
             }
+        
+            li { background: dimgray; }
+            li:nth-child(odd) { background: gray; }
         }
-
-        li { background: FloralWhite; }
-        li:nth-child(odd) { background: PowderBlue; }
 
 
         /* width */
