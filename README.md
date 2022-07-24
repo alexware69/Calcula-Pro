@@ -115,3 +115,8 @@ Expressions can contain most common math functions in addition to IF conditions.
 | Sqrt          | Returns the square root of a specified number.                                                                                                                                                               | Sqrt(4)             | 2d     |
 | Tan           | Returns the tangent of the specified angle.                                                                                                                                                                  | Tan(0)              | 0d     |
 | Truncate      | Calculates the integral part of a number.                                                                                                                                                                    | Truncate(1.7)       | 1      |
+
+
+
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE)
