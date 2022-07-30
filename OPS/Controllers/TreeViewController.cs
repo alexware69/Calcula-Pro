@@ -75,6 +75,30 @@ namespace OnlinePriceSystem.Controllers
 			return View("EditProduct");
 		}
 
+        public ActionResult NewQuote(string product)
+		{
+			QTree? tree = null;
+
+			if (product != null && product != "") 
+			{
+                 HttpContext.Session.SetString("path", product);
+                try
+                {
+                    tree = new QTree (product, true);
+                }
+                catch(Exception)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                //Reset the entered property
+                tree.ResetEntered(tree.Root!);
+                
+                byte[] array = ObjectToByteArray(tree);
+                HttpContext.Session.Set("tree", array);  
+			}
+            TempData["root"] = tree!.Root;
+			return View("ViewQuote");
+		}
         
         public ContentResult ChildNodes(string id)
         {

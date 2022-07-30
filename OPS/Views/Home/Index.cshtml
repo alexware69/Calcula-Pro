@@ -44,12 +44,15 @@
 	 	     	<img align="center" title='Working...' style='display:none;' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
 	</div>
 	<br/>
+	<button id="open-dialog-view" class="btn">Quote Definition</button>
+	<br/>
 	<button id="open-dialog" class="btn">Open Definition</button>
 </div>
 <script>
 	(function(){
 		const { ipcRenderer } = require("electron");
         const fs = require('fs');
+		//Open Edit Definition dialog
 		document.getElementById("open-dialog")
                 .addEventListener("click", () => {
             ipcRenderer.send("open-dialog");
@@ -61,8 +64,27 @@
  			$("#overlay").show();
 			$("#new-dialog").hide();
 			$("#open-dialog").hide();
+			$("#open-dialog-view").hide();
 			$(".loading").show();
 			document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
+            return;
+        });
+		
+		//Open View Quote dialog
+		document.getElementById("open-dialog-view")
+                .addEventListener("click", () => {
+            ipcRenderer.send("open-dialog-view");
+        });
+		ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
+			if (!path) return;
+			//Show overlay
+ 			overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+ 			$("#overlay").show();
+			$("#new-dialog").hide();
+			$("#open-dialog").hide();
+			$("#open-dialog-view").hide();
+			$(".loading").show();
+			document.location='../../TreeView/NewQuote?product='+ path;
             return;
         });
 
@@ -86,5 +108,6 @@
 		var width = 150;
 		$("#new-dialog").width(width);
 		$("#open-dialog").width(width);
+		$("#open-dialog-view").width(width);
 	  });
 </script>
