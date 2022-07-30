@@ -19,13 +19,13 @@ function CheckBoxClickHandler(cb, expand) {
         $.jstree._reference("li[id='li_" + checkboxIDClean + "']").open_node("li[id='li_" + checkboxIDClean + "']");
     }
     else {
-        //Collapse the branch if the checkbox is unchecked
-        //if (!cb.checked && $("input[id='Compact']").is(':checked')) $("#container").jstree("close_node", $("li[id='li_" + checkboxIDClean + "']"));
+        //Collapse the branch if the checkbox is unchecked and compact mode is selected
+        if (!cb.checked && $("input[id='Compact']").is(':checked')) $("#container").jstree("close_node", $("li[id='li_" + checkboxIDClean + "']"));
 
         //Open the branch if the checkbox is checked but the children are already inserted.
         if (cb.checked) $("#container").jstree("open_node", $("li[id='li_" + checkboxIDClean + "']"));
     }
-   
+    asynchronous = true;
 
     //check all the optional parents
     if (cb.checked) {
@@ -43,19 +43,6 @@ function CheckBoxClickHandler(cb, expand) {
         }
     }
 
-    //Show the description page in the description section
-    if (cb.checked && !descriptionhidden) {
-        var href = $("li[id='li_" + checkboxIDClean + "']").children("a").attr("href");
-        window.open(href, 'details');
-    }
-
-    //Show the parent's description page in the description section if unchecked
-    if (!cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision" && !descriptionhidden) {
-        //href = $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").attr("href");
-        //window.open(href, 'details');
-        $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").click();
-    }
-
     //Set the checked/unchecked state in the server tree and get the total. Also update tree nodes.
     var checkboxstate = cb.checked ? "true" : "false";
     $.ajax({
@@ -67,18 +54,16 @@ function CheckBoxClickHandler(cb, expand) {
         beforeSend: function () {
         },
         complete: function () {
-
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
             //Update the price in the page
-            $("#price").text("Price: " + result.total);
+            $("#price").text("Total: " + result.total);
 
+            //this will update the branch, needed to update the complete/incomplete images
+            //UpdateParentSync(parentliIDclean);
             //This will updated current node and dependents
             //UpdateDependents(parentliIDclean);
+
             //Merge dependents and branch nodes then update
             var dependents = ";" + $("input[id='dependents_" + parentliIDclean + "']").attr("value");
             var branch = GetBranch(parentliIDclean);
@@ -86,7 +71,6 @@ function CheckBoxClickHandler(cb, expand) {
             for (var i = 0; i < branchArray.length; i++) {
                 if (dependents.indexOf(";" + branchArray[i] + ";") == -1) dependents = dependents + ";" + branchArray[i];
             }
-
             //get not optional descendents, this is to update the complete/incomplete images.
             //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
             var descendents = $("li[id='" + parentliID + "']").find("li");
@@ -97,10 +81,12 @@ function CheckBoxClickHandler(cb, expand) {
 
             UpdateNodesFromServer(dependents);
             //UpdateTreeSync();
+
+            //UpdateTreeSync();
         }
     });   //end ajax
 
-    //Uncheck node siblings when node is checked and parent is Decision
+    //Uncheck node siblings when node is checked and parent is Decision, also update descendents to refresh complete/incomplete images.
     if (cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision") {
         var checkednode = $("li[id='" + parentliID + "']").siblings().children('input:checked');
         if (checkednode.length != 0) {
@@ -123,14 +109,25 @@ function CheckBoxClickHandler(cb, expand) {
             UpdateNodesFromServer(updatenodes);
             //UpdateTreeSync();
         }
-        //Commented this, it was causing problems
         //$("li[id='" + parentliID + "']").siblings().children(':checkbox').attr('checked', false);
+    }
+
+    //Show the description page in the description section
+    if (cb.checked && !descriptionhidden) {
+        $("li[id='li_" + checkboxIDClean + "']").children("a").click();
+    }
+
+    //Show the parent's description page in the description section if unchecked
+    if (!cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision" && !descriptionhidden) {
+        //href = $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").attr("href");
+        //window.open(href, 'details');
+        $("li[id='li_" + parentulID.replace(/li_ul_/g, "") + "']").children("a").click();
     }
 
     //Expand levels
     if (expand)
         if ($("input[id='" + checkboxID + "']").is(':checked')) {
-            asynchronous == "true";
+            asynchronous == "false";
             ExpandLevels2(checkboxIDClean, $("input[id='expandedlevels_" + checkboxIDClean + "']").attr("value"));
             //expandingLevels = false;
         }
@@ -236,9 +233,9 @@ function UpdateNode(data) {
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
             //Set the <a> onclick to open the url in a new window
-            if (true/*!mobile*/) {
-                $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-            }
+            //if (true/*!mobile*/) {
+            //    $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+            //}
 
         }
         $(node).children('a').empty();
@@ -969,9 +966,9 @@ function Assemble(result, id) {
         $("li[id='li_" + result[i].id + "']").children('a').attr("href", href);
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
-        if (true /*!mobile*/) {
-            $("li[id='li_" + result[i].id + "']").children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-        }
+        //if (true /*!mobile*/) {
+        //    $("li[id='li_" + result[i].id + "']").children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+        //}
         //else {
         //    $("li[id='li_" + result[i].id + "']").children('a').on("tap", function (e) {
         //        e.preventDefault();
@@ -1072,9 +1069,9 @@ function RenderTree(tree) {
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
-        if (true/*!mobile*/) {
-            $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
-        }
+        //if (true/*!mobile*/) {
+        //    $(node).children('a').attr("onclick", "javascript: window.open('" + href + "', 'details')");
+        //}
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
@@ -1437,7 +1434,9 @@ $(function () {
         //debugger;
         //window.location.href = data.rslt.obj.attr("href");
         //The previous line doesnt work, data.rslt.obj.attr("href") returns "undefined"
-        //window.open(data.args[0].href);
+        //window.location.assign(data.args[0].href);
+        if (data.args[0].href)
+            document.getElementById('Iframe15').src = data.args[0].href;
     });
 
     //If client is mobile....
