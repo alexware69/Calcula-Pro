@@ -275,7 +275,7 @@
     }
     <iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'> </iframe>
 
-    <div>
+    <div id="deps">
     <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
     <ol class="list_dependents" id="dependents">
        @foreach (string dependent in Model.Dependents!) {
@@ -287,7 +287,7 @@
     </ol>
     <br />
     </div>
-    <div>
+    <div id="refs">
         <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
         <ol class="list_references" id="references">
             @foreach (string reference in Model.References!) {
@@ -314,6 +314,14 @@
                 }
             });
         });  
+
+         $( document ).ready(function() {
+    	var title = parent.document.title;
+        if(title.startsWith("New Quote")){
+            $("#deps").hide();
+            $("#refs").hide();
+            }
+        });
     </script>
 </body>
 </html>
