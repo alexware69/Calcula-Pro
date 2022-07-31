@@ -615,47 +615,11 @@
 
 	$( document ).ready(function() {
     	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			$("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
-			$("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
-			$("#top-left2").attr("src", "../../Images/top left dark.jpg");
-			$("#top-right2").attr("src", "../../Images/top right dark.jpg");
-			$("#bottom-left").attr("src", "../../Images/bottom left dark.jpg");
-			$("#bottom-right").attr("src", "../../Images/bottom right dark.jpg");
-			$("#top-div").css("background-color", "black");
-			$("#top-div2").css("background-color", "black");
-			$("#bottom-div").css("background-color", "black");
-			$("#inodeInfo").css("background-color", "black");
-			$("#inodeInfo").css("color", "white");
-			$("#inewnodeInfo").css("background-color", "black");
-			$("#inewnodeInfo").css("color", "white");
-			$("#removeNode").css("background-color", "black");
-			$("#removeNode").css("color", "white");
-			$(".ui-widget-content").css("background", "black");
-			$("#save").css("color", "white");
-			$("#discard").css("color", "white");
-			$("#quote").css("color", "white");
+			activateDarkMode();
 		}
 
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-			$("#top-left").attr("src", "../../Images/top left gray.jpg");
-			$("#top-right").attr("src", "../../Images/top right gray.jpg");
-			$("#top-left2").attr("src", "../../Images/top left white.jpg");
-			$("#top-right2").attr("src", "../../Images/top right white.jpg");
-			$("#bottom-left").attr("src", "../../Images/bottom left white.jpg");
-			$("#bottom-right").attr("src", "../../Images/bottom right white.jpg");
-			$("#top-div").css("background-color", "white");
-			$("#top-div2").css("background-color", "white");
-			$("#bottom-div").css("background-color", "white");
-			$("#inodeInfo").css("background-color", "#EEEEEE");
-			$("#inodeInfo").css("color", "black");
-			$("#inewnodeInfo").css("background-color", "#EEEEEE");
-			$("#inewnodeInfo").css("color", "black");
-			$("#removeNode").css("background-color", "#EEEEEE");
-			$("#removeNode").css("color", "black");
-			$(".ui-widget-content").css("background", "#EEEEEE");
-			$("#save").css("color", "black");
-			$("#discard").css("color", "black");
-			$("#quote").css("color", "black");
+			activateLightMode();
 		}
 	});
      </script>

@@ -248,6 +248,19 @@ function UpdateNode(data) {
         var newSubtotal = $("<span class='subtotal' id='subtotal_" + data.id + "'>" + "<font size='1'>" + "</font>" + "  " + "<font>" + "[" + data.subtotal + "]" + "</font>" + "</span>");
         $(node).children('a').after(newSubtotal);
         $(node).children('a').after(newFiller);
+
+        //Check for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:gray;");
+        }
+
+        //Check for light mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // dark mode
+            $(node).children('a').attr("style", "color:black;");
+        }
+
         //$(node).children(".subtotal").width($(node).children(".subtotal").width());
         //Declare some width related variables
         var nodeWidth, id, marginLeft, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
@@ -1202,18 +1215,29 @@ function RenderTree(tree) {
 
         if (!$('input[id=\'Subtotals\']').is(':checked')) $('.subtotal, .filler').hide();
 
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today')
-            expression = tree.Formula;
+        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
+            expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
-                expression = tree.Expression;
-            else expression = "";
+                expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
+            else 
+                if (tree.TypeStr == 'Text')
+                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+                else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", expression);
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // dark mode
+        // dark mode
+        if ($(node).children('a').css("color") != "rgb(255, 0, 0)" && $(node).children('a').css("color") != "rgb(0, 128, 0)") 
             $(node).children('a').attr("style", "color:gray;");
+        }
+
+        //Check for light mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        // dark mode
+        if ($(node).children('a').css("color") != "rgb(255, 0, 0)" && $(node).children('a').css("color") != "rgb(0, 128, 0)") 
+            $(node).children('a').attr("style", "color:black;");
         }
         //Set leaves to red color
         if (tree.Leaf) $(node).children('a').attr("style", "color:red;");

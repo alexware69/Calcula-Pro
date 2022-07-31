@@ -288,7 +288,7 @@ function UpdateNode(data) {
 
         //Check for light mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            // dark mode
+            // light mode
             $(node).children('a').attr("style", "color:black;");
         }
 
@@ -1600,22 +1600,35 @@ function RenderTree(tree) {
         //}
 
         //Check for dark mode
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        //Check for dark mode
+         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             // dark mode
-            $(node).children('a').attr("style", "color:gray;");
+            if ($(node).children('a').css("color") != "rgb(255, 0, 0)" && $(node).children('a').css("color") != "rgb(0, 128, 0)") 
+                $(node).children('a').attr("style", "color:gray;");
+        }
+
+         //Check for light mode
+         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // dark mode
+            if ($(node).children('a').css("color") != "rgb(255, 0, 0)" && $(node).children('a').css("color") != "rgb(0, 128, 0)") 
+                $(node).children('a').attr("style", "color:black;");
         }
         //Set leaves to red color
         if (tree.Leaf) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:red;");
         //else $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:black;");
         //Set hidden to green
         if (tree.Hidden) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:green");
-        //Add the node expression as a tooltip
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today')
-            expression = tree.Formula;
+        //Add the formula
+        var expression = "";
+        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
+            expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
-                expression = tree.Expression;
-            else expression = "";
+                expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
+            else 
+                if (tree.TypeStr == 'Text')
+                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+                else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", expression);
         //Add the hidden input storing the node type

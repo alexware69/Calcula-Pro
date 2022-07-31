@@ -26,6 +26,12 @@
             .filler:hover {
                 background:url('../../Images/dot-bold.gif') repeat-x  center;
             }
+
+            .subtotal {
+            position:absolute;
+            right:0;
+            color:darkblue;
+       		}
         }
         /* Dark mode */
         @@media (prefers-color-scheme: dark) {
@@ -45,6 +51,12 @@
             .filler:hover {
                 background:url('../../Images/dot-bold-white.gif') repeat-x  center;
             }
+
+            .subtotal {
+            position:absolute;
+            right:0;
+            color:olive;
+       		}
         }
         input[type="checkbox"]{
 			vertical-align: middle;
@@ -94,11 +106,7 @@
             white-space:nowrap;
             overflow:hidden;
         }
-        .subtotal {
-            position: absolute;
-            right:0;
-            color:darkblue;
-        }
+
         label {
               font-size: 12px;
 		 }
@@ -135,20 +143,20 @@
     <div id="description" class="follow-scroll" style="text-align: center">
         <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
     	    <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description.jpg" height="15"/>
-            <img id=top-left style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
-            <img id=top-right style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
+            <img id="top-left" style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left gray.jpg" height="15" width="16" />
+            <img id="top-right" style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right gray.jpg" height="15" width="16" />
         </div>
-        <div style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
-            <div style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left white.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right white.jpg" height="15" width="16" />
+        <div id="top-div" style="margin-top:16px; margin-left: 16px; margin-right:16px;text-align: center; background-color: white; position: relative">
+            <div id="top-div2"  style="text-align: center; background-color: white; width: 100%; position:absolute; top:0">
+                <img id="top-left2" style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top left white.jpg" height="15" width="16" />
+                <img id="top-right2" style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/top right white.jpg" height="15" width="16" />
             </div>
             <br />
             @{string url = ""; if (Model != null) url = Model.Url.Contains("ChangeTreeValue")? Model.Url : "Description?id=1";}
             <iframe style="overflow: scroll; width: 100%; border-width: 0px; background-color: white;" id="Iframe15" name="details" src="@url"></iframe>
-            <div style="text-align: center; background-color: white; width: 100%; position:absolute; bottom:0">
-                <img style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white.jpg" height="15" width="16" />
-                <img style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
+            <div id="bottom-div" style="text-align: center; background-color: white; width: 100%; position:absolute; bottom:0">
+                <img id="bottom-left" style="float: left; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom left white.jpg" height="15" width="16" />
+                <img id="bottom-right" style="float: right; padding: 0px 0px 0px 0px" src="@Url.Content("~/")Images/bottom right white.jpg" height="15" width="16" />
             </div>
         </div>
         <span style="font-size: 7pt; color: #999999; padding: 0px 0px 0px 0px; height: 15px; border-width: 0px; vertical-align: top;">GPL-3.0 LICENSE</span>
@@ -183,25 +191,65 @@
         </ul>
     </div>
     <script>
-     	$(function(){
-     		Offline.on('down', function(){
-     			$('#container *').prop('disabled',true).css( 'pointer-events', 'none' );
-     		});
-			Offline.on('up', function(){
-				$('#container *').prop('disabled',false).css( 'pointer-events', 'auto' );
-			}); 
-     	});
-         $(document).ready(function() {
-             //Detect dark mode
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // dark mode
-                $("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
-                $("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
-            }  		
-            else{
-                // light mode
-                $("#top-left").attr("src", "../../Images/top left gray.jpg");
-                $("#top-right").attr("src", "../../Images/top right gray.jpg");
-            }
-         });
+         
+         function activateDarkMode() {
+			// set style to dark
+			$("#top-left").attr("src", "../../Images/top left gray-dark.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray-dark.jpg");
+			$("#top-left2").attr("src", "../../Images/top left dark.jpg");
+			$("#top-right2").attr("src", "../../Images/top right dark.jpg");
+			$("#bottom-left").attr("src", "../../Images/bottom left dark.jpg");
+			$("#bottom-right").attr("src", "../../Images/bottom right dark.jpg");
+			$("#top-div").css("background-color", "black");
+			$("#top-div2").css("background-color", "black");
+			$("#bottom-div").css("background-color", "black");
+			$(".ui-widget-content").css("background", "black");
+
+			$('.name').each(function(){
+				//if statement here 
+				// use $(this) to reference the current
+				//alert($(this).css("color"));
+				if ($(this).css("color") == "rgb(0, 0, 0)") 
+					$(this).css('color', 'gray');
+			});
+		}
+
+		function activateLightMode() {
+		// set style to light
+			$("#top-left").attr("src", "../../Images/top left gray.jpg");
+			$("#top-right").attr("src", "../../Images/top right gray.jpg");
+			$("#top-left2").attr("src", "../../Images/top left white.jpg");
+			$("#top-right2").attr("src", "../../Images/top right white.jpg");
+			$("#bottom-left").attr("src", "../../Images/bottom left white.jpg");
+			$("#bottom-right").attr("src", "../../Images/bottom right white.jpg");
+			$("#top-div").css("background-color", "white");
+			$("#top-div2").css("background-color", "white");
+			$("#bottom-div").css("background-color", "white");
+			$(".ui-widget-content").css("background", "#EEEEEE");
+
+			$('.name').each(function(){
+				//if statement here 
+				// use $(this) to reference the current
+				if ($(this).css("color") == "rgb(128, 128, 128)") 
+					$(this).css('color', 'black');
+			});
+		}
+
+		window.matchMedia("(prefers-color-scheme: dark)").addListener(
+			e => e.matches && activateDarkMode() // listener
+		);
+
+		window.matchMedia("(prefers-color-scheme: light)").addListener(
+			e => e.matches && activateLightMode() // listener
+		);
+
+        $( document ).ready(function() {
+    	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			activateDarkMode();
+		}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+			activateLightMode();
+		}
+	});
      </script>
