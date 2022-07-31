@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C/jUk6YJlO4KQay8IQdvpm15LZwkBlzBZGzCbM8K7s0=",
+  "Hash": "aW1XbtTGo3mtaAEeSfkB3U7oiKovVxGkj+kRMIYdY2M=",
   "Source": "OPS",
   "BasePath": "_content/OPS",
   "Mode": "Default",
@@ -3925,6 +3925,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\TreeViewEditOne.js"
+    },
+    {
+      "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\js\\TreeViewOne.js",
+      "SourceId": "OPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\",
+      "BasePath": "_content/OPS",
+      "RelativePath": "js/TreeViewOne.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\TreeViewOne.js"
     },
     {
       "Identity": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\OPS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

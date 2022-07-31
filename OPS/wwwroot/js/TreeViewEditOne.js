@@ -1630,7 +1630,7 @@ function RenderTree(tree) {
                     expression = "&nbsp;[<i>" + tree.Text + "</i>]";
                 else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
-        $(node).children('a').attr("title", expression);
+        $(node).children('a').attr("title", tree.Formula);
         //Add the hidden input storing the node type
         html = "<input type='hidden' id='nodetype_" + tree.Id + "' value='" + tree.TypeStr + "'/> ";
         $("li[id='li_" + tree.Id + "']").append(html);

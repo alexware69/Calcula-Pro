@@ -1225,7 +1225,7 @@ function RenderTree(tree) {
                     expression = "&nbsp;[<i>" + tree.Text + "</i>]";
                 else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
-        $(node).children('a').attr("title", expression);
+        $(node).children('a').attr("title", tree.Formula);
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         // dark mode
