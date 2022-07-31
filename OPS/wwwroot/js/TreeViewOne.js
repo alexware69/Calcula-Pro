@@ -958,10 +958,6 @@ function ExpandLevels2(node, levels) {
 
 //Assemble the tree
 function Assemble(result, id) {
-    if (result == "_SessionTimeout_") {
-        document.location = "/SessionTimeOut.html";
-        return false;
-    }
     var li_id = id;
     //Get children from server if not already inserted
     var children_ul = $(id).children("ul");
@@ -1101,6 +1097,9 @@ function RenderTree(tree) {
             else expression = "";
         $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > " + expression + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
+        //Hide the node if is hidden and the show hidden checkbox is unchecked.....This is needed because when the open node event is called it will unhide children nodes
+        if (!$('input[id=\'HiddenFields\']').is(':checked') && tree.Hidden) $(node).hide();
+
         //$(node).children(".subtotal").remove();
         //$(node).children(".filler").remove();
         var newFiller = $("<div class='filler'>&nbsp;</div>");
@@ -1230,7 +1229,7 @@ function RenderTree(tree) {
                     expression = "&nbsp;[<i>" + tree.Text + "</i>]";
                 else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
-        $(node).children('a').attr("title", tree.Formula);
+        //$(node).children('a').attr("title", tree.Formula);
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         // dark mode

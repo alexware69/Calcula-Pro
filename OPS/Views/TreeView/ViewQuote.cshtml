@@ -166,11 +166,11 @@
     <span id="space" style="float: right">&nbsp;</span>
     <a href="QuoteDetails" target="details" style="float: right; color: blue">Quote</a>
 
-    <div style="white-space: nowrap;display: inline-block;color:green;">
-        &nbsp; &nbsp;<input type="checkbox" id="HiddenFields" name="HiddenFields" checked="checked" onchange="javascript: ToggleHiddenFields();"><label style="display: inline-block; " onclick="javascript:$('#HiddenFields').click();">&nbsp; Hidden</label>
+    <div style="white-space: nowrap;display: inline-block;color:green;display: none">
+        &nbsp; &nbsp;<input type="checkbox" id="HiddenFields" name="HiddenFields" onchange="javascript: ToggleHiddenFields();"><label style="display: inline-block; " onclick="javascript:$('#HiddenFields').click();">&nbsp; Hidden</label>
     </div>
-    <div style="white-space: nowrap;display: inline-block;color:blue;">
-        &nbsp;<input type="checkbox" id="Formulas" name="Formulas" checked="checked" onchange="javascript: ToggleFormulas();"><label id="FormulaText" style="display: inline-block; " onclick="javascript:$('#Formulas').click();">&nbsp;Formulas</label>
+    <div style="white-space: nowrap;display: inline-block;color:blue;display: none">
+        &nbsp;<input type="checkbox" id="Formulas" name="Formulas" onchange="javascript: ToggleFormulas();"><label id="FormulaText" style="display: inline-block; " onclick="javascript:$('#Formulas').click();">&nbsp;Formulas</label>
         
     </div>
     <div style="white-space: nowrap;display: none;color:darkblue;">
