@@ -260,8 +260,13 @@ function UpdateNode(data) {
             // dark mode
             $(node).children('a').attr("style", "color:black;");
         }
-
+        //Set leaves to red color
+        if (data.leaf) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:red;");
+        //else $("li[id='li_" + data.id + "']").children('a').attr("style", "color:black;");
+        //Set hidden to green
+        if (data.hidden) $("li[id='li_" + data.id + "']").children('a').attr("style", "color:green");
         //$(node).children(".subtotal").width($(node).children(".subtotal").width());
+        
         //Declare some width related variables
         var nodeWidth, id, marginLeft, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
         checkboxWidth = data.checkbox ? 13 : 0;
