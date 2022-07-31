@@ -997,7 +997,7 @@ function Assemble(result, id) {
         //    });
         //}
         //Add the node expression as a tooltip
-        $("li[id='li_" + result[i].id + "']").children('a').attr("title", result[i].expression);
+        //$("li[id='li_" + result[i].id + "']").children('a').attr("title", result[i].expression);
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             // dark mode
