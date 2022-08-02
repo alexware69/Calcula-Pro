@@ -4,14 +4,14 @@
     "imageFile": "/wwwroot/Images/calcula-splash.png"
   },
   "name": "CalculaPro",
-  "author": "Alejandro Penate-Diaz",
+  "author": "Alejandro Penate-Diaz <alejandro.penate@calculapro.com>",
   "singleInstance": false,
   "environment": "Production",
   "build": {
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
     "copyright": "Copyright © 2022 Alejandro Penate-Diaz",
-    "buildVersion": "1.2.4",
+    "buildVersion": "1.2.5",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -43,6 +43,13 @@
             "x64"
           ]
         }
+      ],
+      "icon": "../../../../wwwroot/Images/ops-win.png"
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "deb"
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
