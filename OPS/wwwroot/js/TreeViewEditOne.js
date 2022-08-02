@@ -10,7 +10,13 @@
     // Hide/Show siblings if parent is Decision node
     if ($("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision") {
         if (cb.checked && $("input[id='Compact']").is(':checked')) $("li[id='" + parentliID + "']").siblings().hide()
-        else $("li[id='" + parentliID + "']").siblings().show();
+        else {
+            $("li[id='" + parentliID + "']").siblings().show();
+            $("li[id='" + parentliID + "']").siblings().each(function() {
+                var id = this.id;
+                RefreshFillers(id.replace(/li_/g, ""), false);
+           });
+        }
     }
 
     asynchronous = false;
