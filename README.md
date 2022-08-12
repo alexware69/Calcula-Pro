@@ -36,7 +36,7 @@
 ```
 * / \ + - | [ ] ? & ! ( ) > < = # { } ; : , _
 ```
-* **Type**: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today, DateDiff.
+* **Type**: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today.
 * **Units**: There are currently some common predefined units, custom units can be set.
 * **Expression**: Some node types require an expression or formula, like Math, Conditional, Conditional Rules, Range and Reference.
 * **Expanded Levels**: The number of levels that will be automatically expanded from the root node on product load and from any node on node selection. This is useful to cover the most screen on product load and to show multiple nested options on selection.
@@ -67,11 +67,6 @@ Expressions can contain most common math functions in addition to IF conditions.
 * {1.6}*{1.5}/144
 ```
 
-**Range:**
-```
-* Height|0:36:42|37:48:54|49:60:66|61:72:78|73:102
-```
-
 **Conditional (IF conditions):**
 ```
 * if(TriFace Sign\Motor Type\1_3 HP.selected,10,60) (discontinued syntax)
@@ -80,11 +75,6 @@ Expressions can contain most common math functions in addition to IF conditions.
 * TriFace Sign\BomGen\Side Frm.max> TriFace Sign\Length?0.75:0
 * TriFace Sign\Louver Orientation\Vertical.selected?2*O10:0
 * this.selected?price:0
-```
-
-**Conditional Rules:** Conditional Rules nodes return the value of the first matching rule. If no rule is matched they return zero.  
-```
-* [TriFace Sign\BomGen\Centers 4_6=4?4][TriFace Sign\BomGen\Centers 4_6=6?5.75]
 ```
 
 **Reference:** Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  
