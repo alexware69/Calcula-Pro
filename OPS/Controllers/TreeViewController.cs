@@ -281,7 +281,7 @@ namespace OnlinePriceSystem.Controllers
             string total;
             try
             {
-                total = tree.Root!.Total().ToString("C");
+                total = tree.Root!.TotalStr;
             }
             catch
             {
@@ -507,7 +507,7 @@ namespace OnlinePriceSystem.Controllers
             string total;
             try
             {
-                total = tree.Root!.Total().ToString("C");
+                total = tree.Root!.TotalStr;
             }
             catch
             {
