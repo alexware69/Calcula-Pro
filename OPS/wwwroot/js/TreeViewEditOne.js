@@ -1376,6 +1376,7 @@ function NewNode() {
             error: function () {
                 alert("Couldn't insert the new node.");
                 $("#newinodeName").val("");
+                $("#newinodeType").val("Math");
                 $("#newinodeExpression").val("");
                 $("#newinodeExpandedLevels").val("");
                 $("#newinodeOrder").val("");
@@ -1423,6 +1424,7 @@ function NewNode() {
                     }
                     // Clean the fields and close
                     $("#newinodeName").val("");
+                    $("#newinodeType").val("Math");
                     $("#newinodeExpression").val("");
                     $("#newinodeExpandedLevels").val("");
                     $("#newinodeOrder").val("");
