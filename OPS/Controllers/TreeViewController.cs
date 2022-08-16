@@ -129,6 +129,9 @@ namespace OnlinePriceSystem.Controllers
                         case NodeType.Conditional:
                             Expression = (child as ConditionalNode)!.Formula;
                             break;
+                        case NodeType.Text:
+                            Expression = (node as TextNode)!.Text;
+                            break;
                         case NodeType.Reference:
                             Expression = (child as ReferenceNode)!.Target;
                             break;
@@ -225,6 +228,9 @@ namespace OnlinePriceSystem.Controllers
                     break;
                 case NodeType.Conditional:
                     Expression = (node as ConditionalNode)!.Formula;
+                    break;
+                case NodeType.Text:
+                    Expression = (node as TextNode)!.Text;
                     break;
                 default:
                     Expression = "";
@@ -458,6 +464,9 @@ namespace OnlinePriceSystem.Controllers
                 case NodeType.Conditional:
                     Expression = (node as ConditionalNode)!.Formula;
                     break;
+                case NodeType.Text:
+                    Expression = (node as TextNode)!.Text;
+                    break;
                 default:
                     Expression = "";
                     break;
@@ -497,6 +506,9 @@ namespace OnlinePriceSystem.Controllers
 				case NodeType.Conditional:
 					(node as ConditionalNode)!.Formula = value;
 					break;
+                case NodeType.Text:
+                    (node as TextNode)!.Text = value;
+                    break;
 				default:
 					break;
 			}
@@ -909,9 +921,6 @@ namespace OnlinePriceSystem.Controllers
                 return tree;
             }
         }
-
-
-
 
         [HttpGet]
         
