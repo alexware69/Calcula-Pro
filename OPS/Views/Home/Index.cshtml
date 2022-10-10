@@ -38,31 +38,22 @@
 	}
 </style>
 <div class="center">
-	<button id="new-dialog" class="btn">New Definition</button>	
+	<button id="new-dialog" class="btn" style="display: none;">New Definition</button>	
 	<br/>
 	<div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<img align="center" title='Working...' style='display:none;' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
+	 	     	<img align="center" title='Working...' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
 	</div>
 	<br/>
-	<button id="open-dialog" class="btn">Edit Definition</button>
+	<button id="open-dialog" class="btn" style="display: none;">Edit Definition</button>
 	
 	<br/>
 	<br/>
-	<button id="open-dialog-view" class="btn">Create a Quote</button>
+	<button id="open-dialog-view" class="btn" style="display: none;">Create a Quote</button>
 </div>
 <script>
-	function wait(ms){
-		var start = new Date().getTime();
-		var end = start;
-		while(end < start + ms) {
-			end = new Date().getTime();
-		}
-	}
-	(function(){
+	function myElectron(){
 		const { ipcRenderer } = require("electron");
         const fs = require('fs');
-		//Need to wait, otherwise won't register first click
-		wait(2000);
 		//Open Edit Definition dialog
 		document.getElementById("open-dialog")
                 .addEventListener("click", () => {
@@ -108,17 +99,22 @@
 			document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
             return;
         });
-	}());
-</script>
-<script>
-  	 $(function() {
-	    $( "input[type=submit], button" )
-	      .button();
-        $( "input[type=button], button" )
-	      .button();
+
+		$(".loading").hide();
+		$("#new-dialog").show();
+		$("#open-dialog").show();
+		$("#open-dialog-view").show();
+
 		var width = 150;
 		$("#new-dialog").width(width);
 		$("#open-dialog").width(width);
 		$("#open-dialog-view").width(width);
-	  });
+	}	 
+</script>
+<script>
+	$( document ).ready(function() {
+     	const myTimeout = setTimeout(myElectron, 3000);
+
+		$( "input[type=submit], button" ).button();
+	});	 
 </script>
