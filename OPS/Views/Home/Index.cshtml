@@ -51,9 +51,18 @@
 	<button id="open-dialog-view" class="btn">Create a Quote</button>
 </div>
 <script>
+	function wait(ms){
+		var start = new Date().getTime();
+		var end = start;
+		while(end < start + ms) {
+			end = new Date().getTime();
+		}
+	}
 	(function(){
 		const { ipcRenderer } = require("electron");
         const fs = require('fs');
+		//Need to wait, otherwise won't register first click
+		wait(2000);
 		//Open Edit Definition dialog
 		document.getElementById("open-dialog")
                 .addEventListener("click", () => {
