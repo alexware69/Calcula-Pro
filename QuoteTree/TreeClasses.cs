@@ -94,11 +94,23 @@ namespace QuoteTree;
 			get;
 		}
 
+        bool MaxIsSet
+        {
+            set;
+            get;
+        }
+
 		decimal Max
 		{
 			set;
 			get;
 		}
+
+        bool MinIsSet
+        {
+            set;
+            get;
+        }
 
 		decimal Min
 		{
@@ -267,7 +279,9 @@ namespace QuoteTree;
         
         private List<string>? _References;
 		private decimal _Discount;
+        private bool _MaxIsSet;
 		private decimal _Max;
+        private bool _MinIsSet;
 		private decimal _Min;
 		private bool _Template;
 		private int _Order;
@@ -384,10 +398,21 @@ namespace QuoteTree;
 			set { _Discount = value; }
 		}
 
+        public bool MaxIsSet
+		{
+			get { return _MaxIsSet; }
+			set { _MaxIsSet = value; }
+		}
 		public virtual decimal Max
 		{
 			get { return _Max; }
 			set { _Max = value; }
+		}
+
+        public bool MinIsSet
+		{
+			get { return _MinIsSet; }
+			set { _MinIsSet = value; }
 		}
 
 		public virtual decimal Min
@@ -1086,6 +1111,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
             this.Text = "";
 			this.Order = 0;
@@ -1133,13 +1159,23 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("text", path);
 			if (value != "") this.Text = value;
 
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -1232,9 +1268,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -1408,10 +1450,10 @@ namespace QuoteTree;
             }
 
             ParentTree.TotalCounter--;
-            if (this.Max != 0 && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+            if (this.MaxIsSet  && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
             else
             {
-                if (this.Min != 0 && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                if (this.MinIsSet && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                 else return this.Amount * (formula_result - formula_result * this.Discount / 100);
             }
         }
@@ -1449,6 +1491,7 @@ namespace QuoteTree;
 			this.Name = "";
 			this.Formula = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -1495,14 +1538,23 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("formula", path);
 			if (value != "") this.Formula = value; 
 
-			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
+            value = this.GetValueFromDirectory("max", path);
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
-
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
 			if (value != "") this.Order = intResult;
@@ -1615,9 +1667,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -1707,6 +1765,7 @@ namespace QuoteTree;
         {
             this.Name = "";
             this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
             this.Min = this.Max = 0;
             this.Order = 0;
             this.Selected = true;
@@ -1750,13 +1809,23 @@ namespace QuoteTree;
             if (value != "") this.Units = value;
 
             value = this.GetValueFromDirectory("formula", path);
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
             value = this.GetValueFromDirectory("max", path);
-            int.TryParse(value, out intResult);
-            if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
-            value = this.GetValueFromDirectory("min", path);
-            int.TryParse(value, out intResult);
-            if (value != "") this.Min = intResult;
+			value = this.GetValueFromDirectory("min", path);
+			int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
             value = this.GetValueFromDirectory("order", path);
             int.TryParse(value, out intResult);
@@ -1859,9 +1928,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -1982,6 +2057,7 @@ namespace QuoteTree;
         {
             this.Name = "";
             this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
             this.Min = this.Max = 0;
             this.Order = 0;
             this.Selected = false;
@@ -2025,14 +2101,23 @@ namespace QuoteTree;
             if (value != "") this.Units = value;
 
             value = this.GetValueFromDirectory("formula", path);
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
             value = this.GetValueFromDirectory("max", path);
-            int.TryParse(value, out intResult);
-            if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
-            value = this.GetValueFromDirectory("min", path);
-            int.TryParse(value, out intResult);
-            if (value != "") this.Min = intResult;
-
+			value = this.GetValueFromDirectory("min", path);
+			int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
             value = this.GetValueFromDirectory("order", path);
             int.TryParse(value, out intResult);
             if (value != "") this.Order = intResult;
@@ -2134,9 +2219,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -2213,6 +2304,7 @@ namespace QuoteTree;
             year.ParentTree = tree;
             year.Url = "TreeView" + "/Description" + "?id=" + year.Id;
             (year as MathNode)!.Formula = DateTime.Today.Year.ToString();
+            year.MaxIsSet = year.MinIsSet = false;
             year.Min = 0;
             year.Max = 0;
             year.Dependents!.Add(this.Id);
@@ -2303,10 +2395,10 @@ namespace QuoteTree;
                 }
                 formula_result = decimal.Parse(result.ToString()!);
                 ParentTree.TotalCounter--;
-                if (this.Max != 0 && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+                if (this.MaxIsSet && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                 else
                 {
-                    if (this.Min != 0 && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                    if (this.MinIsSet && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                     else return this.Amount * (formula_result - formula_result * this.Discount / 100);
                 }
             }
@@ -2349,6 +2441,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -2397,14 +2490,23 @@ namespace QuoteTree;
 
             //parse the formula
             //parseFormula();
-
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -2496,10 +2598,16 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
-            if (decimal.TryParse(values["min"], out decimalResult))
+           if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -2614,10 +2722,10 @@ namespace QuoteTree;
                         object result1 = e1.Evaluate();
                         formula_result = decimal.Parse(result1.ToString()!);
                         ParentTree.TotalCounter--;
-                        if (this.Max != 0 && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+                        if (this.MaxIsSet && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                         else
                         {
-                            if (this.Min != 0 && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                            if (this.MinIsSet && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                             else return this.Amount * (formula_result - formula_result * this.Discount / 100);
                         }
                     }
@@ -2675,6 +2783,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -2721,13 +2830,23 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("expression", path);
 			if (value != "") { this.Expression = value; this.parseExpression(); }
 
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -2819,9 +2938,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -2918,10 +3043,10 @@ namespace QuoteTree;
 			}
 
             ParentTree.TotalCounter--;
-			if (this.Max != 0 && selected_child_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+			if (this.MaxIsSet && selected_child_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
 			else
 			{
-				if (this.Min != 0 && selected_child_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+				if (this.MinIsSet && selected_child_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
 				else return this.Amount * (selected_child_result - selected_child_result * this.Discount / 100);
 			}
 		}
@@ -2930,6 +3055,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -2970,13 +3096,23 @@ namespace QuoteTree;
             value = this.GetValueFromDirectory("units", path);
 			if (value != "") this.Units = value;
 
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -3070,9 +3206,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -3275,10 +3417,10 @@ namespace QuoteTree;
                                     throw;
                                 }
                                 ParentTree.TotalCounter--;
-                                if (this.Max != 0 && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+                                if (this.MaxIsSet && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                                 else
                                 {
-                                    if (this.Min != 0 && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                                    if (this.MinIsSet && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                                     else return this.Amount * (output - output * this.Discount / 100);
                                 }
                             }
@@ -3288,10 +3430,10 @@ namespace QuoteTree;
                             {
                                 decimal output = ceiling;
                                 ParentTree.TotalCounter--;
-                                if (this.Max != 0 && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+                                if (this.MaxIsSet && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
                                 else
                                 {
-                                    if (this.Min != 0 && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                                    if (this.MinIsSet && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                                     else return this.Amount * (output - output * this.Discount / 100);
                                 }
                             }
@@ -3308,6 +3450,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -3353,13 +3496,23 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("range", path);
 			if (value != "") this.Range = value;
 
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -3450,9 +3603,15 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -3541,10 +3700,10 @@ namespace QuoteTree;
 
 			}
             ParentTree.TotalCounter--;
-            if (this.Max != 0 && sum > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
+            if (this.MaxIsSet && sum > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
             else
             {
-                if (this.Min != 0 && sum < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
+                if (this.MinIsSet && sum < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
                 else return this.Amount * (sum - sum * this.Discount / 100);
             }
 		}
@@ -3553,6 +3712,7 @@ namespace QuoteTree;
 		{
             this.Name = "";
 			this.Discount = 0;
+            this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
 			this.Selected = false;
@@ -3595,13 +3755,23 @@ namespace QuoteTree;
             value = this.GetValueFromDirectory("units", path);
 			if (value != "") this.Units = value;
 
+            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
+            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Max = intResult;
+		    int.TryParse(value, out intResult);
+			if (value != "") 
+            {
+                this.Max = intResult;
+                //this.MaxIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("min", path);
 			int.TryParse(value, out intResult);
-			if (value != "") this.Min = intResult;
+			if (value != "") 
+            {
+                this.Min = intResult;
+                //this.MinIsSet = true;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -3694,10 +3864,16 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
-            if (decimal.TryParse(values["min"], out decimalResult))
+           if (decimal.TryParse(values["min"], out decimalResult))
+            {
                 this.Min = decimalResult;
+                this.MinIsSet = true;
+            }
             if (decimal.TryParse(values["max"], out decimalResult))
+            {
                 this.Max = decimalResult;
+                this.MaxIsSet = true;
+            }
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
@@ -4332,8 +4508,14 @@ namespace QuoteTree;
                 {
                     sw.WriteLine("units=\"" + start.Units + "\";");
                     sw.WriteLine("optional=\"" + start.Optional.ToString().ToLower() + "\";");
-                    sw.WriteLine("max=\"" + start.Max.ToString() + "\";");
-                    sw.WriteLine("min=\"" + start.Min.ToString() + "\";");
+                    if (start.MaxIsSet)
+                        sw.WriteLine("max=\"" + start.Max.ToString() + "\";");
+                    else sw.WriteLine("max=\"" + "NA" + "\";");
+                    sw.WriteLine("maxisset=\"" + start.MaxIsSet.ToString().ToLower() + "\";"); 
+                    if (start.MinIsSet)
+                        sw.WriteLine("min=\"" + start.Min.ToString() + "\";");
+                    else  sw.WriteLine("min=\"" + "NA" + "\";");
+                    sw.WriteLine("minisset=\"" + start.MinIsSet.ToString().ToLower() + "\";"); 
                     sw.WriteLine("discount=\"" + start.Discount.ToString() + "\";");
                     sw.WriteLine("disablecondition=\"" + start.DisableCondition + "\";");
                     sw.WriteLine("disabledmessage=\"" + start.DisabledMessage + "\";");
@@ -4839,9 +5021,17 @@ namespace QuoteTree;
                 if (node.Type != NodeType.Reference)
                 {
                     if (decimal.TryParse(values["min"], out decimalResult))
+                    {
                         node.Min = decimalResult;
+                        node.MinIsSet = true;
+                    }
+                    else node.MinIsSet = false;
                     if (decimal.TryParse(values["max"], out decimalResult))
+                    {
                         node.Max = decimalResult;
+                        node.MaxIsSet = true;
+                    }
+                    else node.MaxIsSet = false;
                     if (decimal.TryParse(values["discount"], out decimalResult))
                         node.Discount = decimalResult;
                     node.Optional = values["optional"] == "true" ? true : false;

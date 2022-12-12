@@ -157,7 +157,13 @@
                             <tr>
                                 <td>@node.Name</td>
                                 <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
-                                <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString("0.#############################") + ", " + node.Max.ToString("0.#############################") + "]")</td>
+                                @{
+                                    bool MinIsSet = node.MinIsSet;
+                                    String Min = MinIsSet ? node.Min.ToString("0.#############################") : "NA";
+                                    bool MaxIsSet = node.MaxIsSet;
+                                    String Max = MaxIsSet ? node.Max.ToString("0.#############################") : "NA";
+                                }
+                                <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]")</td>
                             </tr>     
                         }  
                         else 
@@ -176,7 +182,13 @@
                         <tr>
                             <td> @Model.Name </td>
                             <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
-                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Model.Min.ToString("0.#############################") + ", " + Model.Max.ToString("0.#############################") + "]") </td>
+                            @{
+                                    bool MinIsSet = Model.MinIsSet;
+                                    String Min = MinIsSet ? Model.Min.ToString("0.#############################") : "NA";
+                                    bool MaxIsSet = Model.MaxIsSet;
+                                    String Max = MaxIsSet ? Model.Max.ToString("0.#############################") : "NA";
+                                }
+                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]") </td>
                         </tr>
                         }   
                     else 
