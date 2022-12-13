@@ -1139,7 +1139,7 @@ namespace OnlinePriceSystem.Controllers
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
-            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.MinIsSet ? node.Min.ToString() : "NA", node.MaxIsSet ? node.Max.ToString() : "NA", node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.MinIsSet ? node.Min.ToString() : "", node.MaxIsSet ? node.Max.ToString() : "", node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             string response = JsonConvert.SerializeObject(nodedata, Formatting.Indented);
             return Content(response);

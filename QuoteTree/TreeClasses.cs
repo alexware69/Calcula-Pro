@@ -4510,11 +4510,11 @@ namespace QuoteTree;
                     sw.WriteLine("optional=\"" + start.Optional.ToString().ToLower() + "\";");
                     if (start.MaxIsSet)
                         sw.WriteLine("max=\"" + start.Max.ToString() + "\";");
-                    else sw.WriteLine("max=\"" + "NA" + "\";");
+                    else sw.WriteLine("max=\"" + "∞" + "\";");
                     sw.WriteLine("maxisset=\"" + start.MaxIsSet.ToString().ToLower() + "\";"); 
                     if (start.MinIsSet)
                         sw.WriteLine("min=\"" + start.Min.ToString() + "\";");
-                    else  sw.WriteLine("min=\"" + "NA" + "\";");
+                    else  sw.WriteLine("min=\"" + "∞" + "\";");
                     sw.WriteLine("minisset=\"" + start.MinIsSet.ToString().ToLower() + "\";"); 
                     sw.WriteLine("discount=\"" + start.Discount.ToString() + "\";");
                     sw.WriteLine("disablecondition=\"" + start.DisableCondition + "\";");
