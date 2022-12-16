@@ -4634,8 +4634,8 @@ namespace QuoteTree;
                 clean_expression = Regex.Replace(clean_expression, @"\.max", "", RegexOptions.IgnoreCase);
                 clean_expression = Regex.Replace(clean_expression, @"\.min", "", RegexOptions.IgnoreCase);
                 clean_expression = Regex.Replace(clean_expression, @"\.discount", "", RegexOptions.IgnoreCase);
-                clean_expression = Regex.Replace(clean_expression, @"Max", "", RegexOptions.IgnoreCase);
-                clean_expression = Regex.Replace(clean_expression, @"Min", "", RegexOptions.IgnoreCase);
+                //clean_expression = Regex.Replace(clean_expression, @"Max", "", RegexOptions.IgnoreCase);
+                //clean_expression = Regex.Replace(clean_expression, @"Min", "", RegexOptions.IgnoreCase);
                 //clean_expression = Regex.Replace(clean_expression, @"Round", "", RegexOptions.IgnoreCase);
                 string[] splitted_expression = clean_expression.Split(new char[] { '*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ':', ';' });
 
