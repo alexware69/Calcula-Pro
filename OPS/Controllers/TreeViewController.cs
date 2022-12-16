@@ -1158,8 +1158,8 @@ namespace OnlinePriceSystem.Controllers
 		{
             if (node != null)
             {
-                if (!list.Contains(node.Name.Replace(" ","_"))) list.Add(node.Name.Replace(" ","_"));
-                if (!list.Contains(node.GetPath().Replace(" ","_"))) list.Add(node.GetPath().Replace(" ","_"));
+                if (!list.Contains(node.Name)) list.Add(node.Name);
+                if (!list.Contains(node.GetPath())) list.Add(node.GetPath());
                 foreach (ANode child in node.Children!)
                     getNames(child,list);
             }

@@ -2199,7 +2199,7 @@ $(function () {
                     //terms.unshift( operator );
                     //this.value = this.value.replace(terms[terms.length -1],"")
                     this.value = this.value.replace(new RegExp(terms[terms.length -1] + '$'), '');
-                    this.value = this.value + ui.item.value.replace(/_/g," ");
+                    this.value = this.value + ui.item.value;
                     return false;
                   }
                 });
