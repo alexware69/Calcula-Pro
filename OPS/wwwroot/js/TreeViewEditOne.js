@@ -2199,6 +2199,8 @@ $(function () {
                     //terms.unshift( operator );
                     //this.value = this.value.replace(terms[terms.length -1],"")
                     this.value = this.value.replace(new RegExp(terms[terms.length -1] + '$'), '');
+                    if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
+                    if (ui.item.value[ui.item.value.length] != " ") ui.item.value = ui.item.value + " ";
                     this.value = this.value + ui.item.value;
                     return false;
                   }
