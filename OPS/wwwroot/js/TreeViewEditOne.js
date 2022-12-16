@@ -2154,19 +2154,10 @@ $(function () {
             });   //end ajax
 
             function split( val ) {
-                var splitted  = val.split(/[()*/%+-]+/g);
-                return val.split(/[()*/%+-]+/g);
+                return val.split(/[()*/%+-?&!><=:,]+/g);
               }
               function extractLast( term ) {
                 return split( term ).pop().trimLeft ().trimRight ();
-              }
-
-              function operators(val){
-                var text = [];
-                for (let i = 0; i < val.length; i++) {
-                    if (val[i] == "(" || val[i] == ")" || val[i] == "+" || val[i] == "-" || val[i] == "*" || val[i] == "/" || val[i] == "%")
-                    text.push(val[i]);
-                  }
               }
            
               $( "textarea" )
@@ -2190,14 +2181,6 @@ $(function () {
                   },
                   select: function( event, ui ) {
                     var terms = split( this.value );
-                    var operator = this.value[this.value.length - 1];
-                    // remove the current input
-                    //terms.pop();
-                    // add the selected item
-                    //terms.push( operator + ui.item.value.replace(/_/g," ") );
-                    // add placeholder to get the comma-and-space at the end
-                    //terms.unshift( operator );
-                    //this.value = this.value.replace(terms[terms.length -1],"")
                     this.value = this.value.replace(new RegExp(terms[terms.length -1] + '$'), '');
                     if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
                     if (ui.item.value[ui.item.value.length - 1] != " ") ui.item.value = ui.item.value + " ";
