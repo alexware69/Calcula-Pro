@@ -2158,7 +2158,7 @@ $(function () {
                 return val.split(/[()*/%+-]+/g);
               }
               function extractLast( term ) {
-                return split( term ).pop();
+                return split( term ).pop().trimLeft ();
               }
 
               function operators(val){
