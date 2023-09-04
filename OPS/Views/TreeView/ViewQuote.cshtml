@@ -165,7 +165,7 @@
     </div>
     <span id="price" style="float: right">  Total: @price</span>
     <span id="space" style="float: right">&nbsp;</span>
-    <a href="QuoteDetails" target="details" style="float: right; color: black">Quote</a>
+    <a id="quote" href="QuoteDetails" target="details" style="float: right; color: black">Quote</a>
 
     <div style="white-space: nowrap;display: inline-block;color:green;display: none">
         &nbsp; &nbsp;<input type="checkbox" id="HiddenFields" name="HiddenFields" onchange="javascript: ToggleHiddenFields();"><label style="display: inline-block; " onclick="javascript:$('#HiddenFields').click();">&nbsp; Hidden</label>
@@ -205,7 +205,7 @@
 			$("#top-div2").css("background-color", "black");
 			$("#bottom-div").css("background-color", "black");
 			$(".ui-widget-content").css("background", "black");
-
+            $("#quote").css("color", "white");
 			$('.name').each(function(){
 				//if statement here 
 				// use $(this) to reference the current
@@ -227,7 +227,7 @@
 			$("#top-div2").css("background-color", "white");
 			$("#bottom-div").css("background-color", "white");
 			$(".ui-widget-content").css("background", "#EEEEEE");
-
+            $("#quote").css("color", "black");
 			$('.name').each(function(){
 				//if statement here 
 				// use $(this) to reference the current
