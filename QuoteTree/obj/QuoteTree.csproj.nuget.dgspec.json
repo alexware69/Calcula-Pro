@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexp\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj": {}
+    "/Users/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj": {
+    "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj",
+        "projectUniqueName": "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj",
         "projectName": "NCalc",
-        "projectPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj",
-        "packagesPath": "C:\\Users\\alexp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\obj\\",
+        "projectPath": "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj",
+        "packagesPath": "/Users/alex/.nuget/packages/",
+        "outputPath": "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\alexp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/alex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -49,26 +52,23 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -76,26 +76,29 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.403/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
-        "win-x64": {
+        "osx-x64": {
           "#import": []
         }
       }
     },
-    "C:\\Users\\alexp\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj": {
+    "/Users/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj",
+        "projectUniqueName": "/Users/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
         "projectName": "QuoteTree",
-        "projectPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj",
-        "packagesPath": "C:\\Users\\alexp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\QuoteTree\\obj\\",
+        "projectPath": "/Users/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "packagesPath": "/Users/alex/.nuget/packages/",
+        "outputPath": "/Users/alex/Projects/Calcula-Pro/QuoteTree/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\alexp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/alex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -107,8 +110,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj": {
-                "projectPath": "C:\\Users\\alexp\\Projects\\Calcula-Pro\\Evaluant.Calculator\\Evaluant.Calculator.csproj"
+              "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj": {
+                "projectPath": "/Users/alex/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj"
               }
             }
           }
@@ -138,26 +141,23 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[6.0.6, 6.0.6]"
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+              "version": "[6.0.11, 6.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -165,11 +165,11 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.403/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
-        "win-x64": {
+        "osx-x64": {
           "#import": []
         }
       }

@@ -1960,6 +1960,20 @@ function lzw_decode(s) {
     return out.join("");
 } 
 
+function replaceLastOccurrence(inputString, searchText, replacementText) {
+    const lastIndex = inputString.lastIndexOf(searchText);
+  
+    if (lastIndex === -1) {
+      // If the searchText is not found in the inputString, return the original string.
+      return inputString;
+    }
+  
+    const firstPart = inputString.slice(0, lastIndex);
+    const secondPart = inputString.slice(lastIndex + searchText.length);
+  
+    return firstPart + replacementText + secondPart;
+  }
+
 $(function () {
     descriptionhidden = false;
     ajaxDone = false;
@@ -2181,7 +2195,10 @@ $(function () {
                   },
                   select: function( event, ui ) {
                     var terms = split( this.value );
-                    this.value = this.value.replace(new RegExp(terms[terms.length -1] + '$'), '');
+                    //terms[terms.length -1] = terms[terms.length -1].replace(/\\\\/g, '\\');
+                    //this.value = this.value.replace(new RegExp(terms[terms.length -1] + '$'), '');
+                    this.value = replaceLastOccurrence(this.value,terms[terms.length -1], '');
+
                     if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
                     if (ui.item.value[ui.item.value.length - 1] != " ") ui.item.value = ui.item.value + " ";
                     this.value = this.value + ui.item.value;
