@@ -49,7 +49,12 @@
     "linux": {
       "category": "Utility",
       "target": [
-        "deb"
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },

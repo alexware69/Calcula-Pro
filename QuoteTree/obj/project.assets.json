@@ -1271,7 +1271,7 @@
         }
       }
     },
-    "net6.0/osx-x64": {
+    "net6.0/linux-x64": {
       "Antlr3.Runtime/3.5.1": {
         "type": "package",
         "dependencies": {
@@ -7028,7 +7028,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
             "version": "[6.0.11, 6.0.11]"
           },
           {
@@ -7036,7 +7036,7 @@
             "version": "[6.0.11, 6.0.11]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
             "version": "[6.0.11, 6.0.11]"
           }
         ],
@@ -7049,7 +7049,7 @@
       }
     },
     "runtimes": {
-      "osx-x64": {
+      "linux-x64": {
         "#import": []
       }
     }

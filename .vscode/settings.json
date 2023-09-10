@@ -1,3 +1,4 @@
 {
-    "appService.deploySubpath": "OPS/publish"
+    "appService.deploySubpath": "OPS/publish",
+    "dotnet.defaultSolution": "Online-Price-System.sln"
 }

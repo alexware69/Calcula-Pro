@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GjEJuXEA511j42OTYJGlLgWyKjQCLgeVteW5hcCZBI0l2j8uZjkemO6UmgmBtH52eK3J0wSMmrwbKyx5ZXT2DQ==",
+  "dgSpecHash": "nYuHNqRVZoeWXhgA/uHNlT3dYNiXgPZD/FI0n8uRmJArs4zyT5YhImPmCNKRegVoWqfmAxqmB8LclZZiYj1ZRw==",
   "success": true,
   "projectFilePath": "/Users/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -102,8 +102,8 @@
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/system.threading.timer/4.0.1/system.threading.timer.4.0.1.nupkg.sha512",
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/system.xml.readerwriter/4.0.11/system.xml.readerwriter.4.0.11.nupkg.sha512",
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/system.xml.xdocument/4.0.11/system.xml.xdocument.4.0.11.nupkg.sha512",
-    "/Users/alex/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/6.0.11/microsoft.netcore.app.runtime.osx-x64.6.0.11.nupkg.sha512",
-    "/Users/alex/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/6.0.11/microsoft.aspnetcore.app.runtime.osx-x64.6.0.11.nupkg.sha512",
+    "/Users/alex/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.11/microsoft.netcore.app.runtime.linux-x64.6.0.11.nupkg.sha512",
+    "/Users/alex/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.11/microsoft.aspnetcore.app.runtime.linux-x64.6.0.11.nupkg.sha512",
     "/Users/alex/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.11/microsoft.netcore.app.crossgen2.osx-x64.6.0.11.nupkg.sha512"
   ],
   "logs": []
