@@ -37,14 +37,14 @@
 ```
 * **Type**: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today.
 * **Units**: There are currently some common predefined units, custom units can be set.
-* **Expression**: Some node types require an expression or formula, like Math, Conditional, Conditional Rules, Range and Reference.
+* **Expression**: Some node types require an expression or formula, like Math, Conditional and Reference.
 * **Expanded Levels**: The number of levels that will be automatically expanded from the root node on product load and from any node on node selection. This is useful to cover the most screen on product load and to show multiple nested options on selection.
 * **Order**: Zero by default.The order in which the node appears. It is zero-based.
-* **Min**: Zero by default.The minimum value for that node. If a node’s subtotal es less than Min then its value will be replaced with Min.
-* **Max**: Zero by default.The maximum value for that node. If a node’s subtotal es greater than Max then its value will be replaced with Max.
+* **Min**: The minimum value for that node. If a node’s subtotal es less than Min then its value will be replaced with Min.
+* **Max**: The maximum value for that node. If a node’s subtotal es greater than Max then its value will be replaced with Max.
 * **Discount**: Zero by default. The discount in percent applied to the subtotal.
 * **Disable Condition**: An expression with a condition or conditions that when met will disable the node for selection. Very useful to implement exceptions.
-Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected
+Example:Plastic Face\Material Options\Polycarbonate .150 Clear.selected
 * **Disable Message**: The message that will be shown in the description page when the Disable Condition is met.
 * **Optional**: If set the node will have a checkbox. Optional nodes that are not children of Decision nodes when are not selected their displayed value is zero. Optional nodes children of Decision nodes will display their correspondent subtotal. Children of Decision nodes are automatically set to Optional.
 * **Hidden**: Hidden nodes are not shown in the page. Also their value can not be changed in the description page.
