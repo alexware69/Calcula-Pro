@@ -1,10 +1,24 @@
-[<img src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="100" />](https://github.com/alexwareb9/Calcula-Pro)
+<img align="left" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
 
 # Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
-[![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/alexwareb9/Calcula-Pro/total.svg)](https://github.com/alexwareb9/Calcula-Pro/releases)
+[![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexwareb9/Calcula-Pro/releases)
 [![GitHub Follow](https://img.shields.io/github/followers/alexwareb9?style=social&logo=github)](https://github.com/alexwareb9)
+
+<a href="https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE">
+    <img align="right" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/paypal-donate.png" style="width: 100px; height: 50px; border: 2px solid black; margin-right: 10px;" />
+</a>
+
+<div style="text-align: right">
+
+
+**Calcula Pro** is an innovative desktop app. It helps in **designing**, **implementing**, **documenting**, **presenting**, **quoting** and **storing** unfinished goods, insurance premiums, taxes and many others.
+</div>
+
+#
+<kbd><img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202023-10-12%20at%201.52.36%E2%80%AFAM-27426e6.jpeg"/></kbd>
+<p align="center"><em>This is an example product definition of an advertising sign.</em></p>
 
 ## Features of Calcula Pro
 
@@ -17,11 +31,7 @@
 * Supports most common math expressions and logic conditions.
 * Multiple same-name fields are supported (compare to Excel single-name naming of cells)
 * Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.
-* Create and modify product definitions via web.
-* Upload and download existing product definitions.
 * Create and analyze price quotes of complex products.
-* Calculations are server-based, which reduces the load on the client computer and keeps formulas and logic safe from viewing and modifying.
-* Re-quoting based on the original formulas.
 * Shows dependencies and references.
 * Two views available, wide screen for easier formula reading and shared screen for easier description viewing.
 * Compact mode for cleaner view of selections.
@@ -104,8 +114,3 @@ Expressions can contain most common math functions in addition to IF conditions.
 | Sqrt          | Returns the square root of a specified number.                                                                                                                                                               | Sqrt(4)             | 2d     |
 | Tan           | Returns the tangent of the specified angle.                                                                                                                                                                  | Tan(0)              | 0d     |
 | Truncate      | Calculates the integral part of a number.                                                                                                                                                                    | Truncate(1.7)       | 1      |
-
-
-
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE)
