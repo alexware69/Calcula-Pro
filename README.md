@@ -2,9 +2,9 @@
 
 # Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
+[![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/alexwareb9/Calcula-Pro/total.svg)](https://github.com/alexwareb9/Calcula-Pro/releases)
 [![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexwareb9/Calcula-Pro/releases)
-[![GitHub Follow](https://img.shields.io/github/followers/alexwareb9?style=social&logo=github)](https://github.com/alexwareb9)
 
 <a href="https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE">
     <img align="right" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/paypal-donate.png" style="width: 100px; height: 50px; border: 2px solid black; margin-right: 10px;" />
