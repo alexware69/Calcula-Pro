@@ -35,6 +35,7 @@
 * Shows dependencies and references.
 * Two views available, wide screen for easier formula reading and shared screen for easier description viewing.
 * Compact mode for cleaner view of selections.
+* True dark mode.
 * Seamless adjustment for window resizing and zooming.
 * Supports documentation for each feature (node), including text, image and video, in the form of an html page.
 * It is fast!
