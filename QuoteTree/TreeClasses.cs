@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace QuoteTree;
 [Serializable]
-	public enum NodeType { Math, Decision, Text, Conditional, ConditionalRules, Range, SumSet, Reference, Date, DateDiff, Today }
+	public enum NodeType { Math, Decision, Text, Conditional, SumSet, Reference, Date, DateDiff, Today }
 
 	public interface INode
 	{
@@ -252,16 +252,6 @@ namespace QuoteTree;
 	}
 
 	[Serializable]
-	[XmlInclude(typeof(MathNode))]
-	[XmlInclude(typeof(DecisionNode))]
-    [XmlInclude(typeof(TextNode))]
-	[XmlInclude(typeof(ConditionalNode))]
-	[XmlInclude(typeof(ConditionalRulesNode))]
-	[XmlInclude(typeof(RangeNode))]
-	[XmlInclude(typeof(SumSetNode))]
-    [XmlInclude(typeof(ReferenceNode))]
-    [XmlInclude(typeof(DateNode))]
-    [XmlInclude(typeof(TodayNode))]
     public abstract class ANode : INode
 	{
 
@@ -272,10 +262,8 @@ namespace QuoteTree;
 		private NodeType _Type;
         [JsonProperty]
         private List<ANode>? _Children;
-        [XmlIgnore]
         
         private List<string>? _Dependents;
-        [XmlIgnore]
         
         private List<string>? _References;
 		private decimal _Discount;
@@ -298,10 +286,8 @@ namespace QuoteTree;
 		private bool _Optional;
         private string _DisableCondition = "";
         private string _DisabledMessage = "";
-        [XmlIgnore]
         private ANode? _Parent;
 		private string _Description = "";
-        [XmlIgnore]
         private QTree? _ParentTree;
 		private decimal _Amount;
 		private bool _CheckBox;
@@ -549,8 +535,6 @@ namespace QuoteTree;
             get { return _DisabledMessage; }
             set { _DisabledMessage = value; }
         }
-
-		[XmlIgnore]
        
         public ANode? Parent
 		{
@@ -563,8 +547,7 @@ namespace QuoteTree;
 			get { return _Description; }
 			set { _Description = value; }
 		}
-        
-        [XmlIgnore]
+
 		public QTree ParentTree
 		{
 			get { return _ParentTree!; }
@@ -1058,7 +1041,6 @@ namespace QuoteTree;
 		// *******Fields*****
 		string _Text = "";
         bool _Entered;
-        //bool _EditChildren;
 
 		// *****Properties*****
 		public string Text
@@ -1324,14 +1306,8 @@ namespace QuoteTree;
 		// *******Fields*****
 		string _Formula = "";
         bool _Entered;
-		//bool _EditChildren;
 
 		// *****Properties*****
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
 		public string Formula
 		{
 			get 
@@ -1731,15 +1707,8 @@ namespace QuoteTree;
     {
         // *******Fields*****
         string _Formula = "";
-        //bool _Entered;
-        //bool _EditChildren;
 
         // *****Properties*****
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
        
         // *****Methods*****
         public override decimal Total()
@@ -2027,15 +1996,8 @@ namespace QuoteTree;
     {
         // *******Fields*****
         string _Formula = "";
-        //bool _Entered;
-        //bool _EditChildren;
 
         // *****Properties*****
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
 
         // *****Methods*****
         public override decimal Total()
@@ -2322,7 +2284,6 @@ namespace QuoteTree;
 		string _ThenFormula = "";
 		string _ElseFormula = "";
 		string _IfCondition = "";
-        //bool _EditChildren;
 
 		#region Properties
 		public string Formula
@@ -2345,11 +2306,6 @@ namespace QuoteTree;
 			get { return _IfCondition; }
 			set { _IfCondition = value; }
 		}
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
 		#endregion
        
 		// *****Methods*****
@@ -2599,345 +2555,6 @@ namespace QuoteTree;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
            if (decimal.TryParse(values["min"], out decimalResult))
-            {
-                this.Min = decimalResult;
-                this.MinIsSet = true;
-            }
-            if (decimal.TryParse(values["max"], out decimalResult))
-            {
-                this.Max = decimalResult;
-                this.MaxIsSet = true;
-            }
-            if (decimal.TryParse(values["discount"], out decimalResult))
-                this.Discount = decimalResult;
-            this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
-            this.Report = values["report"] == "true" ? true : false;
-            this.ReportValue = values["reportValue"] == "true" ? true : false;
-            this.Template = values["template"] == "true" ? true : false;
-            this.ReadOnly = values["readOnly"] == "true" ? true : false;
-
-            if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
-            else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"]!;
-            this.DisabledMessage = values["disabledMessage"]!;
-            if (node != null && node.Type == NodeType.Decision)
-            {
-                this.Dependents!.AddRange(node.Dependents!);
-                this.Dependents.Add(node.Id);
-            }
-            this.Parent = node;
-            this.ParentTree = tree;
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-            //Add new node to children
-            if (!this.HasErrors())
-            {
-                if (node != null)
-                {
-                    node.Children!.Add(this);
-                    //SetDependentsByHierarchy(Root, stack);
-                    //SetDependentsByReference(node, false);
-                }
-                else
-                {
-                    tree.Root = this;
-                }
-
-                if (node != null) node.SortChildren();
-            }
-        }
-	}
-
-	[Serializable]
-	public class ConditionalRulesNode : ANode
-	{
-		// *******Fields*****
-		string _Expression = "";
-        //bool _EditChildren;
-		SerializableDictionary<string, string> _Rules = new SerializableDictionary<string, string>();
-
-		#region Properties
-		public string Expression
-		{
-			get { return _Expression; }
-            set { if (!this.ReadOnly) _Expression = value; }
-		}
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
-		public SerializableDictionary<string, string> Rules
-		{
-			get { return _Rules; }
-			set { _Rules = value; }
-		}
-
-		#endregion
-
-		// *****Methods*****
-
-		public void parseExpression()
-		{
-            this.Rules.Clear();
-			char[] chars = {'[',']'};
-			string[] splitted = this.Expression.Split(chars);
-			foreach (string s in splitted)
-			{
-				string condition;
-				string result;
-				if (s.Contains("?"))
-				{
-					condition = s.Split('?')[0].Trim();
-					result = s.Split('?')[1].Trim();
-					this.Rules.Add(condition, result);
-				}
-			}
-		}
-
-        public override decimal Total() 
-        {
-            ParentTree.TotalCounter++;
-            if (ParentTree.TotalCounter > TotalCounterMax)
-            {
-                ParentTree.TotalCounter = 0;
-                throw new CircularReferenceException();
-            }
-
-            foreach (KeyValuePair<string, string> thisRule in this.Rules)
-            {
-                decimal formula_result = 0;
-                Expression e = new Expression(thisRule.Key);
-                e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-
-                try
-                {
-                    object result = e.Evaluate();
-                    if (Convert.ToBoolean(result)) 
-                    {
-                        Expression e1 = new Expression(thisRule.Value);
-                        e1.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-
-                        object result1 = e1.Evaluate();
-                        formula_result = decimal.Parse(result1.ToString()!);
-                        ParentTree.TotalCounter--;
-                        if (this.MaxIsSet && formula_result > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
-                        else
-                        {
-                            if (this.MinIsSet && formula_result < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
-                            else return this.Amount * (formula_result - formula_result * this.Discount / 100);
-                        }
-                    }
-                }
-                catch (CircularReferenceException)
-                {
-                    ParentTree.TotalCounter = 0;
-                    throw;
-                }
-                catch (Exception)
-                {
-                    ParentTree.TotalCounter = 0;
-                    throw;
-                }
-            }
-            ParentTree.TotalCounter--;
-            return 0;
-        }
-
-        public override bool HasErrors()
-        {
-            try
-            {
-                bool hasErrors = false;
-                foreach (KeyValuePair<string, string> thisRule in this.Rules)
-                {
-                    Expression e = new Expression(thisRule.Key);
-                    e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                    hasErrors = e.HasErrors();
-                    this.Error = e.Error;
-                    if (hasErrors) break;
-
-                    Expression e1 = new Expression(thisRule.Value);
-                    e1.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                    hasErrors = e.HasErrors();
-                    this.Error = e.Error;
-                    if (hasErrors) break;
-                }
-                return hasErrors;
-            }
-            catch (Exception) { return false; }
-        }
-
-		public override bool IsComplete()
-		{
-            if (Children == null || Children.Count == 0 || !BranchSelected()) return true;
-			foreach (ANode n in Children)
-			{
-				if (n.Selected && !n.IsComplete()) return false;
-			}
-			return true;
-		}
-
-		public ConditionalRulesNode()
-		{
-            this.Name = "";
-			this.Discount = 0;
-            this.MaxIsSet = this.MinIsSet = false;
-			this.Min = this.Max = 0;
-			this.Order = 0;
-			this.Selected = false;
-			this.Children = new List<ANode>();
-			this.Dependents = new List<string>();
-			this.References = new List<string>();
-			this.Type = NodeType.ConditionalRules;
-			this.Parent = null;
-			this.Amount = 1;
-			this.Optional = false;
-            this.DisableCondition = "0";
-            this.DisabledMessage = "";
-			this.Description = "";
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
-			this.ExpandedLevels = 0;
-			this.Units = "";
-			this.Report = false;
-			this.ReportValue = false;
-            this.EditChildren = false;
-			this.Template = false;
-			this.CheckBox = false;
-		}
-
-		public ConditionalRulesNode(string path, ANode? parent, QTree parentTree, string id)
-			: this()
-		{
-			if (parent != null) this.Parent = parent;
-			this.ParentTree = parentTree;
-			this.Name = path.Split(Path.DirectorySeparatorChar)[path.Split(Path.DirectorySeparatorChar).Length - 1];
-			this.Id = id;
-			string value = "";
-
-			int intResult;
-			decimal decimalResult;
-
-            value = this.GetValueFromDirectory("id", path);
-            if (value != "") this.Id = value;
-
-            value = this.GetValueFromDirectory("units", path);
-			if (value != "") this.Units = value;
-
-			value = this.GetValueFromDirectory("expression", path);
-			if (value != "") { this.Expression = value; this.parseExpression(); }
-
-            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
-            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
-			value = this.GetValueFromDirectory("max", path);
-		    int.TryParse(value, out intResult);
-			if (value != "") 
-            {
-                this.Max = intResult;
-                //this.MaxIsSet = true;
-            }
-
-			value = this.GetValueFromDirectory("min", path);
-			int.TryParse(value, out intResult);
-			if (value != "") 
-            {
-                this.Min = intResult;
-                //this.MinIsSet = true;
-            }
-
-			value = this.GetValueFromDirectory("order", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Order = intResult;
-
-			value = this.GetValueFromDirectory("discount", path);
-			decimal.TryParse(value, out decimalResult);
-			if (value != "") this.Discount = decimalResult;
-
-			value = this.GetValueFromDirectory("amount", path);
-			decimal.TryParse(value, out decimalResult);
-			if (value != "") this.Amount = decimalResult;
-
-			value = this.GetValueFromDirectory("expandedlevels", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.ExpandedLevels = intResult;
-
-            value = this.GetValueFromDirectory("disablecondition", path);
-            if (value != "") this.DisableCondition = value;
-
-            value = this.GetValueFromDirectory("disabledmessage", path);
-            if (value != "") this.DisabledMessage = value;
-
-			if (this.GetValueFromDirectory("optional", path) == "true" || (parent != null && parent.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
-			else { if (parent == null || (parent != null && parent.Type != NodeType.Decision)) this.Selected = true; }
-			if (this.GetValueFromDirectory("report", path) == "true") { this.Report = true; }
-			if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
-			if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
-			if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
-			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
-
-			//To set the url for the node
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
-				{
-
-					// Read and display lines from the file until the end of 
-					// the file is reached.
-					while ((line = sr.ReadLine()) != null)
-					{
-						s += line;
-					}
-				}
-			}
-			catch (Exception)
-			{ }
-			this.Description = s;
-		}
-
-        public ConditionalRulesNode(NameValueCollection values, QTree tree)
-            : this()
-        {
-            string id = values["id"]!;
-            ANode? node;
-            if (id != null && id != "")
-            {
-                node = tree.GetNodeFromId(id);
-                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
-                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
-            }
-            else
-                node = null;
-
-            //check for same name
-            if (node != null && node.Children != null)
-            foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new Stack<ANode>();
-            int intResult;
-            decimal decimalResult;
-
-            //first set the node as writeable
-            this.ReadOnly = false;
-            if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Expression = values["expression"]!;
-            this.parseExpression();
-            this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"]!;
-            if (int.TryParse(values["expandedLevels"], out intResult))
-                this.ExpandedLevels = intResult;
-            if (int.TryParse(values["order"], out intResult))
-                this.Order = intResult;
-            if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
                 this.MinIsSet = true;
@@ -3254,419 +2871,11 @@ namespace QuoteTree;
 	}
 
 	[Serializable]
-	public class RangeNode : ANode
-	{
-		// *******Fields*****
-		string _Range = "";
-        //bool _EditChildren;
-
-		// *****Properties*****
-		public string Range
-		{
-			get { return _Range; }
-            set { if (!this.ReadOnly) _Range = value; }
-		}
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
-
-		// *****Methods*****
-        public override bool HasErrors()
-        {
-            try
-            {
-                bool hasErrors = false;
-
-                string[] temp_formula_ranges;
-                //Check to see if formula contain range expressions
-                if (this._Range.Contains("|"))
-                    temp_formula_ranges = this._Range.Split("|".ToCharArray());
-                else
-                {
-                    Error = "Range nodes expressions should contain sections separated by the character '|'.";
-                    return true;
-                }
-
-                for (int i = 0; i < temp_formula_ranges.Length; i++)
-                {
-                    if (i == 0)
-                    {
-                        Expression e = new Expression(temp_formula_ranges[i]);
-                        e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                        hasErrors = e.HasErrors();
-                        this.Error = e.Error;
-                        if (hasErrors) return true;
-                    }
-                    else
-                    {
-                        string[] values = temp_formula_ranges[i].Split(":".ToCharArray());
-                        if (values.Length == 0)
-                        {
-                            Error = "Range nodes sections should contain variables, values or math expressions separated by the character ':'.";
-                            return true;
-                        }
-                        else
-                            foreach (string value in values)
-                            {
-                                Expression e = new Expression(value);
-                                e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                                hasErrors = e.HasErrors();
-                                this.Error = e.Error;
-                                if (hasErrors) return true;
-                            }
-                    }
-                }
-                return hasErrors;
-            }
-            catch (Exception) { return false; }
-        }
-
-		public override bool IsComplete()
-		{
-            if (Children == null || Children.Count == 0 || !BranchSelected()) return true;
-			foreach (ANode n in Children)
-			{
-				if (n.Selected && !n.IsComplete()) return false;
-			}
-			return true;
-		}
-
-        public override decimal Total()
-        {
-            ParentTree.TotalCounter++;
-            if (ParentTree.TotalCounter > TotalCounterMax)
-            {
-                ParentTree.TotalCounter = 0;
-                throw new CircularReferenceException();
-            }
-
-            if (this.Optional && !this.Selected && !(this.Parent != null && this.Parent.Type == NodeType.Decision))
-            {
-                ParentTree.TotalCounter--;
-                return 0;
-            }
-            //EB.Math.Function function = new EB.Math.Function();
-            string[] temp_formula_ranges;
-
-            //Check to see if formula contain range expressions
-            if (this._Range.Contains("|"))
-                temp_formula_ranges = this._Range.Split("|".ToCharArray());
-            else
-            {
-                ParentTree.TotalCounter--;
-                return 0;
-            }
-
-
-            for (int i = 0; i < temp_formula_ranges.Length; i++)
-            {
-                if (i > 0)
-                {
-                    string[] values = temp_formula_ranges[i].Split(":".ToCharArray());
-                    decimal floor, ceiling, value;
-
-                    Expression eFloor = new Expression(values[0]);
-                    eFloor.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                    Expression eCeiling = new Expression(values[1]);
-                    eCeiling.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                    Expression eValue = new Expression(temp_formula_ranges[0]);
-                    eValue.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                    try
-                    {
-                        object result = eFloor.Evaluate();
-                        floor = decimal.Parse(result.ToString()!);
-                        result = eCeiling.Evaluate();
-                        ceiling = decimal.Parse(result.ToString()!);
-                        result = eValue.Evaluate();
-                        value = decimal.Parse(result.ToString()!);
-                    }
-                    catch (CircularReferenceException)
-                    {
-                        ParentTree.TotalCounter = 0;
-                        throw;
-                    }
-                    catch (Exception)
-                    {
-                        ParentTree.TotalCounter = 0;
-                        throw;
-                    }
-
-                    switch (values.Length)
-                    {
-                        case 3:
-                            if (floor <= value && value <= ceiling)
-                            {
-                                decimal output;
-                                Expression eOutput = new Expression(values[2]);
-                                eOutput.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
-                                try 
-                                {
-                                    object result = eOutput.Evaluate();
-                                    output = decimal.Parse(result.ToString()!);
-                                }
-                                catch (CircularReferenceException)
-                                {
-                                    ParentTree.TotalCounter = 0;
-                                    throw;
-                                }
-                                catch (Exception)
-                                {
-                                    ParentTree.TotalCounter = 0;
-                                    throw;
-                                }
-                                ParentTree.TotalCounter--;
-                                if (this.MaxIsSet && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
-                                else
-                                {
-                                    if (this.MinIsSet && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
-                                    else return this.Amount * (output - output * this.Discount / 100);
-                                }
-                            }
-                            break;
-                        case 2:
-                            if (floor <= value)
-                            {
-                                decimal output = ceiling;
-                                ParentTree.TotalCounter--;
-                                if (this.MaxIsSet && output > this.Max) return this.Amount * (Max - Max * this.Discount / 100);
-                                else
-                                {
-                                    if (this.MinIsSet && output < this.Min) return this.Amount * (Min - Min * this.Discount / 100);
-                                    else return this.Amount * (output - output * this.Discount / 100);
-                                }
-                            }
-                            break;
-                        default: break;
-                    }
-                }
-            }
-            ParentTree.TotalCounter--;
-            return 0;
-        }
-
-		public RangeNode()
-		{
-            this.Name = "";
-			this.Discount = 0;
-            this.MaxIsSet = this.MinIsSet = false;
-			this.Min = this.Max = 0;
-			this.Order = 0;
-			this.Selected = false;
-			this.Children = new List<ANode>();
-			this.Dependents = new List<string>();
-			this.References = new List<string>();
-			this.Type = NodeType.Range;
-			this.Parent = null;
-			this.Amount = 1;
-			this.Optional = false;
-            this.DisableCondition = "0";
-            this.DisabledMessage = "";
-			this.Description = "";
-			this.Hidden = false;
-			this.ReadOnly = false;
-			this.Expanded = false;
-			this.ExpandedLevels = 0;
-			this.Units = "";
-			this.Report = false;
-			this.ReportValue = false;
-            this.EditChildren = false;
-			this.Template = false;
-		}
-
-		public RangeNode(string path, ANode? parent, QTree parentTree, string id)
-			: this()
-		{
-			if (parent != null) this.Parent = parent;
-			this.ParentTree = parentTree;
-			this.Name = path.Split(Path.DirectorySeparatorChar)[path.Split(Path.DirectorySeparatorChar).Length - 1];
-			this.Id = id;
-			string value = "";
-
-			int intResult;
-			decimal decimalResult;
-
-            value = this.GetValueFromDirectory("id", path);
-            if (value != "") this.Id = value;
-
-            value = this.GetValueFromDirectory("units", path);
-			if (value != "") this.Units = value;
-
-			value = this.GetValueFromDirectory("range", path);
-			if (value != "") this.Range = value;
-
-            if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
-            if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
-			value = this.GetValueFromDirectory("max", path);
-		    int.TryParse(value, out intResult);
-			if (value != "") 
-            {
-                this.Max = intResult;
-                //this.MaxIsSet = true;
-            }
-
-			value = this.GetValueFromDirectory("min", path);
-			int.TryParse(value, out intResult);
-			if (value != "") 
-            {
-                this.Min = intResult;
-                //this.MinIsSet = true;
-            }
-
-			value = this.GetValueFromDirectory("order", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.Order = intResult;
-
-			value = this.GetValueFromDirectory("discount", path);
-			decimal.TryParse(value, out decimalResult);
-			if (value != "") this.Discount = decimalResult;
-
-			value = this.GetValueFromDirectory("amount", path);
-			decimal.TryParse(value, out decimalResult);
-			if (value != "") this.Amount = decimalResult;
-
-			value = this.GetValueFromDirectory("expandedlevels", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.ExpandedLevels = intResult;
-
-            value = this.GetValueFromDirectory("disablecondition", path);
-            if (value != "") this.DisableCondition = value;
-
-            value = this.GetValueFromDirectory("disabledmessage", path);
-            if (value != "") this.DisabledMessage = value;
-
-			if (this.GetValueFromDirectory("optional", path) == "true" || (parent != null && parent.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
-			else { if (parent == null || (parent != null && parent.Type != NodeType.Decision)) this.Selected = true; }
-			if (this.GetValueFromDirectory("report", path) == "true") { this.Report = true; }
-			if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
-            if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
-			if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
-
-
-			//Set node url
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-				using (StreamReader sr = new StreamReader(path + Path.DirectorySeparatorChar + "description.txt"))
-				{
-
-					// Read and display lines from the file until the end of 
-					// the file is reached.
-					while ((line = sr.ReadLine()) != null)
-					{
-						s += line;
-					}
-				}
-			}
-			catch (Exception)
-			{ }
-			this.Description = s;
-		}
-
-        public RangeNode(NameValueCollection values, QTree tree)
-            : this()
-        {
-            string id = values["id"]!;
-            ANode? node;
-            if (id != null && id != "")
-            {
-                node = tree.GetNodeFromId(id);
-                if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
-                if(node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) return;
-            }
-            else
-                node = null;
-
-            //check for same name
-            if (node != null && node.Children != null)
-            foreach (ANode n in node.Children)
-                if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new Stack<ANode>();
-            int intResult;
-            decimal decimalResult;
-
-            //first set the node as writeable
-            this.ReadOnly = false;
-            if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
-            this.Range = values["expression"]!;
-            this.EditChildren = values["editChildren"] == "true" ? true : false;
-            this.Name = values["name"]!;
-            if (int.TryParse(values["expandedLevels"], out intResult))
-                this.ExpandedLevels = intResult;
-            if (int.TryParse(values["order"], out intResult))
-                this.Order = intResult;
-            if (decimal.TryParse(values["min"], out decimalResult))
-            {
-                this.Min = decimalResult;
-                this.MinIsSet = true;
-            }
-            if (decimal.TryParse(values["max"], out decimalResult))
-            {
-                this.Max = decimalResult;
-                this.MaxIsSet = true;
-            }
-            if (decimal.TryParse(values["discount"], out decimalResult))
-                this.Discount = decimalResult;
-            this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
-            this.Report = values["report"] == "true" ? true : false;
-            this.ReportValue = values["reportValue"] == "true" ? true : false;
-            this.Template = values["template"] == "true" ? true : false;
-            this.ReadOnly = values["readOnly"] == "true" ? true : false;
-
-            if (values["optional"] == "true" || (node != null && node.Type == NodeType.Decision)) { this.Optional = true; this.CheckBox = true; }
-            else { if (node == null || (node != null && node.Type != NodeType.Decision)) this.Selected = true; }
-            this.DisableCondition = values["disable"]!;
-            this.DisabledMessage = values["disabledMessage"]!;
-            if (node != null && node.Type == NodeType.Decision)
-            {
-                this.Dependents!.AddRange(node.Dependents!);
-                this.Dependents.Add(node.Id);
-            }
-            this.Parent = node;
-            this.ParentTree = tree;
-            this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-            //Add new node to children
-            if (!this.HasErrors())
-            {
-                if (node != null)
-                {
-                    node.Children!.Add(this);
-                    //SetDependentsByHierarchy(Root, stack);
-                    //SetDependentsByReference(node, false);
-                }
-                else
-                {
-                    tree.Root = this;
-                }
-
-                if (node != null) node.SortChildren();
-            }
-        }
-	}
-
-	[Serializable]
 	public class SumSetNode : ANode
 	{
 		// *******Fields*****
-		//bool _EditChildren;
-
 
 		// *****Properties*****
-        //public bool EditChildren
-        //{
-        //    get { return _EditChildren; }
-        //    set { _EditChildren = value; }
-        //}
-
 
 		// *****Methods*****
         public override bool HasErrors()
@@ -4367,13 +3576,9 @@ namespace QuoteTree;
 
                 if (type == "text") node = new TextNode(path, parent, this, id);
 
-				if (type == "range") node = new RangeNode(path, parent, this, id);
-
 				if (type == "sumset") node = new SumSetNode(path, parent, this, id);
 
 				if (type == "conditional") node = new ConditionalNode(path, parent, this, id);
-
-				if (type == "conditionalrules") node = new ConditionalRulesNode(path, parent, this, id);
 
                 if (type == "reference") node = new ReferenceNode(path, parent, this, id);
 
@@ -4537,21 +3742,13 @@ namespace QuoteTree;
                     sw.WriteLine("text=\"" + (start as TextNode)!.Text + "\";");
                     sw.WriteLine("editchildren=\"" + (start as TextNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
-                if (start.Type == NodeType.Range)
-                {
-                    sw.WriteLine("range=\"" + (start as RangeNode)!.Range + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as RangeNode)!.EditChildren.ToString().ToLower() + "\";");
-                }
+
                 if (start.Type == NodeType.Conditional)
                 {
                     sw.WriteLine("formula=\"" + (start as ConditionalNode)!.Formula + "\";");
                     sw.WriteLine("editchildren=\"" + (start as ConditionalNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
-                if (start.Type == NodeType.ConditionalRules)
-                {
-                    sw.WriteLine("expression=\"" + (start as ConditionalRulesNode)!.Expression + "\";");
-                    sw.WriteLine("editchildren=\"" + (start as ConditionalRulesNode)!.EditChildren.ToString().ToLower() + "\";");
-                }
+
                 if (start.Type == NodeType.Reference)
                 {
                     sw.WriteLine("target=\"" + (start as ReferenceNode)!.Target + "\";");
@@ -4578,9 +3775,8 @@ namespace QuoteTree;
                     || node.Type == NodeType.SumSet
                     || node.Type == NodeType.Date
                     || (node.Type == NodeType.Math && Array.IndexOf((node as MathNode)!.Formula.Split(charArr),child.Name) > -1)
-                    || (node.Type == NodeType.Range && Array.IndexOf((node as RangeNode)!.Range.Split(charArr), child.Name) > -1)
                     || (node.Type == NodeType.Conditional && Array.IndexOf((node as ConditionalNode)!.Formula.Split(charArr), child.Name) > -1)
-                    || (node.Type == NodeType.ConditionalRules && Array.IndexOf((node as ConditionalRulesNode)!.Expression.Split(charArr), child.Name) > -1))
+                    )
                 {
                     foreach (ANode dependent in s)
                         if (!child.Dependents!.Contains(dependent.Id))
@@ -4600,7 +3796,7 @@ namespace QuoteTree;
 		{
             Tuple<ANode, ANode>? tuple = null;
             ANode? NodeFromPath, NodeFromId;
-			if (node.Type == NodeType.Math || node.Type == NodeType.Range || node.Type == NodeType.Conditional || node.Type == NodeType.ConditionalRules || node.Type == NodeType.Reference)
+			if (node.Type == NodeType.Math || node.Type == NodeType.Conditional || node.Type == NodeType.Reference)
 			{
 				string expression = "";
 				switch (node.Type)
@@ -4608,16 +3804,9 @@ namespace QuoteTree;
 				case NodeType.Math:
 					expression = (node as MathNode)!.Formula;
 					break;
-				case NodeType.Range:
-					expression = (node as RangeNode)!.Range;
-					break;
 				case NodeType.Conditional:
 					expression = (node as ConditionalNode)!.Formula;
 						break;
-				case NodeType.ConditionalRules:
-					foreach (KeyValuePair<string,string> rule in (node as ConditionalRulesNode)!.Rules)
-						expression = expression + '|' + rule.Key + '|' + rule.Value + '|';
-					break;
                 case NodeType.Reference:
                     expression = (node as ReferenceNode)!.Target;
                     break;
@@ -4960,13 +4149,6 @@ namespace QuoteTree;
                         //Set node url
                         node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         break;
-                    case NodeType.Range:
-                        (node as RangeNode)!.Range = values["expression"]!.Trim();
-                        (node as RangeNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
-
-                        //Set node url
-                        node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
-                        break;
                     case NodeType.Date:
                         (node as DateNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
@@ -4977,14 +4159,6 @@ namespace QuoteTree;
                         (node as TodayNode)!.EditChildren = false;
 
                         //Set node url
-                        node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
-                        break;
-                    case NodeType.ConditionalRules:
-                        (node as ConditionalRulesNode)!.Expression = values["expression"]!.Trim();
-                        (node as ConditionalRulesNode)!.parseExpression();
-                        (node as ConditionalRulesNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
-
-                        //To set the url for the node
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Conditional:
@@ -5069,14 +4243,8 @@ namespace QuoteTree;
                 case "Text":
                     newnode = new TextNode(values, this);
                     break;
-                case "Range":
-                    newnode = new RangeNode(values, this);
-                    break;
                 case "Conditional":
                     newnode = new ConditionalNode(values, this);
-                    break;
-                case "ConditionalRules":
-                    newnode = new ConditionalRulesNode(values, this);
                     break;
                 case "Decision":
                     newnode = new DecisionNode(values, this);
