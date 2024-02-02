@@ -1,17 +1,17 @@
 {
   "executable": "OPS",
   "splashscreen": {
-    "imageFile": ""
+    "imageFile": "/wwwroot/Images/calcula-splash.png"
   },
-  "name": "OPS",
-  "author": "Alejandro Penate-Diaz",
+  "name": "CalculaPro",
+  "author": "Alejandro Penate-Diaz <alejandro.penate@calculapro.com>",
   "singleInstance": false,
   "environment": "Production",
   "build": {
-    "appId": "com.OPS.app",
-    "productName": "OPS",
-    "copyright": "Copyright © 2022",
-    "buildVersion": "1.0.0",
+    "appId": "com.CalculaPro.app",
+    "productName": "Calcula Pro",
+    "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
+    "buildVersion": "1.3.7",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -34,6 +34,26 @@
         }
       ],
       "icon": "../../../../wwwroot/Images/ops.png"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "default",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "../../../../wwwroot/Images/ops-win.png"
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "deb",
+        "snap",
+        "AppImage"
+      ],
+      "icon": "../../../../wwwroot/Images/ops-win.png"
     },
     "files": [
       {

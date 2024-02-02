@@ -10,8 +10,8 @@
   "build": {
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
-    "copyright": "Copyright © 2023 Alejandro Penate-Diaz",
-    "buildVersion": "1.3.6",
+    "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
+    "buildVersion": "1.3.7",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -49,12 +49,9 @@
     "linux": {
       "category": "Utility",
       "target": [
-        {
-          "target": "deb",
-          "arch": [
-            "x64"
-          ]
-        }
+        "deb",
+        "snap",
+        "AppImage"
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
