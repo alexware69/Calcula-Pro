@@ -29,7 +29,7 @@
 * Folder nature of product definitions makes teamwork easy and natural, as well as making possible to backup and storing definitions offline.
 * Readable formulas are made of words, now with autocomplete.
 * Supports most common math expressions and logic conditions.
-* Multiple same-name fields are supported (compare to Excel single-name naming of cells)
+* Multiple same-name nodes are supported (compare to Excel single-name naming of cells)
 * Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.
 * Create and analyze price quotes of complex products.
 * Shows dependencies and references.
