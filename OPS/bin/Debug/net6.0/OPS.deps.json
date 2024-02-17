@@ -13,7 +13,7 @@
           "Microsoft.NETCore.Targets": "3.0.0",
           "NCalc": "1.0.0",
           "QuoteTree": "1.0.0",
-          "ElectronNET.API": "23.6.1"
+          "ElectronNET.API": "23.6.2"
         },
         "runtime": {
           "OPS.dll": {}
@@ -30,7 +30,7 @@
           }
         }
       },
-      "ElectronNET.API/23.6.1": {
+      "ElectronNET.API/23.6.2": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "SocketIOClient": "3.0.8",
@@ -39,8 +39,8 @@
         },
         "runtime": {
           "lib/net6.0/ElectronNET.API.dll": {
-            "assemblyVersion": "23.6.1.0",
-            "fileVersion": "23.6.1.0"
+            "assemblyVersion": "23.6.2.0",
+            "fileVersion": "23.6.2.0"
           }
         }
       },
@@ -867,12 +867,12 @@
       "path": "antlr3.runtime/3.5.1",
       "hashPath": "antlr3.runtime.3.5.1.nupkg.sha512"
     },
-    "ElectronNET.API/23.6.1": {
+    "ElectronNET.API/23.6.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OfJqgLqACcH1tpRvrBjCLwgNLcjpgIzd4bF/w3tvMLpUlRcWPmqQUxkkNT8y0r7hrRrfhk5G+MKyr5azCP1wkg==",
-      "path": "electronnet.api/23.6.1",
-      "hashPath": "electronnet.api.23.6.1.nupkg.sha512"
+      "sha512": "sha512-P9tJEAxdjLEsbgBXaeJO/90pq/AO9p0yXf+6dWw0OzKXFq+byp0URtm/Gr7U6rtslgKiOf13VAY2ohR1wSGQVg==",
+      "path": "electronnet.api/23.6.2",
+      "hashPath": "electronnet.api.23.6.2.nupkg.sha512"
     },
     "HtmlAgilityPack/1.11.42": {
       "type": "package",

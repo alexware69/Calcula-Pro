@@ -17,6 +17,12 @@
                 "${workspaceFolder}/",
                 "!/node_modules/**"
             ],
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId":"${command:pickProcess}"
         }
     ]
 }
