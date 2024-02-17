@@ -24,97 +24,59 @@
 		}
 	}
 }
-
-#overlay {
-		background-color: #aaaaaa;
-		z-index: 999;
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		display: none;
-		opacity: .3;
-	}
 </style>
 <div class="center">
-	<button id="new-dialog" class="btn" style="display: none;">New Definition</button>	
+	<button id="new-dialog" class="btn">New Definition</button>	
 	<br/>
-	<div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<img align="center" title='Working...' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
-	</div>
+
 	<br/>
-	<button id="open-dialog" class="btn" style="display: none;">Edit Definition</button>
+	<button id="open-dialog" class="btn">Edit Definition</button>
 	
 	<br/>
 	<br/>
-	<button id="open-dialog-view" class="btn" style="display: none;">Create a Quote</button>
+	<button id="open-dialog-view" class="btn">Create a Quote</button>
 </div>
 <script>
-	function myElectron(){
-		const { ipcRenderer } = require("electron");
-        const fs = require('fs');
-		//Open Edit Definition dialog
-		document.getElementById("open-dialog")
-                .addEventListener("click", () => {
-            ipcRenderer.send("open-dialog");
-        });
-		ipcRenderer.on("open-dialog-reply", (sender, path) => {
-			if (!path) return;
-			//Show overlay
- 			overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
- 			$("#overlay").show();
-			$("#new-dialog").hide();
-			$("#open-dialog").hide();
-			$("#open-dialog-view").hide();
-			$(".loading").show();
-			document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
-            return;
-        });
-		
-		//Open View Quote dialog
-		document.getElementById("open-dialog-view")
-                .addEventListener("click", () => {
-            ipcRenderer.send("open-dialog-view");
-        });
-		ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
-			if (!path) return;
-			//Show overlay
- 			overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
- 			$("#overlay").show();
-			$("#new-dialog").hide();
-			$("#open-dialog").hide();
-			$("#open-dialog-view").hide();
-			$(".loading").show();
-			document.location='../../TreeView/NewQuote?product='+ path;
-            return;
-        });
+	const { ipcRenderer } = require("electron");
+	const fs = require('fs');
 
-		document.getElementById("new-dialog")
-                .addEventListener("click", () => {
-            ipcRenderer.send("new-dialog");
-        });
-		ipcRenderer.on("new-dialog-reply", (sender, path) => {
-			if (!path) return;
-			document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
-            return;
-        });
+	//Open Edit Definition dialog
+	document.getElementById("open-dialog")
+			.addEventListener("click", () => {
+		ipcRenderer.send("open-dialog");
+	});
+	ipcRenderer.on("open-dialog-reply", (sender, path) => {
+		if (!path) return;
+		document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
+		return;
+	});
+	
+	//Open View Quote dialog
+	document.getElementById("open-dialog-view")
+			.addEventListener("click", () => {
+		ipcRenderer.send("open-dialog-view");
+	});
+	ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
+		if (!path) return;
+		document.location='../../TreeView/NewQuote?product='+ path;
+		return;
+	});
 
-		$(".loading").hide();
-		$("#new-dialog").show();
-		$("#open-dialog").show();
-		$("#open-dialog-view").show();
+	//Open New Definition dialog
+	document.getElementById("new-dialog")
+			.addEventListener("click", () => {
+		ipcRenderer.send("new-dialog");
+	});
+	ipcRenderer.on("new-dialog-reply", (sender, path) => {
+		if (!path) return;
+		document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
+		return;
+	});
 
-		var width = 150;
-		$("#new-dialog").width(width);
-		$("#open-dialog").width(width);
-		$("#open-dialog-view").width(width);
-	}	 
-</script>
-<script>
-	$( document ).ready(function() {
-     	const myTimeout = setTimeout(myElectron, 3000);
+	var width = 150;
+	$("#new-dialog").width(width);
+	$("#open-dialog").width(width);
+	$("#open-dialog-view").width(width);
 
-		$( "input[type=submit], button" ).button();
-	});	 
+	$( "input[type=submit], button" ).button();
 </script>

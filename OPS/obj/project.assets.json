@@ -18,7 +18,7 @@
           }
         }
       },
-      "ElectronNET.API/23.6.1": {
+      "ElectronNET.API/23.6.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -1460,7 +1460,7 @@
         }
       }
     },
-    "net6.0/osx-x64": {
+    "net6.0/osx-arm64": {
       "Antlr3.Runtime/3.5.1": {
         "type": "package",
         "dependencies": {
@@ -1477,7 +1477,7 @@
           }
         }
       },
-      "ElectronNET.API/23.6.1": {
+      "ElectronNET.API/23.6.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -2853,15 +2853,15 @@
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.xml"
       ]
     },
-    "ElectronNET.API/23.6.1": {
-      "sha512": "OfJqgLqACcH1tpRvrBjCLwgNLcjpgIzd4bF/w3tvMLpUlRcWPmqQUxkkNT8y0r7hrRrfhk5G+MKyr5azCP1wkg==",
+    "ElectronNET.API/23.6.2": {
+      "sha512": "P9tJEAxdjLEsbgBXaeJO/90pq/AO9p0yXf+6dWw0OzKXFq+byp0URtm/Gr7U6rtslgKiOf13VAY2ohR1wSGQVg==",
       "type": "package",
-      "path": "electronnet.api/23.6.1",
+      "path": "electronnet.api/23.6.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "PackageIcon.png",
-        "electronnet.api.23.6.1.nupkg.sha512",
+        "electronnet.api.23.6.2.nupkg.sha512",
         "electronnet.api.nuspec",
         "lib/net6.0/ElectronNET.API.dll",
         "lib/net6.0/ElectronNET.API.xml"
@@ -6375,7 +6375,7 @@
       "Microsoft.NETCore.Targets >= 3.0.0",
       "NCalc >= 1.0.0",
       "QuoteTree >= 1.0.0",
-      "electronnet.api >= 23.6.1"
+      "electronnet.api >= 23.6.2"
     ]
   },
   "packageFolders": {
@@ -6437,7 +6437,7 @@
           },
           "electronnet.api": {
             "target": "Package",
-            "version": "[23.6.1, )"
+            "version": "[23.6.2, )"
           }
         },
         "imports": [
@@ -6453,7 +6453,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+            "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
             "version": "[6.0.25, 6.0.25]"
           },
           {
@@ -6461,11 +6461,7 @@
             "version": "[6.0.25, 6.0.25]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.osx-x64",
-            "version": "[6.0.25, 6.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+            "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
             "version": "[6.0.25, 6.0.25]"
           }
         ],
@@ -6481,7 +6477,7 @@
       }
     },
     "runtimes": {
-      "osx-x64": {
+      "osx-arm64": {
         "#import": []
       }
     }

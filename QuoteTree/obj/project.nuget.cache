@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Gc7v6lbnn/Gh45UR73aXSdEoSoWCyA2B3FNP0As2T97/Zk668mNYhMP1uqG9D9sm13megh2YfDEM/muSRaHnAw==",
+  "dgSpecHash": "R8zhBoEk21qw96tZOyAH3/2Er7dMJyEYTewX/TP1Rawm544hucv6mHs6ZeNyQU2igr0Qpa3Sipvkt2VG8vSgqA==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -102,8 +102,8 @@
     "/Users/alejandro/.nuget/packages/system.threading.timer/4.0.1/system.threading.timer.4.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.xml.readerwriter/4.0.11/system.xml.readerwriter.4.0.11.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.xml.xdocument/4.0.11/system.xml.xdocument.4.0.11.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/6.0.25/microsoft.netcore.app.runtime.osx-x64.6.0.25.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/6.0.25/microsoft.aspnetcore.app.runtime.osx-x64.6.0.25.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.25/microsoft.netcore.app.runtime.osx-arm64.6.0.25.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.25/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.25.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.25/microsoft.netcore.app.crossgen2.osx-arm64.6.0.25.nupkg.sha512"
   ],
   "logs": []
