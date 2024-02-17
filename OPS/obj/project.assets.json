@@ -6371,11 +6371,11 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Antlr3.Runtime >= 3.5.1",
+      "ElectronNET.API >= 23.6.2",
       "HtmlAgilityPack >= 1.11.42",
       "Microsoft.NETCore.Targets >= 3.0.0",
       "NCalc >= 1.0.0",
-      "QuoteTree >= 1.0.0",
-      "electronnet.api >= 23.6.2"
+      "QuoteTree >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6426,6 +6426,10 @@
             "target": "Package",
             "version": "[3.5.1, )"
           },
+          "ElectronNET.API": {
+            "target": "Package",
+            "version": "[23.6.2, )"
+          },
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.42, )"
@@ -6434,10 +6438,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[3.0.0, )"
-          },
-          "electronnet.api": {
-            "target": "Package",
-            "version": "[23.6.2, )"
           }
         },
         "imports": [

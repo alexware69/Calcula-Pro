@@ -127,6 +127,10 @@
               "target": "Package",
               "version": "[3.5.1, )"
             },
+            "ElectronNET.API": {
+              "target": "Package",
+              "version": "[23.6.2, )"
+            },
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.42, )"
@@ -135,10 +139,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.0.0, )"
-            },
-            "electronnet.api": {
-              "target": "Package",
-              "version": "[23.6.2, )"
             }
           },
           "imports": [
