@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/rLriCwM4yiQVQZYweWDKjP6sMFPHCHPdZNlsCnZLDcbZiY/VGssADUMMd6D0HeFSZ8phkScHSZrNxfGNByszA==",
+  "dgSpecHash": "u0+c+1JRL6z5SS3ul/e6s4ZuYXPaAgzb6e6gPrP84JCYkBTDM+rlkqOYS4h6+9MfPvXjXSnAQbvcZOgYpNjicg==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/Evaluant.Calculator/Evaluant.Calculator.csproj",
   "expectedPackageFiles": [
     "/Users/alejandro/.nuget/packages/antlr3.runtime/3.5.1/antlr3.runtime.3.5.1.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.net.illink.analyzers/7.0.100-1.23211.1/microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.net.illink.tasks/7.0.100-1.23211.1/microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.platforms/1.0.1/microsoft.netcore.platforms.1.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.targets/1.0.1/microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.win32.primitives/4.0.1/microsoft.win32.primitives.4.0.1.nupkg.sha512",
@@ -97,9 +99,11 @@
     "/Users/alejandro/.nuget/packages/system.threading.timer/4.0.1/system.threading.timer.4.0.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.xml.readerwriter/4.0.11/system.xml.readerwriter.4.0.11.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.xml.xdocument/4.0.11/system.xml.xdocument.4.0.11.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.25/microsoft.netcore.app.runtime.osx-arm64.6.0.25.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.25/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.25.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.25/microsoft.netcore.app.crossgen2.osx-arm64.6.0.25.nupkg.sha512"
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.ref/6.0.27/microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.27/microsoft.netcore.app.runtime.osx-arm64.6.0.27.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.27/microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.27/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.27.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.27/microsoft.netcore.app.crossgen2.osx-arm64.6.0.27.nupkg.sha512"
   ],
   "logs": []
 }

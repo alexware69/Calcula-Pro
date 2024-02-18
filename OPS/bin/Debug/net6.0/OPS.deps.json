@@ -9,11 +9,12 @@
       "OPS/1.0.0": {
         "dependencies": {
           "Antlr3.Runtime": "3.5.1",
+          "ElectronNET.API": "23.6.2",
           "HtmlAgilityPack": "1.11.42",
           "Microsoft.NETCore.Targets": "3.0.0",
           "NCalc": "1.0.0",
           "QuoteTree": "1.0.0",
-          "ElectronNET.API": "23.6.2"
+          "NCalc.Reference": "1.0.0.0"
         },
         "runtime": {
           "OPS.dll": {}
@@ -851,6 +852,14 @@
         "runtime": {
           "QuoteTree.dll": {}
         }
+      },
+      "NCalc.Reference/1.0.0.0": {
+        "runtime": {
+          "NCalc.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1399,6 +1408,11 @@
     },
     "QuoteTree/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NCalc.Reference/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

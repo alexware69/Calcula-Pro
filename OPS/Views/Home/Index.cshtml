@@ -43,7 +43,19 @@
 	//Open Edit Definition dialog
 	document.getElementById("open-dialog")
 			.addEventListener("click", () => {
-		ipcRenderer.send("open-dialog");
+		//ipcRenderer.send("open-dialog");
+		$.ajax({
+			url: "../../Dialogs/Index?type=open-dialog",
+			type: 'GET',
+			dataType: 'json',
+			cache: false,
+			beforeSend: function () {
+			},
+			complete: function () {
+			},
+			success: function (result) {
+			}
+    	});   //end ajax
 	});
 	ipcRenderer.on("open-dialog-reply", (sender, path) => {
 		if (!path) return;
@@ -51,10 +63,22 @@
 		return;
 	});
 	
-	//Open View Quote dialog
+	//Open New Quote dialog
 	document.getElementById("open-dialog-view")
 			.addEventListener("click", () => {
-		ipcRenderer.send("open-dialog-view");
+		//ipcRenderer.send("open-dialog-view");
+		$.ajax({
+			url: "../../Dialogs/Index?type=open-dialog-view",
+			type: 'GET',
+			dataType: 'json',
+			cache: false,
+			beforeSend: function () {
+			},
+			complete: function () {
+			},
+			success: function (result) {
+			}
+    	});   //end ajax
 	});
 	ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
 		if (!path) return;
@@ -65,7 +89,19 @@
 	//Open New Definition dialog
 	document.getElementById("new-dialog")
 			.addEventListener("click", () => {
-		ipcRenderer.send("new-dialog");
+		//ipcRenderer.send("new-dialog");
+		$.ajax({
+			url: "../../Dialogs/Index?type=new-dialog",
+			type: 'GET',
+			dataType: 'json',
+			cache: false,
+			beforeSend: function () {
+			},
+			complete: function () {
+			},
+			success: function (result) {
+			}
+    	});   //end ajax
 	});
 	ipcRenderer.on("new-dialog-reply", (sender, path) => {
 		if (!path) return;

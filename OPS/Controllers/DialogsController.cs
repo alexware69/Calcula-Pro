@@ -40,12 +40,29 @@ namespace OnlinePriceSystem.Controllers
             return Ok();
         }*/
 
-        public IActionResult Index()
-		{
-			if (!HybridSupport.IsElectronActive || openAdded) return Ok();
-			Electron.IpcMain.On("open-dialog", async (args) =>
-			{
-				var mainWindow = Electron.WindowManager.BrowserWindows.First();
+		public async void OpenNew()
+        {
+            var mainWindow = Electron.WindowManager.BrowserWindows.First();
+				var options = new OpenDialogOptions
+				{
+					Title = "Open Definition Directory",
+                    Properties = new OpenDialogProperty[] {
+                        OpenDialogProperty.openDirectory
+                    }
+					/*Filters = new FileFilter[]
+					{
+						new FileFilter { Name = "JSON", 
+										Extensions = new string[] {"json" } }
+					}*/
+				};
+				var result = await 
+					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
+				Electron.IpcMain.Send(mainWindow, "new-dialog-reply", result);
+        }
+
+		public async void Open()
+        {
+			var mainWindow = Electron.WindowManager.BrowserWindows.First();
 				var options = new OpenDialogOptions
 				{
 					Title = "Open Definition Directory",
@@ -61,11 +78,11 @@ namespace OnlinePriceSystem.Controllers
 				var result = await 
 					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
 				Electron.IpcMain.Send(mainWindow, "open-dialog-reply", result);
-			});
+		}
 
-			Electron.IpcMain.On("open-dialog-view", async (args) =>
-			{
-				var mainWindow = Electron.WindowManager.BrowserWindows.First();
+		public async void OpenView()
+        {
+			var mainWindow = Electron.WindowManager.BrowserWindows.First();
 				var options = new OpenDialogOptions
 				{
 					Title = "Open Definition Directory",
@@ -81,28 +98,28 @@ namespace OnlinePriceSystem.Controllers
 				var result = await 
 					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
 				Electron.IpcMain.Send(mainWindow, "open-dialog-view-reply", result);
-			});
+		}
 
-            Electron.IpcMain.On("new-dialog", async (args) =>
+        public IActionResult Index(string type)
+		{
+			//if (!HybridSupport.IsElectronActive || openAdded) return Ok();
+			switch (type)
 			{
-				var mainWindow = Electron.WindowManager.BrowserWindows.First();
-				var options = new OpenDialogOptions
-				{
-					Title = "Open Save Directory",
-                    Properties = new OpenDialogProperty[] {
-                        OpenDialogProperty.openDirectory
-                    }
-					/*Filters = new FileFilter[]
-					{
-						new FileFilter { Name = "JSON", 
-										Extensions = new string[] {"json" } }
-					}*/
-				};
-				var result = await 
-					Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
-				Electron.IpcMain.Send(mainWindow, "new-dialog-reply", result);
-			});
-			openAdded = true;
+				//Open New Definition dialog
+				case "new-dialog":
+				 OpenNew();
+				 break;
+
+				//Open Edit Definition dialog
+				 case "open-dialog":
+				 Open();
+				 break;
+
+				//Open View Quote dialog
+				 case "open-dialog-view":
+				 OpenView();
+				 break;				
+			}
 			return Ok();
 		}
     }
