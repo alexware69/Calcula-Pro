@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using ElectronNET.API; 
 using ElectronNET.API.Entities;
+using System.ComponentModel;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -18,7 +19,14 @@ namespace OnlinePriceSystem.Controllers
     {	
         public ActionResult Index()
         {
+            bool quoteOnly = QuoteOnly().Result;
+            TempData["quoteOnly"] = quoteOnly.ToString();
             return View();
+        }
+
+        public async Task<bool> QuoteOnly()
+        {
+            return (await Electron.App.CommandLine.HasSwitchAsync("quoteonly"));
         }
 
 		 public ActionResult About()

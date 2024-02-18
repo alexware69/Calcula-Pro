@@ -4,6 +4,7 @@
 
 @{
 	ViewData["Title"] = "Home";
+	string Model = (string)TempData["quoteOnly"]!;
 }
 <style>
 	.center {
@@ -123,6 +124,12 @@
 	$("#new-dialog").width(width);
 	$("#open-dialog").width(width);
 	$("#open-dialog-view").width(width);
+	
+	
+	if (@Model!.ToLower()){
+	 	$("#new-dialog").hide();
+		$("#open-dialog").hide();
+	 }
 
 	$( "input[type=submit], button" ).button();
 </script>
