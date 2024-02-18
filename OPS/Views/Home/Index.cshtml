@@ -28,7 +28,9 @@
 <div class="center">
 	<button id="new-dialog" class="btn">New Definition</button>	
 	<br/>
-
+		<div style="display:inline-block;vertical-align:middle;"> 
+	 	     	<img align="center" title='Working...' style='display:none;' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
+		</div>
 	<br/>
 	<button id="open-dialog" class="btn">Edit Definition</button>
 	
@@ -59,6 +61,10 @@
 	});
 	ipcRenderer.on("open-dialog-reply", (sender, path) => {
 		if (!path) return;
+		$("#new-dialog").hide();
+		$("#open-dialog").hide();
+		$("#open-dialog-view").hide();
+		$(".loading").show();
 		document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
 		return;
 	});
@@ -82,6 +88,10 @@
 	});
 	ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
 		if (!path) return;
+		$("#new-dialog").hide();
+		$("#open-dialog").hide();
+		$("#open-dialog-view").hide();
+		$(".loading").show();
 		document.location='../../TreeView/NewQuote?product='+ path;
 		return;
 	});
