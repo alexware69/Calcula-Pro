@@ -16,7 +16,7 @@ namespace OnlinePriceSystem.Controllers
 {
     public class DialogsController : Controller
     {
-        private static bool openAdded;
+        //private static bool openAdded;
         /*public IActionResult Index()
         {
             if (!HybridSupport.IsElectronActive || saveAdded) return Ok();

@@ -60,7 +60,7 @@
     	});   //end ajax
 	});
 	ipcRenderer.on("open-dialog-reply", (sender, path) => {
-		if (!path) return;
+		if (!path || path == "") return;
 		$("#new-dialog").hide();
 		$("#open-dialog").hide();
 		$("#open-dialog-view").hide();
@@ -87,7 +87,7 @@
     	});   //end ajax
 	});
 	ipcRenderer.on("open-dialog-view-reply", (sender, path) => {
-		if (!path) return;
+		if (!path || path == "") return;
 		$("#new-dialog").hide();
 		$("#open-dialog").hide();
 		$("#open-dialog-view").hide();
@@ -114,7 +114,7 @@
     	});   //end ajax
 	});
 	ipcRenderer.on("new-dialog-reply", (sender, path) => {
-		if (!path) return;
+		if (!path || path == "") return;
 		document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
 		return;
 	});
