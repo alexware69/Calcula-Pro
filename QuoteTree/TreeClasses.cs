@@ -52,6 +52,12 @@ namespace QuoteTree;
             set;
         }
 
+        int DecimalPlaces
+        {
+            get;
+            set;
+        }
+
         List<ANode>? Children
 		{
 			get;
@@ -271,6 +277,7 @@ namespace QuoteTree;
 		private decimal _Max;
         private bool _MinIsSet;
 		private decimal _Min;
+        private int _DecimalPlaces;
 		private bool _Template;
 		private int _Order;
 		private bool _Selected;
@@ -336,6 +343,12 @@ namespace QuoteTree;
                 }
             }
             set { }
+        }
+
+        public virtual int DecimalPlaces
+        {
+            get {return _DecimalPlaces;}
+            set {_DecimalPlaces = value;}
         }
 
         public bool Complete
@@ -592,11 +605,12 @@ namespace QuoteTree;
                 try
                 {
                     total = this.Total();
-                    if (IsCurrencySymbol(this.Units)) return total == 0 ? this.Units + 0 : this.Units + total.ToString("#.##");
+                    string formatString = String.Concat("{0:F", this.DecimalPlaces, "}");
+                    if (IsCurrencySymbol(this.Units)) return total == 0 ? this.Units + 0 : this.Units + String.Format(formatString, total);
                     else
                     {
                         string _units = this.Units != "" ? " " + this.Units : "";
-                        return total == 0 ? 0 + _units : total.ToString("#.##") + _units;
+                        return total == 0 ? 0 + _units :  String.Format(formatString, total) + _units;
                     }
                 }
                 catch (Exception)
@@ -1095,6 +1109,7 @@ namespace QuoteTree;
 			this.Discount = 0;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
+            this.DecimalPlaces = 0;
             this.Text = "";
 			this.Order = 0;
 			this.Selected = false;
@@ -1158,6 +1173,10 @@ namespace QuoteTree;
                 this.Min = intResult;
                 //this.MinIsSet = true;
             }
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.DecimalPlaces = intResult;
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -1247,6 +1266,8 @@ namespace QuoteTree;
             this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
@@ -1470,6 +1491,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
+            this.DecimalPlaces = 2;
 			this.Selected = false;
 			this.Children = new List<ANode>();
 			this.Dependents = new List<string>();
@@ -1531,6 +1553,10 @@ namespace QuoteTree;
                 this.Min = intResult;
                 //this.MinIsSet = true;
             }
+            value = this.GetValueFromDirectory("decimalplaces", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.DecimalPlaces = intResult;
+
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
 			if (value != "") this.Order = intResult;
@@ -1642,6 +1668,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -1737,6 +1765,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
             this.Min = this.Max = 0;
             this.Order = 0;
+            this.DecimalPlaces = 0;
             this.Selected = true;
             this.Children = new List<ANode>();
             this.Dependents = new List<string>();
@@ -1799,6 +1828,10 @@ namespace QuoteTree;
             value = this.GetValueFromDirectory("order", path);
             int.TryParse(value, out intResult);
             if (value != "") this.Order = intResult;
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+            int.TryParse(value, out intResult);
+            if (value != "") this.DecimalPlaces = intResult;
 
             value = this.GetValueFromDirectory("discount", path);
             decimal.TryParse(value, out decimalResult);
@@ -1896,6 +1929,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -1958,6 +1993,7 @@ namespace QuoteTree;
             month.Max = 12;
             month.Dependents!.Add(this.Id);
             month.Order = 0;
+            month.DecimalPlaces = 0;
             month.Selected = true;
             this.Children!.Add(month);
 
@@ -1972,6 +2008,7 @@ namespace QuoteTree;
             day.Max = 31;
             day.Dependents!.Add(this.Id);
             day.Order = 1;
+            day.DecimalPlaces = 0;
             day.Selected = true;
             this.Children.Add(day);
 
@@ -1986,6 +2023,7 @@ namespace QuoteTree;
             year.Max = 2100;
             year.Dependents!.Add(this.Id);
             year.Order = 2;
+            year.DecimalPlaces = 0;
             year.Selected = true;
             this.Children.Add(year);
         }
@@ -2022,6 +2060,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
             this.Min = this.Max = 0;
             this.Order = 0;
+            this.DecimalPlaces = 0;
             this.Selected = false;
             this.Children = new List<ANode>();
             this.Dependents = new List<string>();
@@ -2083,6 +2122,10 @@ namespace QuoteTree;
             value = this.GetValueFromDirectory("order", path);
             int.TryParse(value, out intResult);
             if (value != "") this.Order = intResult;
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+            int.TryParse(value, out intResult);
+            if (value != "") this.DecimalPlaces = intResult;
 
             value = this.GetValueFromDirectory("discount", path);
             decimal.TryParse(value, out decimalResult);
@@ -2180,6 +2223,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -2243,6 +2288,7 @@ namespace QuoteTree;
             month.Dependents!.Add(this.Id);
             month.ReadOnly = true;
             month.Order = 0;
+            month.DecimalPlaces = 0;
             this.Children!.Add(month);
 
             ANode day = new MathNode();
@@ -2257,6 +2303,7 @@ namespace QuoteTree;
             day.Dependents!.Add(this.Id);
             day.ReadOnly = true;
             day.Order = 1;
+            day.DecimalPlaces = 0;
             this.Children.Add(day);
 
             ANode year = new MathNode();
@@ -2272,6 +2319,7 @@ namespace QuoteTree;
             year.Dependents!.Add(this.Id);
             year.ReadOnly = true;
             year.Order = 2;
+            year.DecimalPlaces = 0;
             this.Children.Add(year);
         }
     }
@@ -2400,6 +2448,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
+            this.DecimalPlaces = 2;
 			this.Selected = false;
 			this.Children = new List<ANode>();
 			this.Dependents = new List<string>();
@@ -2467,6 +2516,10 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
 			if (value != "") this.Order = intResult;
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.DecimalPlaces = intResult;
 
 			value = this.GetValueFromDirectory("discount", path);
 			decimal.TryParse(value, out decimalResult);
@@ -2554,6 +2607,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
            if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -2675,6 +2730,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
+            this.DecimalPlaces = 2;
 			this.Selected = false;
 			this.Children = new List<ANode>();
 			this.Dependents = new List<string>();
@@ -2734,6 +2790,10 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
 			if (value != "") this.Order = intResult;
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.DecimalPlaces = intResult;
 
 			value = this.GetValueFromDirectory("discount", path);
 			decimal.TryParse(value, out decimalResult);
@@ -2822,6 +2882,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
             if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -2924,6 +2986,7 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
+            this.DecimalPlaces = 2;
 			this.Selected = false;
 			this.Children = new List<ANode>();
 			this.Dependents = new List<string>();
@@ -2985,6 +3048,10 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
 			if (value != "") this.Order = intResult;
+
+            value = this.GetValueFromDirectory("decimalplaces", path);
+			int.TryParse(value, out intResult);
+			if (value != "") this.DecimalPlaces = intResult;
 
 			value = this.GetValueFromDirectory("discount", path);
 			decimal.TryParse(value, out decimalResult);
@@ -3073,6 +3140,8 @@ namespace QuoteTree;
                 this.ExpandedLevels = intResult;
             if (int.TryParse(values["order"], out intResult))
                 this.Order = intResult;
+            if (int.TryParse(values["decimalPlaces"], out intResult))
+                this.DecimalPlaces = intResult;
            if (decimal.TryParse(values["min"], out decimalResult))
             {
                 this.Min = decimalResult;
@@ -3152,6 +3221,11 @@ namespace QuoteTree;
         public override decimal Max
         {
             get { return TargetNode != null ? TargetNode.Max : 0; }
+        }
+
+        public override int DecimalPlaces
+        {
+            get { return TargetNode != null ? TargetNode.DecimalPlaces : 2;}
         }
 
         public override decimal Amount
@@ -3707,6 +3781,7 @@ namespace QuoteTree;
                 sw.WriteLine("id=\"" + start.Id.ToString() + "\";");
                 sw.WriteLine("type=\"" + start.Type.ToString() + "\";"); 
 				sw.WriteLine("order=\"" + start.Order.ToString() + "\";"); 
+                sw.WriteLine("decimalplaces=\"" + start.DecimalPlaces.ToString() + "\";"); 
 				sw.WriteLine("report=\"" + start.Report.ToString().ToLower() + "\";"); 
 				sw.WriteLine("reportvalue=\"" + start.ReportValue.ToString().ToLower() + "\";");
                 if (start.Type != NodeType.Reference)
@@ -4192,6 +4267,8 @@ namespace QuoteTree;
                     node.ExpandedLevels = intResult;
                 if (int.TryParse(values["order"], out intResult))
                     node.Order = intResult;
+                if (int.TryParse(values["decimalPlaces"], out intResult))
+                    node.DecimalPlaces = intResult;
                 if (node.Type != NodeType.Reference)
                 {
                     if (decimal.TryParse(values["min"], out decimalResult))

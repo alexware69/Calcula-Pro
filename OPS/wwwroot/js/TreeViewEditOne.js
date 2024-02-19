@@ -1169,6 +1169,7 @@ function FillNodeDialogInfo(id) {
             $("#inodeReport").prop("checked", result.report);
             $("#inodeReportValue").prop("checked", result.reportValue);
             $("#inodeUnits").val(result.units);
+            $("#inodeDecimalPlaces").val(result.decimalPlaces);
             $("#inodeUnitsText").val(result.units);
             $("#inodeTemplate").prop("checked", result.template);
             $("#inodeReadOnly").prop("checked", result.readOnly);
@@ -1196,6 +1197,7 @@ function SaveNodeInfo() {
     var report = $("#inodeReport").is(":checked");
     var reportValue = $("#inodeReportValue").is(":checked");
     var units = $("#inodeUnitsText").val();
+    var decimalPlaces = $("#inodeDecimalPlaces").val();
     var template = $("#inodeTemplate").is(":checked");
     var readOnly = $("#inodeReadOnly").is(":checked");
 
@@ -1228,6 +1230,7 @@ function SaveNodeInfo() {
             + "&report=" + report
             + "&reportValue=" + reportValue
             + "&units=" + encodeURI(units)
+            + "&decimalPlaces=" + decimalPlaces
             + "&template=" + template
             + "&readOnly=" + readOnly
             ;
@@ -1308,6 +1311,7 @@ function NewNode() {
     var report = $("#newinodeReport").is(":checked");
     var reportValue = $("#newinodeReportValue").is(":checked");
     var units = $("#newinodeUnitsText").val();
+    var decimalPlaces = $("#newinodeDecimalPlaces").val();
     var template = $("#newinodeTemplate").is(":checked");
     var readOnly = $("#newinodeReadOnly").is(":checked");
 
@@ -1340,6 +1344,7 @@ function NewNode() {
             + "&report=" + report
             + "&reportValue=" + reportValue
             + "&units=" + encodeURI(units)
+            + "&decimalPlaces=" + decimalPlaces
             + "&template=" + template
             + "&readOnly=" + readOnly
             ;
@@ -1389,6 +1394,7 @@ function NewNode() {
                 $("#newinodeReport").attr('checked', false);
                 $("#newinodeReportValue").attr('checked', false);
                 $("#newinodeUnits").val("");
+                $("#newinodeDecimalPlaces").val("");
                 newnodedialog.dialog("close");
                 $(".loading").hide();
                 $("#overlay").remove();
@@ -1437,6 +1443,7 @@ function NewNode() {
                     $("#newinodeReport").attr('checked', false);
                     $("#newinodeReportValue").attr('checked', false);
                     $("#newinodeUnits").val("");
+                    $("#newinodeDecimalPlaces").val("");
                     newnodedialog.dialog("close");
                 }
             }
