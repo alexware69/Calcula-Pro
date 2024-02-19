@@ -1491,7 +1491,11 @@ namespace QuoteTree;
             this.MaxIsSet = this.MinIsSet = false;
 			this.Min = this.Max = 0;
 			this.Order = 0;
-            this.DecimalPlaces = 2;
+            if (this.Parent != null)
+            {
+                this.DecimalPlaces = 0;
+            }
+            else this.DecimalPlaces = 2;
 			this.Selected = false;
 			this.Children = new List<ANode>();
 			this.Dependents = new List<string>();
@@ -1553,9 +1557,15 @@ namespace QuoteTree;
                 this.Min = intResult;
                 //this.MinIsSet = true;
             }
-            value = this.GetValueFromDirectory("decimalplaces", path);
-			int.TryParse(value, out intResult);
-			if (value != "") this.DecimalPlaces = intResult;
+
+            if(parent != null && (parent.Type == NodeType.Date || parent.Type == NodeType.Today))
+                this.DecimalPlaces = 0;
+            else
+            {
+                value = this.GetValueFromDirectory("decimalplaces", path);
+                int.TryParse(value, out intResult);
+                if (value != "") this.DecimalPlaces = intResult;
+            }
 
 			value = this.GetValueFromDirectory("order", path);
 			int.TryParse(value, out intResult);
@@ -1995,6 +2005,8 @@ namespace QuoteTree;
             month.Order = 0;
             month.DecimalPlaces = 0;
             month.Selected = true;
+            month.MinIsSet = true;
+            month.MaxIsSet = true;
             this.Children!.Add(month);
 
             ANode day = new MathNode();
@@ -2010,6 +2022,8 @@ namespace QuoteTree;
             day.Order = 1;
             day.DecimalPlaces = 0;
             day.Selected = true;
+            day.MinIsSet = true;
+            day.MaxIsSet = true;
             this.Children.Add(day);
 
             ANode year = new MathNode();
@@ -2025,6 +2039,8 @@ namespace QuoteTree;
             year.Order = 2;
             year.DecimalPlaces = 0;
             year.Selected = true;
+            year.MinIsSet = true;
+            year.MaxIsSet = true;
             this.Children.Add(year);
         }
     }
@@ -4267,8 +4283,15 @@ namespace QuoteTree;
                     node.ExpandedLevels = intResult;
                 if (int.TryParse(values["order"], out intResult))
                     node.Order = intResult;
+                
+                if (node.Type == NodeType.Math && node.Parent != null && (node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today))
+                {
+                    node.DecimalPlaces = 0;
+                }
+                else
                 if (int.TryParse(values["decimalPlaces"], out intResult))
                     node.DecimalPlaces = intResult;
+            
                 if (node.Type != NodeType.Reference)
                 {
                     if (decimal.TryParse(values["min"], out decimalResult))

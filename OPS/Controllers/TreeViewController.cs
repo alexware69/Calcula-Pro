@@ -274,9 +274,6 @@ namespace OnlinePriceSystem.Controllers
             ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
             TempData["node"] = node; 
             HttpContext.Session.SetString("nodeName",node!.Name);
-
-            var mainWindow = Electron.WindowManager.BrowserWindows.First();
-            var options = new LoadURLOptions();
         
             var path = HttpContext.Session.GetString("path")!;
             HttpContext.Session.SetString("nodeID",id);
