@@ -1153,7 +1153,12 @@ function FillNodeDialogInfo(id) {
         success: function (result) {
             $("#inodeName").val(result.name);
             $("#inodeType").val(result.type);
-            $("#inodeExpression").val(result.expression);
+            if (result.type == "Decision" || result.expression == "SumSet" || result.expression == "Date" || result.expression == "Today")
+                $("#inodeExpression").attr('disabled', 'disabled');
+            else {
+                $("#inodeExpression").removeAttr('disabled');
+                $("#inodeExpression").val(result.expression);
+            }  
             $("#inodeExpandedLevels").val(result.expandedLevels);
             $("#inodeOrder").val(result.order);
             $("#inodeMin").val(result.min);
