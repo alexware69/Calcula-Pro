@@ -40,8 +40,7 @@
         {
           "target": "default",
           "arch": [
-            "x64",
-            "arm64"
+            "x64"
           ]
         }
       ],
@@ -49,14 +48,10 @@
     },
     "linux": {
       "category": "Utility",
-      "target" :[
-        {
-          "target": "deb",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        }
+      "target": [
+        "deb",
+        "snap",
+        "AppImage"
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
