@@ -48,6 +48,7 @@
 ```
 * **Type**: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today.
 * **Units**: There are currently some common predefined units, custom units can be set.
+* **Decimal Places**: Decimal places of the subtotal shown.
 * **Expression**: Some node types require an expression or formula, like Math, Conditional and Reference.
 * **Expanded Levels**: The number of levels that will be automatically expanded from the root node on product load and from any node on node selection. This is useful to cover the most screen on product load and to show multiple nested options on selection.
 * **Order**: Zero by default.The order in which the node appears. It is zero-based.
