@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPS", "OPS\OPS.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuoteTree", "QuoteTree\QuoteTree.csproj", "{502C88DC-F9EC-4AE6-87F8-2F23CF0186F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evaluant.Calculator", "Evaluant.Calculator\Evaluant.Calculator.csproj", "{447C86CC-91BB-461C-AB32-00C327DC100B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalc", "NCalc\NCalc.csproj", "{447C86CC-91BB-461C-AB32-00C327DC100B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
