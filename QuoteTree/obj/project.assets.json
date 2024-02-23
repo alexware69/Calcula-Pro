@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Antlr4.Runtime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Antlr4.Runtime.net45.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/Antlr4.Runtime.net45.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -131,19 +118,6 @@
       }
     },
     "net6.0/osx-arm64": {
-      "Antlr4.Runtime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Antlr4.Runtime.net45.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/Antlr4.Runtime.net45.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -261,35 +235,6 @@
     }
   },
   "libraries": {
-    "Antlr4.Runtime/4.3.0": {
-      "sha512": "KIIPRHMYQkaV2TO7sXbL8qANsB/2yHt6/o4r5UXRGikhsH+3gZMKWQOfUogzOK9mHHkebKVAGlvh1fHFuv9heg==",
-      "type": "package",
-      "path": "antlr4.runtime/4.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "antlr4.runtime.4.3.0.nupkg.sha512",
-        "antlr4.runtime.nuspec",
-        "lib/net20/Antlr4.Runtime.net20.dll",
-        "lib/net20/Antlr4.Runtime.net20.xml",
-        "lib/net30/Antlr4.Runtime.net30.dll",
-        "lib/net30/Antlr4.Runtime.net30.xml",
-        "lib/net35-cf/Antlr4.Runtime.net35-cf.dll",
-        "lib/net35-cf/Antlr4.Runtime.net35-cf.xml",
-        "lib/net35-client/Antlr4.Runtime.net35.dll",
-        "lib/net35-client/Antlr4.Runtime.net35.xml",
-        "lib/net40-client/Antlr4.Runtime.net40.dll",
-        "lib/net40-client/Antlr4.Runtime.net40.xml",
-        "lib/net45/Antlr4.Runtime.net45.dll",
-        "lib/net45/Antlr4.Runtime.net45.xml",
-        "lib/netcore45/Antlr4.Runtime.netcore45.dll",
-        "lib/netcore45/Antlr4.Runtime.netcore45.xml",
-        "lib/portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.portable-net40.dll",
-        "lib/portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.portable-net40.xml",
-        "lib/portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.portable-net45.dll",
-        "lib/portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.portable-net45.xml"
-      ]
-    },
     "Antlr4.Runtime.Standard/4.13.1": {
       "sha512": "Da5+i4kFHUseJRZGcBG5fmZGpA/Ns180ibrQMxgZzjpQOnENVvSL5gi5HZ8Ncz8/AR2WsKbOg2lMBzjz0HUQcA==",
       "type": "package",
@@ -511,7 +456,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Antlr4.Runtime >= 3.5.1",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.0",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
@@ -564,10 +508,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "Antlr4.Runtime": {
-            "target": "Package",
-            "version": "[3.5.1, )"
-          },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",
             "version": "[6.0.0, )"
@@ -631,28 +571,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "QuoteTree depends on Antlr4.Runtime (>= 3.5.1) but Antlr4.Runtime 3.5.1 was not found. An approximate best match of Antlr4.Runtime 4.3.0 was resolved.",
-      "libraryId": "Antlr4.Runtime",
-      "targetGraphs": [
-        "net6.0",
-        "net6.0/osx-arm64"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Antlr4.Runtime 4.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Antlr4.Runtime",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

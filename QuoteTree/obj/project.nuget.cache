@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "nD52jz7xMBx6UAEtNmf7Qj7zX59Xg/iZqPPBVeKCDmVFaQOLbalpfjvy4aXQCXgYxQmwm+70tLwc+1tpd3Hg3Q==",
+  "dgSpecHash": "IgzUJlSQR8dchLRQ/8V8YWnq9L86Qq/5khUomf0NMThDqYkb8uaBxicvgZ/kXG2wNWgAKJwlPHnmfhy55bikiQ==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
-    "/Users/alejandro/.nuget/packages/antlr4.runtime/4.3.0/antlr4.runtime.4.3.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/antlr4.runtime.standard/4.13.1/antlr4.runtime.standard.4.13.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.0/microsoft.aspnetcore.jsonpatch.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.0/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.0.nupkg.sha512",
@@ -19,27 +18,5 @@
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.27/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.27.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.27/microsoft.netcore.app.crossgen2.osx-arm64.6.0.27.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "QuoteTree depends on Antlr4.Runtime (>= 3.5.1) but Antlr4.Runtime 3.5.1 was not found. An approximate best match of Antlr4.Runtime 4.3.0 was resolved.",
-      "libraryId": "Antlr4.Runtime",
-      "targetGraphs": [
-        "net6.0",
-        "net6.0/osx-arm64"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Antlr4.Runtime 4.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Antlr4.Runtime",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }
