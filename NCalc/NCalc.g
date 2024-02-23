@@ -11,7 +11,7 @@ using NCalc.Domain;
 }
 
 @members {
-private const char BS = '\\';
+private const char BS = '$';
 private static NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
 
 private string extractString(string text) {
@@ -262,10 +262,11 @@ fragment LETTER
 	:	'a'..'z'
 	|	'A'..'Z'
 	|	'_'
-	|	'#'
+	|	'$'
 	|	'{'
 	|	'}'
 	|   '\\'
+	|   EscapeSequence
 	;
 
 fragment DIGIT
@@ -273,7 +274,7 @@ fragment DIGIT
 	;
 	
 fragment EscapeSequence 
-	:	'\\'
+	:	'$'
   	(	
   		'n' 
 	|	'r' 

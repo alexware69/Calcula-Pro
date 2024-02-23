@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Globalization;
 using System.Configuration;
+using System.Text;
 
 namespace QuoteTree;
 [Serializable]
@@ -832,6 +833,40 @@ namespace QuoteTree;
 			return null;
 		}
 
+    private string extractString(string text) {   
+            StringBuilder sb = new StringBuilder(text);
+            int startIndex = 0; // (Don't) Skip initial quote
+            int slashIndex = -1;
+
+            while ((slashIndex = sb.ToString().IndexOf('$', startIndex)) != -1)
+            {
+                char escapeType = sb[slashIndex + 1];
+                switch (escapeType)
+                {
+                    case 'u':
+                    string hcode = String.Concat(sb[slashIndex+4], sb[slashIndex+5]);
+                    string lcode = String.Concat(sb[slashIndex+2], sb[slashIndex+3]);
+                    char unicodeChar = Encoding.Unicode.GetChars(new byte[] { System.Convert.ToByte(hcode, 16), System.Convert.ToByte(lcode, 16)} )[0];
+                    sb.Remove(slashIndex, 6).Insert(slashIndex, unicodeChar); 
+                    break;
+                    case 'n': sb.Remove(slashIndex, 2).Insert(slashIndex, '\n'); break;
+                    case 'r': sb.Remove(slashIndex, 2).Insert(slashIndex, '\r'); break;
+                    case 't': sb.Remove(slashIndex, 2).Insert(slashIndex, '\t'); break;
+                    case '\'': sb.Remove(slashIndex, 2).Insert(slashIndex, '\''); break;
+                    case '\\': sb.Remove(slashIndex, 2).Insert(slashIndex, '\\'); break;
+                    default: throw new Exception("Invalid escape sequence: \\" + escapeType);
+                }
+
+                startIndex = slashIndex + 1;
+
+            }
+            //Don't remove
+            //sb.Remove(0, 1);
+            //sb.Remove(sb.Length - 1, 1);
+
+            return sb.ToString();
+        }
+
 
         public void EvaluateParameter(string name, ParameterArgs args)
         {
@@ -877,6 +912,8 @@ namespace QuoteTree;
                     tempName = Regex.Replace(name, @"\.disabled", "", RegexOptions.IgnoreCase);
                 }
                 tempName = tempName.Trim();
+                string extractedString = tempName;
+                if (tempName.Contains('$')) tempName = extractString(tempName);
                 switch (endsWith)
                 {
                     case ".selected":
@@ -897,7 +934,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = child.Selected ? 1 : 0;
                                     break;
@@ -921,7 +960,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = child.Disabled ? 1 : 0;
                                     break;
@@ -945,7 +986,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = Double.Parse(child.Max.ToString());
                                     break;
@@ -969,7 +1012,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = Double.Parse(child.Min.ToString());
                                     break;
@@ -994,7 +1039,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = Double.Parse(child.Discount.ToString());
                                     break;
@@ -1004,7 +1051,11 @@ namespace QuoteTree;
                         break;
                     default:
                         if (name.Contains("\\"))
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(name)!.Total().ToString());
+                        {
+                            extractedString = name;
+                            if (name.Contains('$')) extractedString = extractString(name);
+                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(extractedString)!.Total().ToString());
+                        }
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
@@ -1016,7 +1067,9 @@ namespace QuoteTree;
                         {
                             foreach (ANode child in this.Children!)
                             {
-                                if (child.Name == name)
+                                extractedString = name;
+                                if (name.Contains('$')) extractedString = extractString(name);
+                                if (child.Name == extractedString)
                                 {
                                     args.Result = Double.Parse(child.Total().ToString());
                                     break;

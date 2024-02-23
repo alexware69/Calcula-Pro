@@ -97,7 +97,7 @@ public partial class NCalcParser : Parser {
 	}
 
 
-	private const char BS = '\\';
+	private const char BS = '$';
 	private static NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
 
 	private string extractString(string text) {
