@@ -230,7 +230,7 @@ OR:		O R ;
 NOT:	N O T ;
 
 ID 
-	: 	DIGIT* LETTER ((' ' LETTER | LETTER) | (' ' DIGIT | DIGIT )| '.' | ' .' | '\\')*
+	: 	DIGIT* LETTER ((' ' LETTER | LETTER) | (' ' DIGIT | DIGIT )| '.' | ' .')*
 	;
 
 INTEGER
@@ -265,6 +265,7 @@ fragment LETTER
 	|	'#'
 	|	'{'
 	|	'}'
+	|   '\\'
 	;
 
 fragment DIGIT
