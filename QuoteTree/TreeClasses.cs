@@ -349,7 +349,7 @@ namespace QuoteTree;
         public virtual int DecimalPlaces
         {
             get {return _DecimalPlaces;}
-            set {_DecimalPlaces = value;}
+            set {if(value <= 10) _DecimalPlaces = value;}
         }
 
         public bool Complete
