@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "NCalc/0.0.0-gbe7c12a087": {
+      "NCalc/0.0.0-gda7ad9585f": {
         "dependencies": {
           "Antlr4.Runtime.Standard": "4.13.1",
           "Microsoft.NET.ILLink.Analyzers": "7.0.100-1.23211.1",
@@ -21,7 +21,7 @@
         "runtime": {
           "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
             "assemblyVersion": "4.13.1.0",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.13.1.0"
           }
         }
       },
@@ -31,7 +31,7 @@
     }
   },
   "libraries": {
-    "NCalc/0.0.0-gbe7c12a087": {
+    "NCalc/0.0.0-gda7ad9585f": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

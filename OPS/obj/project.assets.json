@@ -348,7 +348,7 @@
         }
       }
     },
-    "net6.0/osx-arm64": {
+    "net6.0/win-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -482,7 +482,7 @@
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
+          "runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
             "related": ".xml"
           }
         },
@@ -543,31 +543,6 @@
           "lib/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "runtime.native.System/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/_._": {}
-        }
-      },
-      "runtime.unix.System.Private.Uri/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "runtime.native.System": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard/_._": {}
-        },
-        "runtime": {
-          "runtimes/unix/lib/netstandard1.0/System.Private.Uri.dll": {}
-        }
-      },
       "SocketIOClient/3.0.8": {
         "type": "package",
         "dependencies": {
@@ -624,7 +599,7 @@
           }
         },
         "runtime": {
-          "lib/net6.0/System.Drawing.Common.dll": {
+          "runtimes/win/lib/net6.0/System.Drawing.Common.dll": {
             "related": ".xml"
           }
         },
@@ -636,8 +611,7 @@
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.unix.System.Private.Uri": "4.3.0"
+          "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
           "ref/netstandard/_._": {}
@@ -1134,35 +1108,6 @@
         "runtimes/aot/lib/netcore50/_._"
       ]
     },
-    "runtime.native.System/4.3.0": {
-      "sha512": "c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
-      "type": "package",
-      "path": "runtime.native.system/4.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/netstandard1.0/_._",
-        "runtime.native.system.4.3.0.nupkg.sha512",
-        "runtime.native.system.nuspec"
-      ]
-    },
-    "runtime.unix.System.Private.Uri/4.3.0": {
-      "sha512": "ooWzobr5RAq34r9uan1r/WPXJYG1XWy9KanrxNvEnBzbFdQbMG7Y3bVi4QxR7xZMNLOxLLTAyXvnSkfj5boZSg==",
-      "type": "package",
-      "path": "runtime.unix.system.private.uri/4.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "ref/netstandard/_._",
-        "runtime.unix.system.private.uri.4.3.0.nupkg.sha512",
-        "runtime.unix.system.private.uri.nuspec",
-        "runtimes/unix/lib/netstandard1.0/System.Private.Uri.dll"
-      ]
-    },
     "SocketIOClient/3.0.8": {
       "sha512": "uFpKuga3GEoWjJWGIkN00jeQu8XqQlWBVrigw0yKk9kkmPRWF2JlrrcT5/y4EK0cfKXu2yCdnECx+Y/zAXjRGA==",
       "type": "package",
@@ -1550,19 +1495,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/alejandro/.nuget/packages/": {}
+    "C:\\Users\\alexw\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
+      "projectUniqueName": "C:\\Users\\alexw\\Projects\\Calcula-Pro\\OPS\\OPS.csproj",
       "projectName": "OPS",
-      "projectPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
-      "packagesPath": "/Users/alejandro/.nuget/packages/",
-      "outputPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/obj/",
+      "projectPath": "C:\\Users\\alexw\\Projects\\Calcula-Pro\\OPS\\OPS.csproj",
+      "packagesPath": "C:\\Users\\alexw\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alexw\\Projects\\Calcula-Pro\\OPS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\alexw\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1574,11 +1519,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-              "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+            "C:\\Users\\alexw\\Projects\\Calcula-Pro\\NCalc\\NCalc.csproj": {
+              "projectPath": "C:\\Users\\alexw\\Projects\\Calcula-Pro\\NCalc\\NCalc.csproj"
             },
-            "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
-              "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj"
+            "C:\\Users\\alexw\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj": {
+              "projectPath": "C:\\Users\\alexw\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj"
             }
           }
         }
@@ -1632,27 +1577,19 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
             "version": "[6.0.27, 6.0.27]"
           },
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
             "version": "[6.0.27, 6.0.27]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
             "version": "[6.0.27, 6.0.27]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.27, 6.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
             "version": "[6.0.27, 6.0.27]"
           }
         ],
@@ -1664,11 +1601,11 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
-      "osx-arm64": {
+      "win-x64": {
         "#import": []
       }
     }
