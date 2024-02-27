@@ -651,7 +651,7 @@ namespace QuoteTree;
                 
         }
 
-    private bool IsCurrencySymbol(string s)
+        public bool IsCurrencySymbol(string s)
         {
             char output;
             if (char.TryParse(s, out output)) 
@@ -3596,8 +3596,21 @@ namespace QuoteTree;
                     else
                     {
                         s += " [";
-                        if (start.Units != "$") s += decimal.Round(start.Total(), 2) + " " + start.Units;
-                        else s += start.Units + decimal.Round(start.Total(), 2);
+                        decimal total = start.Total();
+                        string formatString = String.Concat("{0:F", start.DecimalPlaces, "}");
+
+                        if (start.IsCurrencySymbol(start.Units))
+                        {
+                            if( total == 0 ) s += start.Units + 0; 
+                            else s += start.Units + String.Format(formatString, total);
+                        }
+                        else
+                        {
+                            string _units = start.Units != "" ? " " + start.Units : "";
+                            if( total == 0) s += 0 + _units;
+                            else s += String.Format(formatString, total) + _units;
+                        }
+
                         s += "]";
                     }
                 }
