@@ -1153,8 +1153,10 @@ function FillNodeDialogInfo(id) {
         success: function (result) {
             $("#inodeName").val(result.name);
             $("#inodeType").val(result.type);
-            if (result.type == "Decision" || result.type == "SumSet" || result.type == "Date" || result.type == "Today")
+            if (result.type == "Decision" || result.type == "SumSet" || result.type == "Date" || result.type == "Today"){
                 $("#inodeExpression").attr('disabled', 'disabled');
+                $("#inodeExpression").val('');
+            }
             else {
                 $("#inodeExpression").removeAttr('disabled');
                 $("#inodeExpression").val(result.expression);
