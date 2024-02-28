@@ -1,6 +1,6 @@
 <img align="left" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
 
-# Calcula Pro
+### Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
 [![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/alexwareb9/Calcula-Pro/total.svg)](https://github.com/alexwareb9/Calcula-Pro/releases)
@@ -11,9 +11,8 @@
 </a>
 
 <div style="text-align: right">
-
-
-**Calcula Pro** is an innovative desktop app. It helps in **designing**, **implementing**, **documenting**, **presenting**, **quoting** and **storing** unfinished goods, insurance premiums, taxes and many others.
+    
+Calcula Pro is an innovative desktop app. It helps in **designing**, **implementing**, **documenting**, **presenting**, **quoting** and **storing** unfinished goods, insurance premiums, taxes and many others.
 </div>
 
 #
