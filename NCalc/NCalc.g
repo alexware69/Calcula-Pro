@@ -265,6 +265,7 @@ fragment LETTER
 	|	'$'
 	|	'{'
 	|	'}'
+	|   '\u0000'..'\uFFFF'
 	|   '\\'
 	|   EscapeSequence
 	;
