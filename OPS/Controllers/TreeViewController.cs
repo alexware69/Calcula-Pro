@@ -538,7 +538,7 @@ namespace OnlinePriceSystem.Controllers
 		}
 
 		
-		public ContentResult SaveProduct()
+		public ContentResult SaveDefinition()
 		{
 			if (HttpContext.Session.Get("tree") != null)
 			{
@@ -702,11 +702,11 @@ namespace OnlinePriceSystem.Controllers
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    Expression = (node as DateNode)!.Formula;
+                    Expression = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
                     EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Today:
-                    Expression = (node as TodayNode)!.Formula;
+                    Expression = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
                     EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:

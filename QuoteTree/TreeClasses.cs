@@ -1837,6 +1837,11 @@ namespace QuoteTree;
             {
                 return _Formula;
             }
+
+            set 
+            { 
+                _Formula = value; 
+            }
         }
 
         // *****Methods*****
@@ -1908,6 +1913,8 @@ namespace QuoteTree;
             if (value != "") this.Units = value;
 
             value = this.GetValueFromDirectory("formula", path);
+            if (value != "") this.Formula = value;
+            
             if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
             if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
             value = this.GetValueFromDirectory("max", path);
@@ -2152,6 +2159,11 @@ namespace QuoteTree;
             {
                 return _Formula;
             }
+
+            set 
+            { 
+                _Formula = value; 
+            }
         }
 
         // *****Methods*****
@@ -2219,6 +2231,8 @@ namespace QuoteTree;
             if (value != "") this.Units = value;
 
             value = this.GetValueFromDirectory("formula", path);
+            if (value != "") this.Formula = value;
+
             if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
             if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
             value = this.GetValueFromDirectory("max", path);
@@ -3810,9 +3824,9 @@ namespace QuoteTree;
                 if (type == "reference") node = new ReferenceNode(path, parent, this, id);
 
                 if (type == "today") node = new TodayNode(path, parent, this, id);
-
+               
                 if (type == "date") node = new DateNode(path, parent, this, id);
-
+                
                 string[] dirs = Directory.GetDirectories(path);
 				if (dirs.Length != 0)
 				{
@@ -3965,6 +3979,19 @@ namespace QuoteTree;
 					sw.WriteLine("formula=\"" + (start as MathNode)!.Formula + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as MathNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
+
+                if (start.Type == NodeType.Date)
+				{
+					sw.WriteLine("formula=\"" + (start as DateNode)!.Formula + "\";"); 
+					sw.WriteLine("editchildren=\"" + (start as DateNode)!.EditChildren.ToString().ToLower() + "\";");
+				}
+
+                if (start.Type == NodeType.Today)
+				{
+					sw.WriteLine("formula=\"" + (start as TodayNode)!.Formula + "\";"); 
+					sw.WriteLine("editchildren=\"" + (start as TodayNode)!.EditChildren.ToString().ToLower() + "\";");
+				}
+
                 if (start.Type == NodeType.Text)
                 {
                     sw.WriteLine("text=\"" + (start as TextNode)!.Text + "\";");
@@ -4350,6 +4377,16 @@ namespace QuoteTree;
                 node.ReadOnly = false;
                 if (node.Parent == null || !(node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) 
                     node.Name = values["name"]!.Trim();
+
+                if (node.Parent != null && node.Parent.Type == NodeType.Date) 
+                {
+                    ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                }
+
+                if (node.Parent != null && node.Parent.Type == NodeType.Today)
+                {
+                    ((TodayNode)node.Parent).Formula = ((TodayNode)node.Parent.Children![0]).Formula + "/" + ((TodayNode)node.Parent.Children![1]).Formula + "/" +  ((TodayNode)node.Parent.Children![2]).Formula;
+                }
                     
                 node.Units = values["units"]!.Trim();
                 Stack<ANode> stack = new Stack<ANode>();
@@ -4378,12 +4415,14 @@ namespace QuoteTree;
                         node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         break;
                     case NodeType.Date:
+                        //(node as DateNode)!.Formula = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
                         (node as DateNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Today:
+                        //(node as TodayNode)!.Formula = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
                         (node as TodayNode)!.EditChildren = false;
 
                         //Set node url
@@ -4494,9 +4533,13 @@ namespace QuoteTree;
                     break;
                 case "Date":
                     newnode = new DateNode(values, this);
+                    //Set the expression
+                    ((DateNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();                 
                     break;
                 case "Today":
                     newnode = new TodayNode(values, this);
+                    //Set the expression
+                    ((TodayNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();
                     break;
                 default:
                     break;

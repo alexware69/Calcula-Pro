@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "etQIcbDp+9MRfS4rVnxMkxdAts0XvK2FqL1925sBRxWxDzO4tJe3uCE9nSDm5007cvlNhDffoVfcVsvKd2cK6w==",
+  "dgSpecHash": "XrbASQRMIKeviq3ia6bwQWtQ/uc4TrIL2nUTUO0dKNVkAfOQ9k/o8Fwe+BMOj0O+sQy5iyN6oughr6Xox/nFlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alejandro\\Projects\\Calcula-Pro\\QuoteTree\\QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,14 @@
     "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.0\\microsoft.aspnetcore.jsonpatch.6.0.0.nupkg.sha512",
     "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.0.nupkg.sha512",
     "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\Alejandro\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\Alejandro\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    "C:\\Users\\Alejandro\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.27\\microsoft.netcore.app.runtime.win-x64.6.0.27.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.27\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.27.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.27\\microsoft.aspnetcore.app.runtime.win-x64.6.0.27.nupkg.sha512",
+    "C:\\Users\\Alejandro\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.27\\microsoft.netcore.app.crossgen2.win-x64.6.0.27.nupkg.sha512"
   ],
   "logs": []
 }

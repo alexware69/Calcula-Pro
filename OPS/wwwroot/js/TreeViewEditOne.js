@@ -333,7 +333,7 @@ function UpdateNode(data) {
         //Remove old
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + data.id + "'>" + data.name + "</span>");
-        $(node).children('a').append("<span class='formula' id='formula_" + data.id + "' > " + (data.type != "Decision" && data.type != 'SumSet' && data.type != 'Date' && data.type != 'Today' ? " &nbsp;[<i>" + data.expression.trim() + "</i>]" : " &nbsp;&nbsp;&nbsp;") + "</span>");
+        $(node).children('a').append("<span class='formula' id='formula_" + data.id + "' > " + (data.type != "Decision" && data.type != 'SumSet' ? " &nbsp;[<i>" + data.expression.trim() + "</i>]" : " &nbsp;&nbsp;&nbsp;") + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         if ($(node).children(".subtotal")) $(node).children(".subtotal").remove();
         if ($(node).children(".filler")) $(node).children(".filler").remove();
@@ -930,7 +930,7 @@ function RefreshFillers(id, recursive) {
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + id + "'>" + nameText + "</span>");
         //$(node).children('a').append("<span class='formula' id='formula_" + id + "' > &nbsp;[<i>" + formulaText.trim() + "</i>]</span>");
-        $(node).children('a').append("<span class='formula' id='formula_" + id + "' >" + ($("input[id='nodetype_" + id + "']").attr("value") != "Decision" && $("input[id='nodetype_" + id + "']").attr("value") != "Date" && $("input[id='nodetype_" + id + "']").attr("value") != "Today"? " &nbsp;[<i>" + formulaText.trim() + "</i>]" : "") + "</span>");
+        $(node).children('a').append("<span class='formula' id='formula_" + id + "' >" + ($("input[id='nodetype_" + id + "']").attr("value") != "Decision" ? " &nbsp;[<i>" + formulaText.trim() + "</i>]" : "") + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
         $(node).children(".filler").remove();
@@ -1153,7 +1153,12 @@ function FillNodeDialogInfo(id) {
         success: function (result) {
             $("#inodeName").val(result.name);
             $("#inodeType").val(result.type);
-            if (result.type == "Decision" || result.type == "SumSet" || result.type == "Date" || result.type == "Today"){
+            if (result.type == "Decision" || result.type == "SumSet"){
+                $("#inodeExpression").attr('disabled', 'disabled');
+                $("#inodeExpression").val("");
+            }
+            else
+            if (result.type == "Date" || result.type == "Today"){
                 $("#inodeExpression").attr('disabled', 'disabled');
                 $("#inodeExpression").val(result.expression);
             }
@@ -1644,15 +1649,12 @@ function RenderTree(tree) {
         if (tree.Hidden) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:green");
         //Add the formula
         var expression = "";
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
+        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
             expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
         else
-            if (tree.TypeStr == 'ConditionalRules')
-                expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
-            else 
-                if (tree.TypeStr == 'Text')
-                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
-                else expression = " &nbsp;&nbsp;&nbsp;";
+        if (tree.TypeStr == 'Text')
+            expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+        else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
         $(node).children('a').attr("title", tree.Formula);
         //Add the hidden input storing the node type
@@ -1676,15 +1678,12 @@ function RenderTree(tree) {
         //Remove old
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
+        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
             expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
         else
-            if (tree.TypeStr == 'ConditionalRules')
-                expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
-            else 
-                if (tree.TypeStr == 'Text')
-                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
-                else expression = " &nbsp;&nbsp;&nbsp;";
+        if (tree.TypeStr == 'Text')
+            expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+        else expression = " &nbsp;&nbsp;&nbsp;";
         $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression.trim() + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
@@ -1702,7 +1701,7 @@ function RenderTree(tree) {
         $(node).children('a').after("<span title='Edit: " + tree.Name + "' id='edit_" + tree.Id + "' class='edit'></span>");
 
 
-        var formula_value = tree.TypeStr != "Decision" && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' ? tree.Formula : "";
+        var formula_value = tree.TypeStr != "Decision" && tree.TypeStr != 'SumSet' ? tree.Formula : "";
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
@@ -1917,7 +1916,7 @@ function SaveDefinition(){
     $(".loading").show();
 
     $.ajax({
-        url: "SaveProduct",
+        url: "SaveDefinition",
         type: 'GET',
         dataType: "json",
         cache: false,
