@@ -892,6 +892,7 @@ namespace QuoteTree;
                 string endsWith = "";
                 string tempName = name;
 
+
                 if (name.EndsWith(".max",StringComparison.OrdinalIgnoreCase)) 
                 { 
                     endsWith = ".max"; 
@@ -1065,7 +1066,21 @@ namespace QuoteTree;
                         {
                             extractedString = name;
                             if (name.Contains('$')) extractedString = extractString(name);
-                            args.Result = Double.Parse(this.ParentTree.GetNodeFromPath(extractedString)!.Total().ToString());
+                            ANode nodeFromPath = this.ParentTree.GetNodeFromPath(extractedString)!;
+
+                            if (nodeFromPath.Type == NodeType.Date || nodeFromPath.Type == NodeType.Today)
+                            {
+                                if (nodeFromPath.Type == NodeType.Date)
+                                {
+                                    args.Result = DateTime.Parse(((DateNode)nodeFromPath).Formula);
+                                }
+
+                                if (nodeFromPath.Type == NodeType.Today)
+                                {
+                                    args.Result = DateTime.Parse(((TodayNode)nodeFromPath).Formula);
+                                }
+                            }
+                            else args.Result = Double.Parse(nodeFromPath.Total().ToString());
                         }
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
@@ -1082,7 +1097,19 @@ namespace QuoteTree;
                                 if (name.Contains('$')) extractedString = extractString(name);
                                 if (child.Name == extractedString)
                                 {
-                                    args.Result = Double.Parse(child.Total().ToString());
+                                    if (child.Type == NodeType.Date || child.Type == NodeType.Today)
+                                    {
+                                        if (child.Type == NodeType.Date)
+                                        {
+                                            args.Result = DateTime.Parse(((DateNode)child).Formula);
+                                        }
+
+                                        if (child.Type == NodeType.Today)
+                                        {
+                                            args.Result = DateTime.Parse(((TodayNode)child).Formula);
+                                        }
+                                    }
+                                    else args.Result = Double.Parse(child.Total().ToString());
                                     break;
                                 }
                             }
@@ -4502,12 +4529,12 @@ namespace QuoteTree;
                 case "Date":
                     newnode = new DateNode(values, this);
                     //Set the expression
-                    ((DateNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();                 
+                    ((DateNode)newnode).Formula = "#" + ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString() + "#";                 
                     break;
                 case "Today":
                     newnode = new TodayNode(values, this);
                     //Set the expression
-                    ((TodayNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();
+                    ((TodayNode)newnode).Formula = "#" + ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString() + "#";
                     break;
                 default:
                     break;
