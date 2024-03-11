@@ -394,6 +394,15 @@ namespace OnlinePriceSystem.Controllers
                     if (Decimal.TryParse(value, out result))
                     {
                         (node as MathNode)!.Formula = value;
+                        if (node.Parent != null && node.Parent.Type == NodeType.Date) 
+                        {
+                            ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                        }
+
+                        if (node.Parent != null && node.Parent.Type == NodeType.Today)
+                        {
+                            ((TodayNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                        }
                     }
                     if (node.Type == NodeType.Text) (node as TextNode)!.Text = value;
                 }
@@ -702,11 +711,11 @@ namespace OnlinePriceSystem.Controllers
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    Expression = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
+                    //Expression = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
                     EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Today:
-                    Expression = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
+                    //Expression = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
                     EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:

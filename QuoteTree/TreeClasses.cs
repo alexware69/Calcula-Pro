@@ -4378,15 +4378,6 @@ namespace QuoteTree;
                 if (node.Parent == null || !(node.Parent.Type == NodeType.Date || node.Parent.Type == NodeType.Today)) 
                     node.Name = values["name"]!.Trim();
 
-                if (node.Parent != null && node.Parent.Type == NodeType.Date) 
-                {
-                    ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
-                }
-
-                if (node.Parent != null && node.Parent.Type == NodeType.Today)
-                {
-                    ((TodayNode)node.Parent).Formula = ((TodayNode)node.Parent.Children![0]).Formula + "/" + ((TodayNode)node.Parent.Children![1]).Formula + "/" +  ((TodayNode)node.Parent.Children![2]).Formula;
-                }
                     
                 node.Units = values["units"]!.Trim();
                 Stack<ANode> stack = new Stack<ANode>();
@@ -4453,6 +4444,18 @@ namespace QuoteTree;
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                 }
+
+                if (node.Parent != null && node.Parent.Type == NodeType.Date) 
+                {
+                    ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                }
+
+                if (node.Parent != null && node.Parent.Type == NodeType.Today)
+                {
+                    ((TodayNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                }
+
+
                 int intResult;
                 decimal decimalResult;
                 if (int.TryParse(values["expandedLevels"], out intResult))
