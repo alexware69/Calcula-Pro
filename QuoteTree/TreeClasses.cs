@@ -4529,12 +4529,12 @@ namespace QuoteTree;
                 case "Date":
                     newnode = new DateNode(values, this);
                     //Set the expression
-                    ((DateNode)newnode).Formula = "#" + ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString() + "#";                 
+                    ((DateNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();                 
                     break;
                 case "Today":
                     newnode = new TodayNode(values, this);
                     //Set the expression
-                    ((TodayNode)newnode).Formula = "#" + ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString() + "#";
+                    ((TodayNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();
                     break;
                 default:
                     break;
