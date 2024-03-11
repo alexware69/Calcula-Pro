@@ -1155,7 +1155,7 @@ function FillNodeDialogInfo(id) {
             $("#inodeType").val(result.type);
             if (result.type == "Decision" || result.type == "SumSet" || result.type == "Date" || result.type == "Today"){
                 $("#inodeExpression").attr('disabled', 'disabled');
-                $("#inodeExpression").val('');
+                $("#inodeExpression").val(result.expression);
             }
             else {
                 $("#inodeExpression").removeAttr('disabled');

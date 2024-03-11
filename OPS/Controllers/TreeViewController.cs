@@ -701,8 +701,13 @@ namespace OnlinePriceSystem.Controllers
                     Expression = (node as TextNode)!.Text;
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
-                case NodeType.Date:                   
+                case NodeType.Date:
+                    Expression = (node as DateNode)!.Formula;
                     EditChildren = (node as DateNode)!.EditChildren;
+                    break;
+                case NodeType.Today:
+                    Expression = (node as TodayNode)!.Formula;
+                    EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
                     Expression = (node as ConditionalNode)!.Formula;
@@ -945,7 +950,12 @@ namespace OnlinePriceSystem.Controllers
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
+                    Expression = (node as DateNode)!.Formula;
                     EditChildren = (node as DateNode)!.EditChildren;
+                    break;
+                case NodeType.Today:
+                    Expression = (node as TodayNode)!.Formula;
+                    EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
                     Expression = (node as ConditionalNode)!.Formula;
@@ -1047,7 +1057,12 @@ namespace OnlinePriceSystem.Controllers
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
+                    Expression = (node as DateNode)!.Formula;
                     EditChildren = (node as DateNode)!.EditChildren;
+                    break;
+                case NodeType.Today:
+                    Expression = (node as TodayNode)!.Formula;
+                    EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
                     Expression = (node as ConditionalNode)!.Formula;
@@ -1121,8 +1136,12 @@ namespace OnlinePriceSystem.Controllers
                                 EditChildren = (node as TextNode)!.EditChildren;
                                 break;
                             case NodeType.Date:
-                                Expression = "";
+                                Expression = (node as DateNode)!.Formula;
                                 EditChildren = (node as DateNode)!.EditChildren;
+                                break;
+                            case NodeType.Today:
+                                Expression = (node as TodayNode)!.Formula;
+                                EditChildren = (node as TodayNode)!.EditChildren;
                                 break;
                             case NodeType.Conditional:
                                 Expression = (node as ConditionalNode)!.Formula;

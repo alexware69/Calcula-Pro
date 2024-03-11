@@ -12,7 +12,7 @@ using System.Text;
 
 namespace QuoteTree;
 [Serializable]
-	public enum NodeType { Math, Decision, Text, Conditional, SumSet, Reference, Date, DateDiff, Today }
+	public enum NodeType { Math, Decision, Text, Conditional, SumSet, Reference, Date, Today }
 
 	public interface INode
 	{
@@ -521,6 +521,16 @@ namespace QuoteTree;
                     if (this.DisableCondition == null || this.DisableCondition.Trim() == "") return false;
                     bool expression_result = false;
                     Expression e = new Expression(this.DisableCondition);
+                    e.EvaluateFunction += delegate(string name, FunctionArgs args)
+                    {
+                        if (name == "DayDiff")
+                        {
+                            var date1 = args.Parameters[0].Evaluate();
+                            var date2 = args.Parameters[1].Evaluate();
+                            var timespan = (DateTime)date2 - (DateTime)date1;
+                            args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+                        }
+                    };
                     e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                     object result = e.Evaluate();
                     expression_result = Convert.ToBoolean(result);
@@ -1475,6 +1485,16 @@ namespace QuoteTree;
 
             decimal formula_result = 0;
             Expression e = new Expression(this._Formula);
+            e.EvaluateFunction += delegate(string name, FunctionArgs args)
+            {
+                if (name == "DayDiff")
+                {
+                    var date1 = args.Parameters[0].Evaluate();
+                    var date2 = args.Parameters[1].Evaluate();
+                    var timespan = (DateTime)date2 - (DateTime)date1;
+                    args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+                }
+            };
             e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter); 
 
             try
@@ -1512,6 +1532,16 @@ namespace QuoteTree;
             try
             {
                 Expression e = new Expression(this._Formula);
+                e.EvaluateFunction += delegate(string name, FunctionArgs args)
+                {
+                    if (name == "DayDiff")
+                    {
+                        var date1 = args.Parameters[0].Evaluate();
+                        var date2 = args.Parameters[1].Evaluate();
+                        var timespan = (DateTime)date2 - (DateTime)date1;
+                        args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+                    }
+                };
                 e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                 bool hasErrors = e.HasErrors();
                 this.Error = e.Error;
@@ -1800,7 +1830,15 @@ namespace QuoteTree;
         string _Formula = "";
 
         // *****Properties*****
-       
+        
+        public string Formula
+		{
+			get 
+            {
+                return _Formula;
+            }
+        }
+
         // *****Methods*****
         public override decimal Total()
         {
@@ -2095,6 +2133,9 @@ namespace QuoteTree;
             year.MinIsSet = true;
             year.MaxIsSet = true;
             this.Children.Add(year);
+
+            //Set the expression
+            this._Formula = ((MathNode)this.Children[0]).Formula.ToString() + "/" + ((MathNode)this.Children[1]).Formula.ToString() + "/" + ((MathNode)this.Children[2]).Formula.ToString(); 
         }
     }
 
@@ -2105,6 +2146,13 @@ namespace QuoteTree;
         string _Formula = "";
 
         // *****Properties*****
+         public string Formula
+		{
+			get 
+            {
+                return _Formula;
+            }
+        }
 
         // *****Methods*****
         public override decimal Total()
@@ -2390,6 +2438,9 @@ namespace QuoteTree;
             year.Order = 2;
             year.DecimalPlaces = 0;
             this.Children.Add(year);
+
+            //Set the expression
+            this._Formula = ((MathNode)this.Children[0]).Formula.ToString() + "/" + ((MathNode)this.Children[1]).Formula.ToString() + "/" + ((MathNode)this.Children[2]).Formula.ToString(); 
         }
     }
 
@@ -2455,6 +2506,16 @@ namespace QuoteTree;
             }
             decimal formula_result = 0;
             Expression e = new Expression(this._Formula);
+            e.EvaluateFunction += delegate(string name, FunctionArgs args)
+            {
+                if (name == "DayDiff")
+                {
+                    var date1 = args.Parameters[0].Evaluate();
+                    var date2 = args.Parameters[1].Evaluate();
+                    var timespan = (DateTime)date2 - (DateTime)date1;
+                    args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+                }
+            };
             e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
 
             try
@@ -2492,6 +2553,16 @@ namespace QuoteTree;
             try
             {
                 Expression e = new Expression(this._Formula);
+                e.EvaluateFunction += delegate(string name, FunctionArgs args)
+                {
+                    if (name == "DayDiff")
+                    {
+                        var date1 = args.Parameters[0].Evaluate();
+                        var date2 = args.Parameters[1].Evaluate();
+                        var timespan = (DateTime)date2 - (DateTime)date1;
+                        args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+                    }
+                };
                 e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                 bool hasErrors = e.HasErrors();
                 this.Error = e.Error;
