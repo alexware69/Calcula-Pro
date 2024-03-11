@@ -521,16 +521,7 @@ namespace QuoteTree;
                     if (this.DisableCondition == null || this.DisableCondition.Trim() == "") return false;
                     bool expression_result = false;
                     Expression e = new Expression(this.DisableCondition);
-                    e.EvaluateFunction += delegate(string name, FunctionArgs args)
-                    {
-                        if (name == "DayDiff")
-                        {
-                            var date1 = args.Parameters[0].Evaluate();
-                            var date2 = args.Parameters[1].Evaluate();
-                            var timespan = (DateTime)date2 - (DateTime)date1;
-                            args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
-                        }
-                    };
+                    e.EvaluateFunction += new EvaluateFunctionHandler(this.EvaluateFunction);
                     e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                     object result = e.Evaluate();
                     expression_result = Convert.ToBoolean(result);
@@ -877,6 +868,16 @@ namespace QuoteTree;
             return sb.ToString();
         }
 
+        public void EvaluateFunction(string name, FunctionArgs args)
+        {
+            if (name == "DayDiff")
+            {
+                var date1 = args.Parameters[0].Evaluate();
+                var date2 = args.Parameters[1].Evaluate();
+                var timespan = (DateTime)date2 - (DateTime)date1;
+                args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+            }
+        }
 
         public void EvaluateParameter(string name, ParameterArgs args)
         {
@@ -1485,16 +1486,7 @@ namespace QuoteTree;
 
             decimal formula_result = 0;
             Expression e = new Expression(this._Formula);
-            e.EvaluateFunction += delegate(string name, FunctionArgs args)
-            {
-                if (name == "DayDiff")
-                {
-                    var date1 = args.Parameters[0].Evaluate();
-                    var date2 = args.Parameters[1].Evaluate();
-                    var timespan = (DateTime)date2 - (DateTime)date1;
-                    args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
-                }
-            };
+            e.EvaluateFunction += new EvaluateFunctionHandler(this.EvaluateFunction);
             e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter); 
 
             try
@@ -1532,16 +1524,7 @@ namespace QuoteTree;
             try
             {
                 Expression e = new Expression(this._Formula);
-                e.EvaluateFunction += delegate(string name, FunctionArgs args)
-                {
-                    if (name == "DayDiff")
-                    {
-                        var date1 = args.Parameters[0].Evaluate();
-                        var date2 = args.Parameters[1].Evaluate();
-                        var timespan = (DateTime)date2 - (DateTime)date1;
-                        args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
-                    }
-                };
+                e.EvaluateFunction += new EvaluateFunctionHandler(this.EvaluateFunction);
                 e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                 bool hasErrors = e.HasErrors();
                 this.Error = e.Error;
@@ -2520,16 +2503,7 @@ namespace QuoteTree;
             }
             decimal formula_result = 0;
             Expression e = new Expression(this._Formula);
-            e.EvaluateFunction += delegate(string name, FunctionArgs args)
-            {
-                if (name == "DayDiff")
-                {
-                    var date1 = args.Parameters[0].Evaluate();
-                    var date2 = args.Parameters[1].Evaluate();
-                    var timespan = (DateTime)date2 - (DateTime)date1;
-                    args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
-                }
-            };
+            e.EvaluateFunction += new EvaluateFunctionHandler(this.EvaluateFunction);
             e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
 
             try
@@ -2567,16 +2541,7 @@ namespace QuoteTree;
             try
             {
                 Expression e = new Expression(this._Formula);
-                e.EvaluateFunction += delegate(string name, FunctionArgs args)
-                {
-                    if (name == "DayDiff")
-                    {
-                        var date1 = args.Parameters[0].Evaluate();
-                        var date2 = args.Parameters[1].Evaluate();
-                        var timespan = (DateTime)date2 - (DateTime)date1;
-                        args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
-                    }
-                };
+                e.EvaluateFunction += new EvaluateFunctionHandler(this.EvaluateFunction);
                 e.EvaluateParameter += new EvaluateParameterHandler(this.EvaluateParameter);
                 bool hasErrors = e.HasErrors();
                 this.Error = e.Error;
