@@ -1973,7 +1973,8 @@ namespace QuoteTree;
             else { if (parent == null || (parent != null && parent.Type != NodeType.Decision)) this.Selected = true; }
             if (this.GetValueFromDirectory("report", path) == "true") { this.Report = true; }
             if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
-            this.EditChildren = true;
+            if (this.GetValueFromDirectory("editchildren", path) == "true") { this.EditChildren = true; }
+            else if (this.GetValueFromDirectory("editchildren", path) == "false") { this.EditChildren = false; }
             if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
             if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
 
@@ -2290,7 +2291,7 @@ namespace QuoteTree;
             else { if (parent == null || (parent != null && parent.Type != NodeType.Decision)) this.Selected = true; }
             if (this.GetValueFromDirectory("report", path) == "true") { this.Report = true; }
             if (this.GetValueFromDirectory("reportvalue", path) == "true") { this.ReportValue = true; }
-            this.EditChildren = true;
+            this.EditChildren = false;
             if (this.GetValueFromDirectory("template", path) == "true") { this.Template = true; }
             if (this.GetValueFromDirectory("hidden", path) == "true") { this.Hidden = true; }
 
