@@ -1370,8 +1370,8 @@ $(function () {
                     //$.jstree._reference("#li_1").open_node("#li_1");
                 },
                 success: function (result) {
-                    var decompressed = lzw_decode(result);
-                    var jsonObject = JSON.parse(decompressed);
+                    //var decompressed = lzw_decode(result);
+                    var jsonObject = JSON.parse(result);
                     PruneTree(jsonObject, jsonObject);
                     RenderTree(jsonObject);
                     //This update is to fix a bug, should be removed later
