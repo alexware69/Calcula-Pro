@@ -819,7 +819,7 @@ namespace OnlinePriceSystem.Controllers
                     string json = JsonConvert.SerializeObject(tree.Root!, settings);
                     //dynamic parsedJson = JObject.Parse(json);
                     //pruneTree2(parsedJson, tree.Root!.ExpandedLevels);
-                    return Json(Compress(json));
+                    return Json(json);
                 }
                 else return Json(null);
             }
