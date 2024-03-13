@@ -13,63 +13,63 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OPS
 build_property.RootNamespace = OPS
-build_property.ProjectDir = C:\Users\Alejandro\Projects\Calcula-Pro\OPS\
+build_property.ProjectDir = /Users/alejandro/Projects/Calcula-Pro/OPS/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Alejandro\Projects\Calcula-Pro\OPS
+build_property.MSBuildProjectDirectory = /Users/alejandro/Projects/Calcula-Pro/OPS
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/Home/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/AppendNodes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcQXBwZW5kTm9kZXMuY3NodG1s
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/AppendNodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvQXBwZW5kTm9kZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/ChangeTreeValue.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcQ2hhbmdlVHJlZVZhbHVlLmNzaHRtbA==
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/ChangeTreeValue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvQ2hhbmdlVHJlZVZhbHVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/Description.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcRGVzY3JpcHRpb24uY3NodG1s
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/Description.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvRGVzY3JpcHRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/EditProduct.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcRWRpdFByb2R1Y3QuY3NodG1s
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/EditProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvRWRpdFByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/QuoteDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcUXVvdGVEZXRhaWxzLmNzaHRtbA==
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/QuoteDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvUXVvdGVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/ViewQuote.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZVZpZXdcVmlld1F1b3RlLmNzaHRtbA==
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/TreeView/ViewQuote.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJlZVZpZXcvVmlld1F1b3RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alejandro/Projects/Calcula-Pro/OPS/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-dwz6xdesuq
+[/Users/alejandro/Projects/Calcula-Pro/OPS/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-b610fb7fff

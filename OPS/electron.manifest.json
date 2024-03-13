@@ -5,6 +5,7 @@
   },
   "name": "CalculaPro",
   "author": "Alejandro Penate-Diaz <alejandro.penate@calculapro.com>",
+  "description": "Cross-platform tree-based alternative to spreadsheets.",
   "singleInstance": false,
   "environment": "Production",
   "build": {
