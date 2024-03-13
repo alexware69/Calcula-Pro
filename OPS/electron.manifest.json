@@ -5,7 +5,11 @@
   },
   "name": "CalculaPro",
   "author": "Alejandro Penate-Diaz <alejandro.penate@calculapro.com>",
+  "license":"GPL-3.0",
   "description": "Cross-platform tree-based alternative to spreadsheets.",
+  "repository":{
+    "url":"https://github.com/alexwareb9/Calcula-Pro"
+  },
   "singleInstance": false,
   "environment": "Production",
   "build": {
@@ -27,7 +31,7 @@
     "mac": {
       "target": [
         {
-          "target": "default",
+          "target": "mas",
           "arch": [
             "x64",
             "arm64"
