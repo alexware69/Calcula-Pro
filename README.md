@@ -15,6 +15,8 @@
 Calcula Pro is an innovative desktop app. It helps in **designing**, **implementing**, **documenting**, **presenting**, **quoting** and **storing** unfinished goods, insurance premiums, taxes and many others.
 </div>
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/calcula-pro)
+
 #
 <kbd><img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202023-10-12%20at%201.52.36%E2%80%AFAM-27426e6.jpeg"/></kbd>
 <p align="center"><em>This is an example product definition of an advertising sign.</em></p>
@@ -117,3 +119,4 @@ Expressions can contain most common math functions in addition to IF conditions.
 | Tan           | Returns the tangent of the specified angle.                                                                                                                                                                  | Tan(0)              | 0d     |
 | Truncate      | Calculates the integral part of a number.                                                                                                                                                                    | Truncate(1.7)       | 1      |
 | DayDiff      | Calculates the difference in days between two dates.                                                                                                                                                                    | DayDiff(#04/06/1999#,#03/12/2024#)       | 9107      |
+
