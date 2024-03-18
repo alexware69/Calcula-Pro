@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {}
+    "/home/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {}
   },
   "projects": {
-    "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+    "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "projectUniqueName": "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj",
         "projectName": "NCalcSync",
-        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
-        "packagesPath": "/Users/alejandro/.nuget/packages/",
-        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
+        "projectPath": "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "packagesPath": "/home/alex/.nuget/packages/",
+        "outputPath": "/home/alex/Projects/Calcula-Pro/NCalc/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+          "/home/alex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net461",
@@ -48,11 +48,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -96,23 +91,23 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
-              "version": "[6.0.27, 6.0.27]"
+              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             }
           ],
           "frameworkReferences": {
@@ -120,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         },
         "net8.0": {
           "targetAlias": "net8.0",
@@ -132,7 +127,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.2, )",
+              "version": "[8.0.3, )",
               "autoReferenced": true
             },
             "Nerdbank.GitVersioning": {
@@ -156,15 +151,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[8.0.2, 8.0.2]"
+              "version": "[8.0.3, 8.0.3]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
-              "version": "[8.0.2, 8.0.2]"
+              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
+              "version": "[8.0.3, 8.0.3]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[8.0.2, 8.0.2]"
+              "version": "[8.0.3, 8.0.3]"
             }
           ],
           "frameworkReferences": {
@@ -172,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
         },
         "net461": {
           "targetAlias": "net461",
@@ -194,7 +189,7 @@
               "version": "[3.4.244, )"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
@@ -227,7 +222,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -236,17 +231,17 @@
         }
       }
     },
-    "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
+    "/home/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "projectUniqueName": "/home/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
         "projectName": "QuoteTree",
-        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
-        "packagesPath": "/Users/alejandro/.nuget/packages/",
-        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/obj/",
+        "projectPath": "/home/alex/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "packagesPath": "/home/alex/.nuget/packages/",
+        "outputPath": "/home/alex/Projects/Calcula-Pro/QuoteTree/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
+          "/home/alex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -258,8 +253,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-                "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+              "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+                "projectPath": "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj"
               }
             }
           }
@@ -268,11 +263,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -310,23 +300,23 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
-              "version": "[6.0.27, 6.0.27]"
+              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.28, 6.0.28]"
             }
           ],
           "frameworkReferences": {
@@ -334,7 +324,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

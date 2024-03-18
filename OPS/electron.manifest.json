@@ -52,11 +52,9 @@
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
     "linux": {
-      "category": "Utility",
+      "category": "Productivity",
       "target": [
-        "deb",
-        "snap",
-        "AppImage"
+        "snap"
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
