@@ -929,7 +929,7 @@ namespace QuoteTree;
 
             if (name == "MonthDiff")
             {
-                 // Define two dates
+                // Define two dates
                 var date1 = (DateTime)args.Parameters[0].Evaluate();
                 var date2 = (DateTime)args.Parameters[1].Evaluate();
 
@@ -940,11 +940,11 @@ namespace QuoteTree;
 
             if (name == "YearDiff")
             {
-                 // Define two dates
+                // Define two dates
                 var date1 = (DateTime)args.Parameters[0].Evaluate();
                 var date2 = (DateTime)args.Parameters[1].Evaluate();
 
-                // Calculate the difference in months
+                // Calculate the difference in years
                 int yearsDifference = CalculateYearDifference(date1, date2);
                 args.Result =  yearsDifference;
             }
