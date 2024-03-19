@@ -868,14 +868,85 @@ namespace QuoteTree;
             return sb.ToString();
         }
 
+        int CalculateMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            DateTime tmp;
+            if (startDate > endDate)
+            {
+                tmp = startDate;
+                startDate = endDate;
+                endDate = tmp;
+            }
+
+            int monthsDifference = (endDate.Year - startDate.Year) * 12 + endDate.Month - startDate.Month;
+
+            // Adjust for cases where the endDate day is earlier than the startDate day
+            if (endDate.Day < startDate.Day)
+            {
+                monthsDifference--;
+            }
+
+            return monthsDifference;
+        }
+
+        public static int CalculateYearDifference(DateTime startDate, DateTime endDate)
+        {
+            DateTime tmp;
+            if (startDate > endDate)
+            {
+                tmp = startDate;
+                startDate = endDate;
+                endDate = tmp;
+            }
+
+            int YearsPassed = endDate.Year - startDate.Year;
+            // Are we before the start date this year? If so subtract one year from the mix
+            if (endDate.Month < startDate.Month || (endDate.Month == startDate.Month && endDate.Day < startDate.Day))
+            {
+                YearsPassed--;
+            }
+            return YearsPassed;
+        }
+
         public void EvaluateFunction(string name, FunctionArgs args)
         {
             if (name == "DayDiff")
             {
-                var date1 = args.Parameters[0].Evaluate();
-                var date2 = args.Parameters[1].Evaluate();
-                var timespan = (DateTime)date2 - (DateTime)date1;
+                var startDate = (DateTime)args.Parameters[0].Evaluate();
+                var endDate = (DateTime)args.Parameters[1].Evaluate();
+
+                DateTime tmp;
+                if (startDate > endDate)
+                {
+                    tmp = startDate;
+                    startDate = endDate;
+                    endDate = tmp;
+                }
+
+                var timespan = endDate - startDate;
                 args.Result = timespan.TotalDays; // double (you can convert to int if you wish a whole number!)
+            }
+
+            if (name == "MonthDiff")
+            {
+                 // Define two dates
+                var date1 = (DateTime)args.Parameters[0].Evaluate();
+                var date2 = (DateTime)args.Parameters[1].Evaluate();
+
+                // Calculate the difference in months
+                int monthsDifference = CalculateMonthDifference(date1, date2);
+                args.Result =  monthsDifference;
+            }
+
+            if (name == "YearDiff")
+            {
+                 // Define two dates
+                var date1 = (DateTime)args.Parameters[0].Evaluate();
+                var date2 = (DateTime)args.Parameters[1].Evaluate();
+
+                // Calculate the difference in months
+                int yearsDifference = CalculateYearDifference(date1, date2);
+                args.Result =  yearsDifference;
             }
         }
 
