@@ -1,13 +1,13 @@
-<img align="left" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
+<img align="left" src="https://github.com/alepedia69/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
 
 ### Calcula Pro
-[![Latest Release](https://img.shields.io/github/release/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/releases/latest)
-[![License](https://img.shields.io/github/license/alexwareb9/Calcula-Pro.svg)](https://github.com/alexwareb9/Calcula-Pro/blob/master/LICENSE)
-[![Github All Releases](https://img.shields.io/github/downloads/alexwareb9/Calcula-Pro/total.svg)](https://github.com/alexwareb9/Calcula-Pro/releases)
-[![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexwareb9/Calcula-Pro/releases)
+[![Latest Release](https://img.shields.io/github/release/alepedia69/Calcula-Pro.svg)](https://github.com/alepedia69/Calcula-Pro/releases/latest)
+[![License](https://img.shields.io/github/license/alepedia69/Calcula-Pro.svg)](https://github.com/alepedia69/Calcula-Pro/blob/master/LICENSE)
+[![Github All Releases](https://img.shields.io/github/downloads/alepedia69/Calcula-Pro/total.svg)](https://github.com/alepedia69/Calcula-Pro/releases)
+[![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alepedia69/Calcula-Pro/releases)
 
 <a href="https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE">
-    <img align="right" src="https://github.com/alexwareb9/Calcula-Pro/blob/master/OPS/wwwroot/Images/paypal-donate.png" style="width: 100px; height: 50px; border: 2px solid black; margin-right: 10px;" />
+    <img align="right" src="https://github.com/alepedia69/Calcula-Pro/blob/master/OPS/wwwroot/Images/paypal-donate.png" style="width: 100px; height: 50px; border: 2px solid black; margin-right: 10px;" />
 </a>
 
 <div style="text-align: right">
