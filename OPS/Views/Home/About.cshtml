@@ -26,16 +26,17 @@
         }
 </style>
 
-<h2 id="features-of-the-online-price-system" style="color: #1c94c4;">Features of Calcula Pro</h2>
+<h2 id="features-of-the-online-price-system" style="color: #1c94c4;">Features of Calcula Pro (v1.4.9)</h2>
 <hr>
 <ul>
+<li>It is web-based.</li>
 <li>Near instant intelligent updates in page.</li>
 <li>Definitions are independent of quotes and orders, changes to definitions won't affect existing quotes.</li>
 <li>Definitions are a hierarchy of folders, which contain the details, formulas, images and descriptions.</li>
 <li>Folder nature of definitions makes teamwork easy and natural, as well as making possible to backup and storing definitions.</li>
 <li>Readable formulas are made of words, now with autocomplete.</li>
 <li>Supports most common math expressions and logic conditions.</li>
-<li>Multiple same-name fields are supported (compare to Excel single-name naming of cells).</li>
+<li>Multiple same-name nodes are supported (compare to Excel single-name naming of cells).</li>
 <li>UTF-16 characters in node names inside an expression (Eg: $u263A).</li>
 <li>Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.</li>
 <li>Create and analyze price quotes of complex definitions.</li>
@@ -54,14 +55,14 @@
 <li><strong>Name</strong>: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
 * / \ + - | [ ] ? & ! ( ) > < = # { } ; : , _
 </li>
-<li><strong>Type</strong>: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today, DateDiff.</li>
+<li><strong>Type</strong>: Math, Decision, Conditional, Text, SumSet, Reference, Date, Today.</li>
 <li><strong>Units</strong>: There are currently some common predefined units, custom units can be set.</li>
 <li><strong>Decimal Places</strong>: Decimal places of the subtotal shown.</li>
 <li><strong>Expression</strong>: Some node types require an expression or formula, like Math, Conditional and Reference.</li>
 <li><strong>Expanded Levels</strong>: The number of levels that will be automatically expanded from the root node on definition load and from any node on node selection. This is useful to cover the most screen on definition load and to show multiple nested options on selection.</li>
 <li><strong>Order</strong>: Zero by default.The order in which the node appears. It is zero-based.</li>
-<li><strong>Min</strong>: Zero by default.The minimum value for that node. If a node's subtotal es less than Min then its value will be replaced with Min.</li>
-<li><strong>Max</strong>: Zero by default.The maximum value for that node. If a node's subtotal es greater than Max then its value will be replaced with Max.</li>
+<li><strong>Min</strong>: The minimum value for that node. If a node's subtotal es less than Min then its value will be replaced with Min.</li>
+<li><strong>Max</strong>: The maximum value for that node. If a node's subtotal es greater than Max then its value will be replaced with Max.</li>
 <li><strong>Discount</strong>: Zero by default. The discount in percent applied to the subtotal.</li>
 <li><strong>Disable Condition</strong>: An expression with a condition or conditions that when met will disable the node for selection. Very useful to implement exceptions.
 Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
@@ -84,14 +85,13 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
 * {1.6}*{1.5}/<span class="hljs-number">144</span>
 </code></pre>
 <p><strong>Conditional (IF conditions):</strong></p>
-<pre><code>* <span class="hljs-keyword">if</span>(TriFace Sign<span class="hljs-string">\Motor</span> Type<span class="hljs-string">\1_3</span> HP.selected,<span class="hljs-number">10</span>,<span class="hljs-number">60</span>) (discontinued syntax)
-* TriFace Sign<span class="hljs-string">\Motor</span> Type<span class="hljs-string">\1_3</span> HP.selected?<span class="hljs-number">10</span>:<span class="hljs-number">60</span> (same as above <span class="hljs-keyword">with</span> correct syntax)
+<pre><code>* TriFace Sign<span class="hljs-string">\Motor</span> Type<span class="hljs-string">\1_3</span> HP.selected?<span class="hljs-number">10</span>:<span class="hljs-number">60</span>
 * TriFace Sign<span class="hljs-string">\BomGen\Side</span> Frm=<span class="hljs-number">4</span>?<span class="hljs-number">0.75</span>:<span class="hljs-number">0</span>
 * TriFace Sign<span class="hljs-string">\BomGen\Side</span> Frm.max&gt; TriFace Sign<span class="hljs-string">\Length?0.75:0</span>
 * TriFace Sign<span class="hljs-string">\Louver</span> Orientation<span class="hljs-string">\Vertical.selected?2*O10:0</span>
 * <span class="hljs-keyword">this</span>.selected?price:<span class="hljs-number">0</span>
 </code></pre>
-<pre></pre><p><strong>Reference:</strong> Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  </p>
+<p><strong>Reference:</strong> Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  </p>
 <pre><code>* Plastic Face<span class="hljs-string">\Height</span> <span class="hljs-keyword">of</span> Plastic
 </code></pre>
 
@@ -226,6 +226,24 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
 <td>Calculates the integral part of a number.</td>
 <td>Truncate(1.7)</td>
 <td>1</td>
+</tr>
+<tr>
+<td>DayDiff</td>
+<td>Calculates the difference in days between two dates.</td>
+<td>DayDiff(#04/06/1999#,#03/12/2024#)</td>
+<td>9107</td>
+</tr>
+<tr>
+<td>MonthDiff</td>
+<td>Calculates the difference in months between two dates.</td>
+<td>MonthDiff(#04/06/1999#,#03/12/2024#)</td>
+<td>299</td>
+</tr>
+<tr>
+<td>YearDiff</td>
+<td>Calculates the difference in years between two dates.</td>
+<td>YearDiff(#04/06/1999#,#03/12/2024#)</td>
+<td>24</td>
 </tr>
 </tbody>
 </table>
