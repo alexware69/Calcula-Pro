@@ -266,7 +266,7 @@ function UpdateNode(data) {
         }
         //Add the image for the complete/incomplete status
         //html = "<img src='../Images/attention.png' class='incomplete' style='display: none;' height='13' width='13'>";
-        html = "<img src='../Images/4anidot1a.gif' class='incomplete' style='display: none;' height='12' width='12'>";
+        html = "<img src='../Images/blinkcircle.gif' class='incomplete' style='display: none;' height='14' width='14'>";
         $(node).children(".incomplete").remove();
         $(node).children("ins").after(html);
         if (!data.complete && !(data.optional && !data.selected)) $(node).children(".incomplete").show();
@@ -1593,7 +1593,7 @@ function RenderTree(tree) {
         }
         //Add the image for the complete/incomplete status
         //html = "<img src='../Images/attention.png' class='incomplete' style='display: none;' height='13' width='13'>";
-        html = "<img src='../Images/4anidot1a.gif' class='incomplete' style='display: none;' height='12' width='12'>";
+        html = "<img src='../Images/blinkcircle.gif' class='incomplete' style='display: none;' height='14' width='14'>";
         $(node).children(".incomplete").remove();
         $(node).children("ins").after(html);
         if (!tree.Complete && !(tree.Optional && !tree.Selected)) $(node).children(".incomplete").show();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D9N8jqh043P66DxQ6f6MvKXAtbx+RyKMQtpiEbobgcUTNs7rKnpCbffXZns1C/q8BMpNtQ8QnILoHXhucJh59Q==",
+  "dgSpecHash": "3PTQ2/abCK70J6TQL8FEtvMrvjqrVkxDyxKaej23dXwoPYKf+C+M2j8JA2U9KN7u8ZNLE98WnH3yL0gpbiSesw==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,13 @@
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.0/microsoft.aspnetcore.jsonpatch.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.0/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.net.illink.analyzers/7.0.100-1.23211.1/microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.net.illink.tasks/7.0.100-1.23211.1/microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    "/Users/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.29/microsoft.netcore.app.runtime.osx-arm64.6.0.29.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.29/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.29.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.29/microsoft.netcore.app.crossgen2.osx-arm64.6.0.29.nupkg.sha512"
   ],
   "logs": []
 }
