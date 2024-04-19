@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj": {}
+    "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {}
   },
   "projects": {
-    "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
         "projectName": "NCalcSync",
-        "projectPath": "/home/alex/Projects/Calcula-Pro/NCalc/NCalc.csproj",
-        "packagesPath": "/home/alex/.nuget/packages/",
-        "outputPath": "/home/alex/Projects/Calcula-Pro/NCalc/obj/",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/home/alex/.nuget/NuGet/NuGet.Config"
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net461",
@@ -48,6 +48,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -90,24 +95,16 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.28, 6.0.28]"
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+              "version": "[6.0.29, 6.0.29]"
             },
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.28, 6.0.28]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+              "version": "[6.0.29, 6.0.29]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[6.0.28, 6.0.28]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.28, 6.0.28]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.28, 6.0.28]"
+              "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+              "version": "[6.0.29, 6.0.29]"
             }
           ],
           "frameworkReferences": {
@@ -115,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
         },
         "net8.0": {
           "targetAlias": "net8.0",
@@ -127,7 +124,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )",
+              "version": "[8.0.4, )",
               "autoReferenced": true
             },
             "Nerdbank.GitVersioning": {
@@ -150,16 +147,16 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[8.0.3, 8.0.3]"
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+              "version": "[8.0.4, 8.0.4]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[8.0.3, 8.0.3]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+              "version": "[8.0.4, 8.0.4]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[8.0.3, 8.0.3]"
+              "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+              "version": "[8.0.4, 8.0.4]"
             }
           ],
           "frameworkReferences": {
@@ -167,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         },
         "net461": {
           "targetAlias": "net461",
@@ -189,7 +186,7 @@
               "version": "[3.4.244, )"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
@@ -222,11 +219,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
-        "linux-x64": {
+        "osx-arm64": {
           "#import": []
         }
       }
