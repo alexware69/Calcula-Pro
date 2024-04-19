@@ -18,7 +18,7 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/calcula-pro)
 
 #
-<kbd><img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202023-10-12%20at%201.52.36%E2%80%AFAM-27426e6.jpeg"/></kbd>
+<img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202024-04-19%20at%203.30.32%E2%80%AFPM.png"/>
 <p align="center"><em>This is an example product definition of an advertising sign.</em></p>
 
 ## Features of Calcula Pro
