@@ -30,7 +30,7 @@
 	<button id="new-dialog" class="btn">New Definition</button>	
 	<br/>
 		<div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<img align="center" title='Working...' style='display:none;' class='loading' src='../Images/loading-hd-gimp.gif' alt='Working...'>&nbsp;
+	 	     	<img id="loading" align="center" title='Working...' style='display:none;' class='loading' alt='Working...'>&nbsp;
 		</div>
 	<br/>
 	<button id="open-dialog" class="btn">Edit Definition</button>
@@ -133,3 +133,34 @@
 
 	$( "input[type=submit], button" ).button();
 </script>
+
+    <script>
+         
+         function activateDarkMode() {
+			// set style to dark
+			$("#loading").attr("src", "../Images/loading-hd-gimp-dark.gif");
+		}
+
+		function activateLightMode() {
+		// set style to light
+			$("#loading").attr("src", "../Images/loading-hd-gimp.gif");
+		}
+
+		window.matchMedia("(prefers-color-scheme: dark)").addListener(
+			e => e.matches && activateDarkMode() // listener
+		);
+
+		window.matchMedia("(prefers-color-scheme: light)").addListener(
+			e => e.matches && activateLightMode() // listener
+		);
+
+        $( document ).ready(function() {
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				activateDarkMode();
+			}
+
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+				activateLightMode();
+			}
+		});
+    </script>
