@@ -135,7 +135,11 @@
 </script>
 
     <script>
-         
+		$( document ).ready(function() {
+			$("#save").hide();
+			$("#discard").hide();
+		});
+
          function activateDarkMode() {
 			// set style to dark
 			$("#loading").attr("src", "../Images/loading-hd-gimp-dark.gif");

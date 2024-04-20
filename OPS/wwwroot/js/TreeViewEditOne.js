@@ -212,7 +212,6 @@ function BuildDependencies() {
     //Show overlay
     overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
     $("#overlay").show();
-    $(".loading").show();
 
     $.ajax({
         url: "BuildDependencies",
@@ -223,7 +222,7 @@ function BuildDependencies() {
         beforeSend: function () {
         },
         complete: function () {
-            $(".loading").hide();
+            $(".loading_dependencies").hide();
             $("#overlay").remove();
         },
         success: function (result) {
@@ -1264,7 +1263,7 @@ function SaveNodeInfo() {
             },
             error: function () {
                 alert("Couldn't save node. Either the name is empty or a node with the same name already exists.");
-                $(".loading").hide();
+                $(".loading_dependencies").hide();
                 $("#overlay").remove();
                 editdialog.dialog("close");
             },
@@ -1283,13 +1282,13 @@ function SaveNodeInfo() {
                 if (result.hasErrors) {
                     alert(result.error);
                     UpdateTreeSync();
-                    $(".loading").hide();
+                    $(".loading_dependencies").hide();
                     $("#overlay").remove();
                 }
                 else {
                     //Instead of updating just dependents, update the whole tree to refresh dependent list for each node on client.
                     UpdateTreeSync();
-                    $(".loading").hide();
+                    $(".loading_dependencies").hide();
                     $("#overlay").remove();
                     editdialog.dialog("close");
                 }
@@ -1386,7 +1385,7 @@ function NewNode() {
                 //restore cursor and inputs
                 //$("#inewnodeInfo").css("cursor", "auto");
                 //$('#inewnodeInfo *').prop('disabled', false).css('pointer-events', 'auto');
-                $(".loading").hide();
+                $(".loading_dependencies").hide();
                 $("#overlay").remove();
                 creatingNewNode = false;
             },
@@ -1408,7 +1407,7 @@ function NewNode() {
                 $("#newinodeUnits").val("");
                 $("#newinodeDecimalPlaces").val("");
                 newnodedialog.dialog("close");
-                $(".loading").hide();
+                $(".loading_dependencies").hide();
                 $("#overlay").remove();
                 creatingNewNode = false;
             },
@@ -1924,7 +1923,7 @@ function SaveDefinition(){
 
         },
         complete: function () {
-            $(".loading").hide();
+            $(".loading_dependencies").hide();
             $("#overlay").remove();
         },
         success: function () {
@@ -2074,13 +2073,13 @@ $(function () {
                                         beforeSend: function () {
                                         },
                                         complete: function () {
-                                            $(".loading").hide();
+                                            $(".loading_dependencies").hide();
                                             $("#overlay").remove();
                                             creatingNewNode = false;
                                         },
                                         error: function () {
                                             alert("An error occurred while copying the node.");
-                                            $(".loading").hide();
+                                            $(".loading_dependencies").hide();
                                             $("#overlay").remove();
                                             creatingNewNode = false;
                                         },
@@ -2391,7 +2390,7 @@ $(function () {
         height: "auto",
         title: "Edit node",
         close: function () {
-            $(".loading").hide();
+            $(".loading_dependencies").hide();
             $("#overlay").remove();
         },
         buttons:

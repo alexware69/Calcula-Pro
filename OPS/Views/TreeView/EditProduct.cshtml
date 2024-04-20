@@ -86,6 +86,15 @@
 			background-size: 12px 12px;
 			vertical-align: middle;
 		}
+		.loading_dependencies{
+            display: inline-block;
+            height:24px;
+			width:24px;
+            background: url('../../Images/ajax-bar.gif') center no-repeat;
+			background-size: 16px 16px;
+			vertical-align: middle;
+			background-color: white;
+        }
 		 .build{
             display: inline-block;
             height:24px;
@@ -296,18 +305,6 @@
 		background: #555; 
 		}
     </style>
-     	<div style="display:inline-block; position:absolute;right:1%;">
-     		<div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<img align="left" title='Working...' style='display:none;' class='loading' src='../Images/ajax-bar.gif' alt='Working...'>&nbsp;
-     		</div>
-            <div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<span class="build" title='Build dependencies' onclick="javascript: BuildDependencies();"></span>&nbsp;
-     		</div>
-	        <a id="save" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:inline-block; padding: 5px;">Save definition</a>&nbsp;
-	     	<a id="discard" href="../Home/Index" style="text-decoration: none;display:inline-block; padding: 5px;">Discard changes</a>
-		</div>
-     <br/>
-     <br/>
      <div id="description" class="follow-scroll" style="text-align: center">
         <div style="line-height:15px; height: 15px; vertical-align: middle; background-color: #666666; padding: 0px 0px 0px 0px; font-size:14px; font-weight: bold; color: white; text-align: center;">
     	    <img style="padding: 0px 0px 0px 0px; vertical-align: top;" src="@Url.Content("~/")Images/description.jpg" height="15"/>
@@ -550,6 +547,8 @@
     	//$( document ).tooltip();
 		//var availableTags = $("span").map(function(){return $(this).text();}).get();
 		//$( "textarea" ).autocomplete({source: availableTags});
+		$("#save").show();
+		$("#discard").show();
 	});
 
 		function activateDarkMode() {
