@@ -390,13 +390,21 @@ namespace OnlinePriceSystem.Controllers
                     var value = keys.Get(key.ToString())!;
                     string nodeID = key.ToString()!.Replace("NodeValue", "");
                     ANode node = tree.GetNodeFromId(nodeID)!;
-                    decimal result;
-                    if (Decimal.TryParse(value, out result))
+                    if (Decimal.TryParse(value, out _))
                     {
-                        (node as MathNode)!.Formula = value;
-                        if (node.Parent != null && node.Parent.Type == NodeType.Date) 
+                        if (node.Type == NodeType.Math && !(node.Parent != null && node.Parent.Type == NodeType.Date)) 
+                            (node as MathNode)!.Formula = value;
+                        else
+                        if (node.Type == NodeType.Math && node.Parent != null && node.Parent.Type == NodeType.Date) 
                         {
-                            ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                            string temp =  (node as MathNode)!.Formula;
+                            (node as MathNode)!.Formula = value;
+                            if (DateTime.TryParse(((MathNode)node.Parent.Children![0]).Formula + "/" +
+                            ((MathNode)node.Parent.Children![1]).Formula + "/" + ((MathNode)node.Parent.Children![2]).Formula, out _))
+                            {                             
+                                ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" + ((MathNode)node.Parent.Children![2]).Formula;
+                            }
+                            else (node as MathNode)!.Formula = temp;
                         }
 
                         if (node.Parent != null && node.Parent.Type == NodeType.Today)
