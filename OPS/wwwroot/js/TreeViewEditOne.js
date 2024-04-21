@@ -1996,6 +1996,7 @@ $(function () {
     expandingLevels = false;
     creatingNewNode = false;
     allNames = [];
+    dialogHeight = window.innerHeight * 98 / 100;
     // TO CREATE AN INSTANCE
     // select the tree container using jQuery
     $("#container")
@@ -2334,6 +2335,60 @@ $(function () {
 
     //Resize fillers on window resize
     $(window).on("resize", function () {
+        var isDialogOpen = editdialog.dialog("isOpen");
+        var isNewNodeDialogOpen = newnodedialog.dialog("isOpen");
+
+        dialogHeight = window.innerHeight * 98 / 100;
+
+        editdialog.dialog("close");
+        newnodedialog.dialog("close");
+
+         // code to show the edit formula dialog
+        editdialog = $("#inodeInfo").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        width: "auto",
+        height: "auto",
+        maxHeight: dialogHeight,
+        title: "Edit node",
+        close: function () {
+            $(".loading_dependencies").hide();
+            $("#overlay").remove();
+        },
+        buttons:
+        {
+            "Save": function () {
+                SaveNodeInfo();
+                return false;
+            }
+        }
+        }).css({overflow:"scroll"});
+
+         // code to show the edit formula dialog
+        newnodedialog = $("#inewnodeInfo").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        width: "auto",
+        height: "auto",
+        maxHeight: dialogHeight,
+        title: "Insert new node",
+        close: function () {
+        },
+        buttons:
+        {
+            "Save": function () {
+                //SaveNodeInfo();
+                NewNode();
+                //alert("New node created!");
+            }
+        }
+        }).css({overflow:"scroll"});
+
+        if (isDialogOpen) editdialog.dialog("open");
+        if (isNewNodeDialogOpen) newnodedialog.dialog("open");
+
         //If window width is less than 1024 then hide the description
         if ($(window).width() < "1024" && $("input[id='Description']").is(':checked')) {
             descriptionOffsetTop = $("#description").offset().top;
@@ -2381,6 +2436,7 @@ $(function () {
             dialog.dialog("open");
         }
     });
+
     // code to show the edit formula dialog
     editdialog = $("#inodeInfo").dialog({
         autoOpen: false,
@@ -2388,6 +2444,7 @@ $(function () {
         resizable: false,
         width: "auto",
         height: "auto",
+        maxHeight: dialogHeight,
         title: "Edit node",
         close: function () {
             $(".loading_dependencies").hide();
@@ -2400,7 +2457,7 @@ $(function () {
                 return false;
             }
         }
-    });
+    }).css({overflow:"scroll"});
 
     // code to show the edit formula dialog
     newnodedialog = $("#inewnodeInfo").dialog({
@@ -2409,6 +2466,7 @@ $(function () {
         resizable: false,
         width: "auto",
         height: "auto",
+        maxHeight: dialogHeight,
         title: "Insert new node",
         close: function () {
         },
@@ -2420,7 +2478,7 @@ $(function () {
                 //alert("New node created!");
             }
         }
-    });
+    }).css({overflow:"scroll"});
 
     removenodedialog = $("#removeNode").dialog({
         autoOpen: false,
