@@ -2363,7 +2363,7 @@ $(function () {
                 return false;
             }
         }
-        }).css({overflow:"scroll"});
+        }).css({overflow:"auto"});
 
          // code to show the edit formula dialog
         newnodedialog = $("#inewnodeInfo").dialog({
@@ -2384,7 +2384,7 @@ $(function () {
                 //alert("New node created!");
             }
         }
-        }).css({overflow:"scroll"});
+        }).css({overflow:"auto"});
 
         if (isDialogOpen) editdialog.dialog("open");
         if (isNewNodeDialogOpen) newnodedialog.dialog("open");
@@ -2457,7 +2457,7 @@ $(function () {
                 return false;
             }
         }
-    }).css({overflow:"scroll"});
+    }).css({overflow:"auto"});
 
     // code to show the edit formula dialog
     newnodedialog = $("#inewnodeInfo").dialog({
@@ -2478,7 +2478,7 @@ $(function () {
                 //alert("New node created!");
             }
         }
-    }).css({overflow:"scroll"});
+    }).css({overflow:"auto"});
 
     removenodedialog = $("#removeNode").dialog({
         autoOpen: false,
