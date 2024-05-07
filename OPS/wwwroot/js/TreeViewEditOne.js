@@ -1993,6 +1993,7 @@ $(function () {
     creatingNewNode = false;
     allNames = [];
     dialogHeight = window.innerHeight * 98 / 100;
+    dialogDescriptionHeight = window.innerHeight * 80 / 100;
     // TO CREATE AN INSTANCE
     // select the tree container using jQuery
     $("#container")
@@ -2333,11 +2334,14 @@ $(function () {
     $(window).on("resize", function () {
         var isDialogOpen = editdialog.dialog("isOpen");
         var isNewNodeDialogOpen = newnodedialog.dialog("isOpen");
+        var isDescriptionDialogOpen = dialog.dialog("isOpen");
 
         dialogHeight = window.innerHeight * 98 / 100;
+        dialogDescriptionHeight = window.innerHeight * 80 / 100;
 
         editdialog.dialog("close");
         newnodedialog.dialog("close");
+        dialog.dialog("close");
 
          // code to show the edit formula dialog
         editdialog = $("#inodeInfo").dialog({
@@ -2382,6 +2386,19 @@ $(function () {
         }
         }).css({overflow:"auto"});
 
+        // code to show the description dialog
+        dialog = $("<div></div>").append(iframe).appendTo("body").dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            width: "auto",
+            height: "auto",
+            maxHeight: dialogDescriptionHeight,
+            close: function () {
+                iframe.attr("src", "about:blank");
+            }
+        }).css({overflow:"auto"});
+
         if (isDialogOpen) editdialog.dialog("open");
         if (isNewNodeDialogOpen) newnodedialog.dialog("open");
 
@@ -2396,6 +2413,21 @@ $(function () {
             descriptionOffsetTop = $("#description").offset().top;
         }
         else if ($("input[id='Description']").is(':checked')) descriptionOffsetTop = $("#description").offset().top;
+
+        if ($("#description").is(":hidden")) {
+            if (isDescriptionDialogOpen) {
+                    var src = document.getElementById("Iframe15").contentWindow.location.href;
+                    var width = !mobile ? $("#hr").width() * 40 / 100 : "100%";
+                    var height = width;
+                    iframe.attr({
+                        width: +width,
+                        height: +height,
+                        src: src
+                    });
+                    dialog.dialog("open");
+            }
+        }
+
         Refill();
         //Resize description and tree
         containerOffsetTop = $("#container").offset().top;
@@ -2407,17 +2439,18 @@ $(function () {
     //$("input[type=submit], button").button();
 
     // code to show dialog box
-    var iframe = $('<iframe frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+    var iframe = $('<iframe id="descriptionFrame" scrolling="no" style="border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
     dialog = $("<div></div>").append(iframe).appendTo("body").dialog({
         autoOpen: false,
         modal: true,
         resizable: false,
         width: "auto",
         height: "auto",
+        maxHeight: dialogDescriptionHeight,
         close: function () {
             iframe.attr("src", "about:blank");
         }
-    });
+    }).css({overflow:"auto"});
     $("#Iframe15").on("load", function (e) {
         if (descriptionhidden) {
             e.preventDefault();

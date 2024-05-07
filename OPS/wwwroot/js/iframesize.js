@@ -1,5 +1,5 @@
 ﻿
-var iframeids = ["Iframe1"];
+var iframeids = ["Iframe1","descriptionFrame"];
      var iframehide = "yes";
      var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
      var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;
