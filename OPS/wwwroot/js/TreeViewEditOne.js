@@ -411,7 +411,7 @@ function UpdateNode(data) {
             }
             //Fill the Order dropdown list
             $("#newinodeOrder").empty();
-            for (var i = 0; i <= $(node).children("ul").children("li").length + 1; i++)
+            for (var i = 0; i <= $(node).children("ul").children("li").length; i++)
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + data.name + '\"');
             newnodedialog.dialog("open");
@@ -1391,7 +1391,7 @@ function NewNode() {
             },
             error: function () {
                 alert("Couldn't insert the new node.");
-                $("#newinodeName").val("");
+                /* $("#newinodeName").val("");
                 $("#newinodeType").val("Math");
                 $("#newinodeExpression").val("");
                 $("#newinodeExpandedLevels").val("");
@@ -1406,16 +1406,12 @@ function NewNode() {
                 $("#newinodeReportValue").attr('checked', false);
                 $("#newinodeUnits").val("");
                 $("#newinodeDecimalPlaces").val("");
-                newnodedialog.dialog("close");
+                newnodedialog.dialog("close");*/
                 $(".loading_dependencies").hide();
                 $("#overlay").remove();
                 creatingNewNode = false;
             },
             success: function (result) {
-                if (result == "_SessionTimeout_") {
-                    document.location = "../SessionTimeOut.html";
-                    return false;
-                }
                 
                 if (result.hasErrors) {
                     alert(result.error);
@@ -1759,7 +1755,7 @@ function RenderTree(tree) {
             }
             //Fill the Order dropdown list
             $("#newinodeOrder").empty();
-            for (var i = 0; i <= $(node).children("ul").children("li").length + 1; i++)
+            for (var i = 0; i <= $(node).children("ul").children("li").length; i++)
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + tree.Name + '\"');
             newnodedialog.dialog("open");

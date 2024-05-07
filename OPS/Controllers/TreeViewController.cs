@@ -348,7 +348,38 @@ namespace OnlinePriceSystem.Controllers
                 }
                 updatedStr = htmlDoc.DocumentNode.OuterHtml;
             }
-            catch {}
+            catch //Check if the file has .html extension instead of .htm
+            {
+                FileStream fs = new FileStream(url.Replace(".htm",".html"), FileMode.Open, FileAccess.Read);
+                //Set up the pictures
+                var htmlDoc = new HtmlDocument();
+                string contents;
+                using(var sr = new StreamReader(fs))
+                {
+                    contents = sr.ReadToEnd();
+                }
+                htmlDoc.LoadHtml(contents);
+                string mediaName = "";
+                var path = "";
+                string nodeName = HttpContext.Session.GetString("nodeName")!;
+                var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
+                if(nodes == null || nodes.Count == 0) updatedStr = contents;
+                else
+                {
+                    foreach(var iNode in nodes)
+                    {
+                        mediaName = "";
+                        updatedStr = "";
+                        mediaName = iNode.Attributes["src"].Value;
+                        path = HttpContext.Session.GetString("path");
+                        int lastItem = url.LastIndexOf("/");
+                        urlTemp = url.Substring(0,lastItem + 1) + mediaName;
+                        if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
+                        iNode.SetAttributeValue("src", urlTemp);
+                    }
+                }
+                updatedStr = htmlDoc.DocumentNode.OuterHtml;
+            }
             
             return Content(updatedStr,"text/html");            
         }
