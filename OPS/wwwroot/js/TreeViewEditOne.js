@@ -1993,7 +1993,6 @@ $(function () {
     creatingNewNode = false;
     allNames = [];
     dialogHeight = window.innerHeight * 98 / 100;
-    dialogDescriptionHeight = window.innerHeight * 80 / 100;
     // TO CREATE AN INSTANCE
     // select the tree container using jQuery
     $("#container")
@@ -2337,7 +2336,6 @@ $(function () {
         var isDescriptionDialogOpen = dialog.dialog("isOpen");
 
         dialogHeight = window.innerHeight * 98 / 100;
-        dialogDescriptionHeight = window.innerHeight * 80 / 100;
 
         editdialog.dialog("close");
         newnodedialog.dialog("close");
@@ -2393,7 +2391,8 @@ $(function () {
             resizable: false,
             width: "auto",
             height: "auto",
-            maxHeight: dialogDescriptionHeight,
+            maxHeight: dialogHeight,
+            title: "Description",
             close: function () {
                 iframe.attr("src", "about:blank");
             }
@@ -2439,14 +2438,15 @@ $(function () {
     //$("input[type=submit], button").button();
 
     // code to show dialog box
-    var iframe = $('<iframe id="descriptionFrame" scrolling="no" style="border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+    var iframe = $('<iframe style="border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
     dialog = $("<div></div>").append(iframe).appendTo("body").dialog({
         autoOpen: false,
         modal: true,
         resizable: false,
         width: "auto",
         height: "auto",
-        maxHeight: dialogDescriptionHeight,
+        maxHeight: dialogHeight,
+        title: "Description",
         close: function () {
             iframe.attr("src", "about:blank");
         }
