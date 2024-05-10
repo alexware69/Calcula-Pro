@@ -1,13 +1,9 @@
 ﻿using System.Collections.Specialized;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using NCalc;
-using System.Collections;
-using Microsoft.Extensions.Configuration;
 using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Globalization;
-using System.Configuration;
 using System.Text;
 
 namespace QuoteTree;
@@ -246,7 +242,6 @@ namespace QuoteTree;
 
 
         decimal Total();
-		//string TotalStr();
 		ANode? FindChildNode(string name);
 		string GetPath();
 		bool IsComplete();
@@ -757,29 +752,25 @@ namespace QuoteTree;
 
 			}
 
-			//if (s == "" || (!s.Contains(field) && !s.Contains(field.ToLower()))) return "";
-			//else
-			//{
-				string the_field = "";
-				splitted = s.Split(";".ToCharArray());
-				foreach (string part in splitted)
-				{
-                    string[] splitEqual = part.Split("=".ToCharArray());
-                    if (splitEqual[0].Trim().ToLower() == field.ToLower())
-					{
-						//This is a hack, in case that there are more than one '=' characters in the expression
-                        for (int i = 1; i < splitEqual.Length; i++)
-						{
-                            the_field += splitEqual[i].Trim();
-                            if (i + 1 < splitEqual.Length) the_field += "=";
-						}
+            string the_field = "";
+            splitted = s.Split(";".ToCharArray());
+            foreach (string part in splitted)
+            {
+                string[] splitEqual = part.Split("=".ToCharArray());
+                if (splitEqual[0].Trim().ToLower() == field.ToLower())
+                {
+                    //This is a hack, in case that there are more than one '=' characters in the expression
+                    for (int i = 1; i < splitEqual.Length; i++)
+                    {
+                        the_field += splitEqual[i].Trim();
+                        if (i + 1 < splitEqual.Length) the_field += "=";
+                    }
 
-						the_field = the_field.Replace("\"", "");
-						break;
-					}
-				}
-				return the_field;
-			//}
+                    the_field = the_field.Replace("\"", "");
+                    break;
+                }
+            }
+            return the_field;
 		}
 		public void SortChildren()
 		{
@@ -789,10 +780,8 @@ namespace QuoteTree;
 		}
 		public MemoryStream Serialize()
 		{
-			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
 			MemoryStream ms = new MemoryStream();
 			BinaryFormatter? formater = new BinaryFormatter();
-			//formater.Serialize(fs, this);
 			formater.Serialize(ms, this);
 			ms.Seek(0, SeekOrigin.Begin);
 			formater = null;
@@ -861,9 +850,6 @@ namespace QuoteTree;
                 startIndex = slashIndex + 1;
 
             }
-            //Don't remove
-            //sb.Remove(0, 1);
-            //sb.Remove(sb.Length - 1, 1);
 
             return sb.ToString();
         }
@@ -967,31 +953,26 @@ namespace QuoteTree;
                 if (name.EndsWith(".max",StringComparison.OrdinalIgnoreCase)) 
                 { 
                     endsWith = ".max"; 
-                    //tempName = name.Replace(".max", "");
                     tempName = Regex.Replace(name, @"\.max", "", RegexOptions.IgnoreCase);
                 }
                 else if (name.EndsWith(".min", StringComparison.OrdinalIgnoreCase)) 
                 { 
                     endsWith = ".min"; 
-                    //tempName = name.Replace(".min", "");
                     tempName = Regex.Replace(name, @"\.min", "", RegexOptions.IgnoreCase);
                 }
                 else if (name.EndsWith(".discount", StringComparison.OrdinalIgnoreCase)) 
                 { 
                     endsWith = ".discount"; 
-                    //tempName = name.Replace(".discount", "");
                     tempName = Regex.Replace(name, @"\.discount", "", RegexOptions.IgnoreCase);
                 }
                 else if (name.EndsWith(".selected", StringComparison.OrdinalIgnoreCase)) 
                 { 
                     endsWith = ".selected"; 
-                    //tempName = name.Replace(".selected", "");
                     tempName = Regex.Replace(name, @"\.selected", "", RegexOptions.IgnoreCase);
                 }
                 else if (name.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase))
                 {
                     endsWith = ".disabled";
-                    //tempName = name.Replace(".selected", "");
                     tempName = Regex.Replace(name, @"\.disabled", "", RegexOptions.IgnoreCase);
                 }
                 tempName = tempName.Trim();
@@ -1325,7 +1306,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -1333,7 +1313,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
             value = this.GetValueFromDirectory("decimalplaces", path);
@@ -1422,7 +1401,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.Text = values["expression"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
             this.Name = values["name"]!;
@@ -1445,7 +1424,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -1470,8 +1448,6 @@ namespace QuoteTree;
                 if (node != null)
                 {
                     node.Children!.Add(this);
-                    //SetDependentsByHierarchy(Root, stack);
-                    //SetDependentsByReference(node, false);
                 }
                 else
                 {
@@ -1711,7 +1687,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -1719,7 +1694,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
             if(parent != null && (parent.Type == NodeType.Date || parent.Type == NodeType.Today))
@@ -1776,15 +1750,6 @@ namespace QuoteTree;
                 this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
 			}
 
-			//Set attributes from folder
-			//try
-			//{
-			//    DirectoryInfo dirInfo = new DirectoryInfo(path);
-			//    if ((FileAttributes.Hidden & dirInfo.Attributes) == FileAttributes.Hidden || this.template) { this.hidden = true; }
-			//    else this.hidden = false;
-			//}
-			//catch (Exception) { }
-
 			//Get description from file in folder.
 			string s = "";
 			string? line = "";
@@ -1833,7 +1798,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.Formula = values["expression"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
             this.Name = values["name"]!;
@@ -1857,7 +1822,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -1891,8 +1855,6 @@ namespace QuoteTree;
                 if (node != null)
                 {
                     node.Children!.Add(this);
-                    //SetDependentsByHierarchy(this.Root, stack);
-                    //SetDependentsByReference(node, false);
                 }
                 else
                 {
@@ -2003,7 +1965,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -2011,7 +1972,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
             value = this.GetValueFromDirectory("order", path);
@@ -2052,16 +2012,6 @@ namespace QuoteTree;
 
             //To set the url for the node
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-
-            //Set attributes from folder
-            //try
-            //{
-            //    DirectoryInfo dirInfo = new DirectoryInfo(path);
-            //    if ((FileAttributes.Hidden & dirInfo.Attributes) == FileAttributes.Hidden || this.template) { this.hidden = true; }
-            //    else this.hidden = false;
-            //}
-            //catch (Exception) { }
 
             //Get description from file in folder.
             string s = "";
@@ -2111,7 +2061,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.EditChildren = true;
             this.Name = values["name"]!;
             this.Units = values["units"]!;
@@ -2134,7 +2084,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -2161,8 +2110,6 @@ namespace QuoteTree;
                 if (node != null)
                 {
                     node.Children!.Add(this);
-                    //SetDependentsByHierarchy(this.Root, stack);
-                    //SetDependentsByReference(node, false);
                 }
                 else
                 {
@@ -2322,7 +2269,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -2330,7 +2276,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
             value = this.GetValueFromDirectory("order", path);
             int.TryParse(value, out intResult);
@@ -2369,16 +2314,6 @@ namespace QuoteTree;
 
             //To set the url for the node
             this.Url = "TreeView" + "/Description" + "?id=" + this.Id;
-
-
-            //Set attributes from folder
-            //try
-            //{
-            //    DirectoryInfo dirInfo = new DirectoryInfo(path);
-            //    if ((FileAttributes.Hidden & dirInfo.Attributes) == FileAttributes.Hidden || this.template) { this.hidden = true; }
-            //    else this.hidden = false;
-            //}
-            //catch (Exception) { }
 
             //Get description from file in folder.
             string s = "";
@@ -2428,7 +2363,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.EditChildren = true;
             this.Name = values["name"]!;
             this.Units = values["units"]!;
@@ -2451,7 +2386,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -2478,8 +2412,6 @@ namespace QuoteTree;
                 if (node != null)
                 {
                     node.Children!.Add(this);
-                    //SetDependentsByHierarchy(this.Root, stack);
-                    //SetDependentsByReference(node, false);
                 }
                 else
                 {
@@ -2545,9 +2477,6 @@ namespace QuoteTree;
 	{
 		// *******Fields*****
 		string _Formula = "";
-		string _ThenFormula = "";
-		string _ElseFormula = "";
-		string _IfCondition = "";
 
 		#region Properties
 		public string Formula
@@ -2555,42 +2484,9 @@ namespace QuoteTree;
 			get { return _Formula; }
             set { if (!this.ReadOnly) _Formula = value; }
 		}
-		public string ThenFormula
-		{
-			get { return _ThenFormula; }
-			set { _ThenFormula = value; }
-		}
-		public string ElseFormula
-		{
-			get { return _ElseFormula; }
-			set { _ElseFormula = value; }
-		}
-		public string IfCondition
-		{
-			get { return _IfCondition; }
-			set { _IfCondition = value; }
-		}
 		#endregion
        
 		// *****Methods*****
-
-        //public void parseFormula()
-        //{
-        //    string temp_formula = this.Formula;
-        //    temp_formula = temp_formula.Trim();
-        //    //Remove if
-        //    temp_formula = temp_formula.Remove(0, 2);
-        //    temp_formula = temp_formula.Trim();
-        //    //Remove first and last parenthesis
-        //    temp_formula = temp_formula.Remove(0, 1);
-        //    temp_formula = temp_formula.Remove(temp_formula.Length - 1, 1);
-        //    temp_formula = temp_formula.Trim();
-        //    // Split if, then, else
-        //    string[] formula_parts = temp_formula.Split(",".ToCharArray());
-        //    this.IfCondition = formula_parts[0].Trim();
-        //    this.ThenFormula = formula_parts[1].Trim();
-        //    this.ElseFormula = formula_parts[2].Trim();
-        //}
 
         public override decimal Total() 
         {
@@ -2711,8 +2607,6 @@ namespace QuoteTree;
 			value = this.GetValueFromDirectory("formula", path);
 			if (value != "") this.Formula = value;
 
-            //parse the formula
-            //parseFormula();
             if (this.GetValueFromDirectory("maxisset", path) == "true") { this.MaxIsSet = true; }
             if (this.GetValueFromDirectory("minisset", path) == "true") { this.MinIsSet = true; }
 			value = this.GetValueFromDirectory("max", path);
@@ -2720,7 +2614,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -2728,7 +2621,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("order", path);
@@ -2816,9 +2708,8 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.Formula = values["expression"]!;
-            //this.parseFormula();
             this.EditChildren = values["editChildren"] == "true" ? true : false;
             this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
@@ -2840,7 +2731,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -2865,8 +2755,6 @@ namespace QuoteTree;
                 if (node != null)
                 {
                     node.Children!.Add(this);
-                    //SetDependentsByHierarchy(Root, stack);
-                    //SetDependentsByReference(node, false);
                 }
                 else
                 {
@@ -2994,7 +2882,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -3002,7 +2889,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("order", path);
@@ -3094,7 +2980,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out intResult))
                 this.ExpandedLevels = intResult;
@@ -3115,7 +3001,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -3138,8 +3023,6 @@ namespace QuoteTree;
             if (node != null)
             {
                 node.Children!.Add(this);
-                //SetDependentsByHierarchy(Root, stack);
-                //SetDependentsByReference(node, false);
             }
             else
             {
@@ -3252,7 +3135,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Max = intResult;
-                //this.MaxIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("min", path);
@@ -3260,7 +3142,6 @@ namespace QuoteTree;
 			if (value != "") 
             {
                 this.Min = intResult;
-                //this.MinIsSet = true;
             }
 
 			value = this.GetValueFromDirectory("order", path);
@@ -3351,7 +3232,7 @@ namespace QuoteTree;
             //first set the node as writeable
             this.ReadOnly = false;
             if (node == null) this.Id = "1";
-            else this.Id = node.NewId();//.id + "." + (node.children.Count + 1).ToString ();
+            else this.Id = node.NewId();
             this.Name = values["name"]!;
             this.EditChildren = values["editChildren"] == "true" ? true : false;
             if (int.TryParse(values["expandedLevels"], out intResult))
@@ -3373,7 +3254,6 @@ namespace QuoteTree;
             if (decimal.TryParse(values["discount"], out decimalResult))
                 this.Discount = decimalResult;
             this.Hidden = values["hidden"] == "true" ? true : false;
-            //newnode.optional = values ["optional"] == "true" ? true : false;
             this.Report = values["report"] == "true" ? true : false;
             this.ReportValue = values["reportValue"] == "true" ? true : false;
             this.Template = values["template"] == "true" ? true : false;
@@ -3396,8 +3276,6 @@ namespace QuoteTree;
             if (node != null)
             {
                 node.Children!.Add(this);
-                //SetDependentsByHierarchy(Root, stack);
-                //SetDependentsByReference(node, false);
             }
             else
             {
@@ -3625,8 +3503,6 @@ namespace QuoteTree;
             if (node != null)
             {
                 node.Children!.Add(this);
-                //SetDependentsByHierarchy(Root, stack);
-                //SetDependentsByReference(node, false);
             }
             else
             {
@@ -3784,7 +3660,6 @@ namespace QuoteTree;
                         {
                             s = s + "|" + s1;
                             counter++;
-                            //selection.Add(childID, s1);
                         }
                         s1 = "";
                         
@@ -3829,7 +3704,6 @@ namespace QuoteTree;
 				return "";
 			}
 
-			//s = s.Replace(" ", "");
 			if (s == "" || !s.Contains(field)) return "";
 			else
 			{
@@ -3856,22 +3730,6 @@ namespace QuoteTree;
 			string type = this.GetValueFromDirectory("type", path);
 
 			//Create nodes from directory folders
-			/*if (type.Trim() != "")
-            {
-                string first = type[0].ToString().ToUpper();
-                string rest = type.Substring(1, type.Length -1).ToLower();
-                type = first + rest;
-                //type = type.ToCharArray()[0].ToString().ToUpper() + type.Substring(1);
-            }
-
-            else return;
-            try
-            {
-                node = (ANode)System.Activator.CreateInstance(System.Type.GetType(type + "Node"),new object[] {path, parent, this});
-            }
-
-            catch (Exception e) { }*/
-
 			if (type != null)
 			{
                 type = type.ToLower();
@@ -4142,9 +4000,7 @@ namespace QuoteTree;
                 clean_expression = Regex.Replace(clean_expression, @"\.max", "", RegexOptions.IgnoreCase);
                 clean_expression = Regex.Replace(clean_expression, @"\.min", "", RegexOptions.IgnoreCase);
                 clean_expression = Regex.Replace(clean_expression, @"\.discount", "", RegexOptions.IgnoreCase);
-                //clean_expression = Regex.Replace(clean_expression, @"Max", "", RegexOptions.IgnoreCase);
-                //clean_expression = Regex.Replace(clean_expression, @"Min", "", RegexOptions.IgnoreCase);
-                //clean_expression = Regex.Replace(clean_expression, @"Round", "", RegexOptions.IgnoreCase);
+
                 string[] splitted_expression = clean_expression.Split(new char[] { '*', '/', '+', '-', '|', '[', ']', '?', '&', '!', '(', ')', '>', '<', '=', ':', ';' });
 
                 foreach (string s in splitted_expression)
@@ -4158,16 +4014,7 @@ namespace QuoteTree;
                             //check for circular references
 							tuple = SetDependenciesRecursively (NodeFromPath, node);
                             if (tuple != null) return tuple;
-                            //following code should be moved to method SetDependenciesRecursively
-                            //foreach (ANode dependent in node.Dependents)
-                            //{
-                            //    //check for circular references
-                            //    tuple = SetDependenciesRecursively(NodeFromPath, dependent);
-                            //    if (tuple != null) return tuple;
-                            //}
-							//foreach (ANode dependent in node.dependents)
-							//	if (!NodeFromPath.dependents.Contains (dependent))
-							//		NodeFromPath.dependents.Add (dependent);
+
 							//Add reference
 							if (!NodeFromPath.References!.Contains (node.Id))
 								NodeFromPath.References.Add (node.Id);
@@ -4182,16 +4029,7 @@ namespace QuoteTree;
                             //check for circular references
                             tuple = SetDependenciesRecursively(NodeFromId, node);
                             if (tuple != null) return tuple;
-                            //following code should be moved to method SetDependenciesRecursively
-                            //foreach (ANode dependent in node.Dependents)
-                            //{
-                            //    //check for circular references
-                            //    tuple = SetDependenciesRecursively(NodeFromPath, dependent);
-                            //    if (tuple != null) return tuple;
-                            //}
-                            //foreach (ANode dependent in node.dependents)
-                            //	if (!NodeFromPath.dependents.Contains (dependent))
-                            //		NodeFromPath.dependents.Add (dependent);
+
                             //Add reference
                             if (!NodeFromId.References!.Contains(node.Id))
                                 NodeFromId.References.Add(node.Id);
@@ -4204,16 +4042,7 @@ namespace QuoteTree;
 							//check for local references
 							if (s.Contains(child.Name))
 							{
-                                //foreach (ANode dependent in node.Dependents)
-                                //{
-                                //    //check for circular references
-                                //    if (dependent.Dependents.Contains(child)) return new Tuple<ANode,ANode>(dependent,child);
-                                //    if (!child.Dependents.Contains(dependent)) child.Dependents.Add(dependent);
-                                //}
-
-                                //foreach (ANode dependent in GetDependencies(child))
-                                //{
-                                    //check for circular references
+                                //check for circular references
                                 tuple = SetDependenciesRecursively(child, node);
                                 if (tuple != null) return tuple;
                                 //}
@@ -4247,15 +4076,7 @@ namespace QuoteTree;
                             //check for circular references
                             tuple = SetDependenciesRecursively(NodeFromPath, node);
                             if (tuple != null) return tuple;
-                            //foreach (ANode dependent in node.Dependents)
-                            //{
-                            //    //check for circular references
-                            //    tuple = SetDependenciesRecursively(NodeFromPath, dependent);
-                            //    if (tuple != null) return tuple;
-                            //}
-                            //foreach (ANode dependent in node.dependents)
-                            //	if (!NodeFromPath.dependents.Contains (dependent))
-                            //		NodeFromPath.dependents.Add (dependent);
+
                             //Add reference
                             if (!NodeFromPath.References!.Contains(node.Id))
                                 NodeFromPath.References.Add(node.Id);
@@ -4270,15 +4091,7 @@ namespace QuoteTree;
                             //check for circular references
                             tuple = SetDependenciesRecursively(NodeFromId, node);
                             if (tuple != null) return tuple;
-                            //foreach (ANode dependent in node.Dependents)
-                            //{
-                            //    //check for circular references
-                            //    tuple = SetDependenciesRecursively(NodeFromPath, dependent);
-                            //    if (tuple != null) return tuple;
-                            //}
-                            //foreach (ANode dependent in node.dependents)
-                            //	if (!NodeFromPath.dependents.Contains (dependent))
-                            //		NodeFromPath.dependents.Add (dependent);
+
                             //Add reference
                             if (!NodeFromId.References!.Contains(node.Id))
                                 NodeFromId.References.Add(node.Id);
@@ -4291,19 +4104,10 @@ namespace QuoteTree;
                             //check for local references
                             if (s.Contains(child.Name))
                             {
-                                //foreach (ANode dependent in node.Dependents)
-                                //{
-                                //    //check for circular references
-                                //    if (dependent.Dependents.Contains(child)) return new Tuple<ANode, ANode>(dependent, child);
-                                //    if (!child.Dependents.Contains(dependent)) child.Dependents.Add(dependent);
-                                //}
-
-                                //foreach (ANode dependent in GetDependencies(child))
-                                //{
-                                    //check for circular references
+                                //check for circular references
                                 tuple = SetDependenciesRecursively(child, node);
                                 if (tuple != null) return tuple;
-                                //}
+                               
                                 //Add reference
                                 if (!child.References!.Contains(node.Id)) child.References.Add(node.Id);
                             }
@@ -4315,11 +4119,8 @@ namespace QuoteTree;
 			{
                 foreach (ANode child in node.Children!)
                 {
-                    //foreach (ANode dependent in GetDependencies(child))
-                    //{
                     tuple = SetDependenciesRecursively(child, node);
                     if (tuple != null) return tuple;
-                    // }
                 }
 			}
 
@@ -4470,14 +4271,12 @@ namespace QuoteTree;
                         node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         break;
                     case NodeType.Date:
-                        //(node as DateNode)!.Formula = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
                         (node as DateNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Today:
-                        //(node as TodayNode)!.Formula = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
                         (node as TodayNode)!.EditChildren = false;
 
                         //Set node url
@@ -4485,7 +4284,6 @@ namespace QuoteTree;
                         break;
                     case NodeType.Conditional:
                         (node as ConditionalNode)!.Formula = values["expression"]!.Trim();
-                        //(node as ConditionalNode).parseFormula();
                         (node as ConditionalNode)!.EditChildren = values["editChildren"] == "true" ? true : false;
 
                         //To set the url for the node
@@ -4562,8 +4360,6 @@ namespace QuoteTree;
                 node.ReadOnly = values["readOnly"] == "true" ? true : false;
 
                 Root!.SortChildren();
-                //SetDependentsByHierarchy(Root, stack);
-                //SetDependentsByReference(node, false);
 
                 return node;
             }
@@ -4667,17 +4463,11 @@ namespace QuoteTree;
                 }
                 clone.Parent = target;
                 clone.ParentTree = this;
-                //clone.Dependents = source.Dependents;
-                //clone.References = source.References;
                 target.Children.Add(clone);
 
                 //fix the node id and url
                 FixClone(clone, this);
 
-                //Set dependencies
-                //Stack<ANode> stack = new Stack<ANode>();
-                //SetDependentsByHierarchy(Root, stack);
-                //SetDependentsByReference(target);
                 System.GC.Collect();
                 return clone;
             }
@@ -4753,11 +4543,9 @@ namespace QuoteTree;
 		public QTree(string path, bool dependencies)
 		{
 			_Root = null;
-			//Stack<ANode> stack = new Stack<ANode>();
 			this.Fill(path, ref _Root, null,"1");
 			this._Root!.SortChildren();
 			if (dependencies) {
-				//this.SetDependentsByHierarchy (_Root, stack);
 				//This needs to be done twice in order to catch all dependents
 				this.SetDependentsByReference (_Root, true);
 				this.SetDependentsByReference (_Root, true); 
@@ -4780,26 +4568,12 @@ namespace QuoteTree;
 
 		public MemoryStream Serialize()
 		{
-			//FileStream fs = new FileStream("c:\\serialized.dat",FileMode.Create,FileAccess.Write);
 			MemoryStream ms = new MemoryStream();
 			BinaryFormatter formater = new BinaryFormatter();
-			//formater.Serialize(fs, this);
 			formater.Serialize(ms, this);
 			ms.Seek(0, SeekOrigin.Begin);
 			return ms;
 
-		}
-
-		public string SerializeToString()
-		{
-			XmlSerializer serializer = new XmlSerializer(this.GetType());
-
-			using (StringWriter writer = new StringWriter())
-			{
-				serializer.Serialize(writer, this);
-
-				return writer.ToString();
-			}
 		}
 
         public static QTree Deserialize(byte[] byte_array)
