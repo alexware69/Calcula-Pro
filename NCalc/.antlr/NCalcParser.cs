@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:/Users/alexw/Projects/Calcula-Pro/NCalc/NCalc.g by ANTLR 4.13.1
+// Generated from /Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.g by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -156,6 +156,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_ncalcExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterNcalcExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitNcalcExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -199,6 +209,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_logicalExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterLogicalExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitLogicalExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -264,6 +284,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_conditionalExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterConditionalExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitConditionalExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -340,6 +370,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_booleanAndExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterBooleanAndExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitBooleanAndExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -412,6 +452,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_bitwiseOrExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterBitwiseOrExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitBitwiseOrExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -476,6 +526,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_bitwiseXOrExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterBitwiseXOrExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitBitwiseXOrExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -538,6 +598,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_bitwiseAndExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterBitwiseAndExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitBitwiseAndExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -600,6 +670,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_equalityExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterEqualityExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitEqualityExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -695,6 +775,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_relationalExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterRelationalExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitRelationalExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -788,6 +878,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_shiftExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterShiftExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitShiftExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -867,6 +967,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_additiveExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterAdditiveExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitAdditiveExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -946,6 +1056,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_multiplicativeExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterMultiplicativeExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitMultiplicativeExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1029,6 +1149,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_unaryExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterUnaryExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitUnaryExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1139,6 +1269,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_exponentialExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterExponentialExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitExponentialExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1207,6 +1347,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_primaryExpression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterPrimaryExpression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitPrimaryExpression(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1295,6 +1445,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_value; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterValue(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitValue(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1379,6 +1539,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_identifier; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterIdentifier(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitIdentifier(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1435,6 +1605,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_expressionList; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterExpressionList(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitExpressionList(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1493,6 +1673,16 @@ public partial class NCalcParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_arguments; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.EnterArguments(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			INCalcListener typedListener = listener as INCalcListener;
+			if (typedListener != null) typedListener.ExitArguments(this);
+		}
 	}
 
 	[RuleVersion(0)]

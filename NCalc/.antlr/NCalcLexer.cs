@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:/Users/alexw/Projects/Calcula-Pro/NCalc/NCalc.g by ANTLR 4.13.1
+// Generated from /Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.g by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
