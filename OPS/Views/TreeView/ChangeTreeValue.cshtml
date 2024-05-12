@@ -9,406 +9,400 @@
 <!DOCTYPE html>
 
 <html>
-<head runat="server">
+<head>
+    <title>ChangeTreeValue</title>
     <meta name="viewport" content="width=device-width" />
     <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
     <meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <script src="../js/iframesize.js"></script>
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="@Url.Content("~/js/jquery.jstree.js")"></script>
+    <script src="@Url.Content("~/js/jquery.hotkeys.js")"></script>
 
-<script src="../js/iframesize.js"></script>
-<title>ChangeTreeValue</title>
-<script src="../js/jquery-2.1.3.min.js"></script>
-
-<script>
-    var iframeids = ["Iframe2"];
-    var iframehide = "yes";
-    var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
-    var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;
-    function resizeCaller() {
-        var dyniframe = new Array();
-        for (i = 0; i < iframeids.length; i++) {
-            if (document.getElementById) resizeIframe(iframeids[i]);
-            if ((document.all || document.getElementById) && iframehide == "no") {
-                var tempobj = document.all ? document.all[iframeids[i]] : document.getElementById(iframeids[i]);
-                tempobj.style.display = "block";
+    <script>
+        var iframeids = ["Iframe2"];
+        var iframehide = "yes";
+        var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
+        var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;
+        function resizeCaller() {
+            var dyniframe = new Array();
+            for (i = 0; i < iframeids.length; i++) {
+                if (document.getElementById) resizeIframe(iframeids[i]);
+                if ((document.all || document.getElementById) && iframehide == "no") {
+                    var tempobj = document.all ? document.all[iframeids[i]] : document.getElementById(iframeids[i]);
+                    tempobj.style.display = "block";
+                }
             }
         }
-    }
-    function resizeIframeByElement(frame) {
-        var currentfr = frame;
-        if (currentfr) {
-            currentfr.style.display = "block";
-            if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight;
-            else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = document.getElementById('Iframe15').Document.body.scrollHeight + 5;
-        }
-    }
-    function resizeIframe(frameid) {
-        var currentfr = document.getElementById(frameid);
-        if (currentfr) {
-            currentfr.style.display = "block";
-            if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
-            else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
-            if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
-            else if (currentfr.attachEvent) {
-                currentfr.detachEvent("onload", readjustIframe);
-                currentfr.attachEvent("onload", readjustIframe);
+        function resizeIframeByElement(frame) {
+            var currentfr = frame;
+            if (currentfr) {
+                currentfr.style.display = "block";
+                if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight;
+                else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = document.getElementById('Iframe15').Document.body.scrollHeight + 5;
             }
         }
-        //var dif = document.body.scrollHeight - window.frameElement.height;
-        //window.frameElement.height = document.body.scrollHeight - 22;
-    }
-
-    function readjustIframe(loadevt) {
-        var crossevt = (window.event) ? event : loadevt;
-        var iframeroot = (crossevt.currentTarget) ? crossevt.currentTarget : crossevt.srcElement;
-        if (iframeroot) resizeIframe(iframeroot.id);
-    }
-    function loadintoIframe(iframeid, url) {
-        if (document.getElementById) document.getElementById(iframeid).src = url;
-    }
-    if (window.addEventListener) window.addEventListener("load", resizeCaller, false);
-    else if (window.attachEvent) window.attachEvent("onload", resizeCaller);
-    else window.onload = resizeCaller;
-    //resize frame when resizing the window
-    if (window.addEventListener) window.addEventListener("resize", resizeCaller, false);
-    else if (window.attachEvent) window.attachEvent("onresize", resizeCaller);
-    else window.onresize = resizeCaller;
-
-
-    function maximizeWindow() {
-        var offset = (navigator.userAgent.indexOf("Mac") != -1 ||
-                        navigator.userAgent.indexOf("Gecko") != -1 ||
-                        navigator.appName.indexOf("Netscape") != -1) ? 0 : 4;
-        window.moveTo(-offset, -offset);
-        window.resizeTo(screen.availWidth + (2 * offset),
-                        screen.availHeight + (2 * offset));
-    }
-
-</script>
-<style>
-    
-    /* Light mode */
-    @@media (prefers-color-scheme: light) {
-        body {
-            background-color: white;
-            color: black;
+        function resizeIframe(frameid) {
+            var currentfr = document.getElementById(frameid);
+            if (currentfr) {
+                currentfr.style.display = "block";
+                if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
+                else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
+                if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
+                else if (currentfr.attachEvent) {
+                    currentfr.detachEvent("onload", readjustIframe);
+                    currentfr.attachEvent("onload", readjustIframe);
+                }
+            }
+            //var dif = document.body.scrollHeight - window.frameElement.height;
+            //window.frameElement.height = document.body.scrollHeight - 22;
         }
-   
-        li { background: FloralWhite; }
-        li:nth-child(odd) { background: PowderBlue; }
-    }
 
-    /* Dark mode */
-    @@media (prefers-color-scheme: dark) {
-        body {
-            background-color: black;
-            color: white;
+        function readjustIframe(loadevt) {
+            var crossevt = (window.event) ? event : loadevt;
+            var iframeroot = (crossevt.currentTarget) ? crossevt.currentTarget : crossevt.srcElement;
+            if (iframeroot) resizeIframe(iframeroot.id);
         }
+        function loadintoIframe(iframeid, url) {
+            if (document.getElementById) document.getElementById(iframeid).src = url;
+        }
+        if (window.addEventListener) window.addEventListener("load", resizeCaller, false);
+        else if (window.attachEvent) window.attachEvent("onload", resizeCaller);
+        else window.onload = resizeCaller;
+        //resize frame when resizing the window
+        if (window.addEventListener) window.addEventListener("resize", resizeCaller, false);
+        else if (window.attachEvent) window.attachEvent("onresize", resizeCaller);
+        else window.onresize = resizeCaller;
+
+
+        function maximizeWindow() {
+            var offset = (navigator.userAgent.indexOf("Mac") != -1 ||
+                            navigator.userAgent.indexOf("Gecko") != -1 ||
+                            navigator.appName.indexOf("Netscape") != -1) ? 0 : 4;
+            window.moveTo(-offset, -offset);
+            window.resizeTo(screen.availWidth + (2 * offset),
+                            screen.availHeight + (2 * offset));
+        }
+
+    </script>
+    <style>
+        
+        /* Light mode */
+        @@media (prefers-color-scheme: light) {
+            body {
+                background-color: white;
+                color: black;
+            }
     
-        li { background: dimgray; }
-        li:nth-child(odd) { background: gray; }
-    }
+            li { background: FloralWhite; }
+            li:nth-child(odd) { background: PowderBlue; }
+        }
+
+        /* Dark mode */
+        @@media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: white;
+            }
+        
+            li { background: dimgray; }
+            li:nth-child(odd) { background: gray; }
+        }
 
 
-        /* width */
-    /*Custom scrollbar*/
-    ::-webkit-scrollbar {
-    width: 7px;
-    }
+            /* width */
+        /*Custom scrollbar*/
+        ::-webkit-scrollbar {
+        width: 7px;
+        }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-    background: #888; 
-    }
+        /* Track */
+        ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #888; 
+        }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-    }
-</style>
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+        }
+    </style>
 </head>
-<body onunload="">
-<div style="text-align:center">
-    
+<body>
+    <div style="text-align:center">
         @{
-            string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
-            
-            }
-    <span style="color:red; font-size:medium; font-style:italic">@s</span>
-    <br />
-    <br />
-    @if (Model.Disabled){
-    <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
-    <br />
-    } 
-    @if (!Model.ReadOnly){ 
-        @using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
-        {
-            bool show_button = true; decimal output;
-            <table style="text-align:right; margin: auto">
-                @if (Model.EditChildren){ 
-                    @foreach(ANode node in Model.Children!){ 
-                        @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode)!.Formula, out output))
+            string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;    
+        }
+        <span style="color:red; font-size:medium; font-style:italic">@s</span>
+        <br />
+        <br />
+        @if (Model.Disabled){
+        <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
+        <br />
+        } 
+        @if (!Model.ReadOnly){ 
+            @using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
+            {
+                bool show_button = true; decimal output;
+                <table style="text-align:right; margin: auto">
+                    @if (Model.EditChildren){ 
+                        @foreach(ANode node in Model.Children!){ 
+                            @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode)!.Formula, out output))
+                                { 
+                                <tr>
+                                    <td>@node.Name</td>
+                                    <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                                    @{
+                                        bool MinIsSet = node.MinIsSet;
+                                        String Min = MinIsSet ? node.Min.ToString("0.#############################") : "∞";
+                                        bool MaxIsSet = node.MaxIsSet;
+                                        String Max = MaxIsSet ? node.Max.ToString("0.#############################") : "∞";
+                                    }
+                                    <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]")</td>
+                                </tr>     
+                            }  
+                            else 
+                            if(!node.BranchHidden() && node.Type == NodeType.Text)
+                                {
+                                    <tr>
+                                    <td>@node.Name</td>
+                                    <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                                </tr>   
+                                }       
+                        } 
+                    if (Model.Template || Model.BranchHidden()) show_button = false;     
+                    } else {
+                        @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode)!.Formula, out output))
                             { 
                             <tr>
-                                <td>@node.Name</td>
-                                <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                                <td> @Model.Name </td>
+                                <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
                                 @{
-                                    bool MinIsSet = node.MinIsSet;
-                                    String Min = MinIsSet ? node.Min.ToString("0.#############################") : "∞";
-                                    bool MaxIsSet = node.MaxIsSet;
-                                    String Max = MaxIsSet ? node.Max.ToString("0.#############################") : "∞";
-                                }
-                                <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]")</td>
-                            </tr>     
-                        }  
+                                        bool MinIsSet = Model.MinIsSet;
+                                        String Min = MinIsSet ? Model.Min.ToString("0.#############################") : "∞";
+                                        bool MaxIsSet = Model.MaxIsSet;
+                                        String Max = MaxIsSet ? Model.Max.ToString("0.#############################") : "∞";
+                                    }
+                                <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]") </td>
+                            </tr>
+                            }   
                         else 
-                         if(!node.BranchHidden() && node.Type == NodeType.Text)
-                            {
-                                <tr>
-                                <td>@node.Name</td>
-                                <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
-                            </tr>   
-                            }       
-                    } 
-                if (Model.Template || Model.BranchHidden()) show_button = false;     
-                } else {
-                    @if (!Model.BranchHidden() && Model.Type == NodeType.Math && Decimal.TryParse((Model as MathNode)!.Formula, out output))
-                        { 
+                        if (!Model.BranchHidden() && Model.Type == NodeType.Text)
+                        {
+                            <tr>
+                                <td> @Model.Name </td>
+                                <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
+                            </tr>
+                        }
+                    if (Model.Template || Model.BranchHidden()) show_button = false;                         
+                        }
+                    @if (show_button) { 
                         <tr>
-                            <td> @Model.Name </td>
-                            <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
-                            @{
-                                    bool MinIsSet = Model.MinIsSet;
-                                    String Min = MinIsSet ? Model.Min.ToString("0.#############################") : "∞";
-                                    bool MaxIsSet = Model.MaxIsSet;
-                                    String Max = MaxIsSet ? Model.Max.ToString("0.#############################") : "∞";
-                                }
-                            <td style="white-space:nowrap;"> @Html.Label("", "[" + Min + ", " + Max + "]") </td>
-                        </tr>
-                        }   
-                    else 
-                    if (!Model.BranchHidden() && Model.Type == NodeType.Text)
-                    {
-                        <tr>
-                            <td> @Model.Name </td>
-                            <td> @Html.TextBox("NodeValue" + Model.Id,"")</td>
+                            <td></td>
+                            <td><input type="button" class="input" onclick="get()" value="Save" /></td>
                         </tr>
                     }
-                   if (Model.Template || Model.BranchHidden()) show_button = false;                         
-                    }
-                @if (show_button) { 
-                    <tr>
-                        <td></td>
-                        <td><input type="button" class="input" onclick="get()" value="Save" /></td>
-                    </tr>
-                }
-            </table>
+                </table>
+            }
         }
-}
     </div>
 
+    <br />
+    @{
+        url = url.Replace("http:///","file:///");
+    }
+    <iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
 
-<br />
-@{
-    url = url.Replace("http:///","file:///");
-}
-<iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
-
-<div id="deps" style="display: none;">
-    <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
-    <ol class="list_dependents" id="dependents">
-       @foreach (string dependent in Model.Dependents!) {
-        ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
-        String href = dep.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dep.Url):"Description?id=" + dep.Id;
-        <li>
-            <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@href">@dep.Name</a><label style="color: black; font-size:small" > (@dep.GetPath()) </label>
+    <div id="deps" style="display: none;">
+        <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
+        <ol class="list_dependents" id="dependents">
+        @foreach (string dependent in Model.Dependents!) {
+            ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
+            String href = dep.Url.Contains("ChangeTreeValue")? Url.Content("~/" + dep.Url):"Description?id=" + dep.Id;
+            <li>
+                <a title="@dep.GetPath()" onclick="OpenNode('@dep.GetPath().Replace("\\",">")'); UnHideBranch('@dep.Id');" href="@href">@dep.Name</a><label style="color: black; font-size:small" > (@dep.GetPath()) </label>
+                </li>
+            } 
+        </ol>
+        <br />
+    </div>
+    <div id="refs" style="display: none;">
+        <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
+        <ol class="list_references" id="references">
+            @foreach (string reference in Model.References!) {
+            ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
+            String href = refe.Url.Contains("ChangeTreeValue")? Url.Content("~/" + refe.Url):"Description?id=" + refe.Id;
+            <li>
+                <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@href">@refe.Name</a><label style="color: black; font-size:small" > (@refe.GetPath()) </label>
             </li>
-        } 
-    </ol>
-    <br />
-</div>
-<div id="refs" style="display: none;">
-    <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
-    <ol class="list_references" id="references">
-        @foreach (string reference in Model.References!) {
-        ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
-        String href = refe.Url.Contains("ChangeTreeValue")? Url.Content("~/" + refe.Url):"Description?id=" + refe.Id;
-        <li>
-            <a title="@refe.GetPath()" onclick="OpenNode('@refe.GetPath().Replace("\\",">")'); UnHideBranch('@refe.Id');" href="@href">@refe.Name</a><label style="color: black; font-size:small" > (@refe.GetPath()) </label>
-        </li>
-        } 
-    </ol>
-    <br />
-    <br />
-</div>
-<script>
-    $(function () {
-        $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
-        $(".list_references li").sort(asc_sort).appendTo('.list_references');
-        //$("#dependents").hide();
-        //$("#references").hide();
-        
-        $('#formID').keypress(function (e) {
-            if (e.which == 13) {
-                e.preventDefault();
-                $('.input').click();
-            }
-        });
-    });
-    function get() {
-        //Post values to server
-        var data = $('#formID').serialize();
-        //$.get('CommitTreeValue', data);
-
-        //Get total price
-        $.ajax({
-            url: "CommitTreeValue",
-            type: 'GET',
-            data: data,
-            cache: false,
-            beforeSend: function () {
-            },
-            complete: function () {
-                top.dialog.dialog("close");
-            },
-            success: function (result) {
-                if (result == "_SessionTimeout_") {
-                    parent.document.location = "/SessionTimeOut.html";
-                    return false;
+            } 
+        </ol>
+        <br />
+        <br />
+    </div>
+    <script>
+        $(function () {
+            $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
+            $(".list_references li").sort(asc_sort).appendTo('.list_references');
+            //$("#dependents").hide();
+            //$("#references").hide();
+            
+            $('#formID').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $('.input').click();
                 }
-                //Update the price in the page
-                top.asynchronous = false;
-                price = window.parent.document.getElementById("price");
-                $(price).text("Total: " + result);
-                if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
-                    //Open the node
-                    parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
-                    //var array = [];
-                    var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
-                    var merged = "";
-                    for (var i = 0; i < children.length; i++) {
-                        var childID = children[i].id.replace(/li_/g, "");
+            });
+        });
+        function get() {
+            //Post values to server
+            var data = $('#formID').serialize();
+            //$.get('CommitTreeValue', data);
+
+            //Get total price
+            $.ajax({
+                url: "CommitTreeValue",
+                type: 'GET',
+                data: data,
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                    top.dialog.dialog("close");
+                },
+                success: function (result) {
+                    //Update the price in the page
+                    top.asynchronous = false;
+                    price = window.parent.document.getElementById("price");
+                    $(price).text("Total: " + result);
+                    if ($("input[id='editchildren_@Model.Id']", parent.document).attr("value") == "true") {
+                        //Open the node
+                        parent.$.jstree._reference("li[id='li_@Model.Id']").open_node("li[id='li_@Model.Id']");
+                        //var array = [];
+                        var children = $("li[id='li_@Model.Id']", parent.document).children('ul').children('li');
+                        var merged = "";
+                        for (var i = 0; i < children.length; i++) {
+                            var childID = children[i].id.replace(/li_/g, "");
+                            //Merge dependents and branch nodes then update
+                            var dependents = ";" + $("input[id='dependents_" + childID + "']", parent.document).attr("value");
+                            var branch = parent.GetBranch(childID);
+                            var branchArray = branch.split(";");
+                            for (var j = 0; j < branchArray.length; j++) {
+                                if (dependents.indexOf(";" + branchArray[j] + ";") == -1) dependents = dependents + ";" + branchArray[j];
+                            }
+
+                            //get not optional descendents, this is to update the complete/incomplete images.
+                            //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
+                            var descendents = $("li[id='" + childID + "']", parent.document).find("li");
+                            for (var k = 0; k < descendents.length; k++) {
+                                dependents += ";" + descendents[k].id.replace(/li_/g, "");
+                            }
+                            //}
+
+                            //parent.UpdateNodesFromServer(dependents);
+                            //merge each child depentents into a single list
+                            var dependentsArray = dependents.split(";");
+                            for (var l = 0; l < dependentsArray.length; l++) {
+                                if (merged.indexOf(";" + dependentsArray[l] + ";") == -1) merged = merged + ";" + dependentsArray[l];
+                            }
+                        }
+                        //parent.UpdateNodesFromServer(merged);
+                        parent.UpdateTreeSync();
+                        //parent.UpdateDependents(array);
+                    }
+                    else {
+                    
+                        //This will updated current node and dependents
+                        //UpdateDependents(parentliIDclean);
                         //Merge dependents and branch nodes then update
-                        var dependents = ";" + $("input[id='dependents_" + childID + "']", parent.document).attr("value");
-                        var branch = parent.GetBranch(childID);
+                        var dependents = ";" + $("input[id='dependents_" + "@Model.Id" + "']", parent.document).attr("value");
+                        var branch = parent.GetBranch("@Model.Id");
                         var branchArray = branch.split(";");
-                        for (var j = 0; j < branchArray.length; j++) {
-                            if (dependents.indexOf(";" + branchArray[j] + ";") == -1) dependents = dependents + ";" + branchArray[j];
+                        for (var i = 0; i < branchArray.length; i++) {
+                            if (dependents.indexOf(";" + branchArray[i] + ";") == -1) dependents = dependents + ";" + branchArray[i];
                         }
 
                         //get not optional descendents, this is to update the complete/incomplete images.
                         //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
-                        var descendents = $("li[id='" + childID + "']", parent.document).find("li");
-                        for (var k = 0; k < descendents.length; k++) {
-                            dependents += ";" + descendents[k].id.replace(/li_/g, "");
+                        var descendents = $("li[id='" + "@Model.Id" + "']", parent.document).find("li");
+                        for (var i = 0; i < descendents.length; i++) {
+                            dependents += ";" + descendents[i].id.replace(/li_/g, "");
                         }
                         //}
 
-                        //parent.UpdateNodesFromServer(dependents);
-                        //merge each child depentents into a single list
-                        var dependentsArray = dependents.split(";");
-                        for (var l = 0; l < dependentsArray.length; l++) {
-                            if (merged.indexOf(";" + dependentsArray[l] + ";") == -1) merged = merged + ";" + dependentsArray[l];
+                        parent.UpdateNodesFromServer(dependents);
+                        //parent.UpdateTreeSync();
+                    }
+                    top.asynchronous = true;
+                    //Redirect to QuoteDetails to show the complete price quote **!! if I do this the recursive javascript is halted and the tree is not correctly updated
+                    //window.location = "QuoteDetails";
+                },
+                error: function (result) {
+                    alert("Error updating total from server!");
+                }
+            });   //end ajax
+            //while (parent.$.active != 0) { }
+        }
+
+
+        // accending sort
+        function asc_sort(a, b) {
+            return ($(b).text()) < ($(a).text()) ? 1 : -1;
+        }
+
+        // decending sort
+        function dec_sort(a, b) {
+            return ($(b).text()) > ($(a).text()) ? 1 : -1;
+        }
+
+        //Receives a node's full path and opens the node
+        function OpenNode(node) {
+            var split = node.split('>');
+            var current = "li[id='li_1']";
+            top.asynchronous = false;
+            for (var i = 0; i < split.length; i++) {                
+                //1:Open the node
+                parent.$.jstree._reference(current).open_node(current, function () {
+                    if (i == split.length - 1) {
+                        parent.$.jstree._reference("li[id='li_@Model.Id']").deselect_all();
+                        parent.$.jstree._reference(current).select_node(current);
+                        $('html', parent.document).scrollTop($(current, parent.document).offset().top);
+                    }
+                    else {
+                        //2:Get next node
+                        var children = $(current, parent.document).children('ul').children('li');
+                        for (var j = 0; j < children.length; j++) {
+                            if ($(children[j]).children('a').children('span:first').text() == split[i + 1]) {
+                                current = "li[id='" + $(children[j]).attr('id') + "']";
+                                break;
+                            }
                         }
                     }
-                    //parent.UpdateNodesFromServer(merged);
-                    parent.UpdateTreeSync();
-                    //parent.UpdateDependents(array);
-                }
-                else {
-                   
-                    //This will updated current node and dependents
-                    //UpdateDependents(parentliIDclean);
-                    //Merge dependents and branch nodes then update
-                    var dependents = ";" + $("input[id='dependents_" + "@Model.Id" + "']", parent.document).attr("value");
-                    var branch = parent.GetBranch("@Model.Id");
-                    var branchArray = branch.split(";");
-                    for (var i = 0; i < branchArray.length; i++) {
-                        if (dependents.indexOf(";" + branchArray[i] + ";") == -1) dependents = dependents + ";" + branchArray[i];
-                    }
-
-                    //get not optional descendents, this is to update the complete/incomplete images.
-                    //if ($("input[id='nodetype_" + parentliID.replace(/li_/g, "") + "']").attr("value") != "Decision") {
-                    var descendents = $("li[id='" + "@Model.Id" + "']", parent.document).find("li");
-                    for (var i = 0; i < descendents.length; i++) {
-                        dependents += ";" + descendents[i].id.replace(/li_/g, "");
-                    }
-                    //}
-
-                    parent.UpdateNodesFromServer(dependents);
-                    //parent.UpdateTreeSync();
-                }
-                top.asynchronous = true;
-                //Redirect to QuoteDetails to show the complete price quote **!! if I do this the recursive javascript is halted and the tree is not correctly updated
-                //window.location = "QuoteDetails";
-            },
-            error: function (result) {
-                alert("Error updating total from server!");
+                });
             }
-        });   //end ajax
-        //while (parent.$.active != 0) { }
-    }
-
-
-    // accending sort
-    function asc_sort(a, b) {
-        return ($(b).text()) < ($(a).text()) ? 1 : -1;
-    }
-
-    // decending sort
-    function dec_sort(a, b) {
-        return ($(b).text()) > ($(a).text()) ? 1 : -1;
-    }
-
-    //Receives a node's full path and opens the node
-    function OpenNode(node) {
-        var split = node.split('>');
-        var current = "li[id='li_1']";
-        top.asynchronous = false;
-        for (var i = 0; i < split.length; i++) {                
-            //1:Open the node
-            parent.$.jstree._reference(current).open_node(current, function () {
-                if (i == split.length - 1) {
-                    parent.$.jstree._reference("li[id='li_@Model.Id']").deselect_all();
-                    parent.$.jstree._reference(current).select_node(current);
-                    $('html', parent.document).scrollTop($(current, parent.document).offset().top);
-                }
-                else {
-                    //2:Get next node
-                    var children = $(current, parent.document).children('ul').children('li');
-                    for (var j = 0; j < children.length; j++) {
-                        if ($(children[j]).children('a').children('span:first').text() == split[i + 1]) {
-                            current = "li[id='" + $(children[j]).attr('id') + "']";
-                            break;
-                        }
-                    }
-                }
-            });
+            top.asynchronous = true;
         }
-        top.asynchronous = true;
-    }
 
-    function UnHideBranch(id) {
-        $("li[id='li_" + id + "']", parent.document).show();
-        parent.RefreshFillers(id,false);
-        var parentulID = $("li[id='li_" + id + "']", parent.document).parent().attr("id");
-        //Recursive call
-        if ($("li[id='li_" + id + "']", parent.document).parent().parent().attr("id") != "container")
-            UnHideBranch(parentulID.replace(/li_ul_/g, ""));
-    }
-
-    $( document ).ready(function() {
-    	var title = parent.document.title;
-        if(title.startsWith("Edit Definition")){
-            $("#deps").show();
-            $("#refs").show();
+        function UnHideBranch(id) {
+            $("li[id='li_" + id + "']", parent.document).show();
+            parent.RefreshFillers(id,false);
+            var parentulID = $("li[id='li_" + id + "']", parent.document).parent().attr("id");
+            //Recursive call
+            if ($("li[id='li_" + id + "']", parent.document).parent().parent().attr("id") != "container")
+                UnHideBranch(parentulID.replace(/li_ul_/g, ""));
         }
-	});
-</script>
+
+        $( document ).ready(function() {
+            var title = parent.document.title;
+            if(title.startsWith("Edit Definition")){
+                $("#deps").show();
+                $("#refs").show();
+            }
+        });
+    </script>
 </body>
 </html>

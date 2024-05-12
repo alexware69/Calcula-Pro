@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 
 <html>
-<head runat="server">
+<head>
     <meta name="viewport" content="width=device-width" />
     <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
     <meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
@@ -20,7 +20,6 @@
     <script src="@Url.Content("~/js/jquery.hotkeys.js")"></script>
 
     <script>
-
         var iframeids = ["Iframe2"];
         var iframehide = "yes";
         var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
@@ -84,8 +83,7 @@
             window.resizeTo(screen.availWidth + (2 * offset),
                             screen.availHeight + (2 * offset));
         }
-
-</script>
+    </script>
 
     <style>
         /* Light mode */
@@ -133,51 +131,49 @@
         }
     </style>
 </head>
-<body onunload="">
-
-     <div style="text-align:center">
-            @{
-            string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
-            
-            }
-        <span style="color:red; font-size:medium; font-style:italic">@s</span>
-        <br />
-         @if (Model.Disabled){ 
-        <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
-        <br />
-        } 
-          @using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
-           {
+<body>
     <div style="text-align:center">
-        @{bool show_button = true; decimal output;}
-        <table style="text-align:right; margin: auto">
-            @if (Model.EditChildren){ 
-                @foreach(ANode node in Model.Children!){ 
-                    @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode)!.Formula, out output))
-                      { 
-                        <tr>
-                            <td>@node.Name</td>
-                            <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
-                            <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString() + ", " + node.Max.ToString() + "]")</td>
-                        </tr>     
-                    }  
-                    else show_button = false;    
-                } 
-                @if (show_button) { 
-                        <tr>
-                            <td></td>
-                            <td><input type="button" class="input" onclick="get()" value="Save" /></td>
-                        </tr>
-                    }   
-            }
-            
-        </table>
-     </div>
+    @{
+        string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
     }
-
+    <span style="color:red; font-size:medium; font-style:italic">@s</span>
     <br />
+        @if (Model.Disabled){ 
+    <label style="color:red">*Disabled* &nbsp;</label> <label style="font-size:small"> @Model.DisabledMessage</label>
+    <br />
+    } 
+    @using (Html.BeginForm("ChangeTreeValue", "TreeView", FormMethod.Get, new { id = "formID" }))
+        {
+        <div style="text-align:center">
+            @{bool show_button = true; decimal output;}
+            <table style="text-align:right; margin: auto">
+                @if (Model.EditChildren){ 
+                    @foreach(ANode node in Model.Children!){ 
+                        @if (!node.BranchHidden() && node.Type == NodeType.Math && Decimal.TryParse((node as MathNode)!.Formula, out output))
+                        { 
+                            <tr>
+                                <td>@node.Name</td>
+                                <td>@Html.TextBox("NodeValue" + node.Id, "")</td>
+                                <td style="white-space:nowrap;"> @Html.Label("", "[" + node.Min.ToString() + ", " + node.Max.ToString() + "]")</td>
+                            </tr>     
+                        }  
+                        else show_button = false;    
+                    } 
+                    @if (show_button) { 
+                            <tr>
+                                <td></td>
+                                <td><input type="button" class="input" onclick="get()" value="Save" /></td>
+                            </tr>
+                        }   
+                }
+                
+            </table>
+        </div>
+        }
 
-      </div>
+        <br />
+
+    </div>
 
     <div>
 		@{
@@ -240,10 +236,6 @@
                     top.dialog.dialog("close");
                 },
                 success: function (result) {
-                    if (result == "_SessionTimeout_") {
-                        parent.document.location = "/SessionTimeOut.html";
-                        return false;
-                    }
                     //Update the price in the page
                     top.asynchronous = false;
                     price = window.parent.document.getElementById("price");
