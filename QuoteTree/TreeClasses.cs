@@ -728,7 +728,6 @@ namespace QuoteTree;
 
 		public string GetValueFromDirectory(string field, string dir)
 		{
-
 			String? line;
 			string s = "";
 			string[] splitted;
@@ -773,7 +772,7 @@ namespace QuoteTree;
 		{
 			_Children!.Sort(new NodeComparer());
 			foreach (ANode n in _Children)
-				n.SortChildren();
+            n.SortChildren();
 		}
 		public MemoryStream Serialize()
 		{
@@ -793,7 +792,7 @@ namespace QuoteTree;
 			node = formater.Deserialize(ms);
 			ms.Close();
             ms.Dispose();
-        System.GC.Collect();
+            System.GC.Collect();
 			return (node as ANode)!;
 		}
 		public string GetPath()
@@ -807,7 +806,6 @@ namespace QuoteTree;
 
 			}
 			return s;
-
 		}
 		public ANode? FindChildNode(string name)
 		{
@@ -817,11 +815,12 @@ namespace QuoteTree;
 			return null;
 		}
 
-    private string extractString(string text) {   
+        private string extractString(string text) 
+        {   
             StringBuilder sb = new(text);
             int startIndex = 0; // (Don't) Skip initial quote
-        int slashIndex;
-        while ((slashIndex = sb.ToString().IndexOf('$', startIndex)) != -1)
+            int slashIndex;
+            while ((slashIndex = sb.ToString().IndexOf('$', startIndex)) != -1)
             {
                 char escapeType = sb[slashIndex + 1];
                 switch (escapeType)
@@ -841,9 +840,7 @@ namespace QuoteTree;
                 }
 
                 startIndex = slashIndex + 1;
-
             }
-
             return sb.ToString();
         }
 
@@ -1171,7 +1168,6 @@ namespace QuoteTree;
             ParentTree.EvaluateParameterCounter--;
         }
 		#endregion
-
 	}
 
 	[Serializable]
@@ -1232,12 +1228,6 @@ namespace QuoteTree;
         {
             return 0;
         }
-
-
-		public decimal Total1()
-		{
-			return 0;
-		}
 
 		public TextNode()
 		{
@@ -1366,8 +1356,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -1579,9 +1567,9 @@ namespace QuoteTree;
 
 		public override bool IsComplete()
 		{
-        if (!BranchSelected() || BranchHidden()) return true;
-        //Check for Entered property
-        if (Decimal.TryParse(Formula, out decimal output) && !ReadOnly)
+            if (!BranchSelected() || BranchHidden()) return true;
+            //Check for Entered property
+            if (Decimal.TryParse(Formula, out decimal output) && !ReadOnly)
             {
                 if (!Entered && (!Optional || (Optional && Selected))) return false;
             }
@@ -1738,8 +1726,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -1958,7 +1944,6 @@ namespace QuoteTree;
             catch (Exception)
             { }
             Description = s;
-
         }
 
         public DateNode(NameValueCollection values, QTree tree)
@@ -1979,8 +1964,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -2260,8 +2243,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -2584,8 +2565,6 @@ namespace QuoteTree;
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
 
-            Stack<ANode> stack = new();
-
             //first set the node as writeable
             ReadOnly = false;
             if (node == null) Id = "1";
@@ -2737,13 +2716,12 @@ namespace QuoteTree;
 			Report = false;
 			ReportValue = false;
 			Template = false;
-
 		}
 
 		public DecisionNode(string path, ANode? parent, QTree parentTree, string id)
 			: this()
 		{
-        ParentTree = parentTree;
+            ParentTree = parentTree;
 			if (parent != null) Parent = parent;
 
 
@@ -2835,8 +2813,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -3065,8 +3041,6 @@ namespace QuoteTree;
             if (node != null && node.Children != null)
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
-
-            Stack<ANode> stack = new();
 
             //first set the node as writeable
             ReadOnly = false;
@@ -3302,8 +3276,6 @@ namespace QuoteTree;
             foreach (ANode n in node.Children)
                 if (n.Name.Trim() == values["name"]!.Trim()) return;
 
-            Stack<ANode> stack = new();
-
             //first set the node as writeable
             ReadOnly = false;
             if (node == null) Id = "1";
@@ -3373,7 +3345,7 @@ namespace QuoteTree;
 		public string GetSelectionsString(ANode start)
 		{
 			string s = "";
-        if (start != null && !start.Hidden && start.Selected && start.Report)
+            if (start != null && !start.Hidden && start.Selected && start.Report)
 			{
 				s += start.Name;
 				if (start.ReportValue)
@@ -3402,7 +3374,7 @@ namespace QuoteTree;
 		public string GetSelectionsString(ANode start, int indent)
 		{
 			string s = "";
-        string indentspace = "";
+            string indentspace = "";
 			if (start != null && !start.Hidden && start.Selected && start.Report)
 			{
 				s += start.Name;
@@ -3434,7 +3406,7 @@ namespace QuoteTree;
         public string GetSelections(ANode start, int indent, Dictionary<string,string> selection)
         {
             string s = "";
-        string indentspace = "";
+            string indentspace = "";
             if (start != null && !start.Hidden && start.Selected && start.Report)
             {
                 s += start.Name;
@@ -3966,13 +3938,12 @@ namespace QuoteTree;
         {
             RemoveDependents(Root!);
             RemoveReferences(Root!);
-            Stack<ANode> stack = new();
-        //the following method call is no longer needed, improves greatly performance.
-        //SetDependentsByHierarchy(Root, stack);
-        //This needs to be done twice in order to catch all dependents
-        Tuple<ANode, ANode>? tuple = SetDependentsByReference(Root!, true);
-        if (tuple == null)
-                tuple = SetDependentsByReference(Root!, true);
+            //the following method call is no longer needed, improves greatly performance.
+            //SetDependentsByHierarchy(Root, stack);
+            //This needs to be done twice in order to catch all dependents
+            Tuple<ANode, ANode>? tuple = SetDependentsByReference(Root!, true);
+            if (tuple == null)
+                    tuple = SetDependentsByReference(Root!, true);
 
             if (tuple != null) return tuple;
             return null;
@@ -4070,7 +4041,6 @@ namespace QuoteTree;
 
                     
                 node.Units = values["units"]!.Trim();
-                Stack<ANode> stack = new();
                 switch (node.Type)
                 {
                     case NodeType.Math:
