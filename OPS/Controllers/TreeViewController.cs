@@ -343,34 +343,38 @@ namespace OnlinePriceSystem.Controllers
             }
             catch //Check if the file has .html extension instead of .htm
             {
-                FileStream fs = new(url.Replace(".htm",".html"), FileMode.Open, FileAccess.Read);
-                //Set up the pictures
-                var htmlDoc = new HtmlDocument();
-                string contents;
-                using(var sr = new StreamReader(fs))
+                try 
                 {
-                    contents = sr.ReadToEnd();
-                }
-                htmlDoc.LoadHtml(contents);
-                string mediaName;
-                string path;
-                var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
-                if(nodes == null || nodes.Count == 0) updatedStr = contents;
-                else
-                {
-                    foreach(var iNode in nodes)
+                    FileStream fs = new(url.Replace(".htm",".html"), FileMode.Open, FileAccess.Read);
+                    //Set up the pictures
+                    var htmlDoc = new HtmlDocument();
+                    string contents;
+                    using(var sr = new StreamReader(fs))
                     {
-                        mediaName = "";
-                        updatedStr = "";
-                        mediaName = iNode.Attributes["src"].Value;
-                        path = HttpContext.Session.GetString("path");
-                        int lastItem = url.LastIndexOf("/");
-                        urlTemp = url.Substring(0,lastItem + 1) + mediaName;
-                        if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
-                        iNode.SetAttributeValue("src", urlTemp);
+                        contents = sr.ReadToEnd();
                     }
+                    htmlDoc.LoadHtml(contents);
+                    string mediaName;
+                    string path;
+                    var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
+                    if(nodes == null || nodes.Count == 0) updatedStr = contents;
+                    else
+                    {
+                        foreach(var iNode in nodes)
+                        {
+                            mediaName = "";
+                            updatedStr = "";
+                            mediaName = iNode.Attributes["src"].Value;
+                            path = HttpContext.Session.GetString("path");
+                            int lastItem = url.LastIndexOf("/");
+                            urlTemp = url.Substring(0,lastItem + 1) + mediaName;
+                            if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
+                            iNode.SetAttributeValue("src", urlTemp);
+                        }
+                    }
+                    updatedStr = htmlDoc.DocumentNode.OuterHtml;
                 }
-                updatedStr = htmlDoc.DocumentNode.OuterHtml;
+                catch{}
             }
             
             return Content(updatedStr,"text/html");            
@@ -647,27 +651,14 @@ namespace OnlinePriceSystem.Controllers
             return writer.GetStringBuilder().ToString();
         }
 
-        public  async Task<FileResult> SaveQuote()
+        public FileResult SaveQuote()
         {
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            TempData["root"] = tree.Root!;                
-            Dictionary<string, string> selection;
-            selection = tree.GetSelections();
-
-            var renderedView = await RenderPartialViewToString("QuoteDetails", selection);
-
-            //Do what you want with the renderedView here
-            //Removing the Save Quote button from the html file
-            var htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(renderedView);
-            var nodes = htmlDoc.DocumentNode.SelectNodes("//input");
-            var button = nodes[0];
-            button.SetAttributeValue("hidden", "hidden");
-            var updatedStr = htmlDoc.DocumentNode.OuterHtml;
-
-            return File(Encoding.UTF8.GetBytes(updatedStr), "text/plain", "Quote.html");
+            string serializedXMLTree = tree.SerializeToString();
+  
+            return File(Encoding.UTF8.GetBytes(serializedXMLTree), "text/plain", "Quote.xml");
         }
 
 		[HttpGet]		

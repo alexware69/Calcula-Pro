@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Globalization;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace QuoteTree;
 [Serializable]
@@ -254,6 +255,14 @@ namespace QuoteTree;
 	}
 
 	[Serializable]
+	[XmlInclude(typeof(MathNode))]
+	[XmlInclude(typeof(DecisionNode))]
+	[XmlInclude(typeof(ConditionalNode))]
+	[XmlInclude(typeof(TextNode))]
+	[XmlInclude(typeof(SumSetNode))]
+    [XmlInclude(typeof(ReferenceNode))]
+    [XmlInclude(typeof(DateNode))]
+    [XmlInclude(typeof(TodayNode))]
     public abstract class ANode : INode
 	{
 
@@ -265,8 +274,10 @@ namespace QuoteTree;
         [JsonProperty]
         private List<ANode>? _Children;
         
+        [XmlIgnore]
         private List<string>? _Dependents;
-        
+
+        [XmlIgnore]
         private List<string>? _References;
 		private decimal _Discount;
         private bool _MaxIsSet;
@@ -289,8 +300,12 @@ namespace QuoteTree;
 		private bool _Optional;
         private string _DisableCondition = "";
         private string _DisabledMessage = "";
+
+        [XmlIgnore]
         private ANode? _Parent;
 		private string _Description = "";
+
+        [XmlIgnore]
         private QTree? _ParentTree;
 		private decimal _Amount;
 		private bool _CheckBox;
@@ -365,12 +380,14 @@ namespace QuoteTree;
 			set { _Children = value; }
 		}
 
+        [XmlIgnore]
         public List<string>? Dependents
 		{
 			get { return _Dependents; }
 			set { _Dependents = value; }
 		}
 
+        [XmlIgnore]
         public string DependentsStr
         {
             get {
@@ -381,6 +398,7 @@ namespace QuoteTree;
             set { }
         }
 
+        [XmlIgnore]
         public List<string>? References
 		{
 			get { return _References; }
@@ -546,6 +564,7 @@ namespace QuoteTree;
             set { _DisabledMessage = value; }
         }
        
+        [XmlIgnore]
         public ANode? Parent
 		{
 			get { return _Parent; }
@@ -558,6 +577,7 @@ namespace QuoteTree;
 			set { _Description = value; }
 		}
 
+        [XmlIgnore]
 		public QTree ParentTree
 		{
 			get { return _ParentTree!; }
@@ -4375,6 +4395,16 @@ namespace QuoteTree;
             QTree tree = (formater.Deserialize(memory_stream) as QTree)!;
             tree!.TotalCounter = 0;
             return tree;
+        }
+
+        public string SerializeToString()
+		{
+			XmlSerializer serializer = new(this.GetType());
+
+            using StringWriter writer = new();
+            serializer.Serialize(writer, this);
+
+            return writer.ToString();
         }
 	}
 
