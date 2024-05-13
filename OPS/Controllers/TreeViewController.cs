@@ -658,7 +658,7 @@ namespace OnlinePriceSystem.Controllers
 
             string serializedXMLTree = tree.SerializeToString();
   
-            return File(Encoding.UTF8.GetBytes(serializedXMLTree), "text/plain", "Quote.xml");
+            return File(Encoding.UTF8.GetBytes(serializedXMLTree), "text/plain", tree.Root!.Name + ".xml");
         }
 
 		[HttpGet]		
