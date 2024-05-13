@@ -14,7 +14,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>QuoteDetails</title>
-    <script src="../js/jquery-2.1.3.min.js"></script>
     <script>        
         function Save() {
             window.parent.window.location = "SaveQuote";
@@ -99,25 +98,5 @@
         <br />
     </div>    
     }
-
-    <script>
-        function saveQuote() {
-            $.ajax({
-                url: "SaveQuote",
-                type: 'GET',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                    alert("Success!");
-                },
-                error: function (result) {
-                    alert("Error retrieving quote from server!");
-                }
-            });   //end ajax
-        }
-    </script>
 </body>
 </html>
