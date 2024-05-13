@@ -255,7 +255,6 @@ namespace QuoteTree;
 	}
 
 	[Serializable]
-    [XmlInclude(typeof(ANode))]
 	[XmlInclude(typeof(MathNode))]
 	[XmlInclude(typeof(DecisionNode))]
 	[XmlInclude(typeof(ConditionalNode))]
@@ -266,7 +265,6 @@ namespace QuoteTree;
     [XmlInclude(typeof(TodayNode))]
     public abstract class ANode : INode
 	{
-
 		#region Private fields
 
 		private string _Name = "";
@@ -275,10 +273,8 @@ namespace QuoteTree;
         [JsonProperty]
         private List<ANode>? _Children;
         
-        [XmlIgnore]
         private List<string>? _Dependents;
         
-        [XmlIgnore]
         private List<string>? _References;
 		private decimal _Discount;
         private bool _MaxIsSet;
@@ -301,12 +297,8 @@ namespace QuoteTree;
 		private bool _Optional;
         private string _DisableCondition = "";
         private string _DisabledMessage = "";
-
-        [XmlIgnore]
         private ANode? _Parent;
 		private string _Description = "";
-
-        [XmlIgnore]
         private QTree? _ParentTree;
 		private decimal _Amount;
 		private bool _CheckBox;
@@ -328,21 +320,18 @@ namespace QuoteTree;
 			set { _ID = value; }
 		}
 
-        [XmlIgnore]
 		public NodeType Type
 		{
 			get { return _Type; }
 			set { _Type = value; }
 		}
 
-        [XmlIgnore]
         public string TypeStr
         {
             get { return Type.ToString(); }
             set {}
         }
         
-        [XmlIgnore]
         public decimal Subtotal
         {
             get 
@@ -361,14 +350,12 @@ namespace QuoteTree;
             set { }
         }
 
-        [XmlIgnore]
         public virtual int DecimalPlaces
         {
             get {return _DecimalPlaces;}
             set {if(value <= 10) _DecimalPlaces = value;}
         }
 
-        [XmlIgnore]
         public bool Complete
         {
             get
@@ -412,63 +399,54 @@ namespace QuoteTree;
 			set { _References = value; }
 		}
 
-        [XmlIgnore]
 		public virtual decimal Discount
 		{
 			get { return _Discount; }
 			set { _Discount = value; }
 		}
 
-        [XmlIgnore]
         public bool MaxIsSet
 		{
 			get { return _MaxIsSet; }
 			set { _MaxIsSet = value; }
 		}
 
-        [XmlIgnore]
 		public virtual decimal Max
 		{
 			get { return _Max; }
 			set { _Max = value; }
 		}
 
-        [XmlIgnore]
         public bool MinIsSet
 		{
 			get { return _MinIsSet; }
 			set { _MinIsSet = value; }
 		}
 
-        [XmlIgnore]
 		public virtual decimal Min
 		{
 			get { return _Min; }
 			set { _Min = value; }
 		}
 
-        [XmlIgnore]
 		public bool Template
 		{
 			get { return _Template; }
 			set { _Template = value; }
 		}
 
-        [XmlIgnore]
         public bool Leaf
         {
             get { return Children == null || Children.Count == 0; }
             set { }
         }
 
-        [XmlIgnore]
         public int Order
 		{
 			get { return _Order; }
 			set { _Order = value; }
 		}
 
-        [XmlIgnore]
 		public virtual bool Selected
 		{
 			get 
@@ -490,7 +468,6 @@ namespace QuoteTree;
 			}
 		}
 
-        [XmlIgnore]
 		public bool Hidden
 		{
 			get 
@@ -501,56 +478,48 @@ namespace QuoteTree;
 			set { _Hidden = value; }
 		}
 
-        [XmlIgnore]
 		public bool ReadOnly
 		{
 			get { return _ReadOnly; }
 			set { _ReadOnly = value; }
 		}
 
-        [XmlIgnore]
 		public bool Expanded
 		{
 			get { return _Expanded; }
 			set { _Expanded = value; }
 		}
 
-        [XmlIgnore]
 		public int ExpandedLevels
 		{
 			get { return _ExpandedLevels; }
 			set { _ExpandedLevels = value; }
 		}
 
-        [XmlIgnore]
 		public virtual string Units
 		{
 			get { return _Units; }
 			set { _Units = value.Trim(); }
 		}
 
-        [XmlIgnore]
 		public bool Report
 		{
 			get { return _Report; }
 			set { _Report = value; }
 		}
 
-        [XmlIgnore]
 		public bool ReportValue
 		{
 			get { return _ReportValue; }
 			set { _ReportValue = value; }
 		}
 
-        [XmlIgnore]
 		public virtual bool Optional
 		{
 			get { return _Optional; }
 			set { _Optional = value; }
 		}
 
-        [XmlIgnore]
         public virtual bool Disabled
         {
             get 
@@ -578,14 +547,12 @@ namespace QuoteTree;
             }
         }
 
-        [XmlIgnore]
         public string DisableCondition
         {
             get { return _DisableCondition; }
             set { _DisableCondition = value; }
         }
 
-        [XmlIgnore]
         public virtual string DisabledMessage
         {
             get { return _DisabledMessage; }
@@ -599,7 +566,6 @@ namespace QuoteTree;
 			set { _Parent = value; }
 		}
 
-        [XmlIgnore]
 		public string Description
 		{
 			get { return _Description; }
@@ -613,35 +579,30 @@ namespace QuoteTree;
 			set { _ParentTree = value; }
 		}
 
-        [XmlIgnore]
 		public virtual decimal Amount
 		{
 			get { return _Amount; }
 			set { _Amount = value; }
 		}
 
-        [XmlIgnore]
 		public bool CheckBox
 		{
 			get { return _CheckBox; }
 			set { _CheckBox = value; }
 		}
 
-        [XmlIgnore]
 		public string Url
 		{
 			get { return _Url; }
 			set { _Url = value; }
 		}
 
-        [XmlIgnore]
         public string Error
         {
             get { return _Error; }
             set { _Error = value; }
         }
 
-        [XmlIgnore]
         public bool EditChildren
         {
             get { return _EditChildren; }
@@ -691,7 +652,7 @@ namespace QuoteTree;
 
         #region Non-abstract methods
         // don't serialize the node property if level greater than ExpandedLevels
-        public bool ShouldSerializeChildren()
+        /*public bool ShouldSerializeChildren()
         {
             QTree tree = ParentTree;
             int expandedLevels = tree.Root!.ExpandedLevels;
@@ -699,7 +660,7 @@ namespace QuoteTree;
             int countDots = id.Split(".".ToCharArray()).Length - 1;
             return countDots < expandedLevels;
                 
-        }
+        }*/
 
         public bool IsCurrencySymbol(string s)
         {
@@ -1253,7 +1214,6 @@ namespace QuoteTree;
             }
 		}
 
-        [XmlIgnore]
         public bool Entered
         {
             get { return _Entered; }
@@ -1481,7 +1441,6 @@ namespace QuoteTree;
         bool _Entered;
 
 		// *****Properties*****
-		[XmlIgnore]
         public string Formula
 		{
 			get 
@@ -1528,7 +1487,6 @@ namespace QuoteTree;
             }
 		}
 
-        [XmlIgnore]
         public bool Entered
         {
             get { return _Entered; }
@@ -2690,7 +2648,6 @@ namespace QuoteTree;
 		bool _IsUserDecision;
 
 		// *****Properties*****
-        [XmlIgnore]
 		public bool IsUserDecision
 		{
 			get { return _IsUserDecision; }
