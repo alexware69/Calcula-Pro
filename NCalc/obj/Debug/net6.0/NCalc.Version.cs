@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Reflection.AssemblyVersionAttribute("0.0.0.0")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.0.2730")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.0+aa0a074ee6")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.0.44475")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.0+bbad8572dc")]
 #if NETSTANDARD || NETFRAMEWORK || NETCOREAPP
 [System.CodeDom.Compiler.GeneratedCode("Nerdbank.GitVersioning.Tasks","3.4.244.2758")]
 #endif
@@ -19,13 +19,13 @@
 #endif
 internal static partial class ThisAssembly {
     internal const string AssemblyConfiguration = "Debug";
-    internal const string AssemblyFileVersion = "0.0.0.2730";
-    internal const string AssemblyInformationalVersion = "0.0.0+aa0a074ee6";
+    internal const string AssemblyFileVersion = "0.0.0.44475";
+    internal const string AssemblyInformationalVersion = "0.0.0+bbad8572dc";
     internal const string AssemblyName = "NCalc";
     internal const string AssemblyTitle = "NCalc";
     internal const string AssemblyVersion = "0.0.0.0";
-    internal static readonly System.DateTime GitCommitDate = new System.DateTime(638509408600000000L, System.DateTimeKind.Utc);
-    internal const string GitCommitId = "aa0a074ee6fb94e8e6cefc6bb4da7794d02bec50";
+    internal static readonly System.DateTime GitCommitDate = new System.DateTime(638511275560000000L, System.DateTimeKind.Utc);
+    internal const string GitCommitId = "bbad8572dc11d671e40866702b0f690f62d2e323";
     internal const bool IsPrerelease = false;
     internal const bool IsPublicRelease = false;
     internal const string RootNamespace = "NCalc";
