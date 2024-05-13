@@ -5,8 +5,6 @@ using QuoteTree;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
-using ElectronNET.API; 
-using ElectronNET.API.Entities;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,7 +24,6 @@ namespace OnlinePriceSystem.Controllers
         }
 		public ActionResult Edit(string product, string isNew)
 		{
-
 			QTree? tree = null;
             HttpContext.Session.SetString("renamed", "");
             HttpContext.Session.SetString("isNew", isNew);
@@ -95,7 +92,7 @@ namespace OnlinePriceSystem.Controllers
 
             ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
-            List<NodeData> nodes = new List<NodeData>();
+            List<NodeData> nodes = new();
             if (node != null && node.Children != null)
             {
                 foreach (ANode child in node.Children)
@@ -142,7 +139,7 @@ namespace OnlinePriceSystem.Controllers
 
             ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
 
-            List<NodeData> nodes = new List<NodeData>();
+            List<NodeData> nodes = new();
             if (node != null && node.Dependents != null)
             {
                 foreach (string dependent in node.Dependents)
@@ -207,9 +204,6 @@ namespace OnlinePriceSystem.Controllers
                     break;
             }
 
-
-
-
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
@@ -222,7 +216,7 @@ namespace OnlinePriceSystem.Controllers
             {
                 total = "error";
             }
-            NodeData nodeData = new NodeData(node.Name, node.Id, Expression, Url.Content("~/") + node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), total, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodeData = new(node.Name, node.Id, Expression, Url.Content("~/") + node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), total, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
            
             string response = JsonConvert.SerializeObject(nodeData, Formatting.Indented);
             return Content(response);
@@ -318,7 +312,7 @@ namespace OnlinePriceSystem.Controllers
             string updatedStr = "";      
             try
             {
-                FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read);
+                FileStream fs = new(url, FileMode.Open, FileAccess.Read);
                 //Set up the pictures
                 var htmlDoc = new HtmlDocument();
                 string contents;
@@ -329,7 +323,6 @@ namespace OnlinePriceSystem.Controllers
                 htmlDoc.LoadHtml(contents);
                 string mediaName = "";
                 var path = "";
-                string nodeName = HttpContext.Session.GetString("nodeName")!;
                 var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
                 if(nodes == null || nodes.Count == 0) updatedStr = contents;
                 else
@@ -350,7 +343,7 @@ namespace OnlinePriceSystem.Controllers
             }
             catch //Check if the file has .html extension instead of .htm
             {
-                FileStream fs = new FileStream(url.Replace(".htm",".html"), FileMode.Open, FileAccess.Read);
+                FileStream fs = new(url.Replace(".htm",".html"), FileMode.Open, FileAccess.Read);
                 //Set up the pictures
                 var htmlDoc = new HtmlDocument();
                 string contents;
@@ -359,9 +352,8 @@ namespace OnlinePriceSystem.Controllers
                     contents = sr.ReadToEnd();
                 }
                 htmlDoc.LoadHtml(contents);
-                string mediaName = "";
-                var path = "";
-                string nodeName = HttpContext.Session.GetString("nodeName")!;
+                string mediaName;
+                string path;
                 var nodes = htmlDoc.DocumentNode.SelectNodes("//img");
                 if(nodes == null || nodes.Count == 0) updatedStr = contents;
                 else
@@ -385,7 +377,7 @@ namespace OnlinePriceSystem.Controllers
         }
         public ActionResult AppendNodes(string id)
         {
-             byte[] array = HttpContext.Session.Get("tree")!;
+            byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);              
 
             ANode? node = tree.GetNodeFromId(id.Replace("ckbx_", "").Replace("li_", ""));
@@ -406,13 +398,12 @@ namespace OnlinePriceSystem.Controllers
         }
 
         [HttpGet]
-        
         public ContentResult CommitTreeValue()
         {
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            NameValueCollection keys = new NameValueCollection();
+            NameValueCollection keys = new();
             keys = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
             foreach (var key in keys)
             {
@@ -454,7 +445,6 @@ namespace OnlinePriceSystem.Controllers
         }
 
         [HttpGet]
-        
         public ContentResult AppendNode(string sourceId, string targetId)
         {
             byte[] array = HttpContext.Session.Get("tree")!;
@@ -483,7 +473,7 @@ namespace OnlinePriceSystem.Controllers
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
-            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -493,7 +483,6 @@ namespace OnlinePriceSystem.Controllers
         }
 
 		[HttpGet]
-		
 		public ContentResult CommitAnyTreeValue(string id, string value)
 		{
             byte[] array = HttpContext.Session.Get("tree")!;
@@ -532,7 +521,6 @@ namespace OnlinePriceSystem.Controllers
 		}
 
 		[HttpGet]
-		
 		public ContentResult removeNodes(string ids)
 		{
             byte[] array = HttpContext.Session.Get("tree")!;
@@ -641,31 +629,28 @@ namespace OnlinePriceSystem.Controllers
 
             ViewData.Model = model;
 
-            using (var writer = new StringWriter())
-            {
-                ViewEngineResult viewResult = 
-                    _viewEngine.FindView(ControllerContext, viewName, false);
+            using var writer = new StringWriter();
+            ViewEngineResult viewResult =
+                _viewEngine.FindView(ControllerContext, viewName, false);
 
-                ViewContext viewContext = new ViewContext(
-                    ControllerContext, 
-                    viewResult.View!, 
-                    ViewData, 
-                    TempData, 
-                    writer, 
-                    new HtmlHelperOptions()
-                );
+            ViewContext viewContext = new(
+                ControllerContext,
+                viewResult.View!,
+                ViewData,
+                TempData,
+                writer,
+                new HtmlHelperOptions()
+            );
 
-                await viewResult.View!.RenderAsync(viewContext);
+            await viewResult.View!.RenderAsync(viewContext);
 
-                return writer.GetStringBuilder().ToString();
-            }
+            return writer.GetStringBuilder().ToString();
         }
 
         public  async Task<FileResult> SaveQuote()
         {
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
-
 
             TempData["root"] = tree.Root!;                
             Dictionary<string, string> selection;
@@ -774,7 +759,7 @@ namespace OnlinePriceSystem.Controllers
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
-            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             //Restore old formula if there are errors
             if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode)!.Formula = oldExpression;
@@ -902,24 +887,20 @@ namespace OnlinePriceSystem.Controllers
         // Convert an object to a byte array
         public static byte[] ObjectToByteArray(QTree obj)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (var ms = new MemoryStream())
-            {
-                bf.Serialize(ms, obj);
-                return ms.ToArray();
-            }
+            BinaryFormatter bf = new();
+            using var ms = new MemoryStream();
+            bf.Serialize(ms, obj);
+            return ms.ToArray();
         }            
 
         //Deserialize the tree
         public static QTree ByteArrayToObject(byte[] array )
         {
             QTree tree;
-            BinaryFormatter formater = new BinaryFormatter();
-            using (MemoryStream memory_stream = new MemoryStream(array))
-            {
-                tree = ((formater.Deserialize(memory_stream)) as QTree)!;
-                return tree;
-            }
+            BinaryFormatter formater = new();
+            using MemoryStream memory_stream = new(array);
+            tree = (formater.Deserialize(memory_stream) as QTree)!;
+            return tree;
         }
 
         [HttpGet]
@@ -930,7 +911,7 @@ namespace OnlinePriceSystem.Controllers
             QTree tree = ByteArrayToObject(array);
 
             string[] idsParsed = sourceId.Split(";".ToCharArray());
-			List<NodeData> nodeDataList = new List<NodeData>();
+			List<NodeData> nodeDataList = new();
 
             foreach (string nodeID in idsParsed)
             {
@@ -964,7 +945,7 @@ namespace OnlinePriceSystem.Controllers
                     bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
                     string dep = "";
                     foreach (string n in node.Dependents!) dep = dep + n + ";";
-                    NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+                    NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
                     nodeDataList.Add(nodedata);
                 }
             }
@@ -977,7 +958,6 @@ namespace OnlinePriceSystem.Controllers
         }
 
 		[HttpGet]
-		
 		public ContentResult NewNode()
 		{
             byte[] array = HttpContext.Session.Get("tree")!;
@@ -985,7 +965,7 @@ namespace OnlinePriceSystem.Controllers
 
             ANode? node = tree.NewNode(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
             if (node == null) return Content("");
-            string Expression = "";
+            string Expression;
             bool EditChildren = false;
             switch (node.Type)
             {
@@ -1018,7 +998,7 @@ namespace OnlinePriceSystem.Controllers
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
-            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root! != null ? tree.Root!.TotalStr : "0", node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root! != null ? tree.Root!.TotalStr : "0", node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -1028,31 +1008,30 @@ namespace OnlinePriceSystem.Controllers
 		}
 
         [HttpGet]
-   
         public ContentResult BuildDependencies() 
         {
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
 
-            Stack<ANode> stack = new Stack<ANode>();
+            Stack<ANode> stack = new();
             Tuple<ANode, ANode>? tuple = null;
             tuple = tree.SetDependents();
             
-            List<NodeData> nodeDataList = new List<NodeData>();
+            List<NodeData> nodeDataList = new();
             //Check for circular references
             if (tuple != null)
             {
                 ANode node1 = tuple.Item1;
-                NodeData nodedata1 = new NodeData(node1.Name, node1.Id, "", node1.Url, node1.CheckBox, node1.Type.ToString(), node1.Selected, node1.IsComplete(), tree.Root!.TotalStr, node1.Optional, node1.TotalStr, false, node1.Hidden, node1.ExpandedLevels, "", false, node1.Min.ToString(), node1.Max.ToString(), node1.Discount.ToString(), node1.Order.ToString(), node1.Report, node1.ReportValue, node1.Units, node1.DecimalPlaces.ToString(), node1.Parent != null && node1.Parent.Type == NodeType.Decision, node1.Template, node1.HasErrors(), node1.Error, node1.ReadOnly, node1.DisableCondition, node1.Disabled, node1.DisabledMessage);
+                NodeData nodedata1 = new(node1.Name, node1.Id, "", node1.Url, node1.CheckBox, node1.Type.ToString(), node1.Selected, node1.IsComplete(), tree.Root!.TotalStr, node1.Optional, node1.TotalStr, false, node1.Hidden, node1.ExpandedLevels, "", false, node1.Min.ToString(), node1.Max.ToString(), node1.Discount.ToString(), node1.Order.ToString(), node1.Report, node1.ReportValue, node1.Units, node1.DecimalPlaces.ToString(), node1.Parent != null && node1.Parent.Type == NodeType.Decision, node1.Template, node1.HasErrors(), node1.Error, node1.ReadOnly, node1.DisableCondition, node1.Disabled, node1.DisabledMessage);
                 ANode node2 = tuple.Item2;
-                NodeData nodedata2 = new NodeData(node2.Name, node2.Id, "", node2.Url, node2.CheckBox, node2.Type.ToString(), node2.Selected, node2.IsComplete(), tree.Root!.TotalStr, node2.Optional, node2.TotalStr, false, node2.Hidden, node2.ExpandedLevels, "", false, node2.Min.ToString(), node2.Max.ToString(), node2.Discount.ToString(), node2.Order.ToString(), node2.Report, node2.ReportValue, node2.Units, node2.DecimalPlaces.ToString(), node2.Parent != null && node2.Parent.Type == NodeType.Decision, node2.Template, node2.HasErrors(), node2.Error, node2.ReadOnly, node2.DisableCondition, node2.Disabled, node2.DisabledMessage);
+                NodeData nodedata2 = new(node2.Name, node2.Id, "", node2.Url, node2.CheckBox, node2.Type.ToString(), node2.Selected, node2.IsComplete(), tree.Root!.TotalStr, node2.Optional, node2.TotalStr, false, node2.Hidden, node2.ExpandedLevels, "", false, node2.Min.ToString(), node2.Max.ToString(), node2.Discount.ToString(), node2.Order.ToString(), node2.Report, node2.ReportValue, node2.Units, node2.DecimalPlaces.ToString(), node2.Parent != null && node2.Parent.Type == NodeType.Decision, node2.Template, node2.HasErrors(), node2.Error, node2.ReadOnly, node2.DisableCondition, node2.Disabled, node2.DisabledMessage);
                 nodeDataList.Add(nodedata1);
                 nodeDataList.Add(nodedata2);
             }
             else 
             {
                 ANode node1 = tree.Root!;
-                NodeData nodedata1 = new NodeData(node1.Name, node1.Id, "", node1.Url, node1.CheckBox, node1.Type.ToString(), node1.Selected, node1.IsComplete(), tree.Root!.TotalStr, node1.Optional, node1.TotalStr, false, node1.Hidden, node1.ExpandedLevels, "", false, node1.Min.ToString(), node1.Max.ToString(), node1.Discount.ToString(), node1.Order.ToString(), node1.Report, node1.ReportValue, node1.Units, node1.DecimalPlaces.ToString(), node1.Parent != null && node1.Parent.Type == NodeType.Decision, node1.Template, node1.HasErrors(), node1.Error, node1.ReadOnly, node1.DisableCondition, node1.Disabled, node1.DisabledMessage);
+                NodeData nodedata1 = new(node1.Name, node1.Id, "", node1.Url, node1.CheckBox, node1.Type.ToString(), node1.Selected, node1.IsComplete(), tree.Root!.TotalStr, node1.Optional, node1.TotalStr, false, node1.Hidden, node1.ExpandedLevels, "", false, node1.Min.ToString(), node1.Max.ToString(), node1.Discount.ToString(), node1.Order.ToString(), node1.Report, node1.ReportValue, node1.Units, node1.DecimalPlaces.ToString(), node1.Parent != null && node1.Parent.Type == NodeType.Decision, node1.Template, node1.HasErrors(), node1.Error, node1.ReadOnly, node1.DisableCondition, node1.Disabled, node1.DisabledMessage);
                 nodeDataList.Add(nodedata1);
             }
 
@@ -1072,12 +1051,12 @@ namespace OnlinePriceSystem.Controllers
 
             ANode node = tree.GetNodeFromId(id.Replace("ckbx_", ""))!;
 
-            List<NodeDatajsTree> nodes = new List<NodeDatajsTree>();
+            List<NodeDatajsTree> nodes = new();
             if (node != null && node.Children != null)
             {
                 foreach (ANode child in node.Children)
                 {
-                    attributes attr = new attributes(child.Id);
+                    attributes attr = new(child.Id);
                     nodes.Add(new NodeDatajsTree(child.Name, attr));
                 }
             }
@@ -1129,7 +1108,7 @@ namespace OnlinePriceSystem.Controllers
             bool leaf = node.Children == null || node.Children.Count == 0 ? true : false;
             string dep = "";
             foreach (string n in node.Dependents!) dep = dep + n + ";";
-            NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.MinIsSet ? node.Min.ToString() : "", node.MaxIsSet ? node.Max.ToString() : "", node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+            NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.MinIsSet ? node.Min.ToString() : "", node.MaxIsSet ? node.Max.ToString() : "", node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             string response = JsonConvert.SerializeObject(nodedata, Formatting.Indented);
             return Content(response);
@@ -1140,7 +1119,7 @@ namespace OnlinePriceSystem.Controllers
 		{
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);
-            ArrayList list = new ArrayList();
+            ArrayList list = new();
             getNames(tree.Root!, list);
             return Json(list.ToArray());
         }
@@ -1161,7 +1140,7 @@ namespace OnlinePriceSystem.Controllers
             byte[] array2 = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array2);
 
-			List<NodeData> nodeDataList = new List<NodeData>();
+			List<NodeData> nodeDataList = new();
 
 			foreach (string nodeID in array)
 			{
@@ -1205,7 +1184,7 @@ namespace OnlinePriceSystem.Controllers
                         string dep = "";
                        
                         dep = node.DependentsStr;
-                        NodeData nodedata = new NodeData(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
+                        NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
                         nodeDataList.Add(nodedata);
                     }
 				}

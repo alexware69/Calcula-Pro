@@ -643,7 +643,7 @@ namespace QuoteTree;
             int expandedLevels = tree.Root!.ExpandedLevels;
             string id = Id;
             int countDots = id.Split(".".ToCharArray()).Length - 1;
-            return (countDots < expandedLevels);
+            return countDots < expandedLevels;
                 
         }
 
@@ -1177,7 +1177,7 @@ namespace QuoteTree;
 		{
             if (a == null) return 0;
             if (b == null) return 0;
-			return (a.Order - b.Order);
+			return a.Order - b.Order;
 		}
 	}
 
@@ -4372,7 +4372,7 @@ namespace QuoteTree;
         {
             BinaryFormatter formater = new();
             using MemoryStream memory_stream = new(byte_array);
-            QTree tree = ((formater.Deserialize(memory_stream)) as QTree)!;
+            QTree tree = (formater.Deserialize(memory_stream) as QTree)!;
             tree!.TotalCounter = 0;
             return tree;
         }
