@@ -1441,13 +1441,13 @@ function RenderTree(tree) {
         //Add the formula
         var expression = "";
         if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
-            expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
+            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else
         if (tree.TypeStr == 'Text')
-            expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else expression = " &nbsp;&nbsp;&nbsp;";
         //Add the node expression as a tooltip
-        $(node).children('a').attr("title", tree.Formula);
+        $(node).children('a').attr("title", tree.Expression);
         //Add the hidden input storing the node type
         html = "<input type='hidden' id='nodetype_" + tree.Id + "' value='" + tree.TypeStr + "'/> ";
         $("li[id='li_" + tree.Id + "']").append(html);
@@ -1470,10 +1470,10 @@ function RenderTree(tree) {
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
         if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
-            expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
+            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else
         if (tree.TypeStr == 'Text')
-            expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else expression = " &nbsp;&nbsp;&nbsp;";
         $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression.trim() + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
@@ -1492,7 +1492,7 @@ function RenderTree(tree) {
         $(node).children('a').after("<span title='Edit: " + tree.Name + "' id='edit_" + tree.Id + "' class='edit'></span>");
 
 
-        var formula_value = tree.TypeStr != "Decision" && tree.TypeStr != 'SumSet' ? tree.Formula : "";
+        var formula_value = tree.TypeStr != "Decision" && tree.TypeStr != 'SumSet' ? tree.Expression : "";
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node

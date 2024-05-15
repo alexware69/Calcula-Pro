@@ -1129,12 +1129,12 @@ namespace QuoteTree;
                             {
                                 if (nodeFromPath.Type == NodeType.Date)
                                 {
-                                    args.Result = DateTime.Parse(((DateNode)nodeFromPath).Formula);
+                                    args.Result = DateTime.Parse(((DateNode)nodeFromPath).Expression);
                                 }
 
                                 if (nodeFromPath.Type == NodeType.Today)
                                 {
-                                    args.Result = DateTime.Parse(((TodayNode)nodeFromPath).Formula);
+                                    args.Result = DateTime.Parse(((TodayNode)nodeFromPath).Expression);
                                 }
                             }
                             else args.Result = Double.Parse(nodeFromPath.Total().ToString());
@@ -1158,12 +1158,12 @@ namespace QuoteTree;
                                     {
                                         if (child.Type == NodeType.Date)
                                         {
-                                            args.Result = DateTime.Parse(((DateNode)child).Formula);
+                                            args.Result = DateTime.Parse(((DateNode)child).Expression);
                                         }
 
                                         if (child.Type == NodeType.Today)
                                         {
-                                            args.Result = DateTime.Parse(((TodayNode)child).Formula);
+                                            args.Result = DateTime.Parse(((TodayNode)child).Expression);
                                         }
                                     }
                                     else args.Result = Double.Parse(child.Total().ToString());
@@ -1200,16 +1200,16 @@ namespace QuoteTree;
 	public class TextNode : ANode
 	{
 		// *******Fields*****
-		string _Text = "";
+		string _Expression = "";
         bool _Entered;
 
 		// *****Properties*****
-		public string Text
+		public string Expression
 		{
-			get { return _Text; }
+			get { return _Expression; }
             set 
             { 
-                if (!ReadOnly) _Text = value; 
+                if (!ReadOnly) _Expression = value; 
                 Entered = true;
             }
 		}
@@ -1251,7 +1251,7 @@ namespace QuoteTree;
             MaxIsSet = MinIsSet = false;
 			Min = Max = 0;
             DecimalPlaces = 0;
-            Text = "";
+            Expression = "";
 			Order = 0;
 			Selected = false;
 			Children = new List<ANode>();
@@ -1289,8 +1289,13 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
 			if (value != "") Units = value;
 
-			value = GetValueFromDirectory("text", path);
-			if (value != "") Text = value;
+            value = GetValueFromDirectory("expression", path);
+			if (value != "") Expression = value;
+            else
+            {
+                value = GetValueFromDirectory("text", path);
+                if (value != "") Expression = value;
+            }
 
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
@@ -1376,7 +1381,7 @@ namespace QuoteTree;
             ReadOnly = false;
             if (node == null) Id = "1";
             else Id = node.NewId();
-            Text = values["expression"]!;
+            Expression = values["expression"]!;
             EditChildren = values["editChildren"] == "true";
             Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out int intResult))
@@ -1437,11 +1442,11 @@ namespace QuoteTree;
 	public class MathNode : ANode
 	{
 		// *******Fields*****
-		string _Formula = "";
+		string _Expression = "";
         bool _Entered;
 
 		// *****Properties*****
-        public string Formula
+        public string Expression
 		{
 			get 
             {
@@ -1460,10 +1465,10 @@ namespace QuoteTree;
                             return DateTime.Today.Year.ToString();
                          
                         default:
-                            return _Formula;
+                            return _Expression;
                     }
                 }
-                else return _Formula;
+                else return _Expression;
             }
 			set
             {
@@ -1474,13 +1479,13 @@ namespace QuoteTree;
                     bool valueInt = int.TryParse(value, out int outInt);
                     if (valueInt)
                         {
-                            _Formula = value;
+                            _Expression = value;
                             Entered = true;
                         }
                     }
                     else
                     {
-                        _Formula = value;
+                        _Expression = value;
                         Entered = true;
                     }
                 }
@@ -1503,19 +1508,19 @@ namespace QuoteTree;
                 switch (Name)
                 {
                     case "Month":
-                        Formula = DateTime.Today.Month.ToString();
+                        Expression = DateTime.Today.Month.ToString();
                         break;
                     case "Day":
-                        Formula = DateTime.Today.Day.ToString();
+                        Expression = DateTime.Today.Day.ToString();
                         break;
                     case "Year":
-                        Formula = DateTime.Today.Year.ToString();
+                        Expression = DateTime.Today.Year.ToString();
                         break;
                     default:
                         break;
                 }
                 ReadOnly = true;
-                return decimal.Parse(Formula);
+                return decimal.Parse(Expression);
             }
 
 
@@ -1532,7 +1537,7 @@ namespace QuoteTree;
             }
 
             decimal formula_result = 0;
-            Expression e = new(_Formula);
+            Expression e = new(_Expression);
             e.EvaluateFunction += new EvaluateFunctionHandler(EvaluateFunction);
             e.EvaluateParameter += new EvaluateParameterHandler(EvaluateParameter); 
 
@@ -1570,7 +1575,7 @@ namespace QuoteTree;
         {
             try
             {
-                Expression e = new(_Formula);
+                Expression e = new(_Expression);
                 e.EvaluateFunction += new EvaluateFunctionHandler(EvaluateFunction);
                 e.EvaluateParameter += new EvaluateParameterHandler(EvaluateParameter);
                 bool hasErrors = e.HasErrors();
@@ -1584,7 +1589,7 @@ namespace QuoteTree;
 		{
             if (!BranchSelected() || BranchHidden()) return true;
             //Check for Entered property
-            if (Decimal.TryParse(Formula, out decimal output) && !ReadOnly)
+            if (Decimal.TryParse(Expression, out decimal output) && !ReadOnly)
             {
                 if (!Entered && (!Optional || (Optional && Selected))) return false;
             }
@@ -1598,7 +1603,7 @@ namespace QuoteTree;
 		public MathNode()
 		{
 			Name = "";
-			Formula = "";
+			Expression = "";
 			Discount = 0;
             MaxIsSet = MinIsSet = false;
 			Min = Max = 0;
@@ -1645,8 +1650,13 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
 			if (value != "") Units = value;
 
-			value = GetValueFromDirectory("formula", path);
-			if (value != "") Formula = value; 
+            value = GetValueFromDirectory("expression", path);
+			if (value != "") Expression = value; 
+            else
+            {
+                value = GetValueFromDirectory("formula", path);
+                if (value != "") Expression = value; 
+            }
 
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
@@ -1695,7 +1705,7 @@ namespace QuoteTree;
 
 
             //To set the url for the node
-            if (decimal.TryParse(Formula, out decimal flag) || EditChildren)
+            if (decimal.TryParse(Expression, out decimal flag) || EditChildren)
             {
                 Url = "TreeView" + "/ChangeTreeValue" + "?id=" + Id;
             }
@@ -1746,7 +1756,7 @@ namespace QuoteTree;
             ReadOnly = false;
             if (node == null) Id = "1";
             else Id = node.NewId();
-            Formula = values["expression"]!;
+            Expression = values["expression"]!;
             EditChildren = values["editChildren"] == "true";
             Name = values["name"]!;
             Units = values["units"]!;
@@ -1786,7 +1796,7 @@ namespace QuoteTree;
             Parent = node;
             ParentTree = tree;
         //To set the url for the node
-        if (decimal.TryParse(Formula, out decimal flag) || EditChildren)
+        if (decimal.TryParse(Expression, out decimal flag) || EditChildren)
         {
             Url = "TreeView" + "/ChangeTreeValue" + "?id=" + Id;
         }
@@ -1816,20 +1826,20 @@ namespace QuoteTree;
     public class DateNode : ANode
     {
         // *******Fields*****
-        string _Formula = "";
+        string _Expression = "";
 
         // *****Properties*****
         
-        public string Formula
+        public string Expression
 		{
 			get 
             {
-                return _Formula;
+                return _Expression;
             }
 
             set 
             { 
-                _Formula = value; 
+                _Expression = value; 
             }
         }
 
@@ -1897,8 +1907,13 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
             if (value != "") Units = value;
 
-            value = GetValueFromDirectory("formula", path);
-            if (value != "") Formula = value;
+            value = GetValueFromDirectory("expression", path);
+            if (value != "") Expression = value;
+            else
+            {
+                value = GetValueFromDirectory("formula", path);
+                if (value != "") Expression = value;
+            }
             
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
@@ -2047,7 +2062,7 @@ namespace QuoteTree;
             month.Parent = this;
             month.ParentTree = tree;
             month.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + month.Id;
-            (month as MathNode)!.Formula = "1";
+            (month as MathNode)!.Expression = "1";
             month.Min = 1;
             month.Max = 12;
             month.Dependents!.Add(Id);
@@ -2064,7 +2079,7 @@ namespace QuoteTree;
             day.Parent = this;
             day.ParentTree = tree;
             day.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + day.Id;
-            (day as MathNode)!.Formula = "1";
+            (day as MathNode)!.Expression = "1";
             day.Min = 1;
             day.Max = 31;
             day.Dependents!.Add(Id);
@@ -2081,7 +2096,7 @@ namespace QuoteTree;
             year.Parent = this;
             year.ParentTree = tree;
             year.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + year.Id;
-            (year as MathNode)!.Formula = "2000";
+            (year as MathNode)!.Expression = "2000";
             year.Min = 2000;
             year.Max = 2100;
             year.Dependents!.Add(Id);
@@ -2093,7 +2108,7 @@ namespace QuoteTree;
             Children.Add(year);
 
             //Set the expression
-            _Formula = ((MathNode)Children[0]).Formula.ToString() + "/" + ((MathNode)Children[1]).Formula.ToString() + "/" + ((MathNode)Children[2]).Formula.ToString(); 
+            _Expression = ((MathNode)Children[0]).Expression.ToString() + "/" + ((MathNode)Children[1]).Expression.ToString() + "/" + ((MathNode)Children[2]).Expression.ToString(); 
         }
     }
 
@@ -2101,19 +2116,19 @@ namespace QuoteTree;
     public class TodayNode : ANode
     {
         // *******Fields*****
-        string _Formula = "";
+        string _Expression = "";
 
         // *****Properties*****
-         public string Formula
+         public string Expression
 		{
 			get 
             {
-                return _Formula;
+                return _Expression;
             }
 
             set 
             { 
-                _Formula = value; 
+                _Expression = value; 
             }
         }
 
@@ -2177,8 +2192,8 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
             if (value != "") Units = value;
 
-            value = GetValueFromDirectory("formula", path);
-            if (value != "") Formula = value;
+            //value = GetValueFromDirectory("formula", path);
+            //if (value != "") Expression = value;
 
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
@@ -2326,7 +2341,7 @@ namespace QuoteTree;
             month.Parent = this;
             month.ParentTree = tree;
             month.Url = "TreeView" + "/Description" + "?id=" + month.Id;
-            (month as MathNode)!.Formula = DateTime.Today.Month.ToString();
+            (month as MathNode)!.Expression = DateTime.Today.Month.ToString();
             month.Min = 1;
             month.Max = 12;
             month.Dependents!.Add(Id);
@@ -2341,7 +2356,7 @@ namespace QuoteTree;
             day.Parent = this;
             day.ParentTree = tree;
             day.Url = "TreeView" + "/Description" + "?id=" + day.Id;
-            (day as MathNode)!.Formula = DateTime.Today.Day.ToString();
+            (day as MathNode)!.Expression = DateTime.Today.Day.ToString();
             day.Min = 1;
             day.Max = 31;
             day.Dependents!.Add(Id);
@@ -2356,7 +2371,7 @@ namespace QuoteTree;
             year.Parent = this;
             year.ParentTree = tree;
             year.Url = "TreeView" + "/Description" + "?id=" + year.Id;
-            (year as MathNode)!.Formula = DateTime.Today.Year.ToString();
+            (year as MathNode)!.Expression = DateTime.Today.Year.ToString();
             year.MaxIsSet = year.MinIsSet = false;
             year.Min = 0;
             year.Max = 0;
@@ -2367,7 +2382,7 @@ namespace QuoteTree;
             Children.Add(year);
 
             //Set the expression
-            _Formula = ((MathNode)Children[0]).Formula.ToString() + "/" + ((MathNode)Children[1]).Formula.ToString() + "/" + ((MathNode)Children[2]).Formula.ToString(); 
+            _Expression = ((MathNode)Children[0]).Expression.ToString() + "/" + ((MathNode)Children[1]).Expression.ToString() + "/" + ((MathNode)Children[2]).Expression.ToString(); 
         }
     }
 
@@ -2375,13 +2390,13 @@ namespace QuoteTree;
 	public class ConditionalNode : ANode
 	{
 		// *******Fields*****
-		string _Formula = "";
+		string _Expression = "";
 
 		#region Properties
-		public string Formula
+		public string Expression
 		{
-			get { return _Formula; }
-            set { if (!ReadOnly) _Formula = value; }
+			get { return _Expression; }
+            set { if (!ReadOnly) _Expression = value; }
 		}
 		#endregion
        
@@ -2396,7 +2411,7 @@ namespace QuoteTree;
                 throw new CircularReferenceException();
             }
             decimal formula_result = 0;
-            Expression e = new(_Formula);
+            Expression e = new(_Expression);
             e.EvaluateFunction += new EvaluateFunctionHandler(EvaluateFunction);
             e.EvaluateParameter += new EvaluateParameterHandler(EvaluateParameter);
 
@@ -2434,7 +2449,7 @@ namespace QuoteTree;
         {
             try
             {
-                Expression e = new(_Formula);
+                Expression e = new(_Expression);
                 e.EvaluateFunction += new EvaluateFunctionHandler(EvaluateFunction);
                 e.EvaluateParameter += new EvaluateParameterHandler(EvaluateParameter);
                 bool hasErrors = e.HasErrors();
@@ -2498,8 +2513,13 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
 			if (value != "") Units = value;
 
-			value = GetValueFromDirectory("formula", path);
-			if (value != "") Formula = value;
+			value = GetValueFromDirectory("expression", path);
+            if (value != "") Expression = value;
+            else
+            {
+                value = GetValueFromDirectory("formula", path);
+                if (value != "") Expression = value;
+            }
 
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
@@ -2584,7 +2604,7 @@ namespace QuoteTree;
             ReadOnly = false;
             if (node == null) Id = "1";
             else Id = node.NewId();
-            Formula = values["expression"]!;
+            Expression = values["expression"]!;
             EditChildren = values["editChildren"] == "true";
             Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out int intResult))
@@ -3118,14 +3138,14 @@ namespace QuoteTree;
     public class ReferenceNode : ANode
     {
         // *******Fields*****
-        string _Target = "";
+        string _Expression = "";
         ANode? _TargetNode = null;
 
         // *****Properties*****
-        public string Target
+        public string Expression
         {
-            get { return _Target; }
-            set { if (!ReadOnly) _Target = value; }
+            get { return _Expression; }
+            set { if (!ReadOnly) _Expression = value; }
         }
         public ANode? TargetNode
         {
@@ -3204,7 +3224,7 @@ namespace QuoteTree;
             Name = "";
             //this.Discount = 0;
             //this.Min = this.Max = 0;
-            Target = "";
+            Expression = "";
             Order = 0;
             //this.Selected = false;
             Children = new List<ANode>();
@@ -3232,9 +3252,16 @@ namespace QuoteTree;
             ParentTree = parentTree;
             Name = path.Split(Path.DirectorySeparatorChar)[^1];
             Id = id;
-        string value = GetValueFromDirectory("target", path);
-        if (value != "") Target = value;
-            TargetNode = ParentTree.GetNodeFromPath(Target)!;
+
+            string value = GetValueFromDirectory("expression", path);
+            if (value != "") Expression = value;
+            else
+            {
+                value = GetValueFromDirectory("target", path);
+                if (value != "") Expression = value;
+            }
+
+            TargetNode = ParentTree.GetNodeFromPath(Expression)!;
 
             value = GetValueFromDirectory("expandedlevels", path);
             if (int.TryParse(value, out int intResult)) ExpandedLevels = intResult;
@@ -3295,7 +3322,7 @@ namespace QuoteTree;
             ReadOnly = false;
             if (node == null) Id = "1";
             else Id = node.NewId();
-            Target = values["expression"]!;
+            Expression = values["expression"]!;
             TargetNode = tree.GetNodeFromPath(values["expression"]!)!;
             Name = values["name"]!;
             if (int.TryParse(values["expandedLevels"], out int intResult))
@@ -3338,7 +3365,9 @@ namespace QuoteTree;
 		// *****Fields*****
 		ANode? _Root;
         // Next field is used to detect circular references.
+        [XmlIgnore]
         public int TotalCounter = 0;
+        [XmlIgnore]
         public int EvaluateParameterCounter = 0;
 
 		public ANode? Root
@@ -3430,7 +3459,7 @@ namespace QuoteTree;
                     if(start.Type == NodeType.Text)
                     {
                         s += " [";
-                        s += ((TextNode)start).Text;
+                        s += ((TextNode)start).Expression;
                         s += "]";
                     }
                     else
@@ -3534,8 +3563,6 @@ namespace QuoteTree;
 				return the_field;
 
 			}
-
-
 		}
 
 		public void Fill(string path, ref ANode? node, ANode? parent, string id)
@@ -3711,37 +3738,37 @@ namespace QuoteTree;
 
 				if (start.Type == NodeType.Math)
 				{
-					sw.WriteLine("formula=\"" + (start as MathNode)!.Formula + "\";"); 
+					sw.WriteLine("expression=\"" + (start as MathNode)!.Expression + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as MathNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
 
                 if (start.Type == NodeType.Date)
 				{
-					sw.WriteLine("formula=\"" + (start as DateNode)!.Formula + "\";"); 
+					sw.WriteLine("expression=\"" + (start as DateNode)!.Expression + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as DateNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
 
                 if (start.Type == NodeType.Today)
 				{
-					sw.WriteLine("formula=\"" + (start as TodayNode)!.Formula + "\";"); 
+					sw.WriteLine("expression=\"" + (start as TodayNode)!.Expression + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as TodayNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
 
                 if (start.Type == NodeType.Text)
                 {
-                    sw.WriteLine("text=\"" + (start as TextNode)!.Text + "\";");
+                    sw.WriteLine("expression=\"" + (start as TextNode)!.Expression + "\";");
                     sw.WriteLine("editchildren=\"" + (start as TextNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
 
                 if (start.Type == NodeType.Conditional)
                 {
-                    sw.WriteLine("formula=\"" + (start as ConditionalNode)!.Formula + "\";");
+                    sw.WriteLine("expression=\"" + (start as ConditionalNode)!.Expression + "\";");
                     sw.WriteLine("editchildren=\"" + (start as ConditionalNode)!.EditChildren.ToString().ToLower() + "\";");
                 }
 
                 if (start.Type == NodeType.Reference)
                 {
-                    sw.WriteLine("target=\"" + (start as ReferenceNode)!.Target + "\";");
+                    sw.WriteLine("expression=\"" + (start as ReferenceNode)!.Expression + "\";");
                 }
 				sw.Close();
 
@@ -3764,8 +3791,8 @@ namespace QuoteTree;
                 if (node.Type == NodeType.Decision
                     || node.Type == NodeType.SumSet
                     || node.Type == NodeType.Date
-                    || (node.Type == NodeType.Math && Array.IndexOf((node as MathNode)!.Formula.Split(charArr),child.Name) > -1)
-                    || (node.Type == NodeType.Conditional && Array.IndexOf((node as ConditionalNode)!.Formula.Split(charArr), child.Name) > -1)
+                    || (node.Type == NodeType.Math && Array.IndexOf((node as MathNode)!.Expression.Split(charArr),child.Name) > -1)
+                    || (node.Type == NodeType.Conditional && Array.IndexOf((node as ConditionalNode)!.Expression.Split(charArr), child.Name) > -1)
                     )
                 {
                     foreach (ANode dependent in s)
@@ -3792,13 +3819,13 @@ namespace QuoteTree;
 				switch (node.Type)
 				{
 				case NodeType.Math:
-					expression = (node as MathNode)!.Formula;
+					expression = (node as MathNode)!.Expression;
 					break;
 				case NodeType.Conditional:
-					expression = (node as ConditionalNode)!.Formula;
+					expression = (node as ConditionalNode)!.Expression;
 						break;
                 case NodeType.Reference:
-                    expression = (node as ReferenceNode)!.Target;
+                    expression = (node as ReferenceNode)!.Expression;
                     break;
 				default:
 					expression = "";
@@ -4059,12 +4086,12 @@ namespace QuoteTree;
                 switch (node.Type)
                 {
                     case NodeType.Math:
-                        (node as MathNode)!.Formula = values["expression"]!.Trim();
+                        (node as MathNode)!.Expression = values["expression"]!.Trim();
                         (node as MathNode)!.EditChildren = values["editChildren"] == "true";
 
                         //To set the url for the node
                         decimal flag;
-                        if (decimal.TryParse((node as MathNode)!.Formula, out flag) || (node as MathNode)!.EditChildren)
+                        if (decimal.TryParse((node as MathNode)!.Expression, out flag) || (node as MathNode)!.EditChildren)
                         {
                             node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         }
@@ -4074,7 +4101,7 @@ namespace QuoteTree;
                         }
                         break;
                     case NodeType.Text:
-                        (node as TextNode)!.Text = values["expression"]!.Trim();
+                        (node as TextNode)!.Expression = values["expression"]!.Trim();
                         (node as TextNode)!.EditChildren = values["editChildren"] == "true";
 
                         //Set node url
@@ -4093,7 +4120,7 @@ namespace QuoteTree;
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Conditional:
-                        (node as ConditionalNode)!.Formula = values["expression"]!.Trim();
+                        (node as ConditionalNode)!.Expression = values["expression"]!.Trim();
                         (node as ConditionalNode)!.EditChildren = values["editChildren"] == "true";
 
                         //To set the url for the node
@@ -4106,7 +4133,7 @@ namespace QuoteTree;
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
                         break;
                     case NodeType.Reference:
-                        (node as ReferenceNode)!.Target = values["expression"]!.Trim();
+                        (node as ReferenceNode)!.Expression = values["expression"]!.Trim();
                         (node as ReferenceNode)!.TargetNode = GetNodeFromPath(values["expression"]!)!;
                         //Set node url
                         node.Url = "TreeView" + "/Description" + "?id=" + node.Id;
@@ -4119,12 +4146,12 @@ namespace QuoteTree;
 
                 if (node.Parent != null && node.Parent.Type == NodeType.Date) 
                 {
-                    ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                    ((DateNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" +  ((MathNode)node.Parent.Children![2]).Expression;
                 }
 
                 if (node.Parent != null && node.Parent.Type == NodeType.Today)
                 {
-                    ((TodayNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                    ((TodayNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" +  ((MathNode)node.Parent.Children![2]).Expression;
                 }
 
 
@@ -4205,12 +4232,12 @@ namespace QuoteTree;
                 case "Date":
                     newnode = new DateNode(values, this);
                     //Set the expression
-                    ((DateNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();                 
+                    ((DateNode)newnode).Expression = ((MathNode)newnode.Children![0]).Expression.ToString() + "/" + ((MathNode)newnode.Children![1]).Expression.ToString() + "/" + ((MathNode)newnode.Children![2]).Expression.ToString();                 
                     break;
                 case "Today":
                     newnode = new TodayNode(values, this);
                     //Set the expression
-                    ((TodayNode)newnode).Formula = ((MathNode)newnode.Children![0]).Formula.ToString() + "/" + ((MathNode)newnode.Children![1]).Formula.ToString() + "/" + ((MathNode)newnode.Children![2]).Formula.ToString();
+                    ((TodayNode)newnode).Expression = ((MathNode)newnode.Children![0]).Expression.ToString() + "/" + ((MathNode)newnode.Children![1]).Expression.ToString() + "/" + ((MathNode)newnode.Children![2]).Expression.ToString();
                     break;
                 default:
                     break;

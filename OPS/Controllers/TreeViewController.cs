@@ -102,17 +102,17 @@ namespace OnlinePriceSystem.Controllers
                     switch (child.Type) 
                     {
                         case NodeType.Math:
-                            Expression = (child as MathNode)!.Formula;
+                            Expression = (child as MathNode)!.Expression;
                             EditChildren = (child as MathNode)!.EditChildren;
                             break;
                         case NodeType.Conditional:
-                            Expression = (child as ConditionalNode)!.Formula;
+                            Expression = (child as ConditionalNode)!.Expression;
                             break;
                         case NodeType.Text:
-                            Expression = (node as TextNode)!.Text;
+                            Expression = (node as TextNode)!.Expression;
                             break;
                         case NodeType.Reference:
-                            Expression = (child as ReferenceNode)!.Target;
+                            Expression = (child as ReferenceNode)!.Expression;
                             break;
                         default:
                             Expression = "";
@@ -150,11 +150,11 @@ namespace OnlinePriceSystem.Controllers
                     switch (dep.Type)
                     {
                         case NodeType.Math:
-                            Expression = (dep as MathNode)!.Formula;
+                            Expression = (dep as MathNode)!.Expression;
                             EditChildren = (dep as MathNode)!.EditChildren;
                             break;
                         case NodeType.Conditional:
-                            Expression = (dep as ConditionalNode)!.Formula;
+                            Expression = (dep as ConditionalNode)!.Expression;
                             break;
                         default:
                             Expression = "";
@@ -190,14 +190,14 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode)!.Formula;
+                    Expression = (node as MathNode)!.Expression;
                     EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode)!.Formula;
+                    Expression = (node as ConditionalNode)!.Expression;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode)!.Text;
+                    Expression = (node as TextNode)!.Expression;
                     break;
                 default:
                     Expression = "";
@@ -365,7 +365,7 @@ namespace OnlinePriceSystem.Controllers
                             mediaName = "";
                             updatedStr = "";
                             mediaName = iNode.Attributes["src"].Value;
-                            path = HttpContext.Session.GetString("path");
+                            path = HttpContext.Session.GetString("path")!;
                             int lastItem = url.LastIndexOf("/");
                             urlTemp = url.Substring(0,lastItem + 1) + mediaName;
                             if(!urlTemp.StartsWith("file:///")) urlTemp = "file:///" + urlTemp;
@@ -419,26 +419,26 @@ namespace OnlinePriceSystem.Controllers
                     if (Decimal.TryParse(value, out _))
                     {
                         if (node.Type == NodeType.Math && !(node.Parent != null && node.Parent.Type == NodeType.Date)) 
-                            (node as MathNode)!.Formula = value;
+                            (node as MathNode)!.Expression = value;
                         else
                         if (node.Type == NodeType.Math && node.Parent != null && node.Parent.Type == NodeType.Date) 
                         {
-                            string temp =  (node as MathNode)!.Formula;
-                            (node as MathNode)!.Formula = value;
-                            if (DateTime.TryParse(((MathNode)node.Parent.Children![0]).Formula + "/" +
-                            ((MathNode)node.Parent.Children![1]).Formula + "/" + ((MathNode)node.Parent.Children![2]).Formula, out _))
+                            string temp =  (node as MathNode)!.Expression;
+                            (node as MathNode)!.Expression = value;
+                            if (DateTime.TryParse(((MathNode)node.Parent.Children![0]).Expression + "/" +
+                            ((MathNode)node.Parent.Children![1]).Expression + "/" + ((MathNode)node.Parent.Children![2]).Expression, out _))
                             {                             
-                                ((DateNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" + ((MathNode)node.Parent.Children![2]).Formula;
+                                ((DateNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" + ((MathNode)node.Parent.Children![2]).Expression;
                             }
-                            else (node as MathNode)!.Formula = temp;
+                            else (node as MathNode)!.Expression = temp;
                         }
 
                         if (node.Parent != null && node.Parent.Type == NodeType.Today)
                         {
-                            ((TodayNode)node.Parent).Formula = ((MathNode)node.Parent.Children![0]).Formula + "/" + ((MathNode)node.Parent.Children![1]).Formula + "/" +  ((MathNode)node.Parent.Children![2]).Formula;
+                            ((TodayNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" +  ((MathNode)node.Parent.Children![2]).Expression;
                         }
                     }
-                    if (node.Type == NodeType.Text) (node as TextNode)!.Text = value;
+                    if (node.Type == NodeType.Text) (node as TextNode)!.Expression = value;
                 }
             }
 
@@ -461,14 +461,14 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode)!.Formula;
+                    Expression = (node as MathNode)!.Expression;
                     EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode)!.Formula;
+                    Expression = (node as ConditionalNode)!.Expression;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode)!.Text;
+                    Expression = (node as TextNode)!.Expression;
                     break;
                 default:
                     Expression = "";
@@ -497,13 +497,13 @@ namespace OnlinePriceSystem.Controllers
 			switch (node.Type)
 			{
 				case NodeType.Math:
-					(node as MathNode)!.Formula = value;
+					(node as MathNode)!.Expression = value;
 					break;
 				case NodeType.Conditional:
-					(node as ConditionalNode)!.Formula = value;
+					(node as ConditionalNode)!.Expression = value;
 					break;
                 case NodeType.Text:
-                    (node as TextNode)!.Text = value;
+                    (node as TextNode)!.Expression = value;
                     break;
 				default:
 					break;
@@ -706,8 +706,8 @@ namespace OnlinePriceSystem.Controllers
 
             //before saving node, save curent expression in temp
             string oldExpression = "";
-            if (node.Type == NodeType.Math) oldExpression = (node as MathNode)!.Formula;
-            if (node.Type == NodeType.Conditional) oldExpression = (node as ConditionalNode)!.Formula;
+            if (node.Type == NodeType.Math) oldExpression = (node as MathNode)!.Expression;
+            if (node.Type == NodeType.Conditional) oldExpression = (node as ConditionalNode)!.Expression;
 
             //save node
             node = tree.SaveNodeInfo(HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString()));
@@ -718,30 +718,30 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode)!.Formula;
+                    Expression = (node as MathNode)!.Expression;
                     EditChildren = (node as MathNode)!.EditChildren;
                     break;
                  case NodeType.Text:
-                    Expression = (node as TextNode)!.Text;
+                    Expression = (node as TextNode)!.Expression;
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    //Expression = ((MathNode)node.Children![0]).Formula + "/" + ((MathNode)node.Children![1]).Formula + "/" +  ((MathNode)node.Children![2]).Formula;
+                    //Expression = ((MathNode)node.Children![0]).Expression + "/" + ((MathNode)node.Children![1]).Expression + "/" +  ((MathNode)node.Children![2]).Expression;
                     EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Today:
-                    //Expression = ((TodayNode)node.Children![0]).Formula + "/" + ((TodayNode)node.Children![1]).Formula + "/" +  ((TodayNode)node.Children![2]).Formula;
+                    //Expression = ((TodayNode)node.Children![0]).Expression + "/" + ((TodayNode)node.Children![1]).Expression + "/" +  ((TodayNode)node.Children![2]).Expression;
                     EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode)!.Formula;
+                    Expression = (node as ConditionalNode)!.Expression;
                     EditChildren = (node as ConditionalNode)!.EditChildren;
                     break;
                 case NodeType.SumSet:
                     EditChildren = (node as SumSetNode)!.EditChildren;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode)!.Target;
+                    Expression = (node as ReferenceNode)!.Expression;
                     break;
                 default:
                     Expression = "";
@@ -753,8 +753,8 @@ namespace OnlinePriceSystem.Controllers
             NodeData nodedata = new(node.Name, node.Id, Expression, node.Url, node.CheckBox, node.Type.ToString(), node.Selected, node.IsComplete(), tree.Root!.TotalStr, node.Optional, node.TotalStr, leaf, node.Hidden, node.ExpandedLevels, dep, EditChildren, node.Min.ToString(), node.Max.ToString(), node.Discount.ToString(), node.Order.ToString(), node.Report, node.ReportValue, node.Units, node.DecimalPlaces.ToString(), node.Parent != null && node.Parent.Type == NodeType.Decision, node.Template, node.HasErrors(), node.Error, node.ReadOnly, node.DisableCondition, node.Disabled, node.DisabledMessage);
 
             //Restore old formula if there are errors
-            if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode)!.Formula = oldExpression;
-            if (node.Type == NodeType.Conditional && node.HasErrors()) (node as ConditionalNode)!.Formula = oldExpression;
+            if (node.Type == NodeType.Math && node.HasErrors()) (node as MathNode)!.Expression = oldExpression;
+            if (node.Type == NodeType.Conditional && node.HasErrors()) (node as ConditionalNode)!.Expression = oldExpression;
 
             array = ObjectToByteArray(tree);
             HttpContext.Session.Set("tree", array);
@@ -916,18 +916,18 @@ namespace OnlinePriceSystem.Controllers
                     switch (node.Type)
                     {
                         case NodeType.Math:
-                            Expression = (node as MathNode)!.Formula;
+                            Expression = (node as MathNode)!.Expression;
                             EditChildren = (node as MathNode)!.EditChildren;
                             break;
                         case NodeType.Text:
-                            Expression = (node as TextNode)!.Text;
+                            Expression = (node as TextNode)!.Expression;
                             EditChildren = (node as TextNode)!.EditChildren;
                             break;
                         case NodeType.Conditional:
-                            Expression = (node as ConditionalNode)!.Formula;
+                            Expression = (node as ConditionalNode)!.Expression;
                             break;
                         case NodeType.Reference:
-                            Expression = (node as ReferenceNode)!.Target;
+                            Expression = (node as ReferenceNode)!.Expression;
                             break;
                         default:
                             Expression = "";
@@ -961,26 +961,26 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode)!.Formula;
+                    Expression = (node as MathNode)!.Expression;
                     EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode)!.Text;
+                    Expression = (node as TextNode)!.Expression;
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    Expression = (node as DateNode)!.Formula;
+                    Expression = (node as DateNode)!.Expression;
                     EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Today:
-                    Expression = (node as TodayNode)!.Formula;
+                    Expression = (node as TodayNode)!.Expression;
                     EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode)!.Formula;
+                    Expression = (node as ConditionalNode)!.Expression;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode)!.Target;
+                    Expression = (node as ReferenceNode)!.Expression;
                     break;
                 default:
                     Expression = "";
@@ -1067,30 +1067,30 @@ namespace OnlinePriceSystem.Controllers
             switch (node.Type)
             {
                 case NodeType.Math:
-                    Expression = (node as MathNode)!.Formula;
+                    Expression = (node as MathNode)!.Expression;
                     EditChildren = (node as MathNode)!.EditChildren;
                     break;
                 case NodeType.Text:
-                    Expression = (node as TextNode)!.Text;
+                    Expression = (node as TextNode)!.Expression;
                     EditChildren = (node as TextNode)!.EditChildren;
                     break;
                 case NodeType.Date:
-                    Expression = (node as DateNode)!.Formula;
+                    Expression = (node as DateNode)!.Expression;
                     EditChildren = (node as DateNode)!.EditChildren;
                     break;
                 case NodeType.Today:
-                    Expression = (node as TodayNode)!.Formula;
+                    Expression = (node as TodayNode)!.Expression;
                     EditChildren = (node as TodayNode)!.EditChildren;
                     break;
                 case NodeType.Conditional:
-                    Expression = (node as ConditionalNode)!.Formula;
+                    Expression = (node as ConditionalNode)!.Expression;
                     EditChildren = (node as ConditionalNode)!.EditChildren;
                     break;
                 case NodeType.SumSet:
                     EditChildren = (node as SumSetNode)!.EditChildren;
                     break;
                 case NodeType.Reference:
-                    Expression = (node as ReferenceNode)!.Target;
+                    Expression = (node as ReferenceNode)!.Expression;
                     break;
                 default:
                     Expression = "";
@@ -1146,26 +1146,26 @@ namespace OnlinePriceSystem.Controllers
                         switch (node.Type)
                         {
                             case NodeType.Math:
-                                Expression = (node as MathNode)!.Formula;
+                                Expression = (node as MathNode)!.Expression;
                                 EditChildren = (node as MathNode)!.EditChildren;
                                 break;
                             case NodeType.Text:
-                                Expression = (node as TextNode)!.Text;
+                                Expression = (node as TextNode)!.Expression;
                                 EditChildren = (node as TextNode)!.EditChildren;
                                 break;
                             case NodeType.Date:
-                                Expression = (node as DateNode)!.Formula;
+                                Expression = (node as DateNode)!.Expression;
                                 EditChildren = (node as DateNode)!.EditChildren;
                                 break;
                             case NodeType.Today:
-                                Expression = (node as TodayNode)!.Formula;
+                                Expression = (node as TodayNode)!.Expression;
                                 EditChildren = (node as TodayNode)!.EditChildren;
                                 break;
                             case NodeType.Conditional:
-                                Expression = (node as ConditionalNode)!.Formula;
+                                Expression = (node as ConditionalNode)!.Expression;
                                 break;
                             case NodeType.Reference:
-                                Expression = (node as ReferenceNode)!.Target;
+                                Expression = (node as ReferenceNode)!.Expression;
                                 break;
                             default:
                                 Expression = "";

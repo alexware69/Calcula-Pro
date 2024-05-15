@@ -918,8 +918,8 @@ function RenderTree(tree) {
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
         var expression = "";
-        if (tree.Formula != undefined)
-            expression = "&nbsp;[<i>" + tree.Formula.trim() + "</i>]";
+        if (tree.Expression != undefined)
+            expression = "&nbsp;[<i>" + tree.Expression.trim() + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
                 expression = "&nbsp;[<i>" + tree.Expression.trim() + "</i>]";
@@ -994,13 +994,13 @@ function RenderTree(tree) {
         if (!$('input[id=\'Subtotals\']').is(':checked')) $('.subtotal, .filler').hide();
 
         if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'ConditionalRules' && tree.TypeStr != 'Date' && tree.TypeStr != 'Today' && tree.TypeStr != 'Text')
-            expression = "&nbsp;[<i>" + tree.Formula + "</i>]";
+            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else
             if (tree.TypeStr == 'ConditionalRules')
                 expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
             else 
                 if (tree.TypeStr == 'Text')
-                    expression = "&nbsp;[<i>" + tree.Text + "</i>]";
+                    expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
                 else expression = " &nbsp;&nbsp;&nbsp;";
         //Check for dark mode
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
