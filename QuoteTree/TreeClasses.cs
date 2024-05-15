@@ -617,12 +617,12 @@ namespace QuoteTree;
                 try
                 {
                     total = Total();
-                    string formatString = String.Concat("{0:F", DecimalPlaces, "}");
-                    if (IsCurrencySymbol(Units)) return total == 0 ? Units + 0 : Units + String.Format(formatString, total);
+                    string formatString = string.Concat("{0:F", DecimalPlaces, "}");
+                    if (IsCurrencySymbol(Units)) return total == 0 ? Units + 0 : Units + string.Format(formatString, total);
                     else
                     {
                         string _units = Units != "" ? " " + Units : "";
-                        return total == 0 ? 0 + _units :  String.Format(formatString, total) + _units;
+                        return total == 0 ? 0 + _units : string.Format(formatString, total) + _units;
                     }
                 }
                 catch (Exception)
@@ -743,7 +743,7 @@ namespace QuoteTree;
 
 		public string GetValueFromDirectory(string field, string dir)
 		{
-			String? line;
+        string? line;
 			string s = "";
 			string[] splitted;
 
@@ -841,8 +841,8 @@ namespace QuoteTree;
                 switch (escapeType)
                 {
                     case 'u':
-                    string hcode = String.Concat(sb[slashIndex+4], sb[slashIndex+5]);
-                    string lcode = String.Concat(sb[slashIndex+2], sb[slashIndex+3]);
+                    string hcode = string.Concat(sb[slashIndex+4], sb[slashIndex+5]);
+                    string lcode = string.Concat(sb[slashIndex+2], sb[slashIndex+3]);
                     char unicodeChar = Encoding.Unicode.GetChars(new byte[] { System.Convert.ToByte(hcode, 16), System.Convert.ToByte(lcode, 16)} )[0];
                     sb.Remove(slashIndex, 6).Insert(slashIndex, unicodeChar); 
                     break;
@@ -1041,15 +1041,15 @@ namespace QuoteTree;
                         break;
                     case ".max":
                         if (tempName.Equals("this", StringComparison.OrdinalIgnoreCase))
-                            args.Result = Double.Parse(Max.ToString());
+                            args.Result = double.Parse(Max.ToString());
                         else 
                         if (name.Contains('\\'))
-                            args.Result = Double.Parse(ParentTree.GetNodeFromPath(tempName)!.Max.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromPath(tempName)!.Max.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(ParentTree.GetNodeFromId(tempName)!.Max.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromId(tempName)!.Max.ToString());
                         }
                         else
                         {
@@ -1059,7 +1059,7 @@ namespace QuoteTree;
                                 if (name.Contains('$')) extractedString = extractString(name);
                                 if (child.Name == extractedString)
                                 {
-                                    args.Result = Double.Parse(child.Max.ToString());
+                                    args.Result = double.Parse(child.Max.ToString());
                                     break;
                                 }
                             }
@@ -1067,15 +1067,15 @@ namespace QuoteTree;
                         break;
                     case ".min":
                         if (tempName.Equals("this", StringComparison.OrdinalIgnoreCase))
-                            args.Result = Double.Parse(Min.ToString());
+                            args.Result = double.Parse(Min.ToString());
                         else 
                         if (name.Contains('\\'))
-                            args.Result = Double.Parse(ParentTree.GetNodeFromPath(tempName)!.Min.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromPath(tempName)!.Min.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(ParentTree.GetNodeFromId(tempName)!.Min.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromId(tempName)!.Min.ToString());
                         }
                         else
                         {
@@ -1085,7 +1085,7 @@ namespace QuoteTree;
                                 if (name.Contains('$')) extractedString = extractString(name);
                                 if (child.Name == extractedString)
                                 {
-                                    args.Result = Double.Parse(child.Min.ToString());
+                                    args.Result = double.Parse(child.Min.ToString());
                                     break;
                                 }
                             }
@@ -1093,15 +1093,15 @@ namespace QuoteTree;
                         break;
                     case ".discount":
                         if (tempName.Equals("this", StringComparison.OrdinalIgnoreCase))
-                            args.Result = Double.Parse(Discount.ToString());
+                            args.Result = double.Parse(Discount.ToString());
                         else
                         if (name.Contains('\\'))
-                            args.Result = Double.Parse(ParentTree.GetNodeFromPath(tempName)!.Discount.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromPath(tempName)!.Discount.ToString());
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(ParentTree.GetNodeFromId(tempName)!.Discount.ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromId(tempName)!.Discount.ToString());
 
                         }
                         else
@@ -1112,7 +1112,7 @@ namespace QuoteTree;
                                 if (name.Contains('$')) extractedString = extractString(name);
                                 if (child.Name == extractedString)
                                 {
-                                    args.Result = Double.Parse(child.Discount.ToString());
+                                    args.Result = double.Parse(child.Discount.ToString());
                                     break;
                                 }
                             }
@@ -1137,13 +1137,13 @@ namespace QuoteTree;
                                     args.Result = DateTime.Parse(((TodayNode)nodeFromPath).Expression);
                                 }
                             }
-                            else args.Result = Double.Parse(nodeFromPath.Total().ToString());
+                            else args.Result = double.Parse(nodeFromPath.Total().ToString());
                         }
                         else
                         if (tempName.StartsWith("{") && tempName.EndsWith("}"))
                         {
                             tempName = tempName.Substring(1, tempName.Length - 2);
-                            args.Result = Double.Parse(ParentTree.GetNodeFromId(tempName)!.Total().ToString());
+                            args.Result = double.Parse(ParentTree.GetNodeFromId(tempName)!.Total().ToString());
 
                         }
                         else
@@ -1166,7 +1166,7 @@ namespace QuoteTree;
                                             args.Result = DateTime.Parse(((TodayNode)child).Expression);
                                         }
                                     }
-                                    else args.Result = Double.Parse(child.Total().ToString());
+                                    else args.Result = double.Parse(child.Total().ToString());
                                     break;
                                 }
                             }
@@ -1458,7 +1458,7 @@ namespace QuoteTree;
                 {
                     if (Parent != null && Parent.Type == NodeType.Date)
                     {
-                    bool valueInt = int.TryParse(value, out int outInt);
+                    bool valueInt = int.TryParse(value, out _);
                     if (valueInt)
                         {
                             _Expression = value;
@@ -1570,8 +1570,8 @@ namespace QuoteTree;
 		public override bool IsComplete()
 		{
             if (!BranchSelected() || BranchHidden()) return true;
-            //Check for Entered property
-            if (Decimal.TryParse(Expression, out decimal output) && !ReadOnly)
+        //Check for Entered property
+        if (decimal.TryParse(Expression, out _) && !ReadOnly)
             {
                 if (!Entered && (!Optional || (Optional && Selected))) return false;
             }
@@ -1686,8 +1686,8 @@ namespace QuoteTree;
                 if (GetValueFromDirectory("selected", path) == "true") { Selected = true; }
 
 
-            //To set the url for the node
-            if (decimal.TryParse(Expression, out decimal flag) || EditChildren)
+        //To set the url for the node
+        if (decimal.TryParse(Expression, out _) || EditChildren)
             {
                 Url = "TreeView" + "/ChangeTreeValue" + "?id=" + Id;
             }
@@ -1701,8 +1701,8 @@ namespace QuoteTree;
             : this()
         {
             string id = values["id"]!;
-            ANode? node;
-            if (id != null && id != "")
+        ANode? node;
+        if (id != null && id != "")
             {
                 node = tree.GetNodeFromId(id);
                 if (node!.Type == NodeType.Date || node.Type == NodeType.Today) return;
@@ -1760,7 +1760,7 @@ namespace QuoteTree;
             Parent = node;
             ParentTree = tree;
         //To set the url for the node
-        if (decimal.TryParse(Expression, out decimal flag) || EditChildren)
+        if (decimal.TryParse(Expression, out _) || EditChildren)
         {
             Url = "TreeView" + "/ChangeTreeValue" + "?id=" + Id;
         }
@@ -3317,18 +3317,18 @@ namespace QuoteTree;
                     {
                         s += " [";
                         decimal total = start.Total();
-                        string formatString = String.Concat("{0:F", start.DecimalPlaces, "}");
+                        string formatString = string.Concat("{0:F", start.DecimalPlaces, "}");
 
                         if (start.IsCurrencySymbol(start.Units))
                         {
                             if( total == 0 ) s += start.Units + 0; 
-                            else s += start.Units + String.Format(formatString, total);
+                            else s += start.Units + string.Format(formatString, total);
                         }
                         else
                         {
                             string _units = start.Units != "" ? " " + start.Units : "";
                             if( total == 0) s += 0 + _units;
-                            else s += String.Format(formatString, total) + _units;
+                            else s += string.Format(formatString, total) + _units;
                         }
 
                         s += "]";
@@ -3377,7 +3377,7 @@ namespace QuoteTree;
 		public string GetValueFromDirectory(string field, string dir)
 		{
 
-			String? line;
+        string? line;
 			string s = "";
 			string[] splitted;
 
@@ -3628,8 +3628,8 @@ namespace QuoteTree;
 			}
 			catch(Exception e)
 			{
-				string message = e.Message;
-			}
+            _ = e.Message;
+        }
 		}
 
 		//Create a scaffolding of dependencies by hierarchy and immediate references
@@ -3940,9 +3940,9 @@ namespace QuoteTree;
                         (node as MathNode)!.Expression = values["expression"]!.Trim();
                         (node as MathNode)!.EditChildren = values["editChildren"] == "true";
 
-                        //To set the url for the node
-                        decimal flag;
-                        if (decimal.TryParse((node as MathNode)!.Expression, out flag) || (node as MathNode)!.EditChildren)
+                    //To set the url for the node
+                    decimal flag;
+                    if (decimal.TryParse((node as MathNode)!.Expression, out flag) || (node as MathNode)!.EditChildren)
                         {
                             node.Url = "TreeView" + "/ChangeTreeValue" + "?id=" + node.Id;
                         }
@@ -4051,8 +4051,8 @@ namespace QuoteTree;
             }
             catch (Exception e)
             {
-                string message = e.Message;
-                return null;
+            _ = e.Message;
+            return null;
             }
         }
 
