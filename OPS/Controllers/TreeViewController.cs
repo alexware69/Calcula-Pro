@@ -416,7 +416,7 @@ namespace OnlinePriceSystem.Controllers
                     var value = keys.Get(key.ToString())!;
                     string nodeID = key.ToString()!.Replace("NodeValue", "");
                     ANode node = tree.GetNodeFromId(nodeID)!;
-                    if (Decimal.TryParse(value, out _))
+                    if (decimal.TryParse(value, out _))
                     {
                         if (node.Type == NodeType.Math && !(node.Parent != null && node.Parent.Type == NodeType.Date)) 
                             (node as MathNode)!.Expression = value;
@@ -433,10 +433,10 @@ namespace OnlinePriceSystem.Controllers
                             else (node as MathNode)!.Expression = temp;
                         }
 
-                        if (node.Parent != null && node.Parent.Type == NodeType.Today)
-                        {
-                            ((TodayNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" +  ((MathNode)node.Parent.Children![2]).Expression;
-                        }
+                        //if (node.Parent != null && node.Parent.Type == NodeType.Today)
+                        //{
+                        //    ((TodayNode)node.Parent).Expression = ((MathNode)node.Parent.Children![0]).Expression + "/" + ((MathNode)node.Parent.Children![1]).Expression + "/" +  ((MathNode)node.Parent.Children![2]).Expression;
+                        //}
                     }
                     if (node.Type == NodeType.Text) (node as TextNode)!.Expression = value;
                 }
@@ -906,7 +906,7 @@ namespace OnlinePriceSystem.Controllers
 
             foreach (string nodeID in idsParsed)
             {
-                if (nodeID != String.Empty)
+                if (nodeID != string.Empty)
                 {
                     ANode? node = tree.CloneNode(nodeID, targetId);
                     if (node == null) return Content("");
@@ -1135,7 +1135,7 @@ namespace OnlinePriceSystem.Controllers
 
 			foreach (string nodeID in array)
 			{
-				if (nodeID != String.Empty)
+				if (nodeID != string.Empty)
 				{
 					ANode? node = tree.GetNodeFromId(nodeID);
 

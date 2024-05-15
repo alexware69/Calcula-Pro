@@ -1338,24 +1338,6 @@ namespace QuoteTree;
 
 			//Set node url
             Url = "TreeView" + "/ChangeTreeValue" + "?id=" + Id;
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-			catch (Exception)
-			{ }
-			Description = s;
 		}
 
         public TextNode(NameValueCollection values, QTree tree)
@@ -1713,24 +1695,6 @@ namespace QuoteTree;
             {
                 Url = "TreeView" + "/Description" + "?id=" + Id;
             }
-
-            //Get description from file in folder.
-            string s = "";
-			string? line = "";
-			try
-			{
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-			catch (Exception)
-			{ }
-			Description = s;
 		}
 
         public MathNode(NameValueCollection values,QTree tree)
@@ -1956,24 +1920,6 @@ namespace QuoteTree;
 
             //To set the url for the node
             Url = "TreeView" + "/Description" + "?id=" + Id;
-
-            //Get description from file in folder.
-            string s = "";
-            string? line = "";
-            try
-            {
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-            catch (Exception)
-            { }
-            Description = s;
         }
 
         public DateNode(NameValueCollection values, QTree tree)
@@ -2116,10 +2062,10 @@ namespace QuoteTree;
     public class TodayNode : ANode
     {
         // *******Fields*****
-        string _Expression = "";
+        string _Expression = DateTime.Today.ToShortDateString();
 
         // *****Properties*****
-         public string Expression
+        public string Expression
 		{
 			get 
             {
@@ -2192,9 +2138,6 @@ namespace QuoteTree;
             value = GetValueFromDirectory("units", path);
             if (value != "") Units = value;
 
-            //value = GetValueFromDirectory("formula", path);
-            //if (value != "") Expression = value;
-
             if (GetValueFromDirectory("maxisset", path) == "true") { MaxIsSet = true; }
             if (GetValueFromDirectory("minisset", path) == "true") { MinIsSet = true; }
             value = GetValueFromDirectory("max", path);
@@ -2235,24 +2178,6 @@ namespace QuoteTree;
 
             //To set the url for the node
             Url = "TreeView" + "/Description" + "?id=" + Id;
-
-            //Get description from file in folder.
-            string s = "";
-            string? line = "";
-            try
-            {
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-            catch (Exception)
-            { }
-            Description = s;
         }
 
         public TodayNode(NameValueCollection values, QTree tree)
@@ -2561,24 +2486,6 @@ namespace QuoteTree;
                 if (GetValueFromDirectory("selected", path) == "true") { Selected = true; }
 			//To set the url for the node
             Url = "TreeView" + "/Description" + "?id=" + Id;
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-			catch (Exception)
-			{ }
-			Description = s;
 		}
 
         public ConditionalNode(NameValueCollection values, QTree tree)
@@ -2810,24 +2717,6 @@ namespace QuoteTree;
 
 			//Set the node url
             Url = "TreeView" + "/Description" + "?id=" + Id;
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-			catch (Exception)
-			{ }
-			Description = s;
 		}
 
         public DecisionNode(NameValueCollection values, QTree tree)
@@ -3037,25 +2926,6 @@ namespace QuoteTree;
 
 			//To set the node url
             Url = "TreeView" + "/AppendNodes" + "?id=" + Id;
-
-
-			//Get description from file in folder.
-			string s = "";
-			string? line = "";
-			try
-			{
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-			catch (Exception)
-			{ }
-			Description = s;
 		}
 
         public SumSetNode(NameValueCollection values, QTree tree)
@@ -3278,25 +3148,6 @@ namespace QuoteTree;
 
             //To set the node url
             Url = "TreeView" + "/Description" + "?id=" + Id;
-
-
-            //Get description from file in folder.
-            string s = "";
-            string? line = "";
-            try
-            {
-                using StreamReader sr = new(path + Path.DirectorySeparatorChar + "description.txt");
-
-                // Read and display lines from the file until the end of 
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    s += line;
-                }
-            }
-            catch (Exception)
-            { }
-            Description = s;
         }
 
         public ReferenceNode(NameValueCollection values, QTree tree)
@@ -3750,7 +3601,7 @@ namespace QuoteTree;
 
                 if (start.Type == NodeType.Today)
 				{
-					sw.WriteLine("expression=\"" + (start as TodayNode)!.Expression + "\";"); 
+					//sw.WriteLine("expression=\"" + (start as TodayNode)!.Expression + "\";"); 
 					sw.WriteLine("editchildren=\"" + (start as TodayNode)!.EditChildren.ToString().ToLower() + "\";");
 				}
 
