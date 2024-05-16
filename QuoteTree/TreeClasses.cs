@@ -2988,7 +2988,7 @@ namespace QuoteTree;
             }
             Parent = node;
             ParentTree = tree;
-            Url = "TreeView" + "/Description" + "?id=" + Id;
+            Url = "TreeView" + "/AppendNodes" + "?id=" + Id;
 
             //Add new node to children
             if (node != null)
