@@ -849,7 +849,8 @@ function RefreshFillers(id, recursive) {
         //Refresh node's elements
         $(node).children('a').empty();
         $(node).children('a').append("<span class='name' id='name_" + id + "'>" + nameText + "</span>");
-        $(node).children('a').append("<span class='formula' id='formula_" + id + "' >" + ($("input[id='nodetype_" + id + "']").attr("value") != "Decision" ? " &nbsp;[<i>" + formulaText.trim() + "</i>]" : "") + "</span>");
+        $(node).children('a').append("<span class='formula' id='formula_" + id + "' >" + ($("input[id='nodetype_" + id + "']").attr("value") != "Decision" 
+                    && $("input[id='nodetype_" + id + "']").attr("value") != "SumSet" ? " &nbsp;[<i>" + formulaText.trim() + "</i>]" : "") + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
         $(node).children(".filler").remove();
@@ -1468,13 +1469,6 @@ function RenderTree(tree) {
 
         //Remove old
         $(node).children('a').append("<span class='name' id='name_" + tree.Id + "'>" + tree.Name + "</span>");
-        var expression = "";
-        if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
-            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
-        else
-        if (tree.TypeStr == 'Text')
-            expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
-        else expression = " &nbsp;&nbsp;&nbsp;";
         $(node).children('a').append("<span class='formula' id='formula_" + tree.Id + "' > "+ expression.trim() + "</span>");
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
@@ -1491,8 +1485,6 @@ function RenderTree(tree) {
         $(node).children('a').after("<span title='Add node' id='add_" + tree.Id + "' class='add'></span>");
         $(node).children('a').after("<span title='Edit: " + tree.Name + "' id='edit_" + tree.Id + "' class='edit'></span>");
 
-
-        var formula_value = tree.TypeStr != "Decision" && tree.TypeStr != 'SumSet' ? tree.Expression : "";
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
