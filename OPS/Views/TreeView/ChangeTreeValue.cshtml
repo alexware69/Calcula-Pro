@@ -14,76 +14,9 @@
     <meta name="viewport" content="width=device-width" />
     <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
     <meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <script src="../js/iframesize.js"></script>
     <script src="../js/jquery-2.1.3.min.js"></script>
-
-    <script>
-        var iframeids = ["Iframe2"];
-        var iframehide = "yes";
-        var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
-        var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;
-        function resizeCaller() {
-            var dyniframe = new Array();
-            for (i = 0; i < iframeids.length; i++) {
-                if (document.getElementById) resizeIframe(iframeids[i]);
-                if ((document.all || document.getElementById) && iframehide == "no") {
-                    var tempobj = document.all ? document.all[iframeids[i]] : document.getElementById(iframeids[i]);
-                    tempobj.style.display = "block";
-                }
-            }
-        }
-        function resizeIframeByElement(frame) {
-            var currentfr = frame;
-            if (currentfr) {
-                currentfr.style.display = "block";
-                if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight;
-                else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = document.getElementById('Iframe15').Document.body.scrollHeight + 5;
-            }
-        }
-        function resizeIframe(frameid) {
-            var currentfr = document.getElementById(frameid);
-            if (currentfr) {
-                currentfr.style.display = "block";
-                if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) currentfr.height = currentfr.contentDocument.body.offsetHeight + FFextraHeight;
-                else if (currentfr.Document && currentfr.Document.body.scrollHeight) currentfr.height = currentfr.Document.body.scrollHeight;
-                if (currentfr.addEventListener) currentfr.addEventListener("load", readjustIframe, false);
-                else if (currentfr.attachEvent) {
-                    currentfr.detachEvent("onload", readjustIframe);
-                    currentfr.attachEvent("onload", readjustIframe);
-                }
-            }
-            //var dif = document.body.scrollHeight - window.frameElement.height;
-            //window.frameElement.height = document.body.scrollHeight - 22;
-        }
-
-        function readjustIframe(loadevt) {
-            var crossevt = (window.event) ? event : loadevt;
-            var iframeroot = (crossevt.currentTarget) ? crossevt.currentTarget : crossevt.srcElement;
-            if (iframeroot) resizeIframe(iframeroot.id);
-        }
-        function loadintoIframe(iframeid, url) {
-            if (document.getElementById) document.getElementById(iframeid).src = url;
-        }
-        if (window.addEventListener) window.addEventListener("load", resizeCaller, false);
-        else if (window.attachEvent) window.attachEvent("onload", resizeCaller);
-        else window.onload = resizeCaller;
-        //resize frame when resizing the window
-        if (window.addEventListener) window.addEventListener("resize", resizeCaller, false);
-        else if (window.attachEvent) window.attachEvent("onresize", resizeCaller);
-        else window.onresize = resizeCaller;
-
-
-        function maximizeWindow() {
-            var offset = (navigator.userAgent.indexOf("Mac") != -1 ||
-                            navigator.userAgent.indexOf("Gecko") != -1 ||
-                            navigator.appName.indexOf("Netscape") != -1) ? 0 : 4;
-            window.moveTo(-offset, -offset);
-            window.resizeTo(screen.availWidth + (2 * offset),
-                            screen.availHeight + (2 * offset));
-        }
-
-    </script>
-    <style>
-        
+    <style>    
         /* Light mode */
         @@media (prefers-color-scheme: light) {
             body {
@@ -215,7 +148,7 @@
     <iframe scrolling="no" style="width: 100%; border-width: 0px" id="Iframe2" src='@Url.Action("GetHtml","TreeView")'></iframe>
 
     <div id="deps" style="display: none;">
-        <label onclick="$('#dependents').toggle();" style="color:blue"> <U>DEPENDENTS</U></label>
+        <label id="depArrow" onclick="$('#dependents').toggle(); toggleArrowDependents()" style="color:blue; cursor: pointer;">DEPENDENTS ⬇️</label>
         <ol class="list_dependents" id="dependents">
         @foreach (string dependent in Model.Dependents!) {
             ANode dep = Model.ParentTree.GetNodeFromId(dependent)!;
@@ -228,7 +161,7 @@
         <br />
     </div>
     <div id="refs" style="display: none;">
-        <label onclick="$('#references').toggle();" style="color:blue"> <U>REFERENCES</U></label>
+        <label id="refArrow" onclick="$('#references').toggle(); toggleArrowReferences();" style="color:blue; cursor: pointer;">REFERENCES ⬇️</label>
         <ol class="list_references" id="references">
             @foreach (string reference in Model.References!) {
             ANode refe = Model.ParentTree.GetNodeFromId(reference)!;
@@ -255,6 +188,17 @@
                 }
             });
         });
+
+        function toggleArrowDependents(){
+            if ($("#depArrow").text() == "DEPENDENTS ⬇️") $("#depArrow").text("DEPENDENTS ➡️");
+            else $("#depArrow").text("DEPENDENTS ⬇️");
+        }
+
+        function toggleArrowReferences(){
+            if ($("#refArrow").text() == "REFERENCES ⬇️") $("#refArrow").text("REFERENCES ➡️");
+            else $("#refArrow").text("REFERENCES ⬇️");
+        }
+
         function get() {
             //Post values to server
             var data = $('#formID').serialize();
