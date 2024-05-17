@@ -252,14 +252,14 @@ function UpdateNode(data) {
         if ($(node).children('a').length == 0) {
             $(node).append("<a></a>");
             //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-            var href = "../" + data.url + "&nocache=" + new Date().getTime();
+            var href = "../" + data.url;
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
 
         }
         else {
             //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-            var href = "../" + data.url + "&nocache=" + new Date().getTime();
+            var href = "../" + data.url;
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
         }
@@ -488,10 +488,6 @@ function UpdateNodeFromServer(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             //Add the image for the complete/incomplete status if parent node is not Decision
             if (!result.complete && !(result.optional && !result.selected)) {
                 $("li[id='li_" + result.id + "']").children("img").first().show();
@@ -515,10 +511,6 @@ function NodeInfo(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "../SessionTimeOut.html";
-                return false;
-            }
             //Add the image for the complete/incomplete status if parent node is not Decision
             if (!result.complete && !(result.optional && !result.selected)) {
                 $("li[id='li_" + result.id + "']").children("img").first().show();
@@ -600,11 +592,6 @@ function UpdateTree(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
-
             //Update node's text
             UpdateNode(result);
 
@@ -838,7 +825,6 @@ function RefreshFillers(id, recursive) {
     var node = "li[id='li_" + id + "']";
     if ($(node).length) {
         //Adjust the node width
-        var padding_left = 0;
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
         var nameText = $(node).children('a').children(".name").text();
@@ -1368,7 +1354,7 @@ function Assemble(result, id) {
         //If hidden then hide
         if (result[i].hidden == true && !($('input[id=\'HiddenFields\']').is(':checked'))) $("li[id='li_" + result[i].id + "']").hide();
         //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-        var href = result[i].url + "&nocache=" + new Date().getTime();
+        var href = result[i].url;
 
         $("li[id='li_" + result[i].id + "']").children('a').attr("href", href);
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
@@ -1418,7 +1404,7 @@ function RenderTree(tree) {
         if (!tree.Complete && !(tree.Optional && !tree.Selected)) $(node).children(".incomplete").show();
         else $(node).children(".incomplete").hide();
 
-        var href = "../" + tree.Url + "&nocache=" + new Date().getTime();
+        var href = "../" + tree.Url;
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
 

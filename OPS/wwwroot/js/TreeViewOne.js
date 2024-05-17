@@ -134,10 +134,6 @@ function UpdateParent(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
             var parentulID = $("li[id='li_" + result.id + "']").parent().attr("id");
 
             //Add the image for the complete/incomplete status if parent node is not Decision
@@ -210,7 +206,7 @@ function UpdateNode(data) {
         if ($(node).children('a').length == 0) {
             $(node).append("<a></a>");
             //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-            var href = "../" + data.url + "&nocache=" + new Date().getTime();
+            var href = "../" + data.url;
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
         }
@@ -313,10 +309,6 @@ function UpdateNodeFromServer(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
             //Add the image for the complete/incomplete status if parent node is not Decision
             if (!result.complete && !(result.optional && !result.selected)) {
                 $("li[id='li_" + result.id + "']").children("img").show();
@@ -346,10 +338,6 @@ function UpdateNodesFromServer(ids) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
             var showSelectors = '';
             var hideSelectors = '';
             for (var i = 0; i < result.length; i++) {
@@ -402,11 +390,6 @@ function UpdateTree(id) {
         complete: function () {
         },
         success: function (result) {
-            if (result == "_SessionTimeout_") {
-                document.location = "/SessionTimeOut.html";
-                return false;
-            }
-
             //Add the image for the complete/incomplete status if parent node is not Decision
             if (!result.complete && !(result.optional && !result.selected)) {
                 $("li[id='li_" + result.id + "']").children("img").show();
@@ -643,10 +626,6 @@ function Refill() {
 function RefreshFillers(id, recursive) {
     var node = "li[id='li_" + id + "']";
     if ($(node).length) {
-        var hideParentUL = false;
-        var hideNode = false;
-
-        var padding_left =  0;
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
         var nameText = $(node).children('a').children(".name").text();
@@ -834,7 +813,7 @@ function Assemble(result, id) {
         //If hidden then hide
         if (result[i].hidden == true && !($('input[id=\'HiddenFields\']').is(':checked'))) $("li[id='li_" + result[i].id + "']").hide();
         //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-        var href = result[i].url + "&nocache=" + new Date().getTime();
+        var href = result[i].url;
         $("li[id='li_" + result[i].id + "']").children('a').attr("href", href);
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
         //Check for dark mode
@@ -911,7 +890,7 @@ function RenderTree(tree) {
         else $(node).children(".incomplete").hide();
 
         //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-        var href = "../" + tree.Url + "&nocache=" + new Date().getTime();
+        var href = "../" + tree.Url;
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
         //Set the <a> onclick to open the url in a new window
@@ -1296,12 +1275,6 @@ $(function () {
             dialog.dialog("open");
         }
     });
-
-    //Code to fix issue with dialog box sticking to mouse. doesnt work
-    $("#body").mouseleave(function () {
-        $(this).mouseup();
-    });
-
 
     //If window width is less than 1024 then hide the description
     if ($(window).width() < "1024")

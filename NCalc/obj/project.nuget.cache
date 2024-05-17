@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fdJNIT6LR/7rDb3bXawFBnQcNURt9yTIB5qGQMRNQTuA/dKo6M15jAxQLV6s0JrBs8zTeQscJ5qwo0rQ86J8RQ==",
+  "dgSpecHash": "QBPSBolZcFVjbb0lltCsVnHTPxPS8XGgQZdR+fe3BQdoZG3EDVXOASbOoBdM/NbZxfXxbqJnaxdqmRLnBIPPYA==",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
   "expectedPackageFiles": [
@@ -13,11 +13,11 @@
     "/Users/alejandro/.nuget/packages/microsoft.netframework.referenceassemblies.net461/1.0.3/microsoft.netframework.referenceassemblies.net461.1.0.3.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/nerdbank.gitversioning/3.4.244/nerdbank.gitversioning.3.4.244.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.29/microsoft.netcore.app.runtime.linux-x64.6.0.29.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.29/microsoft.aspnetcore.app.runtime.linux-x64.6.0.29.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.29/microsoft.netcore.app.runtime.osx-arm64.6.0.29.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.29/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.29.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.29/microsoft.netcore.app.crossgen2.osx-arm64.6.0.29.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/8.0.4/microsoft.netcore.app.runtime.linux-x64.8.0.4.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/8.0.4/microsoft.aspnetcore.app.runtime.linux-x64.8.0.4.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/8.0.4/microsoft.netcore.app.runtime.osx-arm64.8.0.4.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/8.0.4/microsoft.aspnetcore.app.runtime.osx-arm64.8.0.4.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/8.0.4/microsoft.netcore.app.crossgen2.osx-arm64.8.0.4.nupkg.sha512"
   ],
   "logs": []

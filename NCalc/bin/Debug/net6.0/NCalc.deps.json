@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "NCalc/0.0.0-gf3cfae29d0": {
+      "NCalc/0.0.0-g81acd9e413": {
         "dependencies": {
           "Antlr4.Runtime.Standard": "4.13.1",
           "Microsoft.NET.ILLink.Analyzers": "7.0.100-1.23211.1",
@@ -31,7 +31,7 @@
     }
   },
   "libraries": {
-    "NCalc/0.0.0-gf3cfae29d0": {
+    "NCalc/0.0.0-g81acd9e413": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
