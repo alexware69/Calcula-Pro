@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Text;
+using ElectronNET.API.Entities;
 
 namespace OnlinePriceSystem.Controllers
 {
@@ -27,6 +28,9 @@ namespace OnlinePriceSystem.Controllers
 			QTree? tree = null;
             HttpContext.Session.SetString("renamed", "");
             HttpContext.Session.SetString("isNew", isNew);
+
+            HttpContext.Session.SetString("dependentsVisibility", "visible");
+            HttpContext.Session.SetString("referencesVisibility", "visible");
 
 			if (product != null && product != "") 
 			{
@@ -57,8 +61,22 @@ namespace OnlinePriceSystem.Controllers
                 }
 			}
             TempData["root"] = tree!.Root;
+            TempData["dependentsVisibility"] = HttpContext.Session.GetString("dependentsVisibility");
+            TempData["referencesVisibility"] = HttpContext.Session.GetString("referencesVisibility");
 			return View("EditProduct");
 		}
+
+        public ContentResult SetDepVisibility(string visibility)
+        {
+            HttpContext.Session.SetString("dependentsVisibility", visibility);
+            return Content("");
+        }
+
+        public ContentResult SetRefVisibility(string visibility)
+        {
+            HttpContext.Session.SetString("referencesVisibility", visibility);
+            return Content("");
+        }
 
         public ActionResult NewQuote(string product)
 		{
@@ -278,6 +296,8 @@ namespace OnlinePriceSystem.Controllers
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
+            TempData["dependentsVisibility"] = HttpContext.Session.GetString("dependentsVisibility");
+            TempData["referencesVisibility"] = HttpContext.Session.GetString("referencesVisibility");
             return View();
         }
         
@@ -300,6 +320,8 @@ namespace OnlinePriceSystem.Controllers
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
+            TempData["dependentsVisibility"] = HttpContext.Session.GetString("dependentsVisibility");
+            TempData["referencesVisibility"] = HttpContext.Session.GetString("referencesVisibility");
             return View();
         }
 
@@ -398,6 +420,8 @@ namespace OnlinePriceSystem.Controllers
             var url = path + "/" + node.GetPath() + "/homepage.htm";
             TempData["url"] = url; 
             HttpContext.Session.SetString("url",url);
+            TempData["dependentsVisibility"] = HttpContext.Session.GetString("dependentsVisibility");
+            TempData["referencesVisibility"] = HttpContext.Session.GetString("referencesVisibility");
             return View();
         }
 

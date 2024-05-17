@@ -2,6 +2,8 @@
 @{
     var Model = (SumSetNode)TempData["node"]!;
     var url = (string)TempData["url"]!;
+    var dependentsVisibility = (string)TempData["dependentsVisibility"]!;
+    var referencesVisibility = (string)TempData["referencesVisibility"]!;
     Layout = null;
 }
 
@@ -239,8 +241,6 @@
         $(function () {
             $(".list_dependents li").sort(asc_sort).appendTo('.list_dependents');
             $(".list_references li").sort(asc_sort).appendTo('.list_references');
-            //$("#dependents").hide();
-            //$("#references").hide();
             
             $('#formID').keypress(function (e) {
                 if (e.which == 13) {
@@ -251,21 +251,54 @@
         });  
 
          $( document ).ready(function() {
-            var title = parent.document.title;
-            if(title.startsWith("Edit Definition")){
-            $("#deps").show();
-            $("#refs").show();
+                var title = parent.document.title;
+                if(title.startsWith("Edit Definition")){
+                $("#deps").show();
+                $("#refs").show();
+
+                if($("#dependents").css('visibility') != '@dependentsVisibility'){
+                    $('#dependents').toggle(); 
+                    toggleArrowDependents();
+                }
+
+                if($("#references").css('visibility') != '@referencesVisibility'){
+                    $('#references').toggle(); 
+                    toggleArrowReferences();
+                }
             }
         });
 
         function toggleArrowDependents(){
-            if ($("#depArrow").text() == "DEPENDENTS ⬇️") $("#depArrow").text("DEPENDENTS ➡️");
-            else $("#depArrow").text("DEPENDENTS ⬇️");
-        }
-
-        function toggleArrowReferences(){
-            if ($("#refArrow").text() == "REFERENCES ⬇️") $("#refArrow").text("REFERENCES ➡️");
-            else $("#refArrow").text("REFERENCES ⬇️");
+            if ($("#depArrow").text() == "DEPENDENTS ⬇️") {
+                    $("#depArrow").text("DEPENDENTS ➡️");
+                    $.ajax({
+                        url: "SetDepVisibility?visibility=" + "hidden",
+                        type: 'GET',
+                        dataType: "text",
+                        cache: false,
+                        beforeSend: function () {
+                        },
+                        complete: function () {
+                        },
+                        success: function (result) {
+                        }
+                    });   //end ajax
+                }
+            else {
+                    $("#depArrow").text("DEPENDENTS ⬇️");
+                    $.ajax({
+                        url: "SetDepVisibility?visibility=" + "visible",
+                        type: 'GET',
+                        dataType: "text",
+                        cache: false,
+                        beforeSend: function () {
+                        },
+                        complete: function () {
+                        },
+                        success: function (result) {
+                        }
+                    });   //end ajax
+                }
         }
     </script>
 </body>
