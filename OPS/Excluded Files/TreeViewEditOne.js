@@ -1884,44 +1884,6 @@ $(function () {
                     $("#container").height($(window).height() - descriptionOffsetTop - 40);
                 }
             });   //end ajax
-
-            function split( val ) {
-                return val.split(/[()*/%+-?&!><=:,]+/g);
-              }
-              function extractLast( term ) {
-                return split( term ).pop().trimLeft ().trimRight ();
-              }
-           
-              $( "textarea" )
-                // don't navigate away from the field on tab when selecting an item
-                .on( "keydown", function( event ) {
-                  if ( event.keyCode === $.ui.keyCode.TAB &&
-                      $( this ).autocomplete( "instance" ).menu.active ) {
-                    event.preventDefault();
-                  }
-                })
-                .autocomplete({
-                  minLength: 0,
-                  source: function( request, response ) {
-                    // delegate back to autocomplete, but extract the last term
-                    response( $.ui.autocomplete.filter(
-                      allNames, extractLast( request.term ) ) );
-                  },
-                  focus: function() {
-                    // prevent value inserted on focus
-                    return false;
-                  },
-                  select: function( event, ui ) {
-                    var terms = split( this.value );
-                    this.value = replaceLastOccurrence(this.value,terms[terms.length -1], '');
-
-                    if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
-                    if (ui.item.value[ui.item.value.length - 1] != " ") ui.item.value = ui.item.value + " ";
-                    this.value = this.value + ui.item.value;
-                    return false;
-                  }
-                });
-
             // you get two params - event & data - check the core docs for a detailed description
         });
     // INSTANCES
@@ -1997,6 +1959,43 @@ $(function () {
         //ToggleDescription();
         //$("#Formulas,#FormulaText, #Description, #DescriptionText").hide();
     }
+
+    function split( val ) {
+        return val.split(/[()*/%+-?&!><=:,]+/g);
+      }
+      function extractLast( term ) {
+        return split( term ).pop().trimLeft ().trimRight ();
+      }
+   
+    $( "textarea" )
+    // don't navigate away from the field on tab when selecting an item
+    .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+        event.preventDefault();
+        }
+    })
+    .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+        // delegate back to autocomplete, but extract the last term
+        response( $.ui.autocomplete.filter(
+            allNames, extractLast( request.term ) ) );
+        },
+        focus: function() {
+        // prevent value inserted on focus
+        return false;
+        },
+        select: function( event, ui ) {
+        var terms = split( this.value );
+        this.value = replaceLastOccurrence(this.value,terms[terms.length -1], '');
+
+        if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
+        if (ui.item.value[ui.item.value.length - 1] != " ") ui.item.value = ui.item.value + " ";
+        this.value = this.value + ui.item.value;
+        return false;
+        }
+    });
 
     //Resize fillers on window resize
     $(window).on("resize", function () {
