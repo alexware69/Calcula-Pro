@@ -1087,7 +1087,7 @@ $(function () {
         // call `.jstree` with the options object
         .jstree({
             // the `plugins` array allows you to configure the active plugins on this instance
-            "plugins": ["themes", "html_data", "ui", "crrm", "hotkeys"],
+            "plugins": ["themes", "html_data", "ui", "crrm"],
             "themes": { theme: "default", dots: false, icons: false }
             // each plugin you have included can have its own config object
             // it makes sense to configure a plugin only if overriding the defaults

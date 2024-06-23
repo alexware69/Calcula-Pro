@@ -654,7 +654,26 @@
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
 			activateLightMode();
 		}
+
+		$("html").keydown(function (e) {
+			if (e.key == 'Delete') {
+				e.preventDefault();
+				removeNodeIds = "";
+				var selectedNodes = $("#container").jstree("get_selected");
+				if (selectedNodes.length > 1) {
+					for (var i = 0; i < selectedNodes.length; i++) {
+						removeNodeIds += selectedNodes[i].id.replace(/li_/g, "") + ";";
+					}
+					$("#removeNode").children("label").text("Remove multiple nodes?");
+					removenodedialog.dialog("open");
+				}
+				else {
+					nodeId = selectedNodes[0].id.replace(/li_/g, "");
+					$("span[id='remove_" + nodeId + "']").click();
+				}
+			}
+        });
 	});
-     </script>
+</script>
 
 	

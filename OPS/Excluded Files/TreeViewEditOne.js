@@ -1725,7 +1725,7 @@ $(function () {
         // call .jstree with the options object
         .jstree({
             // the plugins array allows you to configure the active plugins on this instance
-            "plugins": ["themes", "html_data", "ui", "crrm", "hotkeys", "contextmenu"],
+            "plugins": ["themes", "html_data", "ui", "crrm", "contextmenu"],
             "contextmenu": {
                 "items": function ($node) {
                     return {
