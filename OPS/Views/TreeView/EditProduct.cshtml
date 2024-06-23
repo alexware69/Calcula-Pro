@@ -667,7 +667,7 @@
 					$("#removeNode").children("label").text("Remove multiple nodes?");
 					removenodedialog.dialog("open");
 				}
-				else {
+				else if (selectedNodes.length == 1) {
 					nodeId = selectedNodes[0].id.replace(/li_/g, "");
 					$("span[id='remove_" + nodeId + "']").click();
 				}
