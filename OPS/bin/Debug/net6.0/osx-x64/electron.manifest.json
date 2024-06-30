@@ -5,13 +5,18 @@
   },
   "name": "CalculaPro",
   "author": "Alejandro Penate-Diaz <alejandro.penate@calculapro.com>",
+  "license":"GPL-3.0",
+  "description": "Cross-platform tree-based alternative to spreadsheets.",
+  "repository":{
+    "url":"https://github.com/alepedia69/Calcula_Pro"
+  },
   "singleInstance": false,
   "environment": "Production",
   "build": {
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
     "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
-    "buildVersion": "1.3.7",
+    "buildVersion": "1.6.6",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -47,11 +52,9 @@
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
     "linux": {
-      "category": "Utility",
+      "category": "Productivity",
       "target": [
-        "deb",
-        "snap",
-        "AppImage"
+        "snap"
       ],
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
