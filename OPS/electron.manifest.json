@@ -42,7 +42,7 @@
       "entitlements": "../../../build/entitlements.mac.plist",
       "entitlementsInherit": "../../../build/entitlements.mac.plist",
       "gatekeeperAssess": false,
-      "icon": "../../../../wwwroot/Images/ops.png"
+      "icon": "../../../../wwwroot/Images/Icon.icns"
     },
     "win": {
       "target": [
