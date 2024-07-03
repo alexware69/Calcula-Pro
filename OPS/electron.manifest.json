@@ -37,6 +37,7 @@
           ]
         }
       ],
+      "asar":true,
       "mergeASARs": true,
       "x64ArchFiles": "OPS",
       "hardenedRuntime": true,
