@@ -37,6 +37,7 @@
           ]
         }
       ],
+      "mergeASARs": true,
       "x64ArchFiles": "*",
       "hardenedRuntime": true,
       "entitlements": "../../../build/entitlements.mac.plist",
