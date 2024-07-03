@@ -38,7 +38,7 @@
         }
       ],
       "mergeASARs": true,
-      "x64ArchFiles": "*",
+      "x64ArchFiles": "OPS",
       "hardenedRuntime": true,
       "entitlements": "../../../build/entitlements.mac.plist",
       "entitlementsInherit": "../../../build/entitlements.mac.plist",
