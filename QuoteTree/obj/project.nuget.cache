@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vFxu3muagZI=",
+  "dgSpecHash": "zwiEy3441ww=",
   "success": true,
   "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -8,13 +8,8 @@
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.0/microsoft.aspnetcore.jsonpatch.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.0/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.net.illink.analyzers/7.0.100-1.23401.1/microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.net.illink.tasks/7.0.100-1.23401.1/microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/6.0.31/microsoft.netcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/6.0.31/microsoft.aspnetcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.31/microsoft.netcore.app.crossgen2.osx-x64.6.0.31.nupkg.sha512"
+    "/Users/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }

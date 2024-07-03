@@ -16,7 +16,7 @@
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
     "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
-    "buildVersion": "1.6.6",
+    "buildVersion": "1.6.7",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -38,6 +38,10 @@
           ]
         }
       ],
+      "hardenedRuntime": true,
+      "entitlements": "../../../build/entitlements.mac.plist",
+      "entitlementsInherit": "../../../build/entitlements.mac.plist",
+      "gatekeeperAssess": false,
       "icon": "../../../../wwwroot/Images/ops.png"
     },
     "win": {
