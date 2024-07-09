@@ -37,6 +37,9 @@
           ]
         }
       ],
+      "extendInfo": {
+        "ElectronTeamID": "7U9U8QP2GU"
+      },
       "asar":true,
       "mergeASARs": true,
       "x64ArchFiles": "OPS",

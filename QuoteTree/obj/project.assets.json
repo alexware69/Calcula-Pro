@@ -468,11 +468,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+      "projectUniqueName": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
       "projectName": "QuoteTree",
-      "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+      "projectPath": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
       "packagesPath": "/Users/alejandro/.nuget/packages/",
-      "outputPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/obj/",
+      "outputPath": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandro/.nuget/NuGet/NuGet.Config"
@@ -487,8 +487,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-              "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+            "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj": {
+              "projectPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj"
             }
           }
         }
@@ -542,7 +542,7 @@
             "version": "[6.0.31, 6.0.31]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
             "version": "[6.0.31, 6.0.31]"
           },
           {
