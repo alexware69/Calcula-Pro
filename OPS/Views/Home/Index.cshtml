@@ -26,6 +26,21 @@
 	}
 }
 </style>
+ <style>
+	body::before {
+		content: "";
+		position: fixed;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('../Images/background.jpeg') no-repeat center center fixed;
+		background-size: cover;
+	}
+	body {
+		margin: 0;
+		padding: 0;
+	}
+</style>
 <div class="center">
 	<button id="new-dialog" class="btn">New Definition</button>	
 	<br/>
@@ -33,7 +48,7 @@
 	 	     	<img id="loading" align="center" title='Working...' style='display:none;' class='loading' alt='Working...'>&nbsp;
 		</div>
 	<br/>
-	<button id="open-dialog" class="btn">Edit Definition</button>
+	<button id="open-dialog" class="btn">Open Definition</button>
 	
 	<br/>
 	<br/>
@@ -134,37 +149,37 @@
 	$( "input[type=submit], button" ).button();
 </script>
 
-    <script>
-		$( document ).ready(function() {
-			$("#save").hide();
-			$("#discard").hide();
-		});
+<script>
+	$( document ).ready(function() {
+		$("#save").hide();
+		$("#discard").hide();
+	});
 
-         function activateDarkMode() {
-			// set style to dark
-			$("#loading").attr("src", "../Images/loading-hd-gimp-dark.gif");
+		function activateDarkMode() {
+		// set style to dark
+		$("#loading").attr("src", "../Images/loading-hd-gimp-dark.gif");
+	}
+
+	function activateLightMode() {
+	// set style to light
+		$("#loading").attr("src", "../Images/loading-hd-gimp.gif");
+	}
+
+	window.matchMedia("(prefers-color-scheme: dark)").addListener(
+		e => e.matches && activateDarkMode() // listener
+	);
+
+	window.matchMedia("(prefers-color-scheme: light)").addListener(
+		e => e.matches && activateLightMode() // listener
+	);
+
+	$( document ).ready(function() {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			activateDarkMode();
 		}
 
-		function activateLightMode() {
-		// set style to light
-			$("#loading").attr("src", "../Images/loading-hd-gimp.gif");
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+			activateLightMode();
 		}
-
-		window.matchMedia("(prefers-color-scheme: dark)").addListener(
-			e => e.matches && activateDarkMode() // listener
-		);
-
-		window.matchMedia("(prefers-color-scheme: light)").addListener(
-			e => e.matches && activateLightMode() // listener
-		);
-
-        $( document ).ready(function() {
-			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				activateDarkMode();
-			}
-
-			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-				activateLightMode();
-			}
-		});
-    </script>
+	});
+</script>

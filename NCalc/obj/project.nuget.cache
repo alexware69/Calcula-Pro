@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AACcgNiJpeI=",
+  "dgSpecHash": "kic72q+YuCM=",
   "success": true,
   "projectFilePath": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj",
   "expectedPackageFiles": [
@@ -13,11 +13,11 @@
     "/Users/alejandro/.nuget/packages/microsoft.netframework.referenceassemblies.net461/1.0.3/microsoft.netframework.referenceassemblies.net461.1.0.3.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/nerdbank.gitversioning/3.4.244/nerdbank.gitversioning.3.4.244.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/6.0.31/microsoft.netcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/6.0.31/microsoft.aspnetcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.31/microsoft.netcore.app.runtime.osx-arm64.6.0.31.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.31/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.31.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.31/microsoft.netcore.app.crossgen2.osx-arm64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/8.0.6/microsoft.netcore.app.runtime.osx-x64.8.0.6.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/8.0.6/microsoft.aspnetcore.app.runtime.osx-x64.8.0.6.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/8.0.6/microsoft.netcore.app.runtime.osx-arm64.8.0.6.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/8.0.6/microsoft.aspnetcore.app.runtime.osx-arm64.8.0.6.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/8.0.6/microsoft.netcore.app.crossgen2.osx-arm64.8.0.6.nupkg.sha512"
   ],
   "logs": []
