@@ -41,10 +41,10 @@
         /* Dark mode */
         @@media (prefers-color-scheme: dark) {
             #home {
-                color:black;
+                color:white;
             }
             #about {
-                color:black;
+                color:white;
             }
         }
     </style>
@@ -68,18 +68,17 @@
                         </li>
                     </ul>
                 </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between;" style="float: right; position: absolute; right: 1%; flex-basis: 0%;">
+                    <div style="display:inline-block;vertical-align:middle;">
+                        <span class="loading_dependencies" style="display:none"></span>&nbsp;
+                    </div>
+                    <div style="display:inline-block;vertical-align:middle;"> 
+                        <span class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
+                    </div>
+                    <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:none;">Save definition</a>
+                    <a id="discard" class="nav-link" href="../Home/Index" style="text-decoration: none;display:none;">Discard changes</a>
+		        </div>
             </div>
-
-            <div style="display:inline-block; position:absolute;right:1%;">
-                <div style="display:inline-block;vertical-align:middle;">
-                    <span class="loading_dependencies" style="display:none"></span>&nbsp;
-                </div>
-                <div style="display:inline-block;vertical-align:middle;"> 
-                    <span class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;
-                </div>
-                <a id="save" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:none; padding: 5px;">Save definition</a>&nbsp;
-                <a id="discard" href="../Home/Index" style="text-decoration: none;display:none; padding: 5px;">Discard changes</a>
-		    </div>
         </nav>
     </header>
     <div class="container">
