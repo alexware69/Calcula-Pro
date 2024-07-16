@@ -675,7 +675,31 @@ namespace OnlinePriceSystem.Controllers
             return writer.GetStringBuilder().ToString();
         }
 
-        public FileResult SaveQuote()
+        public  async Task<FileResult> SaveQuoteHTML()
+        {
+            byte[] array = HttpContext.Session.Get("tree")!;
+            QTree tree = ByteArrayToObject(array);
+
+            TempData["root"] = tree.Root!;                
+            Dictionary<string, string> selection;
+            selection = tree.GetSelections();
+
+            var renderedView = await RenderPartialViewToString("QuoteDetails", selection);
+
+            //Do what you want with the renderedView here
+            //Removing the Save Quote button from the html file
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(renderedView);
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//input");
+            var button = nodes[0];
+            button.SetAttributeValue("hidden", "hidden");
+            button = nodes[1];
+            button.SetAttributeValue("hidden", "hidden");
+            var updatedStr = htmlDoc.DocumentNode.OuterHtml;
+
+            return File(Encoding.UTF8.GetBytes(updatedStr), "text/plain", tree.Root!.Name + ".html");
+        }
+        public FileResult SaveQuoteXML()
         {
             byte[] array = HttpContext.Session.Get("tree")!;
             QTree tree = ByteArrayToObject(array);

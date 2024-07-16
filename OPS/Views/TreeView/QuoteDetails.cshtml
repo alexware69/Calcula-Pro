@@ -14,9 +14,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>QuoteDetails</title>
-    <script>        
-        function Save() {
-            window.parent.window.location = "SaveQuote";
+    <script>    
+        function SaveQuoteHTML() {
+            window.parent.window.location = "SaveQuoteHTML";
+        }    
+        function SaveQuoteXML() {
+            window.parent.window.location = "SaveQuoteXML";
         }
     </script>
      <style>
@@ -65,7 +68,8 @@
     } else {
         string s = !root.IsComplete() || root.TotalStr == "error" ? "disabled": "";
     <div style="text-align:center">
-        <input type="submit" value="Save Quote" onclick="Save()" @s />
+        <input type="submit" value="Save HTML Quote" onclick="SaveQuoteHTML()" @s />
+        <input type="submit" value="Save XML Quote" onclick="SaveQuoteXML()" @s />
     </div>
     <br />
     <div id="Content" style="text-wrap:normal; overflow-wrap:break-word; max-width: 216mm; margin: 0 auto;">

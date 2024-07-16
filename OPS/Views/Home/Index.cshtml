@@ -51,9 +51,9 @@
 <div class="center">
 	<button id="new-dialog" class="btn">New Definition</button>	
 	<br/>
-		<div style="display:inline-block;vertical-align:middle;"> 
-	 	     	<img id="loading" align="center" title='Working...' style='display:none;' class='loading' alt='Working...'>&nbsp;
-		</div>
+	<div style="display:inline-block; vertical-align:middle;"> 
+			<img id="loading" align="center" title='Working...' style='display: none; width: 50%; margin-left: auto; margin-right: auto;' alt='Working...'>&nbsp;
+	</div>
 	<br/>
 	<button id="open-dialog" class="btn">Open Definition</button>
 	
@@ -87,7 +87,7 @@
 		$("#new-dialog").hide();
 		$("#open-dialog").hide();
 		$("#open-dialog-view").hide();
-		$(".loading").show();
+		$("#loading").css("display", "block");
 		document.location='../../TreeView/Edit?product='+ path + '&isNew=false';
 		return;
 	});
@@ -114,7 +114,7 @@
 		$("#new-dialog").hide();
 		$("#open-dialog").hide();
 		$("#open-dialog-view").hide();
-		$(".loading").show();
+		$("#loading").css("display", "block");
 		document.location='../../TreeView/NewQuote?product='+ path;
 		return;
 	});
@@ -163,8 +163,8 @@
 		$("body").css("border-top","none");
 	});
 
-		function activateDarkMode() {
-		// set style to dark
+	function activateDarkMode() {
+	// set style to dark
 		$("#loading").attr("src", "../Images/loading.gif");
 	}
 
