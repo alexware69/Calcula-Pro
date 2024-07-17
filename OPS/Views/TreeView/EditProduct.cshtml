@@ -3,7 +3,7 @@
 @{
     var Model = (ANode)TempData["root"]!;
 	var price = Model == null? "0": Model.TotalStr;
-	ViewData["Title"] = "Edit Definition";
+	ViewData["Title"] = Model!.Name;
 }
 
  <script src="../../js/TreeViewEditOne-min.js"></script>
