@@ -40,6 +40,11 @@ namespace OnlinePriceSystem.Controllers
             return Ok();
         }*/
 
+		public void ExitApp()
+        {
+            Electron.App.Quit();
+        }
+
 		public async void OpenNew()
         {
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -105,6 +110,11 @@ namespace OnlinePriceSystem.Controllers
 			//if (!HybridSupport.IsElectronActive || openAdded) return Ok();
 			switch (type)
 			{
+				//Open New Definition dialog
+				case "exit-app":
+				 ExitApp();
+				 break;
+
 				//Open New Definition dialog
 				case "new-dialog":
 				 OpenNew();
