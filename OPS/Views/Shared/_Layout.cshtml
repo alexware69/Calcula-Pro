@@ -96,8 +96,18 @@
                     <div style="display:inline-block;vertical-align:middle;"> 
                         <span style="-webkit-app-region: no-drag" class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
                     </div>
-                    <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
-                    <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item" id="menu">
+                                <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
+                            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </ul>
+                    </div>
+
                     <a id="minimize" title="Minimize" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇲</b></a>
                     <a id="maximize" title="Maximize/Restore"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
                     <a id="exit" title="Exit"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px">❌</a>
