@@ -26,15 +26,18 @@
             background-color: #F6A828;
             padding-top: 0rem;
             padding-bottom: 0rem;
+            -webkit-app-region: drag;
         }
         
         /* Light mode */
         @@media (prefers-color-scheme: light) {
             #home {
                 color:black;
+                -webkit-app-region: no-drag;
             }
             #about {
                 color:black;
+                -webkit-app-region: no-drag;
             }
         }
 
@@ -42,9 +45,11 @@
         @@media (prefers-color-scheme: dark) {
             #home {
                 color:black;
+                -webkit-app-region: no-drag;
             }
             #about {
                 color:black;
+                -webkit-app-region: no-drag;
             }
         }
     </style>
@@ -73,14 +78,14 @@
                         <span class="loading_dependencies" style="display:none"></span>&nbsp;
                     </div>
                     <div style="display:inline-block;vertical-align:middle;"> 
-                        <span class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
+                        <span style="-webkit-app-region: no-drag" class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
                     </div>
-                    <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:none;">Save definition</a>
-                    <a id="discard" class="nav-link" href="../Home/Index" style="text-decoration: none;display:none;">Discard changes</a>
-                    <a id="minimize" title="Minimize" class="nav-link" href="#" style="text-decoration: none;"><b>⇲</b></a>
-                    <a id="maximize" title="Maximize" class="nav-link" href="#" style="text-decoration: none;"><b>⇱︎</b></a>
-                    <a id="restore" title="Restore" class="nav-link" href="#" style="text-decoration: none;"><b>⛶</b></a>
-                    <a id="exit" title="Exit" class="nav-link" href="#" style="text-decoration: none;">❌</a>
+                    <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
+                    <a id="discard" class="nav-link" href="../Home/Index" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
+                    <a id="minimize" title="Minimize" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇲</b></a>
+                    <a id="maximize" title="Maximize"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇱︎</b></a>
+                    <a id="restore" title="Restore" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
+                    <a id="exit" title="Exit"  href="#" style="-webkit-app-region: no-drag; text-decoration: none;">❌</a>
 		        </div>
             </div>
         </nav>
