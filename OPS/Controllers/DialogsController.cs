@@ -162,11 +162,5 @@ namespace OnlinePriceSystem.Controllers
 			}
 			return Ok();
 		}
-
-		public IActionResult NewWindowPosition(int x, int y)
-		{
-			//Electron.WindowManager.BrowserWindows.First().OnMove
-			return Ok();
-		}
     }
 }
