@@ -57,10 +57,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu">
                             <a id="home" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                          <li class="nav-item">
@@ -77,6 +77,9 @@
                     </div>
                     <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:none;">Save definition</a>
                     <a id="discard" class="nav-link" href="../Home/Index" style="text-decoration: none;display:none;">Discard changes</a>
+                    <a id="minimize" class="nav-link" href="#" style="text-decoration: none;">Minimize</a>
+                    <a id="maximize" class="nav-link" href="#" style="text-decoration: none;">Maximize</a>
+                    <a id="restore" class="nav-link" href="#" style="text-decoration: none;">Restore</a>
                     <a id="exit" class="nav-link" href="#" style="text-decoration: none;">Exit</a>
 		        </div>
             </div>
@@ -87,5 +90,87 @@
             @RenderBody()
         </main>
     </div>
+    <script>
+        const os = require('os');
+
+        function getOperatingSystem() {
+            return os.platform();
+        }
+
+
+        //Minimize the App
+	    document.getElementById('minimize').addEventListener('click', () => {
+        //ipcRenderer.send('exit-app');
+        $.ajax({
+                url: "../../Dialogs/Index?type=minimize-app",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                }
+    	    });   //end ajax
+        });
+
+        //Maximize the App
+	    document.getElementById('maximize').addEventListener('click', () => {
+        //ipcRenderer.send('exit-app');
+        $.ajax({
+                url: "../../Dialogs/Index?type=maximize-app",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                }
+    	    });   //end ajax
+        });
+
+        //Restore the App
+	    document.getElementById('restore').addEventListener('click', () => {
+        //ipcRenderer.send('exit-app');
+        $.ajax({
+                url: "../../Dialogs/Index?type=restore-app",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                }
+    	    });   //end ajax
+        });
+
+        //Exit the App
+	    document.getElementById('exit').addEventListener('click', () => {
+        //ipcRenderer.send('exit-app');
+        $.ajax({
+                url: "../../Dialogs/Index?type=exit-app",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                }
+    	    });   //end ajax
+        });
+
+        $( document ).ready(function() {
+            if (getOperatingSystem() == "darwin"){
+                $('#menu').css('marginLeft', 65 + 'px');
+            } 
+	    });
+    </script>
 </body>
 </html>

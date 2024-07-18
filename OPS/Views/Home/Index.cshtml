@@ -47,6 +47,11 @@
 	#about {
 		color:black;
 	}
+
+	#exit {
+		color:black;
+	}
+
 </style>
 <div class="center">
 	<button id="new-dialog" style="text-align: left;" class="btn">New Definition</button>	
@@ -63,23 +68,6 @@
 <script>
 	const { ipcRenderer } = require("electron");
 	const fs = require('fs');
-
-	//Exit the App
-	document.getElementById('exit').addEventListener('click', () => {
-        //ipcRenderer.send('exit-app');
-        $.ajax({
-			url: "../../Dialogs/Index?type=exit-app",
-			type: 'GET',
-			dataType: 'json',
-			cache: false,
-			beforeSend: function () {
-			},
-			complete: function () {
-			},
-			success: function (result) {
-			}
-    	});   //end ajax
-    });
 
 	//Open Edit Definition dialog
 	document.getElementById("open-dialog")

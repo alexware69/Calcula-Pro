@@ -45,6 +45,21 @@ namespace OnlinePriceSystem.Controllers
             Electron.App.Quit();
         }
 
+		public void MaximizeApp()
+        {
+            Electron.WindowManager.BrowserWindows.First().Maximize();
+        }
+
+		public void MinimizeApp()
+        {
+            Electron.WindowManager.BrowserWindows.First().Minimize();
+        }
+
+		public void RestoreApp()
+        {
+            Electron.WindowManager.BrowserWindows.First().Unmaximize();
+        }
+
 		public async void OpenNew()
         {
             var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -110,6 +125,21 @@ namespace OnlinePriceSystem.Controllers
 			//if (!HybridSupport.IsElectronActive || openAdded) return Ok();
 			switch (type)
 			{
+				//Minimize App
+				case "minimize-app":
+				 MinimizeApp();
+				 break;
+
+				//Maximize App
+				case "maximize-app":
+				 MaximizeApp();
+				 break;
+
+				//Restore App
+				case "restore-app":
+				 RestoreApp();
+				 break;
+
 				//Open New Definition dialog
 				case "exit-app":
 				 ExitApp();
