@@ -47,10 +47,6 @@
                 color:black;
                 -webkit-app-region: no-drag;
             }
-            #restore {
-                color:black;
-                -webkit-app-region: no-drag;
-            }
         }
 
         /* Dark mode */
@@ -68,10 +64,6 @@
                 -webkit-app-region: no-drag;
             }
             #maximize {
-                color:black;
-                -webkit-app-region: no-drag;
-            }
-            #restore {
                 color:black;
                 -webkit-app-region: no-drag;
             }
@@ -107,9 +99,8 @@
                     <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
                     <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
                     <a id="minimize" title="Minimize" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇲</b></a>
-                    <a id="maximize" title="Maximize"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇱︎</b></a>
-                    <a id="restore" title="Restore" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
-                    <a id="exit" title="Exit"  href="#" style="-webkit-app-region: no-drag; text-decoration: none;">❌</a>
+                    <a id="maximize" title="Maximize/Restore"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
+                    <a id="exit" title="Exit"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px">❌</a>
 		        </div>
             </div>
         </nav>
@@ -149,23 +140,6 @@
         //ipcRenderer.send('exit-app');
         $.ajax({
                 url: "../../Dialogs/Index?type=maximize-app",
-                type: 'GET',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                }
-    	    });   //end ajax
-        });
-
-        //Restore the App
-	    document.getElementById('restore').addEventListener('click', () => {
-        //ipcRenderer.send('exit-app');
-        $.ajax({
-                url: "../../Dialogs/Index?type=restore-app",
                 type: 'GET',
                 dataType: 'json',
                 cache: false,

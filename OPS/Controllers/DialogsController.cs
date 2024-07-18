@@ -45,19 +45,17 @@ namespace OnlinePriceSystem.Controllers
             Electron.App.Quit();
         }
 
-		public void MaximizeApp()
+		public async void MaximizeApp()
         {
-            Electron.WindowManager.BrowserWindows.First().Maximize();
+			var result = await Electron.WindowManager.BrowserWindows.First().IsMaximizedAsync();
+			if (!result)
+            	Electron.WindowManager.BrowserWindows.First().Maximize();
+			else Electron.WindowManager.BrowserWindows.First().Unmaximize();
         }
 
 		public void MinimizeApp()
         {
             Electron.WindowManager.BrowserWindows.First().Minimize();
-        }
-
-		public void RestoreApp()
-        {
-            Electron.WindowManager.BrowserWindows.First().Unmaximize();
         }
 
 		public async void OpenNew()
@@ -133,11 +131,6 @@ namespace OnlinePriceSystem.Controllers
 				//Maximize App
 				case "maximize-app":
 				 MaximizeApp();
-				 break;
-
-				//Restore App
-				case "restore-app":
-				 RestoreApp();
 				 break;
 
 				//Open New Definition dialog
