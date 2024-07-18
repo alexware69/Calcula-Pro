@@ -15,8 +15,11 @@
   "build": {
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
+    "extraMetadata": {
+      "name": "Calcula Pro"
+    },
     "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
-    "buildVersion": "1.7.4",
+    "buildVersion": "1.7.5",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
