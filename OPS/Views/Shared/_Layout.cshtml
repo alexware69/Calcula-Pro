@@ -90,10 +90,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item" id="menu">
-                            <a id="home" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a id="home" onclick="javascript: ConfirmNavigateIndex();" href="#" class="nav-link">Home</a>
                         </li>
                          <li class="nav-item">
-                            <a id="about" class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a id="about" onclick="javascript: ConfirmNavigateAbout();" href="#" class="nav-link">About</a>
                         </li>
                     </ul>
                 </div>
@@ -105,7 +105,7 @@
                         <span style="-webkit-app-region: no-drag" class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
                     </div>
                     <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
-                    <a id="discard" class="nav-link" href="../Home/Index" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
+                    <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
                     <a id="minimize" title="Minimize" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇲</b></a>
                     <a id="maximize" title="Maximize"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇱︎</b></a>
                     <a id="restore" title="Restore" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
@@ -180,19 +180,20 @@
 
         //Exit the App
 	    document.getElementById('exit').addEventListener('click', () => {
-        //ipcRenderer.send('exit-app');
-        $.ajax({
-                url: "../../Dialogs/Index?type=exit-app",
-                type: 'GET',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                }
-    	    });   //end ajax
+            if (confirm("Exit program?")){
+                $.ajax({
+                    url: "../../Dialogs/Index?type=exit-app",
+                    type: 'GET',
+                    dataType: 'json',
+                    cache: false,
+                    beforeSend: function () {
+                    },
+                    complete: function () {
+                    },
+                    success: function (result) {
+                    }
+                });   //end ajax
+            }
         });
 
         $( document ).ready(function() {
@@ -200,6 +201,30 @@
                 $('#menu').css('marginLeft', 65 + 'px');
             } 
 	    });
+
+        function ConfirmDiscard(){
+            if (confirm("Discard changes?")){
+                window.location = "../Home/Index";
+            }
+        }
+
+        function ConfirmNavigateIndex(){
+            if (window.location.href.includes("Edit")){
+                if (confirm("Confirm navigate?")){
+                    window.location = "../Home/Index";
+                }
+            }
+            else window.location = "../Home/Index";
+        }
+
+        function ConfirmNavigateAbout(){
+            if (window.location.href.includes("Edit")){
+                if (confirm("Confirm navigate?")){
+                    window.location = "../Home/About";
+                }
+            }
+            else window.location = "../Home/About";
+        }
     </script>
 </body>
 </html>

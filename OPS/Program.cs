@@ -43,7 +43,7 @@ async void CreateElectronWindow()
     {
         Width = 1280,
         Height = 1024,
-        WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
+        WebPreferences = new WebPreferences { WebSecurity = false},
         AutoHideMenuBar = true,
         TitleBarStyle = TitleBarStyle.hidden
     };
