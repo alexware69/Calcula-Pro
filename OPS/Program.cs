@@ -43,7 +43,7 @@ options = new BrowserWindowOptions
     Height = FirstRunManager._data.Height,
     WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
     AutoHideMenuBar = true,
-    TitleBarStyle = TitleBarStyle.hidden
+    Frame = false
 };
 
 

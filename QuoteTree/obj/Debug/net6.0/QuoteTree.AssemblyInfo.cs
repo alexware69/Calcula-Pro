@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuoteTree")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2946744f5dc582406525d8c31c65d1309f6d748c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed2bcff45a35d80ddce866ce9fbfaa21c59ad5b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuoteTree")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuoteTree")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
