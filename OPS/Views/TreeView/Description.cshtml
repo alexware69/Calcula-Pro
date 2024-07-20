@@ -24,6 +24,8 @@
             body {
                 background-color: white;
                 color: black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: .85em;
             }
     
             li { background: FloralWhite; }
@@ -35,6 +37,8 @@
             body {
                 background-color: black;
                 color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: .85em;
             }
         
             li { background: dimgray; }
@@ -69,7 +73,7 @@
     @{
         string s = Model.Parent!=null? Model.Parent.Name + " > " + Model.Name : Model.Name;
     }
-    <span style="color:red; font-size:medium; font-style:italic">@s</span>
+    <span style="color:red; font-style:italic">@s</span>
     <br />
     <br />
         @if (Model.Disabled){ 
