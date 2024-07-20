@@ -39,7 +39,7 @@ bool isFirstRun = FirstRunManager.IsFirstRun();
 
 options = new BrowserWindowOptions
 {
-    Width = FirstRunManager._data.Width,
+    Width = FirstRunManager._data!.Width,
     Height = FirstRunManager._data.Height,
     WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
     AutoHideMenuBar = true,

@@ -5,7 +5,7 @@ using System.IO;
 public class FirstRunManager
 {
     private const string FilePath = "firstRun.json";
-    public static FirstRunData _data;
+    public static FirstRunData? _data;
 
     public static bool IsFirstRun()
     {
@@ -13,7 +13,7 @@ public class FirstRunManager
         {
             LoadData();
         }
-        if (_data.FirstRun)
+        if (_data!.FirstRun)
         {
             _data.Width = 1280;
             _data.Height = 1024;
@@ -28,7 +28,7 @@ public class FirstRunManager
             LoadData();
         }
 
-        _data.FirstRun = firstRun;
+        _data!.FirstRun = firstRun;
         _data.Height = height;
         _data.Width = width;
         SaveData();
