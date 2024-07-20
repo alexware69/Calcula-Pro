@@ -32,24 +32,30 @@ app.MapControllerRoute(
 
 app.UseSession();
 
-if (HybridSupport.IsElectronActive)
+
+BrowserWindowOptions options;
+// Check if it's the first run
+bool isFirstRun = FirstRunManager.IsFirstRun();
+
+options = new BrowserWindowOptions
 {
-    CreateElectronWindow();
-}
+    Width = FirstRunManager._data.Width,
+    Height = FirstRunManager._data.Height,
+    WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
+    AutoHideMenuBar = true,
+    TitleBarStyle = TitleBarStyle.hidden
+};
+
 
 async void CreateElectronWindow()
 {
-    var options = new BrowserWindowOptions
-    {
-        Width = 1280,
-        Height = 1024,
-        WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
-        AutoHideMenuBar = true,
-        TitleBarStyle = TitleBarStyle.hidden
-    };
-    //Electron.Dock.SetIcon("../../../../wwwroot/Images/electron.png");
     var window = await Electron.WindowManager.CreateWindowAsync(options);
     window.OnClosed += () => Electron.App.Quit();
+}
+
+if (HybridSupport.IsElectronActive)
+{
+    CreateElectronWindow();
 }
 
 app.Run();

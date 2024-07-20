@@ -42,6 +42,10 @@ namespace OnlinePriceSystem.Controllers
 
 		public void ExitApp()
         {
+			var windowSize = Electron.WindowManager.BrowserWindows.First().GetSizeAsync();
+
+			//Set the flag to indicate that the app has been run
+			FirstRunManager.SetFirstRun(false, windowSize.Result.First(), windowSize.Result.Last());
             Electron.App.Quit();
         }
 
@@ -50,7 +54,12 @@ namespace OnlinePriceSystem.Controllers
 			var result = await Electron.WindowManager.BrowserWindows.First().IsMaximizedAsync();
 			if (!result)
             	Electron.WindowManager.BrowserWindows.First().Maximize();
-			else Electron.WindowManager.BrowserWindows.First().Unmaximize();
+			else 
+			{
+				var windowSize = Electron.WindowManager.BrowserWindows.First().GetSizeAsync();
+				if (!(windowSize.Result.First() < 1280 || windowSize.Result.Last() < 1024)) 
+				Electron.WindowManager.BrowserWindows.First().Unmaximize();
+			} 
         }
 
 		public void MinimizeApp()
