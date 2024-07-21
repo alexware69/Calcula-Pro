@@ -6,15 +6,15 @@
 	html, body {
 		height: 100%; 
 		width: 100%;
-		overflow: hidden;	
-	}  
+		overflow-x: hidden;
+	}
 	.container{
 		height: 93%;
 		width: 100%;
 		max-width: 100%;
     	overflow-y: scroll;
 	}
-         /* Light mode */
+    /* Light mode */
     @@media (prefers-color-scheme: light) {
         table,
 		th,
@@ -74,10 +74,22 @@
 	::-webkit-scrollbar-thumb:hover {
 	background: #555; 
 	}
+
+	 #splash {
+		overflow-x: hidden;
+		float: right;
+		width: 40%;
+	}
+	
+	 #features {
+		float: left;
+		width: 50%;
+	}
 </style>
 
 <h2 id="features-of-the-online-price-system" style="color: #1c94c4;">Features of Calcula Pro (v1.8.0)</h2>
 <hr>
+<div id="features">
 <ul>
 <li>It is web-based.</li>
 <li>Near instant intelligent updates in page.</li>
@@ -99,7 +111,23 @@
 <li>Supports documentation for each feature (node), including text, image and video, in the form of an html page.</li>
 <li>It is fast!</li>
 </ul>
-<h2 id="node-properties" style="color: #1c94c4;">Node properties</h2>
+</div>
+
+<div id="splash">
+	<img src="../../Images/calcula-splash.png" alt="Splash image" width="500" height="375">
+	<br/>
+	<span style="clear: both; color: rgb(169, 169, 169);">Copyright © 2024 Alejandro Penate-Diaz - All Rights Reserved.</span>
+	<br/>
+	<span style="clear: both; color: rgb(169, 169, 169);">
+		Powered by 
+		<a href="https://jquery.com" rel="noopener" target="_blank" style="color: #1c94c4;">jQuery</a>, 
+		<a href="https://github.com/vakata/jstree/" rel="noopener" target="_blank" style="color: #1c94c4;">jsTree</a>, 
+		<a href="https://github.com/ncalc/ncalc" rel="noopener" target="_blank" style="color: #1c94c4;">NCalc</a> and 
+		<a href="https://github.com/ElectronNET/Electron.NET" rel="noopener" target="_blank" style="color: #1c94c4;">Electron.NET</a>.
+	</span>
+</div>
+
+<h2 id="node-properties" style="color: #1c94c4; clear: both;">Node properties</h2>
 <hr>
 <ul>
 <li><strong>Name</strong>: The name of the node. Only one name per level is allowed. It cannot contain the following characters:
@@ -303,5 +331,8 @@ Example:Plastic Face\Material Options\Polycardonate .150 Clear.selected</li>
 			$("#discard").hide();
 			$("body").css("border-top","none");
 		});
-
+	$('#splash').on('click', 'a', (event) => {
+		event.preventDefault();
+		require("electron").shell.openExternal(event.target.href);
+	});
 </script>

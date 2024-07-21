@@ -12,6 +12,9 @@
     bottom: 50%;
     transform: translate(50%,50%);
     position: absolute;
+	display: grid;
+	grid-template-columns: 1fr; /* Single column layout */
+    gap: 10px; /* Space between buttons */
 
 	 /* Dark mode */
 	@@media (prefers-color-scheme: dark) {
@@ -60,15 +63,17 @@
 		color:black;
 	}
 
+	.flex-button {
+		flex: 1;
+		padding: 10px;
+		margin: 5px;
+		text-align: center; /* Center the text */
+	}
 </style>
 <div class="center" style="white-space: nowrap;">
-	<button id="new-dialog" style="text-align: left; white-space: nowrap;" class="btn">New Definition</button>	
-	<br/>
-	<br/>
-	<button id="open-dialog" style="text-align: left; white-space: nowrap;" class="btn">Open Definition</button>
-	<br/>
-	<br/>
-	<button id="open-dialog-view" style="text-align: left; white-space: nowrap;" class="btn">Create a Quote</button>
+	<button id="new-dialog" style="white-space: nowrap;" class="btn flex-button">New Definition</button>	
+	<button id="open-dialog" style="white-space: nowrap;" class="btn flex-button">Open Definition</button>
+	<button id="open-dialog-view" style="white-space: nowrap;" class="btn flex-button">Create a Quote</button>
 </div>
 <div class="center">
 	<img id="loading" align="center" title='Working...' style='display: none; width: 50%; margin-left: auto; margin-right: auto;' alt='Working...'>&nbsp;
@@ -153,12 +158,6 @@
 		document.location='../../TreeView/Edit?product='+ path + '&isNew=true';
 		return;
 	});
-
-	var width = $("#open-dialog").width();
-	$("#new-dialog").width(width);
-	$("#open-dialog").width(width);
-	$("#open-dialog-view").width(width);
-	
 	
 	if (@Model!.ToLower()){
 	 	$("#new-dialog").remove();
