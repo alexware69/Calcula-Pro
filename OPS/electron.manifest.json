@@ -62,8 +62,7 @@
           ]
         }
       ],
-      "icon": "../../../../wwwroot/Images/ops-win.png",
-      "signAndEditExecutable": false
+      "icon": "../../../../wwwroot/Images/ops-win.png"
     },
     "linux": {
       "category": "Productivity",

@@ -57,9 +57,9 @@ namespace OnlinePriceSystem.Controllers
 			else 
 			{
 				var windowSize = Electron.WindowManager.BrowserWindows.First().GetSizeAsync();
-				if (!(windowSize.Result.First() < 1280 || windowSize.Result.Last() < 1024)) 
+				if (!FirstRunManager.startedMaximized) 
 					Electron.WindowManager.BrowserWindows.First().Unmaximize();
-				else Electron.WindowManager.BrowserWindows.First().SetSize(1280, 1024, true);
+				//else Electron.WindowManager.BrowserWindows.First().SetSize(1280, 1024, true);
 			} 
         }
 

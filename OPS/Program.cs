@@ -51,6 +51,7 @@ async void CreateElectronWindow()
 {
     var window = await Electron.WindowManager.CreateWindowAsync(options);
     window.OnClosed += () => Electron.App.Quit();
+    window.OnResize += () => FirstRunManager.startedMaximized = false;
 }
 
 if (HybridSupport.IsElectronActive)

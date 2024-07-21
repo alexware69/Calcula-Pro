@@ -4,6 +4,7 @@ using System.IO;
 
 public class FirstRunManager
 {
+    public static bool startedMaximized = false;
     private const string FilePath = "firstRun.json";
     public static FirstRunData? _data;
 
