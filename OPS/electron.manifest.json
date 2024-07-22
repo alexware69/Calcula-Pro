@@ -34,7 +34,7 @@
     "mac": {
       "target": [
         {
-          "target": "mas",
+          "target": "dmg",
           "arch": [
             "universal"
           ]
@@ -46,10 +46,6 @@
       "asar":true,
       "mergeASARs": true,
       "x64ArchFiles": "OPS",
-      "hardenedRuntime": true,
-      "provisioningProfile": "../../../build/Calcula_Pro_Provisioning_Profile.provisionprofile",
-      "entitlements": "../../../build/entitlements.mac.plist",
-      "entitlementsInherit": "../../../build/entitlements.mac.plist",
       "gatekeeperAssess": false,
       "icon": "../../../../wwwroot/Images/Icon.icns"
     },

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {}
+    "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {}
   },
   "projects": {
-    "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
         "projectName": "NCalcSync",
-        "projectPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
         "packagesPath": "/Users/alejandro/.nuget/packages/",
-        "outputPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/obj/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -95,15 +95,15 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             }
           ],
@@ -147,15 +147,15 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
               "version": "[8.0.6, 8.0.6]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
               "version": "[8.0.6, 8.0.6]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
               "version": "[8.0.6, 8.0.6]"
             }
           ],
@@ -223,19 +223,19 @@
         }
       },
       "runtimes": {
-        "osx-arm64": {
+        "osx-x64": {
           "#import": []
         }
       }
     },
-    "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
         "projectName": "QuoteTree",
-        "projectPath": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
         "packagesPath": "/Users/alejandro/.nuget/packages/",
-        "outputPath": "/Users/alejandro/projects/Calcula-Pro/QuoteTree/obj/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandro/.nuget/NuGet/NuGet.Config"
@@ -250,8 +250,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj": {
-                "projectPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj"
+              "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+                "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
               }
             }
           }
@@ -301,15 +301,15 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
               "version": "[6.0.31, 6.0.31]"
             }
           ],
@@ -322,7 +322,7 @@
         }
       },
       "runtimes": {
-        "osx-arm64": {
+        "osx-x64": {
           "#import": []
         }
       }

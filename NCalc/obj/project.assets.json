@@ -37,7 +37,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/osx-arm64": {
+    ".NETFramework,Version=v4.6.1/osx-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -121,7 +121,7 @@
         }
       }
     },
-    ".NETStandard,Version=v2.0/osx-arm64": {
+    ".NETStandard,Version=v2.0/osx-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -205,7 +205,7 @@
         }
       }
     },
-    "net6.0/osx-arm64": {
+    "net6.0/osx-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -271,7 +271,7 @@
         }
       }
     },
-    "net8.0/osx-arm64": {
+    "net8.0/osx-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -979,11 +979,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj",
+      "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
       "projectName": "NCalcSync",
-      "projectPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/NCalc.csproj",
+      "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
       "packagesPath": "/Users/alejandro/.nuget/packages/",
-      "outputPath": "/Users/alejandro/projects/Calcula-Pro/NCalc/obj/",
+      "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -1067,15 +1067,15 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
             "version": "[6.0.31, 6.0.31]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
             "version": "[6.0.31, 6.0.31]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
             "version": "[6.0.31, 6.0.31]"
           }
         ],
@@ -1119,15 +1119,15 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
             "version": "[8.0.6, 8.0.6]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.osx-arm64",
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
             "version": "[8.0.6, 8.0.6]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
+            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
             "version": "[8.0.6, 8.0.6]"
           }
         ],
@@ -1195,7 +1195,7 @@
       }
     },
     "runtimes": {
-      "osx-arm64": {
+      "osx-x64": {
         "#import": []
       }
     }

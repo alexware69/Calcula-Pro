@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nuSbMJWTXFk=",
+  "dgSpecHash": "MAkZKNntpsk=",
   "success": true,
-  "projectFilePath": "/Users/alejandro/projects/Calcula-Pro/OPS/OPS.csproj",
+  "projectFilePath": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
   "expectedPackageFiles": [
     "/Users/alejandro/.nuget/packages/antlr4.runtime.standard/4.13.1/antlr4.runtime.standard.4.13.1.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/electronnet.api/23.6.2/electronnet.api.23.6.2.nupkg.sha512",
@@ -30,9 +30,9 @@
     "/Users/alejandro/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/Users/alejandro/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/6.0.31/microsoft.netcore.app.runtime.osx-arm64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/6.0.31/microsoft.aspnetcore.app.runtime.osx-arm64.6.0.31.nupkg.sha512",
-    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-arm64/6.0.31/microsoft.netcore.app.crossgen2.osx-arm64.6.0.31.nupkg.sha512"
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/6.0.31/microsoft.netcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/6.0.31/microsoft.aspnetcore.app.runtime.osx-x64.6.0.31.nupkg.sha512",
+    "/Users/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.31/microsoft.netcore.app.crossgen2.osx-x64.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }
