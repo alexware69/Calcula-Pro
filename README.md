@@ -2,6 +2,7 @@
 
 ### Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexware69/Calcula-Pro.svg)](https://github.com/alexware69/Calcula-Pro/releases/latest)
+[![License](https://img.shields.io/github/license/alepedia69/Calcula-Pro.svg)](https://github.com/alepedia69/Calcula-Pro/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/alexware69/Calcula-Pro/total.svg)](https://github.com/alexware69/Calcula-Pro/releases)
 [![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexware69/Calcula-Pro/releases)
 
