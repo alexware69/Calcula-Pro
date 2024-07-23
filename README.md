@@ -1,13 +1,12 @@
-<img align="left" src="https://github.com/alepedia69/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
+<img align="left" src="https://github.com/alexware69/Calcula_Pro/blob/main/Images/ops.png" width="200" />
 
 ### Calcula Pro
-[![Latest Release](https://img.shields.io/github/release/alepedia69/Calcula-Pro.svg)](https://github.com/alepedia69/Calcula-Pro/releases/latest)
-[![License](https://img.shields.io/github/license/alepedia69/Calcula-Pro.svg)](https://github.com/alepedia69/Calcula-Pro/blob/master/LICENSE)
-[![Github All Releases](https://img.shields.io/github/downloads/alepedia69/Calcula-Pro/total.svg)](https://github.com/alepedia69/Calcula-Pro/releases)
-[![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alepedia69/Calcula-Pro/releases)
+[![Latest Release](https://img.shields.io/github/release/alexware69/Calcula-Pro.svg)](https://github.com/alexware69/Calcula-Pro/releases/latest)
+[![Github All Releases](https://img.shields.io/github/downloads/alexware69/Calcula-Pro/total.svg)](https://github.com/alexware69/Calcula-Pro/releases)
+[![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexware69/Calcula-Pro/releases)
 
-<a href="https://www.paypal.com/donate/?hosted_button_id=NT7BU39R82PHE">
-    <img align="right" src="https://github.com/alepedia69/Calcula-Pro/blob/master/OPS/wwwroot/Images/paypal-donate.png" style="width: 100px; height: 50px; border: 2px solid black; margin-right: 10px;" />
+<a href="https://buymeacoffee.com/alexware69">
+    <img align="right" src="https://github.com/alexware69/Calcula_Pro/blob/main/Images/buy-me-a-coffee.jpeg" style="width: 100px; height: 100px; border: 2px solid black; margin-right: 10px;" />
 </a>
 
 <div style="text-align: right">
@@ -18,8 +17,22 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/calcula-pro)
 
 #
+> [!IMPORTANT] 
+> After installing a new version, please do a hard refresh on both, the **Edit Definition** and **New Quote** pages.  
+> For **Windows/Linux**: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>  
+> For **MacOS**: <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>
+
+> [!TIP] 
+> To open Calcula Pro in "Quote Only" mode, create a shortcut with this command and place it on the desktop. Assign permissions as needed.  
+> For **Windows**: ```"Calcula Pro.exe" /args --quoteonly```  
+> For **MacOS**: ```open /Applications/Calcula\ Pro.app --args -quoteonly```
+
 <img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202024-04-20%20at%2010.45.46%E2%80%AFAM.png"/>
 <p align="center"><em>This is an example product definition of an advertising sign.</em></p>
+
+#
+<img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Calcula%20Pro-dark-be76945.png"/>
+<p align="center"><em>With dark mode applied.</em></p>
 
 ## Features of Calcula Pro
 
@@ -31,7 +44,7 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 * Readable formulas are made of words, now with autocomplete.
 * Supports most common math expressions and logic conditions.
 * Multiple same-name nodes are supported (compare to Excel single-name naming of cells)
-* UTF-16 characters in node names inside an expression (Eg: $u263A).
+* UTF-16 characters in node names and inside expressions.
 * Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.
 * Create and analyze price quotes of complex products.
 * Shows dependencies and references.
@@ -82,8 +95,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 
 **Conditional (IF conditions):**
 ```
-* if(TriFace Sign\Motor Type\1_3 HP.selected,10,60) (discontinued syntax)
-* TriFace Sign\Motor Type\1_3 HP.selected?10:60 (same as above with correct syntax)
+* TriFace Sign\Motor Type\1_3 HP.selected?10:60
 * TriFace Sign\BomGen\Side Frm=4?0.75:0
 * TriFace Sign\BomGen\Side Frm.max> TriFace Sign\Length?0.75:0
 * TriFace Sign\Louver Orientation\Vertical.selected?2*O10:0
@@ -106,7 +118,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 | Cos           | Returns the cosine of the specified angle.                                                                                                                                                                   | Cos(0)              | 1d     |
 | Exp           | Returns e raised to the specified power.                                                                                                                                                                     | Exp(0)              | 1d     |
 | Floor         | Returns the largest integer less than or equal to the specified number.                                                                                                                                      | Floor(1.5)          | 1d     |
-| IEEERemainder | Returns the remainder resulting from the division of a specified number by another specified number.                                                                                                         | IEEERemainder(3, 2) | -1d    |
+| IEEERemainder | Returns the remainder resulting from the division of a specified number by another specified number.                                                                                                         | IEEERemainder(3, 2) | 1d    |
 | Log           | Returns the logarithm of a specified number.                                                                                                                                                                 | Log(1, 10)          | 0d     |
 | Log10         | Returns the base 10 logarithm of a specified number.                                                                                                                                                         | Log10(1)            | 0d     |
 | Max           | Returns the larger of two specified numbers.                                                                                                                                                                 | Max(1, 2)           | 2      |
