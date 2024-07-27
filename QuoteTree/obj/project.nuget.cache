@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "obGcinDRq6yWff3Xs6k+DDQ9VtCPW3AZJBJVjaDbeAnbRgE9qr7+oqOWPaexYJ/1xaHBXrDn+C9qxGQAa+9sMw==",
+  "dgSpecHash": "mEQnqwSfBqazopGrnSsFMLl/IUYdgpSJ+oTX94WRD2FjjFgZoqN7WEw2rTkLmcBBixbuBLkzuZqUPVudjIlvIQ==",
   "success": true,
   "projectFilePath": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
   "expectedPackageFiles": [
@@ -13,9 +13,9 @@
     "/home/alejandro/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/home/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.31/microsoft.netcore.app.runtime.linux-x64.6.0.31.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.win-x64/6.0.31/microsoft.netcore.app.runtime.win-x64.6.0.31.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.31/microsoft.aspnetcore.app.runtime.linux-x64.6.0.31.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/6.0.31/microsoft.aspnetcore.app.runtime.win-x64.6.0.31.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/6.0.31/microsoft.netcore.app.crossgen2.linux-x64.6.0.31.nupkg.sha512"
   ],
   "logs": []

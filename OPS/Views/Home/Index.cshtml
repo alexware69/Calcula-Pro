@@ -26,6 +26,30 @@
 			background-color: black;
 			color: white;
 		}
+		#home {
+			color:white;
+		}
+		#about {
+			color:white;
+		}
+	}
+
+	 /* Light mode */
+	@@media (prefers-color-scheme: light) {
+		body {
+			background-color: white;
+			color: black;
+		}
+		html{
+			background-color: white;
+			color: black;
+		}
+		#home {
+			color: black;
+		}
+		#about {
+			color: black;
+		}
 	}
 }
 </style>
@@ -33,25 +57,6 @@
 	body {
 		margin: 0;
 		padding: 0;
-	}
-
-	#home {
-		color:black;
-	}
-	#about {
-		color:black;
-	}
-
-	#exit {
-		color:black;
-	}
-
-	#minimize {
-		color:black;
-	}
-
-	#maximize {
-		color:black;
 	}
 
 	.flex-button {
