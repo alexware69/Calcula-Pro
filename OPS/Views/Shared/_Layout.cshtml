@@ -22,12 +22,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <style>
-        .navbar{
-            background-color: white;
-            padding-top: 0rem;
-            padding-bottom: 0rem;
-        }
-        
         /* Light mode */
         @@media (prefers-color-scheme: light) {
             #home {
@@ -35,6 +29,11 @@
             }
             #about {
                 color:black;
+            }
+            .navbar{
+                background-color: white;
+                padding-top: 0rem;
+                padding-bottom: 0rem;
             }
         }
 
@@ -46,12 +45,17 @@
             #about {
                 color:white;
             }
+            .navbar{
+                background-color: black;
+                padding-top: 0rem;
+                padding-bottom: 0rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
+        <nav class="navbar border-bottom navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
             <div class="container-fluid">
                 <!-- <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OPS</a> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
