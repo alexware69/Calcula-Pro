@@ -23,29 +23,18 @@
 
     <style>
         .navbar{
-            background-color: #F6A828;
+            background-color: white;
             padding-top: 0rem;
             padding-bottom: 0rem;
-            -webkit-app-region: drag;
         }
         
         /* Light mode */
         @@media (prefers-color-scheme: light) {
             #home {
                 color:black;
-                -webkit-app-region: no-drag;
             }
             #about {
                 color:black;
-                -webkit-app-region: no-drag;
-            }
-            #minimize {
-                color:black;
-                -webkit-app-region: no-drag;
-            }
-            #maximize {
-                color:black;
-                -webkit-app-region: no-drag;
             }
         }
 
@@ -53,19 +42,9 @@
         @@media (prefers-color-scheme: dark) {
             #home {
                 color:black;
-                -webkit-app-region: no-drag;
             }
             #about {
                 color:black;
-                -webkit-app-region: no-drag;
-            }
-            #minimize {
-                color:black;
-                -webkit-app-region: no-drag;
-            }
-            #maximize {
-                color:black;
-                -webkit-app-region: no-drag;
             }
         }
     </style>
@@ -94,23 +73,19 @@
                         <span class="loading_dependencies" style="display:none"></span>&nbsp;
                     </div>
                     <div style="display:inline-block;vertical-align:middle;"> 
-                        <span style="-webkit-app-region: no-drag" class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
+                        <span class="build" title='Build dependencies' onclick="javascript: $('.loading_dependencies').show(); BuildDependencies();"></span>&nbsp;&nbsp;
                     </div>
 
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item" id="menu">
-                                <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Save</a>
+                                <a id="save" class="nav-link" href="#" onclick="javascript: SaveDefinition();" style="text-decoration: none;display:none;">Save</a>
                             </li>
                             <li class="nav-item">
-                                <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="-webkit-app-region: no-drag; text-decoration: none;display:none;">Discard</a>
-                            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a id="discard" class="nav-link" onclick="javascript: ConfirmDiscard();" href="#" style="text-decoration: none;display:none;">Discard</a>
+                            </li>
                         </ul>
                     </div>
-
-                    <a id="minimize" title="Minimize" href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⇲</b></a>
-                    <a id="maximize" title="Maximize/Restore"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px"><b>⛶</b></a>
-                    <a id="exit" title="Exit"  href="#" style="-webkit-app-region: no-drag; text-decoration: none; padding-right: 10px; padding-left: 10px">❌</a>
 		        </div>
             </div>
         </nav>
@@ -121,71 +96,6 @@
         </main>
     </div>
     <script>
-        const os = require('os');
-
-        function getOperatingSystem() {
-            return os.platform();
-        }
-
-
-        //Minimize the App
-	    document.getElementById('minimize').addEventListener('click', () => {
-        //ipcRenderer.send('exit-app');
-        $.ajax({
-                url: "../../Dialogs/Index?type=minimize-app",
-                type: 'GET',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                }
-    	    });   //end ajax
-        });
-
-        //Maximize the App
-	    document.getElementById('maximize').addEventListener('click', () => {
-        //ipcRenderer.send('exit-app');
-        $.ajax({
-                url: "../../Dialogs/Index?type=maximize-app",
-                type: 'GET',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                }
-    	    });   //end ajax
-        });
-
-        //Exit the App
-	    document.getElementById('exit').addEventListener('click', () => {
-            if (confirm("Exit program?")){
-                $.ajax({
-                    url: "../../Dialogs/Index?type=exit-app",
-                    type: 'GET',
-                    dataType: 'json',
-                    cache: false,
-                    beforeSend: function () {
-                    },
-                    complete: function () {
-                    },
-                    success: function (result) {
-                    }
-                });   //end ajax
-            }
-        });
-
-        /*$( document ).ready(function() {
-            if (getOperatingSystem() == "darwin"){
-                $('#menu').css('marginLeft', 65 + 'px');
-            } 
-	    });*/
-
         function ConfirmDiscard(){
             if (confirm("Discard changes?")){
                 window.location = "../Home/Index";

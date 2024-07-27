@@ -16,33 +16,9 @@ using System.ComponentModel;
 namespace OnlinePriceSystem.Controllers
 {
     public class HomeController : Controller
-    {
-        static bool FirstRun = true;
+    {	
         public ActionResult Index()
         {
-            var result = Electron.WindowManager.BrowserWindows.First().IsMaximizedAsync();
-            if (result.Result) 
-            {
-                if (FirstRun)
-                {
-                    FirstRunManager.startedMaximized = true;
-                    var size = Electron.WindowManager.BrowserWindows.First().GetSizeAsync();
-                    int width = size.Result.First();
-                    int height = size.Result.Last();
-                    //This is a nasty hack needed to fix the restore after closed maximized behaviour.
-                    Electron.WindowManager.BrowserWindows.First().SetSize(width * 90 / 100, height * 90 / 100);
-                    Electron.WindowManager.BrowserWindows.First().Maximize();
-
-                    FirstRun = false;
-                    FirstRunManager.startedMaximized = false;
-                }
-            }
-            else 
-            {
-                FirstRun = false;
-                FirstRunManager.startedMaximized = false;
-            }
-
             bool quoteOnly = QuoteOnly().Result;
             TempData["quoteOnly"] = quoteOnly.ToString();
             return View();
@@ -57,7 +33,6 @@ namespace OnlinePriceSystem.Controllers
         {
             return View();
         }
-
         //very cool method I found online
         public static void CopyFolder(DirectoryInfo source, DirectoryInfo target)
         {
