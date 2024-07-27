@@ -35,8 +35,7 @@ async void CreateElectronWindow()
         Width = 1280,
         Height = 1024,
         WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
-        AutoHideMenuBar = true,
-        TitleBarStyle = TitleBarStyle.hidden
+        AutoHideMenuBar = true
     };
     //Electron.Dock.SetIcon("../../../../wwwroot/Images/electron.png");
     var window = await Electron.WindowManager.CreateWindowAsync(options);
