@@ -18,11 +18,6 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/calcula-pro)
 
 #
-> [!IMPORTANT] 
-> After installing a new version, please do a hard refresh on both, the **Edit Definition** and **New Quote** pages.  
-> For **Windows/Linux**: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>  
-> For **MacOS**: <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>
-
 > [!TIP] 
 > To open Calcula Pro in "Quote Only" mode, create a shortcut with this command and place it on the desktop. Set permissions as needed.  
 > For **Windows**: ```"Calcula Pro.exe" /args --quoteonly```  
