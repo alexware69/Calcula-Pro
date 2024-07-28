@@ -19,7 +19,7 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 
 #
 > [!NOTE] 
-> To open Calcula Pro in "Quote Only" mode, create a shortcut with this command and place it on the desktop. Set permissions as needed.  
+> To open Calcula Pro in "quote only" mode, create a shortcut with this command and place it on the desktop. Set permissions as needed.  
 > For **Windows**: ```"Calcula Pro.exe" /args --quoteonly```  
 > For **MacOS**: ```open /Applications/Calcula\ Pro.app --args -quoteonly```
 
