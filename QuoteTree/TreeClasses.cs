@@ -269,8 +269,6 @@ public abstract class ANode : INode
     private int _DecimalPlaces;
     private bool _Selected;
     private bool _Hidden;
-    [JsonProperty]
-    private readonly bool _Leaf;
     private string _Units = "";
     private QTree? _ParentTree;
 
@@ -314,7 +312,6 @@ public abstract class ANode : INode
     {
         get
         {
-            bool comp;
             return IsComplete();
         }
         set { }
@@ -419,7 +416,6 @@ public abstract class ANode : INode
             try
             {
                 if (DisableCondition == null || DisableCondition.Trim()?.Length == 0) return false;
-                const bool expression_result = false;
                 Expression e = new(DisableCondition);
                 e.EvaluateFunction += new EvaluateFunctionHandler(EvaluateFunction);
                 e.EvaluateParameter += new EvaluateParameterHandler(EvaluateParameter);
@@ -4202,4 +4198,12 @@ public class QTree
 public class CircularReferenceException : Exception
 {
     public CircularReferenceException() : base("Circular reference") { }
+
+    public CircularReferenceException(string? message) : base(message)
+    {
+    }
+
+    public CircularReferenceException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
 }

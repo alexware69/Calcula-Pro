@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromDays(1000);//You can set Time   
-            }); 
+            });
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -28,7 +28,8 @@ if (HybridSupport.IsElectronActive)
 {
     CreateElectronWindow();
 }
-async void CreateElectronWindow()
+
+static async void CreateElectronWindow()
 {
     var options = new BrowserWindowOptions
     {
