@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/alexware69/Calcula_Pro/blob/main/Images/ops.png" width="200" />
+<img align="left" src="https://github.com/alexware69/Calcula-Pro/blob/master/OPS/wwwroot/Images/ops.png" width="200" />
 
 ### Calcula Pro
 [![Latest Release](https://img.shields.io/github/release/alexware69/Calcula-Pro.svg)](https://github.com/alexware69/Calcula-Pro/releases/latest)
@@ -7,7 +7,7 @@
 [![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexware69/Calcula-Pro/releases)
 
 <a href="https://buymeacoffee.com/alexware69">
-    <img align="right" src="https://github.com/alexware69/Calcula_Pro/blob/main/Images/buy-me-a-coffee.jpeg" style="width: 100px; height: 100px; border: 2px solid black; margin-right: 10px;" />
+    <img align="right" src="https://github.com/alexware69/Calcula-Pro/blob/master/OPS/wwwroot/Images/buy-me-a-coffee.jpeg" style="width: 100px; height: 100px; border: 2px solid black; margin-right: 10px;" />
 </a>
 
 <div style="text-align: right">
@@ -18,14 +18,9 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/calcula-pro)
 
 #
-> [!IMPORTANT] 
-> After installing a new version, please do a hard refresh on both, the **Edit Definition** and **New Quote** pages.  
-> For **Windows/Linux**: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>  
-> For **MacOS**: <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>R</kbd>
-
-> [!TIP] 
-> To open Calcula Pro in "Quote Only" mode, create a shortcut with this command and place it on the desktop. Set permissions as needed.  
-> For **Windows**: ```"Calcula Pro.exe" /args --quoteonly```  
+> [!NOTE] 
+> To open Calcula Pro in "quote only" mode, create a shortcut with this command and place it on the desktop. Set permissions as needed.  
+> For **Windows**: ```"C:\Users\%USERNAME%\AppData\Local\Programs\Calcula Pro\Calcula Pro.exe" /args --quoteonly```  
 > For **MacOS**: ```open /Applications/Calcula\ Pro.app --args -quoteonly```
 
 <img src="https://img1.wsimg.com/isteam/ip/223ae777-4571-4ca4-8b7f-77ff0ee746ab/Screenshot%202024-04-20%20at%2010.45.46%E2%80%AFAM.png"/>
