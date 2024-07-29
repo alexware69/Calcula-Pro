@@ -1,11 +1,14 @@
-﻿function CheckBoxClickHandler(cb, expand) {
-    var checkboxID = cb.id;
-    var checkboxIDClean = checkboxID.replace(/ckbx_/g, "");
+﻿/* eslint-disable no-self-assign */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+function CheckBoxClickHandler(cb, expand) {
+    let checkboxID = cb.id;
+    let checkboxIDClean = checkboxID.replace(/ckbx_/g, "");
 
     //Using this syntax because there are dots (.) in the id of the element which causes problems with jquery.
-    var parentliID = $("input[id='" + checkboxID + "']").parent().attr("id");
-    var parentliIDclean = parentliID.replace(/li_/g, "");
-    var parentulID = $("li[id='" + parentliID + "']").parent().attr("id");
+    let parentliID = $("input[id='" + checkboxID + "']").parent().attr("id");
+    let parentliIDclean = parentliID.replace(/li_/g, "");
+    let parentulID = $("li[id='" + parentliID + "']").parent().attr("id");
 
     // Hide/Show siblings if parent is Decision node
     if ($("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision") {
@@ -13,7 +16,7 @@
         else {
             $("li[id='" + parentliID + "']").siblings().show();
             $("li[id='" + parentliID + "']").siblings().each(function() {
-                var id = this.id;
+                let id = this.id;
                 RefreshFillers(id.replace(/li_/g, ""), false);
            });
         }
@@ -36,7 +39,7 @@
     //check all the optional parents
     if (cb.checked) {
         //get parent li        
-        var parent = $("li[id='" + parentliID + "']").parent("ul").parent("li");
+        let parent = $("li[id='" + parentliID + "']").parent("ul").parent("li");
         //search for the first optional unchecked parent            
         while (parent.attr("id") != "li_1" && !($("input[id='ckbx_" + parent.attr("id").replace(/li_/g, "") + "']").length && !$("input[id='ckbx_" + parent.attr("id").replace(/li_/g, "") + "']").is(':checked'))) {
             parent = parent.parent("ul").parent("li");
@@ -49,7 +52,7 @@
     }
 
     //Set the checked/unchecked state in the server tree and get the total. Also update tree nodes.
-    var checkboxstate = cb.checked ? "true" : "false";
+    let checkboxstate = cb.checked ? "true" : "false";
     $.ajax({
         url: "SetCheckboxState?id=" + checkboxIDClean + "&state=" + checkboxstate,
         type: 'GET',
@@ -65,15 +68,15 @@
             $("#price").text("Total: " + result.total);
 
             //Merge dependents and branch nodes then update
-            var dependents = ";" + $("input[id='dependents_" + parentliIDclean + "']").attr("value");
-            var branch = GetBranch(parentliIDclean);
-            var branchArray = branch.split(";");
-            for (var i = 0; i < branchArray.length; i++) {
+            let dependents = ";" + $("input[id='dependents_" + parentliIDclean + "']").attr("value");
+            let branch = GetBranch(parentliIDclean);
+            let branchArray = branch.split(";");
+            for (let i = 0; i < branchArray.length; i++) {
                 if (dependents.indexOf(";" + branchArray[i] + ";") == -1) dependents = dependents + ";" + branchArray[i];
             }
             //get not optional descendents, this is to update the complete/incomplete images.
-            var descendents = $("li[id='" + parentliID + "']").find("li");
-            for (var i = 0; i < descendents.length; i++) {
+            let descendents = $("li[id='" + parentliID + "']").find("li");
+            for (let i = 0; i < descendents.length; i++) {
                 dependents += ";" + descendents[i].id.replace(/li_/g, "");
             }
             //}
@@ -84,19 +87,19 @@
 
     //Uncheck node siblings when node is checked and parent is Decision, also update descendents to refresh complete/incomplete images.
     if (cb.checked && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision") {
-        var checkednode = $("li[id='" + parentliID + "']").siblings().children('input:checked');
+        let checkednode = $("li[id='" + parentliID + "']").siblings().children('input:checked');
         if (checkednode.length != 0) {
-            var updatenodes = ";" + checkednode[0].id.replace(/ckbx_/g, "");
-            var descendents = $("li[id='li_" + checkednode[0].id.replace(/ckbx_/g, "") + "']").find("li").filter(function () {
+            let updatenodes = ";" + checkednode[0].id.replace(/ckbx_/g, "");
+            let descendents = $("li[id='li_" + checkednode[0].id.replace(/ckbx_/g, "") + "']").find("li").filter(function () {
                 return $("input[id='isoptional_" + $(this).attr("id").replace(/li_/g, "") + "']").attr("value") == "false";
             });
-            for (var i = 0; i < descendents.length; i++) {
+            for (let i = 0; i < descendents.length; i++) {
                 updatenodes += ";" + descendents[i].id.replace(/li_/g, "");
             }
             //also update the dependents of the unchecked node
-            var dependents = ";" + $("input[id='dependents_" + checkednode[0].id.replace(/ckbx_/g, "") + "']").attr("value");
-            var dependentsArray = dependents.split(";");
-            for (var i = 0; i < dependentsArray.length; i++) {
+            let dependents = ";" + $("input[id='dependents_" + checkednode[0].id.replace(/ckbx_/g, "") + "']").attr("value");
+            let dependentsArray = dependents.split(";");
+            for (let i = 0; i < dependentsArray.length; i++) {
                 if (updatenodes.indexOf(";" + dependentsArray[i] + ";") == -1) updatenodes = updatenodes + ";" + dependentsArray[i];
             }
             updatenodes += dependents;
@@ -135,7 +138,7 @@ function UpdateParent(id) {
         complete: function () {
         },
         success: function (result) {
-            var parentulID = $("li[id='li_" + result.id + "']").parent().attr("id");
+            let parentulID = $("li[id='li_" + result.id + "']").parent().attr("id");
 
             //Add the image for the complete/incomplete status if parent node is not Decision
             if (!result.complete && !(result.optional && !result.selected)) {
@@ -154,12 +157,12 @@ function UpdateParent(id) {
 }
 
 function UpdateParentSync(id) {
-    var nodeList = '';
+    let nodeList = '';
 
     function GetNodeList(node_id) {
         nodeList += node_id + ";";
-        var node = "li[id='li_" + node_id + "']";
-        var parent;
+        let node = "li[id='li_" + node_id + "']";
+        let parent;
         if ($(node).parent().parent().attr("id") != "container") {
             parentULID = $(node).parent().attr("id");
             GetNodeList(parentULID.replace(/li_ul_/g, ""))
@@ -171,12 +174,12 @@ function UpdateParentSync(id) {
 }
 
 function GetBranch(id) {
-    var nodeList = '';
+    let nodeList = '';
 
     function GetNodeList(node_id) {
         nodeList += node_id + ";";
-        var node = "li[id='li_" + node_id + "']";
-        var parentULID;
+        let node = "li[id='li_" + node_id + "']";
+        let parentULID;
         if ($(node).parent().parent().attr("id") != "container") {
             parentULID = $(node).parent().attr("id");
             GetNodeList(parentULID.replace(/li_ul_/g, ""))
@@ -221,15 +224,15 @@ function getScrollbarWidth(element) {
 } 
 
 function UpdateNode(data) {
-    var node = "li[id='li_" + data.id + "']";
+    let node = "li[id='li_" + data.id + "']";
     if ($(node).length) {
         //next line is needed to avoid fillers problem
         $(node).css("white-space", "normal");
         //Adjust the node width
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         //Refresh node's elements
-        var checked;
-        var html;
+        let checked;
+        let html;
         //If node is optional add a checkbox to child
         $("input[id='ckbx_" + data.id + "']").remove();
         if (data.optional) {
@@ -252,14 +255,14 @@ function UpdateNode(data) {
         if ($(node).children('a').length == 0) {
             $(node).append("<a></a>");
             //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-            var href = "../" + data.url;
+            let href = "../" + data.url;
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
 
         }
         else {
             //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-            var href = "../" + data.url;
+            let href = "../" + data.url;
             $(node).children('a').attr("href", href);
             $(node).children('a').attr("target", 'details');
         }
@@ -316,8 +319,8 @@ function UpdateNode(data) {
         if ($(node).children(".edit")) $(node).children(".edit").remove();
         if ($(node).children(".add")) $(node).children(".add").remove();
         if ($(node).children(".remove")) $(node).children(".remove").remove();
-        var newFiller = $("<div class='filler'>&nbsp;</div>");
-        var newSubtotal = $("<span class='subtotal' id='subtotal_" + data.id + "'>" + "<font size='1'>" + data.type + "</font>" + "  " + "<font>" + "[" + data.subtotal + "]" + "</font>" + "</span>");
+        let newFiller = $("<div class='filler'>&nbsp;</div>");
+        let newSubtotal = $("<span class='subtotal' id='subtotal_" + data.id + "'>" + "<font size='1'>" + data.type + "</font>" + "  " + "<font>" + "[" + data.subtotal + "]" + "</font>" + "</span>");
 
         $(node).children('a').after(newFiller);
         $(node).children('a').after(newSubtotal);
@@ -331,7 +334,7 @@ function UpdateNode(data) {
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
-            var current_li = "li[id='li_" + data.id + "']";
+            let current_li = "li[id='li_" + data.id + "']";
             //if description section is not hidden show description page for current node
             if (!descriptionhidden)
                 $(current_li).children("a").click();
@@ -339,10 +342,10 @@ function UpdateNode(data) {
             editedNodeId = data.id;
             //Fill the Order dropdown list
             $("#inodeOrder").empty();
-            for (var i = 0; i <= $(node).siblings().length; i++)
+            for (let i = 0; i <= $(node).siblings().length; i++)
                 $("#inodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             FillNodeDialogInfo(editedNodeId);
-            editdialog.dialog('option', 'title', 'Edit: \"' + data.name + '\"');
+            editdialog.dialog('option', 'title', 'Edit: "' + data.name + '"');
             editdialog.dialog("open");
             //Save all node names into a global array
             $.ajax({
@@ -357,7 +360,7 @@ function UpdateNode(data) {
                 success: function (result) {
                     //Reset the array
                     allNames.length = 0;
-                    for (var i of result) {
+                    for (let i of result) {
                         allNames.push(i);
                     }
                 }
@@ -372,7 +375,7 @@ function UpdateNode(data) {
         $(node).children('.add').on("click", function (e) {
             e.preventDefault();
             //select the node
-            var current_li = "li[id='li_" + data.id + "']";
+            let current_li = "li[id='li_" + data.id + "']";
             //if description section is not hidden show description page for current node
             if (!descriptionhidden)
                 $(current_li).children("a").click();
@@ -387,9 +390,9 @@ function UpdateNode(data) {
             }
             //Fill the Order dropdown list
             $("#newinodeOrder").empty();
-            for (var i = 0; i <= $(node).children("ul").children("li").length; i++)
+            for (let i = 0; i <= $(node).children("ul").children("li").length; i++)
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
-            newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + data.name + '\"');
+            newnodedialog.dialog('option', 'title', 'Insert new node into: "' + data.name + '"');
             newnodedialog.dialog("open");
             //Save all node names into a global array
             $.ajax({
@@ -404,21 +407,21 @@ function UpdateNode(data) {
                 success: function (result) {
                     //Reset the array
                     allNames.length = 0;
-                    for (var i of result) {
+                    for (let i of result) {
                         allNames.push(i);
                     }
                 }
             });
         });
         //Declare some width related variables
-        var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
+        let idWidth, nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
         checkboxWidth = data.optional ? 13 : 0;
         imageVisibleWidth = !data.complete && !(data.optional && !data.selected) ? 16: 0;
         editWidth = data.type != 'Decision' ? $(node).children(".edit").outerWidth(true) : 0;
         addWidth = $(node).children(".add").outerWidth(true);
         removeWidth = $(node).children(".remove").outerWidth(true);
-        var formula = $(node).children("a").children(".formula");
-        var name = $(node).children("a").children(".name");
+        let formula = $(node).children("a").children(".formula");
+        let name = $(node).children("a").children(".name");
         
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
@@ -439,7 +442,7 @@ function UpdateNode(data) {
         
         //Set the formula element's width
         if (anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 > nodeWidth) {
-            var extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
+            let extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
             if (formulaWidth >= extraWidth + 25)
                 formula.width(formulaWidth - extraWidth - 25);
             else {
@@ -452,7 +455,7 @@ function UpdateNode(data) {
             name.width(nameWidth + 5);
         }
 
-        var scrollbarWidth = getScrollbarWidth(document.getElementById("container"));
+        let scrollbarWidth = getScrollbarWidth(document.getElementById("container"));
 
         //Set the filler's width
         $(node).children(".filler").css("width", nodeWidth - anchorWidth - subtotalWidth - insWidth - checkboxWidth - imageVisibleWidth - editWidth - addWidth - removeWidth - 30 - scrollbarWidth);
@@ -461,11 +464,11 @@ function UpdateNode(data) {
 
         //This will append the id text if not already there
         if ($("li[id='li_" + data.id + "']").children()[0].tagName != "FONT") {
-            var offset = $("li[id='li_1']").position().left;
+            let offset = $("li[id='li_1']").position().left;
             $("<font width='100%' size='1' class='id'>" + "&nbsp" + data.id + "</font>").insertBefore("li[id='li_" + data.id + "']>ins");
             $(".id").css({ position: 'absolute', left: offset });
-            var id_width = $("font[id='id_" + data.Id + "']").width();
-            var ins_left = $(node).children("ins").position().left;
+            let id_width = $("font[id='id_" + data.Id + "']").width();
+            let ins_left = $(node).children("ins").position().left;
             if (id_width > ins_left) {
                 $(node).css("margin-left", id_width - ins_left + 13.5);
             }
@@ -525,7 +528,7 @@ function NodeInfo(id) {
 
 function UpdateNodesFromServer(ids) {
     //Convert to array
-    var array = [];
+    let array = [];
     array = ids.split(';');
     $.ajax({
         url: "NodesInfo",
@@ -540,9 +543,9 @@ function UpdateNodesFromServer(ids) {
         complete: function () {
         },
         success: function (result) {
-            var showSelectors = '';
-            var hideSelectors = '';
-            for (var i = 0; i < result.length; i++) {
+            let showSelectors = '';
+            let hideSelectors = '';
+            for (let i = 0; i < result.length; i++) {
                 //Add the image for the complete/incomplete status if parent node is not Decision
                 if (!result[i].complete && !(result[i].optional && !result[i].selected)) {
                     showSelectors += "li[id='li_" + result[i].id + "'],";
@@ -558,10 +561,11 @@ function UpdateNodesFromServer(ids) {
 
 function UpdateDependents(id) {
     //If is an array of id's
+    let dependents = '';
     if (typeof id === 'object') {
-        var dependents = '';
-        var dependentsArray;
-        for (var i = 0; i < id.length; i++) {
+        dependents = '';
+        let dependentsArray;
+        for (let i = 0; i < id.length; i++) {
             dependents += ";" + id[i] + ";" + $("input[id='dependents_" + id[i] + "']").attr("value");
         }
         dependentsArray = dependents.split(';');
@@ -569,13 +573,13 @@ function UpdateDependents(id) {
             return dependentsArray.indexOf(item) === index;
         });
         dependents = '';
-        for (var i = 0; i < dependentsArray.length; i++) {
+        for (let i = 0; i < dependentsArray.length; i++) {
             dependents += dependentsArray[i] + ";";
         }
         UpdateNodesFromServer(dependents);
     }
     else {
-        var dependents = $("input[id='dependents_" + id + "']").attr("value");
+        dependents = $("input[id='dependents_" + id + "']").attr("value");
         //Updates the current node and its dependents
         UpdateNodesFromServer(id + ';' + dependents);
     }
@@ -596,10 +600,10 @@ function UpdateTree(id) {
             UpdateNode(result);
 
             //Recursive call
-            var node = "li[id='li_" + result.id + "']";
-            var children = $(node).children('ul').children('li');
+            let node = "li[id='li_" + result.id + "']";
+            let children = $(node).children('ul').children('li');
             if (children && children.length > 0)
-                for (var i = 0; i < children.length; i++) {
+                for (let i = 0; i < children.length; i++) {
                     UpdateTree(children[i].id.replace(/li_/g, ""));
                 }
         }
@@ -608,14 +612,14 @@ function UpdateTree(id) {
 }
 
 function UpdateTreeSync() {
-    var nodeList = '';
+    let nodeList = '';
 
     function GetNodeList(id) {
         nodeList += id + ";";
-        var node = "li[id='li_" + id + "']";
-        var children = $(node).children('ul').children('li');
+        let node = "li[id='li_" + id + "']";
+        let children = $(node).children('ul').children('li');
         if (children && children.length > 0)
-            for (var i = 0; i < children.length; i++) {
+            for (let i = 0; i < children.length; i++) {
                 GetNodeList(children[i].id.replace(/li_/g, ""));
             }
     }
@@ -625,9 +629,9 @@ function UpdateTreeSync() {
 
 function HideNodes(id) {
     if ($("input[id='ishidden_" + id + "']").attr("value") == "true") $("li[id='li_" + id + "']").hide();
-    var children = $("li[id='li_" + id + "']").children('ul').children('li');
+    let children = $("li[id='li_" + id + "']").children('ul').children('li');
     if (children && children.length > 0)
-        for (var i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             HideNodes(children[i].id.replace(/li_/g, ""));
         }
 }
@@ -637,9 +641,9 @@ function ShowNodes(id) {
         $("li[id='li_" + id + "']").css("display", "block");
         RefreshFillers(id, false);
     }
-    var children = $("li[id='li_" + id + "']").children('ul').children('li');
+    let children = $("li[id='li_" + id + "']").children('ul').children('li');
     if (children && children.length > 0)
-        for (var i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             ShowNodes(children[i].id.replace(/li_/g, ""));
         }
 }
@@ -647,7 +651,7 @@ function ShowNodes(id) {
 //this unhides a node and all its ancesters
 function UnHideBranch(id) {
     $("li[id='li_" + id + "']").show();
-    var parentulID = $("li[id='li_" + id + "']").parent().attr("id");
+    let parentulID = $("li[id='li_" + id + "']").parent().attr("id");
     //Recursive call
     if ($("li[id='li_" + id + "']").parent().parent().attr("id") != "container")
         UnHideBranch(parentulID.replace(/li_ul_/g, ""));
@@ -722,8 +726,8 @@ function ToggleDescription() {
 
     //Reload page to fix iframe size if decription is shown
     if (!descriptionhidden) {
-        var iframe = document.getElementById('Iframe15');
-        var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+        let iframe = document.getElementById('Iframe15');
+        let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
         innerDoc.location = innerDoc.location;
     }
 }
@@ -749,8 +753,8 @@ function ToggleDescriptionAsync() {
 
     //Reload page to fix iframe size if decription is shown
     if (!descriptionhidden) {
-        var iframe = document.getElementById('Iframe15');
-        var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+        let iframe = document.getElementById('Iframe15');
+        let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
         innerDoc.location = innerDoc.location;
     }
 }
@@ -760,17 +764,17 @@ function ToggleCompact() {
     //This is needed to reset the expandingLevels variable
     expandingLevels = false;
     if (!$('input[id=\'Compact\']').is(':checked')) {
-        var nodes = $("#container li").filter(function () {
+        let nodes = $("#container li").filter(function () {
             return $(this).css('display') == 'none' && $("input[id='ishidden_" + $(this).attr("id").replace(/li_/g, "") + "']").attr("value") == "false";
         });
         nodes.show();
-        for (var i = 0; i < nodes.length; i++) {
+        for (let i = 0; i < nodes.length; i++) {
             RefreshFillers(nodes[i].id.replace(/li_/g, ""), false);
         }
     }
     else {
-        var nodes = $("#container li").filter(function () {
-            var parentulID = $(this).parent().attr("id");
+        let nodes = $("#container li").filter(function () {
+            let parentulID = $(this).parent().attr("id");
             return parentulID != undefined && $("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision" &&
                 !($(this).children(':checkbox').is(':checked')) &&
                 $(this).siblings().children('input:checked').length == 1;
@@ -796,23 +800,23 @@ function HideIds() {
 
 //Recursive function to refresh the fillers's width
 function EnlargeFillers(id) {
-    var node = "li[id='li_" + id + "']";
+    let node = "li[id='li_" + id + "']";
     $(node).children(".filler").css("width", $(node).children(".filler").width() + $(node).children("a").children(".formula").width());
 
-    var children = $(node).children('ul').children('li');
+    let children = $(node).children('ul').children('li');
     if (children && children.length > 0)
-        for (var i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             EnlargeFillers(children[i].id.replace(/li_/g, ""));
         }
 }
 //Recursive function to refresh the fillers's width
 function ShortenFillers(id) {
-    var node = "li[id='li_" + id + "']";
+    let node = "li[id='li_" + id + "']";
     $(node).children(".filler").css("width", $(node).children(".filler").width() - $(node).children("a").children(".formula").width());
 
-    var children = $(node).children('ul').children('li');
+    let children = $(node).children('ul').children('li');
     if (children && children.length > 0)
-        for (var i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             ShortenFillers(children[i].id.replace(/li_/g, ""));
         }
 }
@@ -822,15 +826,15 @@ function Refill() {
 }
 
 function RefreshFillers(id, recursive) {
-    var node = "li[id='li_" + id + "']";
+    let node = "li[id='li_" + id + "']";
     if ($(node).length) {
         //Adjust the node width
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
 
-        var nameText = $(node).children('a').children(".name").text();
-        var formulaText = $(node).children('a').children(".formula").children("i").text();
-        var subtotalType = $(node).children(".subtotal").children("font").eq(0).text();
-        var subtotalText = $(node).children(".subtotal").children("font").eq(1).text();
+        let nameText = $(node).children('a').children(".name").text();
+        let formulaText = $(node).children('a').children(".formula").children("i").text();
+        let subtotalType = $(node).children(".subtotal").children("font").eq(0).text();
+        let subtotalText = $(node).children(".subtotal").children("font").eq(1).text();
 
         //Refresh node's elements
         $(node).children('a').empty();
@@ -840,8 +844,8 @@ function RefreshFillers(id, recursive) {
         if (!$('input[id=\'Formulas\']').is(':checked')) $(node).children('a').children('.formula').hide();
         $(node).children(".subtotal").remove();
         $(node).children(".filler").remove();
-        var newFiller = $("<div class='filler'>&nbsp;</div>");
-        var newSubtotal = $("<span class='subtotal' id='subtotal_" + id + "'>" + "<font size='1'>" + subtotalType + "</font>" + " " + "<font>" + subtotalText + "</font>" + "</span>");
+        let newFiller = $("<div class='filler'>&nbsp;</div>");
+        let newSubtotal = $("<span class='subtotal' id='subtotal_" + id + "'>" + "<font size='1'>" + subtotalType + "</font>" + " " + "<font>" + subtotalText + "</font>" + "</span>");
         $(node).children('a').after(newFiller);
         $(node).children('a').after(newSubtotal);
 
@@ -860,14 +864,14 @@ function RefreshFillers(id, recursive) {
         }
 
         //Declare some width related variables
-        var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
+        let nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
         checkboxWidth = $("input[id='ckbx_" + id + "']").length ? 13 : 0;
         imageVisibleWidth = $(node).children("img").first().is(":visible") ? 16 : 0;
         editWidth = $(node).children(".edit").length ? $(node).children(".edit").outerWidth(true) : 0;
         addWidth = $(node).children(".add").length ? $(node).children(".add").outerWidth(true) : 0;
         removeWidth = $(node).children(".remove").length ? $(node).children(".remove").outerWidth(true) : 0;
-        var formula = $(node).children("a").children(".formula");
-        var name = $(node).children("a").children(".name");
+        let formula = $(node).children("a").children(".formula");
+        let name = $(node).children("a").children(".name");
 
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         nodeWidth = $(node).width();
@@ -884,7 +888,7 @@ function RefreshFillers(id, recursive) {
 
         //Set the formula element's width
         if (anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 > nodeWidth) {
-            var extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
+            let extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
             if (formulaWidth >= extraWidth + 25)
                 formula.width(formulaWidth - extraWidth - 25);
             else {
@@ -897,14 +901,14 @@ function RefreshFillers(id, recursive) {
             name.width(nameWidth + 5);
         }
 
-        var scrollbarWidth =  getScrollbarWidth(document.getElementById("container"));
+        let scrollbarWidth =  getScrollbarWidth(document.getElementById("container"));
         $(node).children(".filler").css("width", nodeWidth - anchorWidth - subtotalWidth - insWidth - checkboxWidth - imageVisibleWidth - editWidth - addWidth - removeWidth - 30 - scrollbarWidth);
         $(node).children(".filler").css("margin-right", subtotalWidth + scrollbarWidth);
         //Recursive call
-        if (recursive = true) {
-            var children = $(node).children('ul').children('li');
+        if (recursive == true) {
+            let children = $(node).children('ul').children('li');
             if (children && children.length > 0)
-                for (var i = 0; i < children.length; i++) {
+                for (let i = 0; i < children.length; i++) {
                     RefreshFillers(children[i].id.replace(/li_/g, ""), true);
                 }
         }
@@ -914,9 +918,9 @@ function RefreshFillers(id, recursive) {
 }
 
 function OpenNode(node) {
-    var split = node.split('>');
-    var current = "li[id='li_1']";
-    for (var i = 0; i < split.length; i++) {
+    let split = node.split('>');
+    let current = "li[id='li_1']";
+    for (let i = 0; i < split.length; i++) {
         //1:Open the node
         top.asynchronous = false;
         $.jstree._reference(current).open_node(current, function () {
@@ -928,8 +932,8 @@ function OpenNode(node) {
             }
             else {
                 //2:Get next node
-                var children = $(current).children('ul').children('li');
-                for (var j = 0; j < children.length; j++) {
+                let children = $(current).children('ul').children('li');
+                for (let j = 0; j < children.length; j++) {
                     if ($(children[j]).children('a').children('font:first').text() == split[i + 1]) {
                         current = "li[id='" + $(children[j]).attr('id') + "']";
                         break;
@@ -947,9 +951,9 @@ function ExpandLevels(node, levels) {
         asynchronous = false;
         $.jstree._reference("li[id='li_" + node + "']").open_node("li[id='li_" + node + "']", function () {
 
-            var children = $("li[id='li_" + node + "']").children('ul').children('li');
+            let children = $("li[id='li_" + node + "']").children('ul').children('li');
             if (children && children.length > 0)
-                for (var i = 0; i < children.length; i++) {
+                for (let i = 0; i < children.length; i++) {
                     ExpandLevels(children[i].id.replace(/li_/g, ""), levels - 1);
                 }
 
@@ -961,7 +965,7 @@ function ExpandLevels(node, levels) {
 function ExpandLevels2(node, levels) {
     expandingLevels = true;
     if (levels != 0) {
-        var children_ul = $("li[id='li_" + node + "']").children("ul");
+        let children_ul = $("li[id='li_" + node + "']").children("ul");
         if (children_ul.length == 0 || children_ul.children("li").length == 0) {
             $.ajax({
                 url: "ChildNodes?id=" + node,
@@ -973,8 +977,8 @@ function ExpandLevels2(node, levels) {
                 },
                 complete: function (result) {
                     //Expand levels
-                    var jsonObject = jQuery.parseJSON(result.responseText);
-                    for (var i = 0; i < jsonObject.length; i++) {
+                    let jsonObject = jQuery.parseJSON(result.responseText);
+                    for (let i = 0; i < jsonObject.length; i++) {
                         ExpandLevels2(jsonObject[i].id, levels - 1);
                     }
                 },
@@ -989,8 +993,8 @@ function ExpandLevels2(node, levels) {
             //Open the node
             $("#container").jstree("open_node", $("li[id='li_" + node + "']"));
             RefreshFillers(node, true);
-            var children = $("li[id='li_" + node + "']").children('ul').children('li');
-            for (var j = 0; j < children.length; j++) {
+            let children = $("li[id='li_" + node + "']").children('ul').children('li');
+            for (let j = 0; j < children.length; j++) {
                 ExpandLevels2(children[j].id.replace(/li_/g, ""), levels - 1);
             }
         }
@@ -1057,28 +1061,28 @@ function FillNodeDialogInfo(id) {
 
 function SaveNodeInfo() {
     //Post values to server
-    var name = $("#inodeName").val();
-    var type = $("#inodeType").val();
-    var expression = $("#inodeExpression").val();
-    var expandedLevels = $("#inodeExpandedLevels").val();
-    var order = $("#inodeOrder").val();
-    var min = $("#inodeMin").val();
-    var max = $("#inodeMax").val();
-    var discount = $("#inodeDiscount").val();
-    var hidden = $("#inodeHidden").is(":checked");
-    var optional = $("#inodeOptional").is(":checked");
-    var disable = $("#inodeDisable").val();
-    var disabledMessage = $("#inodeDisabledMessage").val();
-    var editChildren = $("#inodeEditChildren").is(":checked");
-    var report = $("#inodeReport").is(":checked");
-    var reportValue = $("#inodeReportValue").is(":checked");
-    var units = $("#inodeUnitsText").val();
-    var decimalPlaces = $("#inodeDecimalPlaces").val();
-    var template = $("#inodeTemplate").is(":checked");
-    var readOnly = $("#inodeReadOnly").is(":checked");
+    let name = $("#inodeName").val();
+    let type = $("#inodeType").val();
+    let expression = $("#inodeExpression").val();
+    let expandedLevels = $("#inodeExpandedLevels").val();
+    let order = $("#inodeOrder").val();
+    let min = $("#inodeMin").val();
+    let max = $("#inodeMax").val();
+    let discount = $("#inodeDiscount").val();
+    let hidden = $("#inodeHidden").is(":checked");
+    let optional = $("#inodeOptional").is(":checked");
+    let disable = $("#inodeDisable").val();
+    let disabledMessage = $("#inodeDisabledMessage").val();
+    let editChildren = $("#inodeEditChildren").is(":checked");
+    let report = $("#inodeReport").is(":checked");
+    let reportValue = $("#inodeReportValue").is(":checked");
+    let units = $("#inodeUnitsText").val();
+    let decimalPlaces = $("#inodeDecimalPlaces").val();
+    let template = $("#inodeTemplate").is(":checked");
+    let readOnly = $("#inodeReadOnly").is(":checked");
 
-    var specialChars = "*/\+-|[]?&!()><=#{};:,_";
-    var check = function (string) {
+    let specialChars = "*/\\+-|[]?&!()><=#{};:,_";
+    let check = function (string) {
         for (i = 0; i < specialChars.length; i++) {
             if (string.indexOf(specialChars[i]) > -1) {
                 return true
@@ -1088,7 +1092,7 @@ function SaveNodeInfo() {
     };
 
     if (check(name) == false) {
-        var queryString =
+        let queryString =
             "id=" + editedNodeId
             + "&name=" + name
             + "&type=" + type
@@ -1110,7 +1114,7 @@ function SaveNodeInfo() {
             + "&template=" + template
             + "&readOnly=" + readOnly
             ;
-        var data = $('#inodeName').serialize();
+        let data = $('#inodeName').serialize();
         //Show overlay
         overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
         $("#overlay").show();
@@ -1137,7 +1141,7 @@ function SaveNodeInfo() {
             success: function (result) {
                 //this is needed to refresh the order of nodes in case the order property was modified
                 if (editedNodeId != 1) {
-                    var parentId = $("li[id='li_" + editedNodeId + "']").parent().attr("id").replace(/li_ul_/g, "");
+                    let parentId = $("li[id='li_" + editedNodeId + "']").parent().attr("id").replace(/li_ul_/g, "");
                     $.jstree._reference("li[id='li_" + parentId + "']").move_node("li[id='li_" + editedNodeId + "']", "li[id='li_" + parentId + "']", parseInt(result.order));
                 }
                 //Update the price in the page
@@ -1170,28 +1174,28 @@ function SaveNodeInfo() {
 
 function NewNode() {
     //Post values to server
-    var name = $("#newinodeName").val();
-    var type = $("#newinodeType").val();
-    var expression = $("#newinodeExpression").val();
-    var expandedLevels = $("#newinodeExpandedLevels").val();
-    var order = $("#newinodeOrder").val();
-    var min = $("#newinodeMin").val();
-    var max = $("#newinodeMax").val();
-    var discount = $("#newinodeDiscount").val();
-    var hidden = $("#newinodeHidden").is(":checked");
-    var optional = $("#newinodeOptional").is(":checked");
-    var disable = $("#newinodeDisable").val();
-    var disabledMessage = $("#newinodeDisabledMessage").val();
-    var editChildren = $("#newinodeEditChildren").is(":checked");
-    var report = $("#newinodeReport").is(":checked");
-    var reportValue = $("#newinodeReportValue").is(":checked");
-    var units = $("#newinodeUnitsText").val();
-    var decimalPlaces = $("#newinodeDecimalPlaces").val();
-    var template = $("#newinodeTemplate").is(":checked");
-    var readOnly = $("#newinodeReadOnly").is(":checked");
+    let name = $("#newinodeName").val();
+    let type = $("#newinodeType").val();
+    let expression = $("#newinodeExpression").val();
+    let expandedLevels = $("#newinodeExpandedLevels").val();
+    let order = $("#newinodeOrder").val();
+    let min = $("#newinodeMin").val();
+    let max = $("#newinodeMax").val();
+    let discount = $("#newinodeDiscount").val();
+    let hidden = $("#newinodeHidden").is(":checked");
+    let optional = $("#newinodeOptional").is(":checked");
+    let disable = $("#newinodeDisable").val();
+    let disabledMessage = $("#newinodeDisabledMessage").val();
+    let editChildren = $("#newinodeEditChildren").is(":checked");
+    let report = $("#newinodeReport").is(":checked");
+    let reportValue = $("#newinodeReportValue").is(":checked");
+    let units = $("#newinodeUnitsText").val();
+    let decimalPlaces = $("#newinodeDecimalPlaces").val();
+    let template = $("#newinodeTemplate").is(":checked");
+    let readOnly = $("#newinodeReadOnly").is(":checked");
 
-    var specialChars = "*/\+-|[]?&!()><=#{};:,_";
-    var check = function (string) {
+    let specialChars = "*/\\+-|[]?&!()><=#{};:,_";
+    let check = function (string) {
         for (i = 0; i < specialChars.length; i++) {
             if (string.indexOf(specialChars[i]) > -1) {
                 return true
@@ -1201,7 +1205,7 @@ function NewNode() {
     };
 
     if (check(name) == false) {
-        var queryString =
+        let queryString =
             "id=" + addToNodeId
             + "&name=" + name
             + "&type=" + type
@@ -1223,7 +1227,7 @@ function NewNode() {
             + "&template=" + template
             + "&readOnly=" + readOnly
             ;
-        var data = $('#inodeName').serialize();
+        let data = $('#inodeName').serialize();
 
         //Show overlay
         overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
@@ -1319,10 +1323,10 @@ function removeNodes() {
                 //Update the price in the page
                 price = document.getElementById("price");
                 $(price).text("Total: " + result);
-                var ids = removeNodeIds.split(";");
-                for (var i = 0; i < ids.length; i++) {
+                let ids = removeNodeIds.split(";");
+                for (let i = 0; i < ids.length; i++) {
                     if (ids[i] != "") {
-                        var parentulID = $("li[id='li_" + ids[i] + "']").parent().attr("id");
+                        let parentulID = $("li[id='li_" + ids[i] + "']").parent().attr("id");
                         //Show siblings if parent is Decision node
                         if ($("input[id='nodetype_" + parentulID.replace(/li_ul_/g, "") + "']").attr("value") == "Decision")
                             $("li[id='li_" + ids[i] + "']").siblings().show();
@@ -1339,14 +1343,14 @@ function removeNodes() {
 
 //Assemble the tree
 function Assemble(result, id) {
-    var li_id = id;
+    let li_id = id;
     //Get children from server if not already inserted
-    var children_ul = $(id).children("ul");
+    let children_ul = $(id).children("ul");
 
     //Select the node
     $("#container").jstree("select_node", $("li[id='" + li_id + "']"));
     //Insert children
-    for (var i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
         $("#container").jstree("create", null, "last", { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result[i].id } }, false, true);
         //Insert content into anchor
         UpdateNode(result[i]);
@@ -1354,7 +1358,7 @@ function Assemble(result, id) {
         //If hidden then hide
         if (result[i].hidden == true && !($('input[id=\'HiddenFields\']').is(':checked'))) $("li[id='li_" + result[i].id + "']").hide();
         //Add the node url to the <a> inside the node (this doesnt work but needs to be here) 
-        var href = result[i].url;
+        let href = result[i].url;
 
         $("li[id='li_" + result[i].id + "']").children('a').attr("href", href);
         $("li[id='li_" + result[i].id + "']").children('a').attr("target", 'details');
@@ -1370,21 +1374,21 @@ function Assemble(result, id) {
 
 function RenderTree(tree) {
     //Select parent if is not the root
-    var parentId = tree.Id.substr(0, tree.Id.lastIndexOf("."));
+    let parentId = tree.Id.substr(0, tree.Id.lastIndexOf("."));
     if (tree.Id != 1)
         $("#container").jstree("select_node", $("li[id='" + "li_" + parentId + "']"));
     $("#container").jstree("create", null, "last", { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + tree.Id } }, false, true);
 
     //////////////////////////////////////Update node/////////////////////////////////////////////////////////////////////////////////
-    var node = "li[id='li_" + tree.Id + "']";
+    let node = "li[id='li_" + tree.Id + "']";
     if ($(node).length) {
         //next line is needed to avoid fillers problem
         $(node).css("white-space", "normal");
         //Adjust the node width
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         //Refresh node's elements
-        var checked;
-        var html;
+        let checked;
+        let html;
         //If node is optional add a checkbox to child
         $("input[id='ckbx_" + tree.Id + "']").remove();
         if (tree.Optional) {
@@ -1404,7 +1408,7 @@ function RenderTree(tree) {
         if (!tree.Complete && !(tree.Optional && !tree.Selected)) $(node).children(".incomplete").show();
         else $(node).children(".incomplete").hide();
 
-        var href = "../" + tree.Url;
+        let href = "../" + tree.Url;
         $(node).children('a').attr("href", href);
         $(node).children('a').attr("target", 'details');
 
@@ -1426,7 +1430,7 @@ function RenderTree(tree) {
         //Set hidden to green
         if (tree.Hidden) $("li[id='li_" + tree.Id + "']").children('a').attr("style", "color:green");
         //Add the formula
-        var expression = "";
+        let expression = "";
         if (tree.TypeStr != 'Decision' && tree.TypeStr != 'SumSet' && tree.TypeStr != 'Text')
             expression = "&nbsp;[<i>" + tree.Expression + "</i>]";
         else
@@ -1462,8 +1466,8 @@ function RenderTree(tree) {
         $(node).children(".edit").remove();
         $(node).children(".add").remove();
         $(node).children(".remove").remove();
-        var newFiller = $("<div class='filler'>&nbsp;</div>");
-        var newSubtotal = $("<span class='subtotal' id='subtotal_" + tree.Id + "'>" + "<font size='1'>" + tree.TypeStr + "</font>" + "  " + "<font>" + "[" + tree.TotalStr + "]" + "</font>" + "</span>");
+        let newFiller = $("<div class='filler'>&nbsp;</div>");
+        let newSubtotal = $("<span class='subtotal' id='subtotal_" + tree.Id + "'>" + "<font size='1'>" + tree.TypeStr + "</font>" + "  " + "<font>" + "[" + tree.TotalStr + "]" + "</font>" + "</span>");
 
         $(node).children('a').after(newFiller);
         $(node).children('a').after(newSubtotal);
@@ -1474,17 +1478,17 @@ function RenderTree(tree) {
         $(node).children('a').next().on("click", function (e) {
             e.preventDefault();
             //select the node
-            var current_li = "li[id='li_" + tree.Id + "']";
+            let current_li = "li[id='li_" + tree.Id + "']";
             //if description section is not hidden show description page for current node
             if (!descriptionhidden)
                 $(current_li).children("a").click();
             editedNodeId = tree.Id;
             //Fill the Order dropdown list
             $("#inodeOrder").empty();
-            for (var i = 0; i <= $(node).siblings().length; i++)
+            for (let i = 0; i <= $(node).siblings().length; i++)
                 $("#inodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
             FillNodeDialogInfo(editedNodeId);
-            editdialog.dialog('option', 'title', 'Edit: \"' + tree.Name + '\"');
+            editdialog.dialog('option', 'title', 'Edit: "' + tree.Name + '"');
             editdialog.dialog("open");
             //Save all node names into a global array
             $.ajax({
@@ -1499,7 +1503,7 @@ function RenderTree(tree) {
                 success: function (result) {
                     //Reset the array
                     allNames.length = 0;
-                    for (var i of result) {
+                    for (let i of result) {
                         allNames.push(i);
                     }
                 }
@@ -1514,7 +1518,7 @@ function RenderTree(tree) {
         $(node).children('.add').on("click", function (e) {
             e.preventDefault();
             //select the node
-            var current_li = "li[id='li_" + tree.Id + "']";
+            let current_li = "li[id='li_" + tree.Id + "']";
             //if description section is not hidden show description page for current node
             if (!descriptionhidden)
                 $(current_li).children("a").click();
@@ -1529,9 +1533,9 @@ function RenderTree(tree) {
             }
             //Fill the Order dropdown list
             $("#newinodeOrder").empty();
-            for (var i = 0; i <= $(node).children("ul").children("li").length; i++)
+            for (let i = 0; i <= $(node).children("ul").children("li").length; i++)
                 $("#newinodeOrder").append("<option  value='" + i + "'>" + i + "</option>");
-            newnodedialog.dialog('option', 'title', 'Insert new node into: \"' + tree.Name + '\"');
+            newnodedialog.dialog('option', 'title', 'Insert new node into: "' + tree.Name + '"');
             newnodedialog.dialog("open");
             //Save all node names into a global array
             $.ajax({
@@ -1546,25 +1550,23 @@ function RenderTree(tree) {
                 success: function (result) {
                     //Reset the array
                     allNames.length = 0;
-                    for (var i of result) {
+                    for (let i of result) {
                         allNames.push(i);
                     }
                 }
             });
         });
         //Declare some width related variables
-        var nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWitdh, addWidth, removeWidth, nameWidth;
+        let nodeWidth, anchorWidth, subtotalWidth, insWidth, formulaWidth, imageVisibleWidth, checkboxWidth, editWidth, addWidth, removeWidth, nameWidth;
         checkboxWidth = $("input[id='ckbx_" + tree.Id + "']").length ? 13 : 0;
         imageVisibleWidth = $(node).children("img").first().is(":visible") ? 16 : 0;
         editWidth = tree.TypeStr != 'Decision' ? $(node).children(".edit").outerWidth(true) : 0;
         addWidth = $(node).children(".add").outerWidth(true);
         removeWidth = $(node).children(".remove").outerWidth(true);
 
-        var formula = $(node).children("a").children(".formula");
-        var name = $(node).children("a").children(".name");
+        let formula = $(node).children("a").children(".formula");
+        let name = $(node).children("a").children(".name");
         //If node is hidden then show it to get correct widths, then hide it again
-        var hideParentUL = false;
-        var hideNode = false;
 
         $(node).width($("#container").width() - ($(node).offset().left - $("#container").offset().left));
         nodeWidth = $(node).width();
@@ -1582,7 +1584,7 @@ function RenderTree(tree) {
 
         //Set the formula element's width
         if (anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 > nodeWidth) {
-            var extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
+            let extraWidth = anchorWidth + subtotalWidth + insWidth + checkboxWidth + imageVisibleWidth + editWidth + addWidth + removeWidth + 25 - nodeWidth;
             if (formulaWidth >= extraWidth + 25)
                 formula.width(formulaWidth - extraWidth - 25);
             else {
@@ -1595,16 +1597,16 @@ function RenderTree(tree) {
             name.width(nameWidth + 5);
         }
 
-        var scrollbarWidth = getScrollbarWidth(document.getElementById("container"));
+        let scrollbarWidth = getScrollbarWidth(document.getElementById("container"));
         $(node).children(".filler").css("width", nodeWidth - anchorWidth - subtotalWidth - insWidth - checkboxWidth - imageVisibleWidth - editWidth - addWidth - removeWidth - 30 - scrollbarWidth);
         $(node).children(".filler").css("margin-right", subtotalWidth + scrollbarWidth);
 
         //This will append the id text (THIS CODE WILL EVENTUALY REPLACE THE CODE ABOVE
-        var offset = $("li[id='li_1']").position().left;
+        let offset = $("li[id='li_1']").position().left;
         $("<font width='100%' size='1' class='id' id = 'id_" + tree.Id + "'>" + "&nbsp" + tree.Id + "</font>").insertBefore("li[id='li_" + tree.Id + "']>ins");
         $(".id").css({ position: 'absolute', left: offset });
-        var id_width = $("font[id='id_" + tree.Id + "']").width();
-        var ins_left = $(node).children("ins").position().left;
+        let id_width = $("font[id='id_" + tree.Id + "']").width();
+        let ins_left = $(node).children("ins").position().left;
         if (id_width > ins_left) {
             $(node).css("margin-left", id_width - ins_left + 13.5);
         }
@@ -1622,7 +1624,7 @@ function RenderTree(tree) {
     ///////////////////////////////////////End Updating Node//////////////////////////////////////////////////////////////////////////
     //Recursive call
     if (tree._Children != null) {
-        for (var i = 0; i < tree._Children.length; i++) {
+        for (let i = 0; i < tree._Children.length; i++) {
             if(tree._Children[i].Id == undefined) continue;
             RenderTree(tree._Children[i]);
         }
@@ -1656,13 +1658,13 @@ function SaveDefinition(){
 
 //This function was replaced by conditional serialization in the server side
 function PruneTree(tree,Root) {
-    var countDots = tree.Id.split('.').length - 1;
+    let countDots = tree.Id.split('.').length - 1;
     if (tree.Id != '1' && countDots == Root.ExpandedLevels) {
         tree._Children = null;
         return;
     }
     else {
-        for (var i = 0; i < tree._Children.length; i++){
+        for (let i = 0; i < tree._Children.length; i++){
             PruneTree(tree._Children[i], Root);
         }
     } 
@@ -1670,15 +1672,15 @@ function PruneTree(tree,Root) {
 
 // Decompress an LZW-encoded string
 function lzw_decode(s) {
-    var dict = {};
-    var data = (s + "").split("");
-    var currChar = data[0];
-    var oldPhrase = currChar;
-    var out = [currChar];
-    var code = 256;
-    var phrase;
-    for (var i = 1; i < data.length; i++) {
-        var currCode = data[i].charCodeAt(0);
+    let dict = {};
+    let data = (s + "").split("");
+    let currChar = data[0];
+    let oldPhrase = currChar;
+    let out = [currChar];
+    let code = 256;
+    let phrase;
+    for (let i = 1; i < data.length; i++) {
+        let currCode = data[i].charCodeAt(0);
         if (currCode < 256) {
             phrase = data[i];
         }
@@ -1747,9 +1749,9 @@ $(function () {
                             "label": "Remove",
                             "action": function (obj) {
                                 removeNodeIds = "";
-                                var selectedNodes = $("#container").jstree("get_selected");
+                                let selectedNodes = $("#container").jstree("get_selected");
                                 if (selectedNodes.length > 1) {
-                                    for (var i = 0; i < selectedNodes.length; i++) {
+                                    for (let i = 0; i < selectedNodes.length; i++) {
                                         removeNodeIds += selectedNodes[i].id.replace(/li_/g, "") + ";";
                                     }
                                     $("#removeNode").children("label").text("Remove multiple nodes?");
@@ -1765,11 +1767,11 @@ $(function () {
                             "label": "Copy",
                             "action": function (obj) {
                                 copyNodesId = "";
-                                var selectedNodes = $("#container").jstree("get_selected");
+                                let selectedNodes = $("#container").jstree("get_selected");
                                 this.copy(selectedNodes);
                                 if (selectedNodes.length <= 1) copyNodesId = obj.attr("id").replace(/li_/g, "");
                                 else
-                                    for (var i = 0; i < selectedNodes.length; i++) {
+                                    for (let i = 0; i < selectedNodes.length; i++) {
                                         copyNodesId += selectedNodes[i].id.replace(/li_/g, "") + ";";
                                     }
                             }
@@ -1777,7 +1779,7 @@ $(function () {
                         "Paste": {
                             "label": "Paste",
                             "action": function (obj) {
-                                var targetNodeId = obj.attr("id").replace(/li_/g, "");
+                                let targetNodeId = obj.attr("id").replace(/li_/g, "");
                                 //Clone node with id in server side
                                 if (copyNodesId != null && copyNodesId != ""){
                                     //Show overlay
@@ -1804,7 +1806,7 @@ $(function () {
                                             creatingNewNode = false;
                                         },
                                         success: function (result) {
-                                            for (var i = 0; i < result.length; i++) {
+                                            for (let i = 0; i < result.length; i++) {
                                                 creatingNewNode = true;
                                                 $("#container").jstree("create", obj, parseInt(result[i].order), { "data": " ", "attr": { "class": "jstree-closed", "id": "li_" + result[i].id } }, false, true);
                                                 //remove the anchor so it will be re-created with UpdateNode()
@@ -1855,7 +1857,7 @@ $(function () {
                 success: function (result) {
                     //ExpLevels = result.expandedLevels;
                     if (result != null) {
-                        var jsonObject = JSON.parse(result);
+                        let jsonObject = JSON.parse(result);
                         PruneTree(jsonObject, jsonObject);
                         RenderTree(jsonObject);
                         //This is to fix bug...not very elegant though
@@ -1896,9 +1898,9 @@ $(function () {
     //setTimeout(function () { $.jstree._reference("#li_1").close_node("#li_1"); }, 1500);
     // 4) when you are working with an event you can use a shortcut
     $("#container").bind("open_node.jstree", function (e, data) {
-        var li_id = data.rslt.obj.attr('id');
+        let li_id = data.rslt.obj.attr('id');
         //Get children from server if not already inserted
-        var children_ul = data.rslt.obj.find('ul');
+        let children_ul = data.rslt.obj.find('ul');
         //Hide the node if is hidden and the show hidden checkbox is unchecked.....This is needed because when the open node event is called it will unhide children nodes
         if (!$('input[id=\'HiddenFields\']').is(':checked')) HideNodes(li_id.replace(/li_/g, ""), '');
         show_all = document.location.href.search('true') != -1 ? "true" : "false";
@@ -1987,7 +1989,7 @@ $(function () {
         return false;
         },
         select: function( event, ui ) {
-        var terms = split( this.value );
+        let terms = split( this.value );
         this.value = replaceLastOccurrence(this.value,terms[terms.length -1], '');
 
         if (ui.item.value[0] != " ") ui.item.value = " " + ui.item.value;
@@ -1999,9 +2001,9 @@ $(function () {
 
     //Resize fillers on window resize
     $(window).on("resize", function () {
-        var isDialogOpen = editdialog.dialog("isOpen");
-        var isNewNodeDialogOpen = newnodedialog.dialog("isOpen");
-        var isDescriptionDialogOpen = dialog.dialog("isOpen");
+        let isDialogOpen = editdialog.dialog("isOpen");
+        let isNewNodeDialogOpen = newnodedialog.dialog("isOpen");
+        let isDescriptionDialogOpen = dialog.dialog("isOpen");
 
         dialogHeight = window.innerHeight * 98 / 100;
 
@@ -2081,9 +2083,9 @@ $(function () {
 
         if ($("#description").is(":hidden")) {
             if (isDescriptionDialogOpen) {
-                    var src = document.getElementById("Iframe15").contentWindow.location.href;
-                    var width = !mobile ? $("#hr").width() * 40 / 100 : "100%";
-                    var height = width;
+                    let src = document.getElementById("Iframe15").contentWindow.location.href;
+                    let width = !mobile ? $("#hr").width() * 40 / 100 : "100%";
+                    let height = width;
                     iframe.attr({
                         width: +width,
                         height: +height,
@@ -2101,7 +2103,7 @@ $(function () {
     });
 
     // code to show dialog box
-    var iframe = $('<iframe style="border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+    let iframe = $('<iframe style="border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
     dialog = $("<div></div>").append(iframe).appendTo("body").dialog({
         autoOpen: false,
         modal: true,
@@ -2117,9 +2119,9 @@ $(function () {
     $("#Iframe15").on("load", function (e) {
         if (descriptionhidden) {
             e.preventDefault();
-            var src = document.getElementById("Iframe15").contentWindow.location.href;
-            var width = !mobile ? $("#hr").width() * 40 / 100 : "100%";
-            var height = width;
+            let src = document.getElementById("Iframe15").contentWindow.location.href;
+            let width = !mobile ? $("#hr").width() * 40 / 100 : "100%";
+            let height = width;
             iframe.attr({
                 width: +width,
                 height: +height,
