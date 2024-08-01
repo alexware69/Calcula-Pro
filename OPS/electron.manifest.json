@@ -61,11 +61,19 @@
       "icon": "../../../../wwwroot/Images/ops-win.png"
     },
     "linux": {
-      "category": "Productivity",
-      "target": [
-        "flatpak",
-        "snap"
-      ]
+        "category": "Productivity",
+        "target": [
+            {
+                "target": [
+                  "flatpak",
+                  "snap"
+                ],
+                "arch": [
+                    "x64",
+                    "arm64"
+                ]
+            }
+        ]
     },
     "files": [
       {
