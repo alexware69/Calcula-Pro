@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AoCcEjvJ4BNGWx9ycvhx7AdQFV9sSQv1B8a7BA6cUX8d2I2oD16SXNdnLVt8lY3c5dHv3MyNJ42wl1F1W2NiTw==",
+  "dgSpecHash": "z4+jSTlmsCcJydh09+YLpY/UZv0dTBfrDmyN0viMqwS7gvYFgvJx4OInT/n9mayhJ5AV65p5BVc6FfHE1DphqQ==",
   "success": true,
   "projectFilePath": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
   "expectedPackageFiles": [
@@ -30,9 +30,7 @@
     "/home/alejandro/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.netcore.app.ref/6.0.32/microsoft.netcore.app.ref.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.32/microsoft.netcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.32/microsoft.aspnetcore.app.ref.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.32/microsoft.aspnetcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/6.0.32/microsoft.netcore.app.crossgen2.linux-x64.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.32/microsoft.netcore.app.host.linux-x64.6.0.32.nupkg.sha512"

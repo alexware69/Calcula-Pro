@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sA9WV/GYBaZOeJTroiMNB7VGd4+e1xhPt1sSkaKp92Y14m4U11fb+AmTSsGusCBWkIYS9NyVbEhSSVldyI3hwA==",
+  "dgSpecHash": "t+pO2+w24GEXwntjpyHvovo+EwHPFTS01TXzhLyirHpqUBx8jg7HkOf5EX9SMxOXF+Q4UWzPalSUusCIGK2Lnw==",
   "success": true,
   "projectFilePath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
   "expectedPackageFiles": [
@@ -13,9 +13,7 @@
     "/home/alejandro/.nuget/packages/microsoft.netframework.referenceassemblies.net461/1.0.3/microsoft.netframework.referenceassemblies.net461.1.0.3.nupkg.sha512",
     "/home/alejandro/.nuget/packages/nerdbank.gitversioning/3.4.244/nerdbank.gitversioning.3.4.244.nupkg.sha512",
     "/home/alejandro/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.netcore.app.ref/6.0.32/microsoft.netcore.app.ref.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.32/microsoft.netcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.32/microsoft.aspnetcore.app.ref.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.32/microsoft.aspnetcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/6.0.32/microsoft.netcore.app.crossgen2.linux-x64.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/8.0.7/microsoft.netcore.app.runtime.linux-x64.8.0.7.nupkg.sha512",
