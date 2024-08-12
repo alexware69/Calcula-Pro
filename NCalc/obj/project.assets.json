@@ -37,7 +37,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/win-x64": {
+    ".NETFramework,Version=v4.6.1/linux-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -121,7 +121,7 @@
         }
       }
     },
-    ".NETStandard,Version=v2.0/win-x64": {
+    ".NETStandard,Version=v2.0/linux-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -205,7 +205,7 @@
         }
       }
     },
-    "net6.0/win-x64": {
+    "net6.0/linux-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -271,7 +271,7 @@
         }
       }
     },
-    "net8.0/win-x64": {
+    "net8.0/linux-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -1062,7 +1062,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
             "version": "[6.0.32, 6.0.32]"
           },
           {
@@ -1070,7 +1070,7 @@
             "version": "[6.0.32, 6.0.32]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
             "version": "[6.0.32, 6.0.32]"
           }
         ],
@@ -1114,7 +1114,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
             "version": "[8.0.7, 8.0.7]"
           },
           {
@@ -1122,7 +1122,7 @@
             "version": "[8.0.7, 8.0.7]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
             "version": "[8.0.7, 8.0.7]"
           }
         ],
@@ -1190,7 +1190,7 @@
       }
     },
     "runtimes": {
-      "win-x64": {
+      "linux-x64": {
         "#import": []
       }
     }

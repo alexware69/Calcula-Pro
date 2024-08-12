@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KjA3Kkh7X9tFZEzFyZpiM5fyv+rOMb5y6N3E6T0Ebm8ddvb3WQTbxdeqjZG4dgqMAKJ8kSDni802gAo1dCbLsw==",
+  "dgSpecHash": "z4+jSTlmsCcJydh09+YLpY/UZv0dTBfrDmyN0viMqwS7gvYFgvJx4OInT/n9mayhJ5AV65p5BVc6FfHE1DphqQ==",
   "success": true,
   "projectFilePath": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,8 @@
     "/home/alejandro/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/alejandro/.nuget/packages/runtime.any.system.collections/4.3.0/runtime.any.system.collections.4.3.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/runtime.any.system.runtime/4.3.0/runtime.any.system.runtime.4.3.0.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/runtime.unix.system.private.uri/4.3.0/runtime.unix.system.private.uri.4.3.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/socketioclient/3.0.8/socketioclient.3.0.8.nupkg.sha512",
     "/home/alejandro/.nuget/packages/socketioclient.newtonsoft.json/3.0.7/socketioclient.newtonsoft.json.3.0.7.nupkg.sha512",
     "/home/alejandro/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
@@ -28,10 +30,10 @@
     "/home/alejandro/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/home/alejandro/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.win-x64/6.0.32/microsoft.netcore.app.runtime.win-x64.6.0.32.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/6.0.32/microsoft.aspnetcore.app.runtime.win-x64.6.0.32.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.32/microsoft.netcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
+    "/home/alejandro/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.32/microsoft.aspnetcore.app.runtime.linux-x64.6.0.32.nupkg.sha512",
     "/home/alejandro/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/6.0.32/microsoft.netcore.app.crossgen2.linux-x64.6.0.32.nupkg.sha512",
-    "/home/alejandro/.nuget/packages/microsoft.netcore.app.host.win-x64/6.0.32/microsoft.netcore.app.host.win-x64.6.0.32.nupkg.sha512"
+    "/home/alejandro/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.32/microsoft.netcore.app.host.linux-x64.6.0.32.nupkg.sha512"
   ],
   "logs": []
 }

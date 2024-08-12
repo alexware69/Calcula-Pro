@@ -18,6 +18,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/jquery-min.jstree.js"></script>
     <script src="~/js/jquery.hotkeys.js"></script>
+    <script src="~/js/jquery.easeScroll.js"></script>
    
     @await RenderSectionAsync("Scripts", required: false)
 
@@ -123,6 +124,23 @@
             }
             else window.location = "../Home/About";
         }
+
+        $("html").easeScroll();
+
+        $("html").easeScroll({
+            frameRate: 60,
+            animationTime: 1000,
+            stepSize: 120,
+            pulseAlgorithm: 1,
+            pulseScale: 8,
+            pulseNormalize: 1,
+            accelerationDelta: 20,
+            accelerationMax: 1,
+            keyboardSupport: true,
+            arrowScroll: 50,
+            touchpadSupport: true,
+            fixedBackground: true
+        });
     </script>
 </body>
 </html>
