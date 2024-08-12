@@ -35,7 +35,7 @@ static async void CreateElectronWindow()
     {
         Width = 1280,
         Height = 1024,
-        WebPreferences = new WebPreferences { WebSecurity = false},
+        WebPreferences = new WebPreferences { WebSecurity = false, DevTools = false},
         AutoHideMenuBar = true
     };
     //Electron.Dock.SetIcon("../../../../wwwroot/Images/electron.png");
