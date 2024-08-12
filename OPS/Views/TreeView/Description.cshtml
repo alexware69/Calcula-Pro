@@ -385,7 +385,9 @@
         }
 	});
 
-    $("html").easeScroll();
+    let platform = navigator.platform.toLowerCase();
+    if (platform.includes('linux')){
+        $("html").easeScroll();
 
         $("html").easeScroll({
             frameRate: 60,
@@ -401,6 +403,7 @@
             touchpadSupport: true,
             fixedBackground: true
         });
+    }
     </script>
 </body>
 </html>
