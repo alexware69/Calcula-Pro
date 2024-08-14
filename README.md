@@ -6,10 +6,6 @@
 [![Github All Releases](https://img.shields.io/github/downloads/alexware69/Calcula-Pro/total.svg)](https://github.com/alexware69/Calcula-Pro/releases)
 [![Github All Releases](https://img.shields.io/badge/platform-cross˗platform-blue)](https://github.com/alexware69/Calcula-Pro/releases)
 
-<a href="https://buymeacoffee.com/alexware69">
-    <img align="right" src="https://github.com/alexware69/Calcula-Pro/blob/master/OPS/wwwroot/Images/buy-me-a-coffee.jpeg" style="width: 100px; height: 100px; border: 2px solid black; margin-right: 10px;" />
-</a>
-
 <div style="text-align: right">
     
 Calcula Pro is an innovative desktop app. It helps in **designing**, **implementing**, **documenting**, **presenting**, **quoting** and **storing** unfinished goods, insurance premiums, taxes and many others.
