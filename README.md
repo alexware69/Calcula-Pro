@@ -42,7 +42,7 @@ Calcula Pro is an innovative desktop app. It helps in **designing**, **implement
 * Multiple same-name nodes are supported (compare to Excel single-name naming of cells)
 * UTF-16 characters in node names and inside expressions.
 * Shows node names, formulas, subtotals and node values with respective units and descriptions at the same time.
-* Create and analyze price quotes of complex products.
+* Create and evaluate price quotes of complex products.
 * Shows dependencies and references.
 * Two views available, wide screen for easier formula reading and shared screen for easier description viewing.
 * Compact mode for cleaner view of selections.
