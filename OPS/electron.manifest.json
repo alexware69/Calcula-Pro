@@ -54,7 +54,8 @@
         {
           "target": "default",
           "arch": [
-            "x64"
+            "x64",
+            "arm64"
           ]
         }
       ],
