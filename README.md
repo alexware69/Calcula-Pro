@@ -87,6 +87,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 * Plastic Face\Length of Plastic*Plastic Face\Height of Plastic/144
 * Round(TriFace Sign\BomGen\Approx Copy Size\Length*12/TriFace Sign\BomGen\Prism Centers, 0)
 * {1.6}*{1.5}/144
+* DayDiff(Date1,Date2)
 ```
 
 **Conditional (IF conditions):**
@@ -96,6 +97,7 @@ Expressions can contain most common math functions in addition to IF conditions.
 * TriFace Sign\BomGen\Side Frm.max> TriFace Sign\Length?0.75:0
 * TriFace Sign\Louver Orientation\Vertical.selected?2*O10:0
 * this.selected?price:0
+* Day Diff\Date2 > Day Diff\Date1 ? 1 : 0
 ```
 
 **Reference:** Reference nodes are used to shorten the formulas, they are local but can get an external node’s properties like selected, min, max, discount and its subtotal value.  
