@@ -37,7 +37,91 @@
         }
       }
     },
+    ".NETFramework,Version=v4.6.1/osx-x64": {
+      "Antlr4.Runtime.Standard/4.13.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETFramework.ReferenceAssemblies.net461": "1.0.3"
+        }
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies.net461/1.0.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NETFramework.ReferenceAssemblies.net461.targets": {}
+        }
+      },
+      "Nerdbank.GitVersioning/3.4.244": {
+        "type": "package",
+        "build": {
+          "build/Nerdbank.GitVersioning.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Nerdbank.GitVersioning.targets": {}
+        }
+      }
+    },
     ".NETStandard,Version=v2.0": {
+      "Antlr4.Runtime.Standard/4.13.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Nerdbank.GitVersioning/3.4.244": {
+        "type": "package",
+        "build": {
+          "build/Nerdbank.GitVersioning.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Nerdbank.GitVersioning.targets": {}
+        }
+      },
+      "NETStandard.Library/2.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "build": {
+          "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      }
+    },
+    ".NETStandard,Version=v2.0/osx-x64": {
       "Antlr4.Runtime.Standard/4.13.1": {
         "type": "package",
         "compile": {
@@ -99,6 +183,54 @@
           }
         }
       },
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Analyzers.props": {}
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
+        }
+      },
+      "Nerdbank.GitVersioning/3.4.244": {
+        "type": "package",
+        "build": {
+          "build/Nerdbank.GitVersioning.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Nerdbank.GitVersioning.targets": {}
+        }
+      }
+    },
+    "net6.0/osx-x64": {
+      "Antlr4.Runtime.Standard/4.13.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Analyzers.props": {}
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
+        }
+      },
       "Nerdbank.GitVersioning/3.4.244": {
         "type": "package",
         "build": {
@@ -121,6 +253,42 @@
           "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/8.0.6": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
+        }
+      },
+      "Nerdbank.GitVersioning/3.4.244": {
+        "type": "package",
+        "build": {
+          "build/Nerdbank.GitVersioning.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Nerdbank.GitVersioning.targets": {}
+        }
+      }
+    },
+    "net8.0/osx-x64": {
+      "Antlr4.Runtime.Standard/4.13.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/8.0.6": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
       "Nerdbank.GitVersioning/3.4.244": {
@@ -148,6 +316,104 @@
         "lib/net45/Antlr4.Runtime.Standard.xml",
         "lib/netstandard2.0/Antlr4.Runtime.Standard.dll",
         "lib/netstandard2.0/Antlr4.Runtime.Standard.xml"
+      ]
+    },
+    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
+      "sha512": "XirkjOLc5Vc3HsXRc2Z6ZbQv6l0RvWgJa/31w7XqZ914MoSi3H3OCNRMWFw7H2EYfsnKbokFfhCcysAmUcEOgw==",
+      "type": "package",
+      "path": "microsoft.net.illink.analyzers/7.0.100-1.23401.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
+        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
+        "build/Microsoft.NET.ILLink.Analyzers.props",
+        "microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
+        "microsoft.net.illink.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
+      "sha512": "mI6vCdPEhluLtMn/GV0texEWg5oAPQWCCE4LWspM+Bmy75Nd4EQsziQXrdOFqNeSBQMrxDX9C/O5Xi3kpKSMIw==",
+      "type": "package",
+      "path": "microsoft.net.illink.tasks/7.0.100-1.23401.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "Sdk/Sdk.props",
+        "build/6.0_suppressions.xml",
+        "build/Microsoft.NET.ILLink.Tasks.props",
+        "build/Microsoft.NET.ILLink.targets",
+        "microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
+        "microsoft.net.illink.tasks.nuspec",
+        "tools/net472/ILLink.Tasks.dll",
+        "tools/net472/Mono.Cecil.dll",
+        "tools/net472/System.Buffers.dll",
+        "tools/net472/System.Collections.Immutable.dll",
+        "tools/net472/System.Memory.dll",
+        "tools/net472/System.Numerics.Vectors.dll",
+        "tools/net472/System.Reflection.Metadata.dll",
+        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net7.0/ILLink.Tasks.deps.json",
+        "tools/net7.0/ILLink.Tasks.dll",
+        "tools/net7.0/Mono.Cecil.Pdb.dll",
+        "tools/net7.0/Mono.Cecil.dll",
+        "tools/net7.0/illink.deps.json",
+        "tools/net7.0/illink.dll",
+        "tools/net7.0/illink.runtimeconfig.json"
+      ]
+    },
+    "Microsoft.NET.ILLink.Tasks/8.0.6": {
+      "sha512": "E+lDylsTeP4ZiDmnEkiJ5wobnGaIJzFhOgZppznJCb69UZgbh6G3cfv1pnLDLLBx6JAgl0kAlnINDeT3uCuczQ==",
+      "type": "package",
+      "path": "microsoft.net.illink.tasks/8.0.6",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "Sdk/Sdk.props",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
+        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
+        "build/Microsoft.NET.ILLink.Analyzers.props",
+        "build/Microsoft.NET.ILLink.Tasks.props",
+        "build/Microsoft.NET.ILLink.targets",
+        "microsoft.net.illink.tasks.8.0.6.nupkg.sha512",
+        "microsoft.net.illink.tasks.nuspec",
+        "tools/net472/ILLink.Tasks.dll",
+        "tools/net472/ILLink.Tasks.dll.config",
+        "tools/net472/Mono.Cecil.Mdb.dll",
+        "tools/net472/Mono.Cecil.Pdb.dll",
+        "tools/net472/Mono.Cecil.Rocks.dll",
+        "tools/net472/Mono.Cecil.dll",
+        "tools/net472/Sdk/Sdk.props",
+        "tools/net472/System.Buffers.dll",
+        "tools/net472/System.Collections.Immutable.dll",
+        "tools/net472/System.Memory.dll",
+        "tools/net472/System.Numerics.Vectors.dll",
+        "tools/net472/System.Reflection.Metadata.dll",
+        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net472/build/Microsoft.NET.ILLink.Analyzers.props",
+        "tools/net472/build/Microsoft.NET.ILLink.Tasks.props",
+        "tools/net472/build/Microsoft.NET.ILLink.targets",
+        "tools/net8.0/ILLink.Tasks.deps.json",
+        "tools/net8.0/ILLink.Tasks.dll",
+        "tools/net8.0/Mono.Cecil.Mdb.dll",
+        "tools/net8.0/Mono.Cecil.Pdb.dll",
+        "tools/net8.0/Mono.Cecil.Rocks.dll",
+        "tools/net8.0/Mono.Cecil.dll",
+        "tools/net8.0/Sdk/Sdk.props",
+        "tools/net8.0/build/Microsoft.NET.ILLink.Analyzers.props",
+        "tools/net8.0/build/Microsoft.NET.ILLink.Tasks.props",
+        "tools/net8.0/build/Microsoft.NET.ILLink.targets",
+        "tools/net8.0/illink.deps.json",
+        "tools/net8.0/illink.dll",
+        "tools/net8.0/illink.runtimeconfig.json",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -697,28 +963,31 @@
     ],
     "net6.0": [
       "Antlr4.Runtime.Standard >= 4.13.1",
+      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
+      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
       "Nerdbank.GitVersioning >= 3.4.244"
     ],
     "net8.0": [
       "Antlr4.Runtime.Standard >= 4.13.1",
+      "Microsoft.NET.ILLink.Tasks >= 8.0.6",
       "Nerdbank.GitVersioning >= 3.4.244"
     ]
   },
   "packageFolders": {
-    "/home/alejandro/.nuget/packages/": {}
+    "/Users/alejandro/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+      "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
       "projectName": "NCalcSync",
-      "projectPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
-      "packagesPath": "/home/alejandro/.nuget/packages/",
-      "outputPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/obj/",
+      "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+      "packagesPath": "/Users/alejandro/.nuget/packages/",
+      "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
-        "/home/alejandro/.nuget/NuGet/NuGet.Config"
+        "/Users/alejandro/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net461",
@@ -751,6 +1020,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -761,37 +1035,17 @@
             "target": "Package",
             "version": "[4.13.1, )"
           },
-          "Nerdbank.GitVersioning": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+          "Microsoft.NET.ILLink.Analyzers": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[3.4.244, )"
-          }
-        },
-        "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48",
-          "net481"
-        ],
-        "assetTargetFallback": true,
-        "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/RuntimeIdentifierGraph.json"
-      },
-      "net8.0": {
-        "targetAlias": "net8.0",
-        "dependencies": {
-          "Antlr4.Runtime.Standard": {
+            "version": "[7.0.100-1.23401.1, )",
+            "autoReferenced": true
+          },
+          "Microsoft.NET.ILLink.Tasks": {
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[4.13.1, )"
+            "version": "[7.0.100-1.23401.1, )",
+            "autoReferenced": true
           },
           "Nerdbank.GitVersioning": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -811,12 +1065,78 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+            "version": "[6.0.31, 6.0.31]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+            "version": "[6.0.31, 6.0.31]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+            "version": "[6.0.31, 6.0.31]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
+      },
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "Antlr4.Runtime.Standard": {
+            "target": "Package",
+            "version": "[4.13.1, )"
+          },
+          "Microsoft.NET.ILLink.Tasks": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[8.0.6, )",
+            "autoReferenced": true
+          },
+          "Nerdbank.GitVersioning": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.4.244, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+            "version": "[8.0.6, 8.0.6]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+            "version": "[8.0.6, 8.0.6]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+            "version": "[8.0.6, 8.0.6]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
       },
       "net461": {
         "targetAlias": "net461",
@@ -838,7 +1158,7 @@
             "version": "[3.4.244, )"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
       },
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
@@ -871,7 +1191,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "osx-x64": {
+        "#import": []
       }
     }
   }

@@ -34,7 +34,7 @@
     "mac": {
       "target": [
         {
-          "target": "dmg",
+          "target": "mas",
           "arch": [
             "universal"
           ]
@@ -47,7 +47,7 @@
       "mergeASARs": true,
       "x64ArchFiles": "OPS",
       "hardenedRuntime": true,
-      "provisioningProfile": "../../../build/Calcula_Pro_Provisioning_Profile.provisionprofile",
+      "provisioningProfile": "../../../build/NewCalculaMacAppStoreProfile.provisionprofile",
       "entitlements": "../../../build/entitlements.mac.plist",
       "entitlementsInherit": "../../../build/entitlements.mac.plist",
       "gatekeeperAssess": false,
