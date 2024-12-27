@@ -19,7 +19,7 @@
       "name": "Calcula Pro"
     },
     "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
-    "buildVersion": "1.8.7",
+    "buildVersion": "1.8.8",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -46,6 +46,10 @@
       "asar":true,
       "mergeASARs": true,
       "x64ArchFiles": "OPS",
+      "hardenedRuntime": true,
+      "provisioningProfile": "../../../build/Calcula_Pro_Provisioning_Profile.provisionprofile",
+      "entitlements": "../../../build/entitlements.mac.plist",
+      "entitlementsInherit": "../../../build/entitlements.mac.plist",
       "gatekeeperAssess": false,
       "icon": "../../../../wwwroot/Images/Icon.icns"
     },
