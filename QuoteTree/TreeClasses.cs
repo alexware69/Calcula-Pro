@@ -3741,7 +3741,7 @@ public class QTree
         //the following method call is no longer needed, improves greatly performance.
         //SetDependentsByHierarchy(Root, stack);
         //This needs to be done twice in order to catch all dependents
-        Tuple<ANode, ANode>? tuple = SetDependentsByReference(Root!, true) ?? SetDependentsByReference(Root!, true);
+        Tuple<ANode, ANode>? tuple = SetDependentsByReference(Root!, true) ;//?? SetDependentsByReference(Root!, true);
         return tuple;
     }
 
@@ -4148,7 +4148,7 @@ public class QTree
         {
             //This needs to be done twice in order to catch all dependents
             SetDependentsByReference(_Root, true);
-            SetDependentsByReference(_Root, true);
+            //SetDependentsByReference(_Root, true);
         }
     }
 
