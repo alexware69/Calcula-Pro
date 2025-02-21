@@ -97,13 +97,13 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -444,13 +444,13 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -921,10 +921,10 @@
         "version.txt"
       ]
     },
-    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
-      "sha512": "0GvbEgDGcUQA9KuWcQU1WwYHXt1tBzNr1Nls/M57rM7NA/AndFwCaCEoJpJkmxRY7xLlPDBnmGp8h5+FNqUngg==",
+    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
+      "sha512": "XirkjOLc5Vc3HsXRc2Z6ZbQv6l0RvWgJa/31w7XqZ914MoSi3H3OCNRMWFw7H2EYfsnKbokFfhCcysAmUcEOgw==",
       "type": "package",
-      "path": "microsoft.net.illink.analyzers/7.0.100-1.23211.1",
+      "path": "microsoft.net.illink.analyzers/7.0.100-1.23401.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -932,14 +932,14 @@
         "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
         "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
         "build/Microsoft.NET.ILLink.Analyzers.props",
-        "microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
         "microsoft.net.illink.analyzers.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
-      "sha512": "tvG8XZYLjT0o3WicCyKBZysVWo1jC9HdCFmNRmddx3WbAz0UCsd0qKZqpiEo99VLA8Re+FzWK51OcRldQPbt2Q==",
+    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
+      "sha512": "mI6vCdPEhluLtMn/GV0texEWg5oAPQWCCE4LWspM+Bmy75Nd4EQsziQXrdOFqNeSBQMrxDX9C/O5Xi3kpKSMIw==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/7.0.100-1.23211.1",
+      "path": "microsoft.net.illink.tasks/7.0.100-1.23401.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -949,7 +949,7 @@
         "build/6.0_suppressions.xml",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/Mono.Cecil.dll",
@@ -1543,26 +1543,26 @@
     "net6.0": [
       "ElectronNET.API >= 23.6.2",
       "HtmlAgilityPack >= 1.11.42",
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
+      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
+      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
       "NCalcSync >= 1.0.0",
       "QuoteTree >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "/home/alejandro/.nuget/packages/": {}
+    "/Users/alejandro/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
+      "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
       "projectName": "OPS",
-      "projectPath": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
-      "packagesPath": "/home/alejandro/.nuget/packages/",
-      "outputPath": "/home/alejandro/Projects/Calcula-Pro/OPS/obj/",
+      "projectPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
+      "packagesPath": "/Users/alejandro/.nuget/packages/",
+      "outputPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/alejandro/.nuget/NuGet/NuGet.Config"
+        "/Users/alejandro/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1574,11 +1574,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-              "projectPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+            "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+              "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
             },
-            "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
-              "projectPath": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj"
+            "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
+              "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj"
             }
           }
         }
@@ -1587,6 +1587,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1604,13 +1609,13 @@
           "Microsoft.NET.ILLink.Analyzers": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.100-1.23211.1, )",
+            "version": "[7.0.100-1.23401.1, )",
             "autoReferenced": true
           },
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.100-1.23211.1, )",
+            "version": "[7.0.100-1.23401.1, )",
             "autoReferenced": true
           }
         },
@@ -1627,28 +1632,20 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
             "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-            "version": "[6.0.36, 6.0.36]"
+            "version": "[6.0.31, 6.0.31]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-            "version": "[6.0.36, 6.0.36]"
+            "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+            "version": "[6.0.31, 6.0.31]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
+            "version": "[6.0.31, 6.0.31]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-            "version": "[6.0.36, 6.0.36]"
+            "version": "[6.0.31, 6.0.31]"
           }
         ],
         "frameworkReferences": {
@@ -1659,7 +1656,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

@@ -16,7 +16,7 @@
     "appId": "com.CalculaPro.app",
     "productName": "Calcula Pro",
     "extraMetadata": {
-      "name": "Calcula Pro"
+      "name": "Calcula_Pro"
     },
     "copyright": "Copyright © 2024 Alejandro Penate-Diaz",
     "buildVersion": "1.8.9",
@@ -69,13 +69,18 @@
         "category": "Productivity",
         "target": [
             {
-                "target": "flatpak",
+                "target": "rpm",
                 "arch": [
-                    "x64",
-                    "arm64"
+                    "x64"
                 ]
             }
         ]
+    },
+    "rpm": {
+      "fpm": [
+        "--verbose",
+        "--iteration=1.0.0"
+      ]
     },
     "files": [
       {

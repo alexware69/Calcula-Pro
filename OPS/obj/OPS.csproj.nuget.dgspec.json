@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj": {}
+    "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj": {}
   },
   "projects": {
-    "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
         "projectName": "NCalcSync",
-        "projectPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
-        "packagesPath": "/home/alejandro/.nuget/packages/",
-        "outputPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/obj/",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/home/alejandro/.nuget/NuGet/NuGet.Config"
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net461",
@@ -48,6 +48,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -61,13 +66,13 @@
             "Microsoft.NET.ILLink.Analyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             },
             "Nerdbank.GitVersioning": {
@@ -90,24 +95,16 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -115,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
         },
         "net8.0": {
           "targetAlias": "net8.0",
@@ -127,7 +124,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.12, )",
+              "version": "[8.0.6, )",
               "autoReferenced": true
             },
             "Nerdbank.GitVersioning": {
@@ -151,15 +148,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[8.0.12, 8.0.12]"
+              "version": "[8.0.6, 8.0.6]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[8.0.12, 8.0.12]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[8.0.6, 8.0.6]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[8.0.12, 8.0.12]"
+              "version": "[8.0.6, 8.0.6]"
             }
           ],
           "frameworkReferences": {
@@ -167,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
         },
         "net461": {
           "targetAlias": "net461",
@@ -189,7 +186,7 @@
               "version": "[3.4.244, )"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
@@ -222,7 +219,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -231,17 +228,17 @@
         }
       }
     },
-    "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
         "projectName": "OPS",
-        "projectPath": "/home/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
-        "packagesPath": "/home/alejandro/.nuget/packages/",
-        "outputPath": "/home/alejandro/Projects/Calcula-Pro/OPS/obj/",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/OPS.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/OPS/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/alejandro/.nuget/NuGet/NuGet.Config"
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -253,11 +250,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-                "projectPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+              "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+                "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
               },
-              "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
-                "projectPath": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj"
+              "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
+                "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj"
               }
             }
           }
@@ -266,6 +263,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -283,13 +285,13 @@
             "Microsoft.NET.ILLink.Analyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             }
           },
@@ -306,28 +308,20 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -338,7 +332,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -347,17 +341,17 @@
         }
       }
     },
-    "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
+    "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "projectUniqueName": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
         "projectName": "QuoteTree",
-        "projectPath": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
-        "packagesPath": "/home/alejandro/.nuget/packages/",
-        "outputPath": "/home/alejandro/Projects/Calcula-Pro/QuoteTree/obj/",
+        "projectPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/QuoteTree.csproj",
+        "packagesPath": "/Users/alejandro/.nuget/packages/",
+        "outputPath": "/Users/alejandro/Projects/Calcula-Pro/QuoteTree/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/alejandro/.nuget/NuGet/NuGet.Config"
+          "/Users/alejandro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -369,8 +363,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
-                "projectPath": "/home/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
+              "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj": {
+                "projectPath": "/Users/alejandro/Projects/Calcula-Pro/NCalc/NCalc.csproj"
               }
             }
           }
@@ -379,6 +373,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -392,13 +391,13 @@
             "Microsoft.NET.ILLink.Analyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23211.1, )",
+              "version": "[7.0.100-1.23401.1, )",
               "autoReferenced": true
             }
           },
@@ -415,24 +414,16 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
               "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Crossgen2.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -440,7 +431,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
